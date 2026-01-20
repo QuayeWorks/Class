@@ -15,6 +15,7 @@ const AUTH_USER = "GoArmy";
 const AUTH_PASS = "GoArmy";
 
 let currentView = "login";
+let EXAM = null;
 
 function isAuthed(){
   return localStorage.getItem(AUTH_KEY) === "true";
@@ -144,6 +145,27 @@ function el(id){ return document.getElementById(id); }
 function setText(id, txt){ el(id).textContent = txt; }
 function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 function deepCopy(x){ return JSON.parse(JSON.stringify(x)); }
+
+function normalizeExamData(raw){
+  const questions = (raw.questions || []).map((q)=> {
+    if(q.type === "true_false"){
+      return {
+        ...q,
+        options: ["True", "False"],
+        answer: typeof q.answer === "boolean" ? q.answer : Boolean(q.answer)
+      };
+    }
+    return { ...q };
+  });
+
+  return {
+    title: raw.courseTitle || "CLS Practice Exam",
+    course: raw.courseTitle || raw.courseId || "CLS",
+    mode: "Practice",
+    timeLimitSeconds: 25 * 60,
+    questions
+  };
+}
 
 function shuffle(arr){
   const copy = [...arr];
@@ -820,7 +842,16 @@ function renderAll(){
    Init
 ------------------------- */
 
-function init(){
+async function init(){
+  try{
+    const raw = await window.loadExamData();
+    EXAM = normalizeExamData(raw);
+  }catch(e){
+    console.error("Failed to load exam data", e);
+    showToast("Failed to load exam data.");
+    return;
+  }
+
   loadState();
   ensureQuestionOrder();
 
