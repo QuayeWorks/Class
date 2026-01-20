@@ -113,6 +113,7 @@ const defaultState = {
   questionOrder: [],
   answers: {},
   flagged: {},
+  orderTouched: {},
   submitted: false,
   lastScore: null,
   examId: null
@@ -502,7 +503,10 @@ function getAnsweredCount(){
     else if(q.type === "true_false" && typeof a === "boolean") c++;
     else if((q.type === "multi" || q.type === "multi_not") && Array.isArray(a) && a.length) c++;
     else if(q.type === "match" && a && typeof a === "object" && Object.keys(a).length) c++;
-    else if(q.type === "order" && Array.isArray(a) && a.length) c++;
+    else if(q.type === "order"
+      && Array.isArray(a)
+      && a.length === q.steps.length
+      && state.orderTouched[q.id]) c++;
   }
   return c;
 }
@@ -514,7 +518,9 @@ function isAnswered(q){
   if(q.type === "true_false") return typeof a === "boolean";
   if(q.type === "multi" || q.type === "multi_not") return Array.isArray(a) && a.length > 0;
   if(q.type === "match") return a && typeof a === "object" && Object.keys(a).length > 0;
-  if(q.type === "order") return Array.isArray(a) && a.length === q.steps.length;
+  if(q.type === "order") return Array.isArray(a)
+    && a.length === q.steps.length
+    && state.orderTouched[q.id];
   return false;
 }
 
@@ -915,15 +921,9 @@ function renderOrder(q){
 
   // current order in state
   const saved = state.answers[q.id];
-  let orderKeys = Array.isArray(saved) && saved.length === q.steps.length
+  const orderKeys = Array.isArray(saved) && saved.length === q.steps.length
     ? saved
     : q.steps.map(s=>s.key);
-
-  // persist initial order on first view (optional)
-  if(!Array.isArray(saved)){
-    state.answers[q.id] = orderKeys;
-    saveState();
-  }
 
   for(const key of orderKeys){
     const step = q.steps.find(s=>s.key===key);
@@ -1011,7 +1011,10 @@ function wireDnD(root, q){
         const col = t.closest(".dndCol");
         if(!col) return;
 
-        const order = deepCopy(state.answers[q.id]);
+        const baseOrder = Array.isArray(state.answers[q.id])
+          ? state.answers[q.id]
+          : q.steps.map(s=>s.key);
+        const order = deepCopy(baseOrder);
         const draggedKey = dragData.key;
 
         // Determine insertion point: if dropped on a chip, insert before it
@@ -1031,6 +1034,7 @@ function wireDnD(root, q){
         }
 
         state.answers[q.id] = order;
+        state.orderTouched[q.id] = true;
         saveState();
         renderAll();
       }
@@ -1159,6 +1163,19 @@ function setExamSession(exam, key, orderOverride){
   loadState();
 
   state.examId = exam.id;
+  if(!state.orderTouched || typeof state.orderTouched !== "object"){
+    state.orderTouched = {};
+  }
+
+  EXAM.questions.filter(q => q.type === "order").forEach((q)=>{
+    const saved = state.answers[q.id];
+    if(Array.isArray(saved) && saved.length === q.steps.length){
+      const defaultOrder = q.steps.map(s => s.key);
+      const touched = !saved.every((val, idx)=> val === defaultOrder[idx]);
+      if(touched) state.orderTouched[q.id] = true;
+    }
+  });
+
   if(orderOverride && (!Array.isArray(state.questionOrder) || !state.questionOrder.length)){
     state.questionOrder = [...orderOverride];
   }
@@ -1328,6 +1345,9 @@ function renderAll(){
   if(state.submitted && state.lastScore){
     el("resultBox").classList.remove("hidden");
     el("helpBox").classList.add("hidden");
+  }else{
+    el("resultBox").classList.add("hidden");
+    el("helpBox").classList.remove("hidden");
   }
 
   renderQuestion();
