@@ -1,0 +1,1275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CLS Practice Exam • QuayeWorks</title>
+  <style>
+    :root{
+      --bg:#0b0f0d;
+      --panel:#0f1713;
+      --panel2:#0c120f;
+      --text:#e7f0ea;
+      --muted:#a8b8af;
+      --line:#1c2a23;
+      --accent:#d6b25e;    /* “gold” */
+      --accent2:#59c27d;   /* success */
+      --danger:#ff5b6b;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 12px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font);
+      background:
+        radial-gradient(900px 500px at 20% 0%, rgba(214,178,94,.14), transparent 60%),
+        radial-gradient(700px 480px at 90% 10%, rgba(89,194,125,.12), transparent 55%),
+        linear-gradient(180deg, #070a08, #0b0f0d 30%, #070a08);
+      color:var(--text);
+    }
+    a{color:inherit}
+    .wrap{
+      max-width:1150px;
+      margin:0 auto;
+      padding:22px 18px 40px;
+    }
+
+    /* Header */
+    .topbar{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 16px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(15,23,19,.92), rgba(12,18,15,.86));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      position:sticky;
+      top:10px;
+      z-index:50;
+      backdrop-filter: blur(10px);
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      min-width:260px;
+    }
+    .logoRow{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .logo{
+      width:42px;height:42px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+    }
+    .logo img{width:100%;height:100%;object-fit:cover}
+    .titles{
+      display:flex;flex-direction:column;gap:2px;
+    }
+    .titles .h1{
+      font-weight:750;
+      letter-spacing:.2px;
+      font-size:14.5px;
+      line-height:1.2;
+    }
+    .titles .sub{
+      color:var(--muted);
+      font-size:12px;
+    }
+    .statusRow{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+      flex-wrap:wrap;
+    }
+    .pill{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:99px;
+      background:var(--accent);
+      box-shadow:0 0 0 3px rgba(214,178,94,.12);
+    }
+    .btn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      padding:9px 12px;
+      border-radius:12px;
+      font-weight:650;
+      cursor:pointer;
+      transition:transform .06s ease, background .2s ease, border-color .2s ease;
+      user-select:none;
+    }
+    .btn:hover{background:rgba(255,255,255,.05); border-color:rgba(214,178,94,.35)}
+    .btn:active{transform:translateY(1px)}
+    .btn.primary{
+      border-color:rgba(214,178,94,.5);
+      background:linear-gradient(180deg, rgba(214,178,94,.18), rgba(214,178,94,.10));
+      color:#fff;
+    }
+    .btn.danger{
+      border-color:rgba(255,91,107,.45);
+      background:linear-gradient(180deg, rgba(255,91,107,.16), rgba(255,91,107,.08));
+    }
+
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap:16px;
+      margin-top:16px;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr; }
+      .brand{min-width:unset}
+      .topbar{position:relative; top:0}
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(15,23,19,.85), rgba(12,18,15,.78));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .cardHeader{
+      padding:16px 16px 12px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .cardTitle{
+      font-weight:800;
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    .cardMeta{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:4px;
+      line-height:1.4;
+    }
+    .cardBody{padding:16px}
+
+    /* Progress */
+    .progressOuter{
+      width:260px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+      overflow:hidden;
+      margin-top:6px;
+    }
+    .progressInner{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg, rgba(214,178,94,.9), rgba(89,194,125,.75));
+      border-right:1px solid rgba(255,255,255,.15);
+      transition:width .25s ease;
+    }
+
+    /* Question */
+    .qText{
+      font-size:15px;
+      line-height:1.5;
+      font-weight:650;
+    }
+    .qHint{
+      margin-top:8px;
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.4;
+    }
+    .answers{
+      margin-top:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .opt{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.10);
+      cursor:pointer;
+      transition: background .2s ease, border-color .2s ease, transform .06s ease;
+      user-select:none;
+    }
+    .opt:hover{border-color:rgba(214,178,94,.35); background:rgba(255,255,255,.03)}
+    .opt:active{transform:translateY(1px)}
+    .opt input{margin-top:3px}
+    .opt .label{
+      flex:1;
+      line-height:1.4;
+      font-size:14px;
+    }
+    .opt.selected{
+      border-color:rgba(214,178,94,.55);
+      background:rgba(214,178,94,.12);
+    }
+
+    /* DnD */
+    .dndGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width: 720px){
+      .dndGrid{grid-template-columns:1fr}
+    }
+    .dndCol{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background:rgba(0,0,0,.12);
+      min-height:160px;
+    }
+    .dndColTitle{
+      display:flex;align-items:center;justify-content:space-between;
+      color:var(--muted);
+      font-size:12px;
+      margin-bottom:8px;
+    }
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      padding:10px 10px;
+      border-radius:14px;
+      cursor:grab;
+      user-select:none;
+      transition:transform .06s ease, border-color .2s ease, background .2s ease;
+      margin-bottom:8px;
+    }
+    .chip:active{cursor:grabbing; transform:translateY(1px)}
+    .chip.dragging{
+      opacity:.6;
+      border-color:rgba(214,178,94,.55);
+      background:rgba(214,178,94,.12);
+    }
+    .dropTarget{
+      outline:2px dashed rgba(214,178,94,.0);
+      outline-offset:3px;
+      transition:outline-color .15s ease;
+    }
+    .dropTarget.over{
+      outline-color:rgba(214,178,94,.55);
+    }
+    .matchRow{
+      display:flex;
+      gap:10px;
+      align-items:stretch;
+      margin-bottom:10px;
+    }
+    .matchRow .def{
+      flex:1;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+      border-radius:14px;
+      padding:10px;
+      min-height:44px;
+      display:flex;
+      align-items:center;
+      line-height:1.35;
+      font-size:13.5px;
+    }
+    .slot{
+      width:45%;
+      min-width:180px;
+      border:1px dashed rgba(255,255,255,.22);
+      background:rgba(0,0,0,.12);
+      border-radius:14px;
+      padding:10px;
+      min-height:44px;
+      display:flex;
+      align-items:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .slot.filled{
+      border-style:solid;
+      color:var(--text);
+      background:rgba(214,178,94,.10);
+      border-color:rgba(214,178,94,.45);
+    }
+
+    /* Nav */
+    .navGrid{
+      display:grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap:8px;
+      padding:16px;
+    }
+    .navBtn{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+      color:var(--muted);
+      border-radius:12px;
+      padding:10px 0;
+      text-align:center;
+      cursor:pointer;
+      font-weight:700;
+      transition:background .2s ease, border-color .2s ease;
+      user-select:none;
+    }
+    .navBtn:hover{border-color:rgba(214,178,94,.35); background:rgba(255,255,255,.04)}
+    .navBtn.current{
+      color:var(--text);
+      border-color:rgba(214,178,94,.55);
+      background:rgba(214,178,94,.12);
+    }
+    .navBtn.answered{
+      color:#d8f2e1;
+      border-color:rgba(89,194,125,.45);
+      background:rgba(89,194,125,.10);
+    }
+
+    /* Footer controls */
+    .controls{
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      align-items:center;
+      padding:14px 16px 16px;
+      border-top:1px solid var(--line);
+      background:rgba(0,0,0,.10);
+    }
+    .leftControls, .rightControls{display:flex;gap:10px;flex-wrap:wrap}
+    .small{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.4;
+    }
+
+    /* Modal-ish result panel */
+    .resultBox{
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:rgba(0,0,0,.12);
+    }
+    .scoreBig{
+      font-size:34px;
+      font-weight:900;
+      letter-spacing:.2px;
+      margin:6px 0 2px;
+    }
+    .breakdown{
+      margin-top:10px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+      color:var(--muted);
+      font-size:12px;
+      font-weight:650;
+    }
+    .tag strong{color:var(--text)}
+    .hidden{display:none !important}
+    .hr{height:1px;background:var(--line);margin:10px 0}
+    .warn{
+      color:#ffe7a6;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logoRow">
+          <!-- Army logo (Wikipedia/Wikimedia or official source). Replace if needed. -->
+          <div class="logo" title="U.S. Army">
+            <img id="armyLogo" alt="Army logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Logo_of_the_United_States_Army.svg/256px-Logo_of_the_United_States_Army.svg.png">
+          </div>
+          <!-- QuayeWorks logo/avatar from GitHub profile -->
+          <div class="logo" title="QuayeWorks">
+            <img id="qwLogo" alt="QuayeWorks logo" src="https://avatars.githubusercontent.com/u/69900414?v=4">
+          </div>
+        </div>
+        <div class="titles">
+          <div class="h1">CLS Practice Exam</div>
+          <div class="sub">Modern test runner • QuayeWorks</div>
+        </div>
+      </div>
+
+      <div class="statusRow">
+        <div class="pill" title="Progress">
+          <span class="dot"></span>
+          <span><span id="answeredCount">0</span>/<span id="totalCount">0</span> answered</span>
+        </div>
+        <div class="pill" title="Timer">
+          <span class="dot" style="background:var(--accent2); box-shadow:0 0 0 3px rgba(89,194,125,.12)"></span>
+          <span id="timer">00:00</span>
+        </div>
+        <button class="btn" id="btnReset" title="Clear answers and restart">Reset</button>
+        <button class="btn primary" id="btnSubmit" title="Finish and grade">Submit</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- Main -->
+      <div class="card" id="mainCard">
+        <div class="cardHeader">
+          <div>
+            <div class="cardTitle" id="qTitle">Question</div>
+            <div class="cardMeta" id="qMeta">Type • Points</div>
+            <div class="progressOuter" aria-label="Progress bar">
+              <div class="progressInner" id="progressBar"></div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-end;">
+            <span class="tag" title="Exam mode"><strong id="modeLabel">Practice</strong></span>
+            <span class="tag" title="Autosave status">Autosave <strong id="saveLabel">On</strong></span>
+          </div>
+        </div>
+
+        <div class="cardBody">
+          <div class="qText" id="qText"></div>
+          <div class="qHint" id="qHint"></div>
+
+          <div id="qArea"></div>
+
+          <div class="hr"></div>
+          <div class="small" id="qNote"></div>
+        </div>
+
+        <div class="controls">
+          <div class="leftControls">
+            <button class="btn" id="btnPrev">← Prev</button>
+            <button class="btn" id="btnNext">Next →</button>
+          </div>
+          <div class="rightControls">
+            <button class="btn" id="btnFlag">Flag</button>
+            <button class="btn" id="btnReview">Review</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="card">
+        <div class="cardHeader">
+          <div>
+            <div class="cardTitle">Question Navigator</div>
+            <div class="cardMeta">Jump to any item • Green = answered</div>
+          </div>
+        </div>
+        <div class="navGrid" id="navGrid"></div>
+        <div class="cardBody">
+          <div class="resultBox hidden" id="resultBox">
+            <div class="small">Your score</div>
+            <div class="scoreBig" id="scoreBig">0%</div>
+            <div class="breakdown" id="breakdown"></div>
+            <div class="hr"></div>
+            <div class="small warn">
+              Tip: Use “Review” to see what you missed and why.
+            </div>
+          </div>
+
+          <div class="resultBox" id="helpBox">
+            <div class="small">
+              This is a <b>template</b>. When you upload the CLS PDF later, we’ll extract and swap in real questions.
+            </div>
+            <div class="hr"></div>
+            <div class="small">
+              Supported types:
+              <br>• Single-choice
+              <br>• Multi-select
+              <br>• “Select all that do NOT apply”
+              <br>• Drag & drop match
+              <br>• Drag & drop ordering
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+/**
+ * CLS Exam App (single-file)
+ * - No frameworks
+ * - Local autosave via localStorage
+ * - Multiple question types + drag & drop
+ */
+
+/* -------------------------
+   Question Data (EDIT ME)
+------------------------- */
+
+const EXAM = {
+  title: "CLS Practice Exam",
+  course: "Combat Lifesaver (CLS)",
+  mode: "Practice", // or "Exam"
+  timeLimitSeconds: 25 * 60, // set null for untimed
+  questions: [
+    {
+      id: "q1",
+      type: "single",
+      points: 1,
+      prompt: "Which of the following is the correct first step in MARCH?",
+      hint: "MARCH is used to prioritize life-threatening injuries.",
+      options: [
+        "Respiration",
+        "Massive hemorrhage",
+        "Circulation",
+        "Hypothermia / Head injury"
+      ],
+      answer: [1], // index of correct option
+      note: "MARCH: Massive hemorrhage, Airway, Respiration, Circulation, Hypothermia/Head injury."
+    },
+    {
+      id: "q2",
+      type: "multi",
+      points: 2,
+      prompt: "Select ALL that apply: Which are signs of shock?",
+      hint: "Pick every correct sign.",
+      options: [
+        "Cool, clammy skin",
+        "Altered mental status",
+        "Strong radial pulse",
+        "Rapid breathing",
+        "Delayed capillary refill"
+      ],
+      answer: [0,1,3,4],
+      note: "Shock indicators often include poor perfusion and mental status changes."
+    },
+    {
+      id: "q3",
+      type: "multi_not",
+      points: 2,
+      prompt: "Select ALL that do NOT apply: Which are NOT appropriate tourniquet placement guidelines?",
+      hint: "This is a negative-selection question.",
+      options: [
+        "Place 2–3 inches above the wound (not over a joint)",
+        "Place directly over the knee or elbow joint",
+        "Tighten until bleeding stops and distal pulse is absent",
+        "Loosen periodically to allow blood flow",
+        "Record the time of application"
+      ],
+      // For multi_not: answer holds the indices that are "NOT appropriate" (the ones you should select)
+      answer: [1,3],
+      note: "Tourniquets are not loosened once applied in tactical care unless directed by protocol/medical authority."
+    },
+    {
+      id: "q4",
+      type: "match",
+      points: 3,
+      prompt: "Drag the correct TERM into each definition.",
+      hint: "Match items on the left to the definitions on the right.",
+      // terms are draggable items
+      terms: [
+        { key: "TQ", label: "Tourniquet" },
+        { key: "NPA", label: "NPA (Nasopharyngeal Airway)" },
+        { key: "OC", label: "Occlusive Dressing" },
+        { key: "NP", label: "Needle Decompression" }
+      ],
+      // each definition expects a key
+      definitions: [
+        { id: "d1", text: "Used to control life-threatening extremity bleeding.", expect: "TQ" },
+        { id: "d2", text: "Used to help maintain an airway when appropriate.", expect: "NPA" },
+        { id: "d3", text: "Seals an open chest wound to prevent air entry.", expect: "OC" },
+        { id: "d4", text: "Emergency treatment for tension pneumothorax (when indicated).", expect: "NP" }
+      ],
+      note: "This is a simple matching demo; you’ll replace with real CLS content later."
+    },
+    {
+      id: "q5",
+      type: "order",
+      points: 3,
+      prompt: "Put these steps in the correct order for applying a pressure dressing (demo).",
+      hint: "Drag to reorder from first → last.",
+      steps: [
+        { key: "s1", label: "Secure dressing to maintain pressure" },
+        { key: "s2", label: "Expose wound and locate bleeding source" },
+        { key: "s3", label: "Apply direct pressure with sterile dressing" },
+        { key: "s4", label: "Reassess for continued bleeding" }
+      ],
+      // answer is the correct sequence of keys
+      answer: ["s2","s3","s1","s4"],
+      note: "Exact steps can vary by TCCC/CLS guidance; this is placeholder data."
+    }
+  ]
+};
+
+/* -------------------------
+   State + Persistence
+------------------------- */
+
+const STORAGE_KEY = "qw_cls_exam_state_v1";
+
+const state = {
+  startedAt: null,
+  elapsed: 0,
+  currentIndex: 0,
+  // answers stored by question id
+  answers: {},
+  flagged: {},
+  submitted: false,
+  lastScore: null
+};
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return;
+    const parsed = JSON.parse(raw);
+    Object.assign(state, parsed);
+  }catch(e){
+    console.warn("Failed to load state", e);
+  }
+}
+function saveState(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    setText("saveLabel", "On");
+  }catch(e){
+    setText("saveLabel", "Off");
+    console.warn("Failed to save state", e);
+  }
+}
+function resetState(){
+  localStorage.removeItem(STORAGE_KEY);
+  state.startedAt = null;
+  state.elapsed = 0;
+  state.currentIndex = 0;
+  state.answers = {};
+  state.flagged = {};
+  state.submitted = false;
+  state.lastScore = null;
+  renderAll();
+}
+
+/* -------------------------
+   Helpers
+------------------------- */
+
+function el(id){ return document.getElementById(id); }
+function setText(id, txt){ el(id).textContent = txt; }
+function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
+function deepCopy(x){ return JSON.parse(JSON.stringify(x)); }
+
+function questionTypeLabel(q){
+  switch(q.type){
+    case "single": return "Multiple choice (single)";
+    case "multi": return "Select all that apply";
+    case "multi_not": return "Select all that do NOT apply";
+    case "match": return "Drag & drop matching";
+    case "order": return "Drag & drop ordering";
+    default: return q.type;
+  }
+}
+
+function getAnsweredCount(){
+  let c = 0;
+  for(const q of EXAM.questions){
+    const a = state.answers[q.id];
+    if(a == null) continue;
+    if(q.type === "single" && Number.isInteger(a)) c++;
+    else if((q.type === "multi" || q.type === "multi_not") && Array.isArray(a) && a.length) c++;
+    else if(q.type === "match" && a && typeof a === "object" && Object.keys(a).length) c++;
+    else if(q.type === "order" && Array.isArray(a) && a.length) c++;
+  }
+  return c;
+}
+
+function isAnswered(q){
+  const a = state.answers[q.id];
+  if(a == null) return false;
+  if(q.type === "single") return Number.isInteger(a);
+  if(q.type === "multi" || q.type === "multi_not") return Array.isArray(a) && a.length > 0;
+  if(q.type === "match") return a && typeof a === "object" && Object.keys(a).length > 0;
+  if(q.type === "order") return Array.isArray(a) && a.length === q.steps.length;
+  return false;
+}
+
+function normalizeIndexArray(arr){
+  return [...new Set(arr)].sort((a,b)=>a-b);
+}
+
+/* -------------------------
+   Grading
+------------------------- */
+
+function grade(){
+  let earned = 0;
+  let possible = 0;
+  const perQ = [];
+
+  for(const q of EXAM.questions){
+    possible += q.points;
+    let qEarn = 0;
+
+    const a = state.answers[q.id];
+
+    if(q.type === "single"){
+      if(Number.isInteger(a) && a === q.answer[0]) qEarn = q.points;
+    }
+
+    if(q.type === "multi" || q.type === "multi_not"){
+      if(Array.isArray(a)){
+        const ans = normalizeIndexArray(a);
+        const key = normalizeIndexArray(q.answer);
+        // exact match scoring (simple + strict)
+        if(ans.length === key.length && ans.every((v,i)=>v===key[i])) qEarn = q.points;
+      }
+    }
+
+    if(q.type === "match"){
+      // a is {defId: termKey}
+      if(a && typeof a === "object"){
+        const total = q.definitions.length;
+        let correct = 0;
+        for(const d of q.definitions){
+          if(a[d.id] && a[d.id] === d.expect) correct++;
+        }
+        // partial credit
+        qEarn = Math.round((correct / total) * q.points * 100) / 100;
+      }
+    }
+
+    if(q.type === "order"){
+      if(Array.isArray(a) && a.length === q.answer.length){
+        let correctPos = 0;
+        for(let i=0;i<q.answer.length;i++){
+          if(a[i] === q.answer[i]) correctPos++;
+        }
+        // partial credit
+        qEarn = Math.round((correctPos / q.answer.length) * q.points * 100) / 100;
+      }
+    }
+
+    earned += qEarn;
+    perQ.push({ id:q.id, earned:qEarn, possible:q.points, type:q.type });
+  }
+
+  const pct = possible ? Math.round((earned/possible)*100) : 0;
+  return { earned, possible, pct, perQ };
+}
+
+/* -------------------------
+   Rendering
+------------------------- */
+
+function renderNav(){
+  const grid = el("navGrid");
+  grid.innerHTML = "";
+
+  EXAM.questions.forEach((q, i)=>{
+    const b = document.createElement("div");
+    b.className = "navBtn";
+    b.textContent = (i+1);
+
+    if(i === state.currentIndex) b.classList.add("current");
+    if(isAnswered(q)) b.classList.add("answered");
+    if(state.flagged[q.id]) b.title = "Flagged";
+
+    b.addEventListener("click", ()=>{
+      state.currentIndex = i;
+      saveState();
+      renderAll();
+    });
+
+    grid.appendChild(b);
+  });
+}
+
+function renderHeader(){
+  setText("modeLabel", EXAM.mode || "Practice");
+  setText("totalCount", EXAM.questions.length);
+  setText("answeredCount", getAnsweredCount());
+
+  const pct = Math.round((getAnsweredCount() / EXAM.questions.length) * 100);
+  el("progressBar").style.width = pct + "%";
+}
+
+function renderQuestion(){
+  const q = EXAM.questions[state.currentIndex];
+  if(!q) return;
+
+  setText("qTitle", `Question ${state.currentIndex+1}`);
+  setText("qMeta", `${questionTypeLabel(q)} • ${q.points} pt${q.points===1?"":"s"}`);
+  setText("qText", q.prompt);
+  setText("qHint", q.hint || "");
+  setText("qNote", q.note || "");
+
+  const area = el("qArea");
+  area.innerHTML = "";
+
+  if(q.type === "single" || q.type === "multi" || q.type === "multi_not"){
+    const answersDiv = document.createElement("div");
+    answersDiv.className = "answers";
+
+    const current = state.answers[q.id];
+
+    q.options.forEach((opt, idx)=>{
+      const row = document.createElement("div");
+      row.className = "opt";
+      const input = document.createElement("input");
+      input.type = (q.type === "single") ? "radio" : "checkbox";
+      input.name = q.id;
+      input.checked = (q.type === "single")
+        ? (current === idx)
+        : (Array.isArray(current) && current.includes(idx));
+
+      const label = document.createElement("div");
+      label.className = "label";
+      label.textContent = opt;
+
+      if(input.checked) row.classList.add("selected");
+
+      row.addEventListener("click", ()=>{
+        if(state.submitted) return;
+        if(q.type === "single"){
+          state.answers[q.id] = idx;
+        }else{
+          const arr = Array.isArray(state.answers[q.id]) ? deepCopy(state.answers[q.id]) : [];
+          const pos = arr.indexOf(idx);
+          if(pos >= 0) arr.splice(pos,1);
+          else arr.push(idx);
+          state.answers[q.id] = arr;
+        }
+        saveState();
+        renderAll();
+      });
+
+      row.appendChild(input);
+      row.appendChild(label);
+      answersDiv.appendChild(row);
+    });
+
+    area.appendChild(answersDiv);
+
+    if(q.type === "multi_not"){
+      const warn = document.createElement("div");
+      warn.className = "small warn";
+      warn.style.marginTop = "10px";
+      warn.textContent = "Reminder: Choose the items that are NOT correct.";
+      area.appendChild(warn);
+    }
+  }
+
+  if(q.type === "match"){
+    area.appendChild(renderMatch(q));
+  }
+
+  if(q.type === "order"){
+    area.appendChild(renderOrder(q));
+  }
+
+  // Prev/Next buttons
+  el("btnPrev").disabled = state.currentIndex === 0;
+  el("btnNext").disabled = state.currentIndex === EXAM.questions.length - 1;
+}
+
+function renderMatch(q){
+  const container = document.createElement("div");
+
+  const dnd = document.createElement("div");
+  dnd.className = "dndGrid";
+
+  const left = document.createElement("div");
+  left.className = "dndCol dropTarget";
+  left.dataset.zone = "pool";
+
+  const right = document.createElement("div");
+  right.className = "dndCol";
+
+  left.innerHTML = `<div class="dndColTitle"><span>Terms</span><span class="small">Drag</span></div>`;
+  right.innerHTML = `<div class="dndColTitle"><span>Definitions</span><span class="small">Drop</span></div>`;
+
+  const saved = (state.answers[q.id] && typeof state.answers[q.id] === "object") ? state.answers[q.id] : {};
+  // which term keys are already assigned?
+  const assigned = new Set(Object.values(saved));
+
+  // Terms pool
+  for(const t of q.terms){
+    if(assigned.has(t.key)) continue;
+    left.appendChild(makeChip(t.key, t.label, q.id, "match"));
+  }
+
+  // Definitions with slots
+  for(const d of q.definitions){
+    const row = document.createElement("div");
+    row.className = "matchRow";
+
+    const slot = document.createElement("div");
+    slot.className = "slot dropTarget";
+    slot.dataset.defid = d.id;
+    slot.dataset.qid = q.id;
+    slot.dataset.qtype = "match";
+
+    const filledKey = saved[d.id];
+    if(filledKey){
+      const t = q.terms.find(x=>x.key===filledKey);
+      slot.classList.add("filled");
+      slot.textContent = t ? t.label : filledKey;
+      slot.dataset.filled = filledKey;
+
+      // allow click to clear
+      slot.style.cursor = state.submitted ? "default" : "pointer";
+      slot.title = state.submitted ? "" : "Tap to remove";
+      slot.addEventListener("click", ()=>{
+        if(state.submitted) return;
+        // remove assignment and return term to pool
+        const next = { ...(state.answers[q.id] || {}) };
+        delete next[d.id];
+        state.answers[q.id] = next;
+        saveState();
+        renderAll();
+      });
+    }else{
+      slot.textContent = "Drop term here";
+    }
+
+    const def = document.createElement("div");
+    def.className = "def";
+    def.textContent = d.text;
+
+    row.appendChild(slot);
+    row.appendChild(def);
+    right.appendChild(row);
+  }
+
+  dnd.appendChild(left);
+  dnd.appendChild(right);
+  container.appendChild(dnd);
+
+  wireDnD(container, q);
+  return container;
+}
+
+function renderOrder(q){
+  const container = document.createElement("div");
+  const col = document.createElement("div");
+  col.className = "dndCol dropTarget";
+  col.dataset.zone = "order";
+
+  col.innerHTML = `<div class="dndColTitle"><span>Steps</span><span class="small">Drag to reorder</span></div>`;
+
+  // current order in state
+  const saved = state.answers[q.id];
+  let orderKeys = Array.isArray(saved) && saved.length === q.steps.length
+    ? saved
+    : q.steps.map(s=>s.key);
+
+  // persist initial order on first view (optional)
+  if(!Array.isArray(saved)){
+    state.answers[q.id] = orderKeys;
+    saveState();
+  }
+
+  for(const key of orderKeys){
+    const step = q.steps.find(s=>s.key===key);
+    col.appendChild(makeChip(step.key, step.label, q.id, "order"));
+  }
+
+  container.appendChild(col);
+  wireDnD(container, q);
+  return container;
+}
+
+/* -------------------------
+   Drag & Drop Engine
+------------------------- */
+
+let dragData = null;
+
+function makeChip(key, label, qid, qtype){
+  const chip = document.createElement("div");
+  chip.className = "chip";
+  chip.draggable = !state.submitted;
+  chip.dataset.key = key;
+  chip.dataset.qid = qid;
+  chip.dataset.qtype = qtype;
+  chip.textContent = label;
+
+  chip.addEventListener("dragstart", (e)=>{
+    if(state.submitted) return;
+    dragData = {
+      key,
+      qid,
+      qtype,
+      from: chip.parentElement
+    };
+    chip.classList.add("dragging");
+    e.dataTransfer.effectAllowed = "move";
+    try{ e.dataTransfer.setData("text/plain", key); }catch{}
+  });
+
+  chip.addEventListener("dragend", ()=>{
+    chip.classList.remove("dragging");
+    dragData = null;
+    document.querySelectorAll(".dropTarget").forEach(x=>x.classList.remove("over"));
+  });
+
+  return chip;
+}
+
+function wireDnD(root, q){
+  const targets = root.querySelectorAll(".dropTarget");
+  targets.forEach(t=>{
+    t.addEventListener("dragover", (e)=>{
+      if(state.submitted) return;
+      e.preventDefault();
+      t.classList.add("over");
+    });
+    t.addEventListener("dragleave", ()=>{
+      t.classList.remove("over");
+    });
+    t.addEventListener("drop", (e)=>{
+      if(state.submitted) return;
+      e.preventDefault();
+      t.classList.remove("over");
+      if(!dragData) return;
+
+      if(q.type === "match"){
+        // drop into slot or pool
+        const defid = t.dataset.defid;
+        if(defid){
+          const next = { ...(state.answers[q.id] || {}) };
+
+          // if this term is already assigned elsewhere, remove it
+          for(const k of Object.keys(next)){
+            if(next[k] === dragData.key) delete next[k];
+          }
+          next[defid] = dragData.key;
+          state.answers[q.id] = next;
+          saveState();
+          renderAll();
+        }
+      }
+
+      if(q.type === "order"){
+        // reorder within same column by dropping on container
+        const col = t.closest(".dndCol");
+        if(!col) return;
+
+        const order = deepCopy(state.answers[q.id]);
+        const draggedKey = dragData.key;
+
+        // Determine insertion point: if dropped on a chip, insert before it
+        const dropChip = e.target.closest(".chip");
+        const fromIndex = order.indexOf(draggedKey);
+        if(fromIndex < 0) return;
+
+        order.splice(fromIndex, 1);
+
+        if(dropChip){
+          const targetKey = dropChip.dataset.key;
+          const toIndex = order.indexOf(targetKey);
+          if(toIndex >= 0) order.splice(toIndex, 0, draggedKey);
+          else order.push(draggedKey);
+        }else{
+          order.push(draggedKey);
+        }
+
+        state.answers[q.id] = order;
+        saveState();
+        renderAll();
+      }
+    });
+  });
+}
+
+/* -------------------------
+   Review Mode (simple)
+------------------------- */
+
+function showReview(){
+  const g = grade();
+  state.lastScore = g;
+  state.submitted = true;
+  saveState();
+
+  // show result panel
+  el("resultBox").classList.remove("hidden");
+  el("helpBox").classList.add("hidden");
+
+  setText("scoreBig", `${g.pct}%`);
+
+  const bd = el("breakdown");
+  bd.innerHTML = "";
+  const lines = [
+    `Points: ${g.earned} / ${g.possible}`,
+    `Answered: ${getAnsweredCount()} / ${EXAM.questions.length}`,
+    `Flagged: ${Object.keys(state.flagged).length}`
+  ];
+  for(const s of lines){
+    const div = document.createElement("div");
+    div.textContent = s;
+    bd.appendChild(div);
+  }
+
+  renderAll();
+}
+
+/* -------------------------
+   Timer
+------------------------- */
+
+let timerHandle = null;
+function startTimer(){
+  if(timerHandle) clearInterval(timerHandle);
+  if(!state.startedAt) state.startedAt = Date.now();
+
+  timerHandle = setInterval(()=>{
+    const now = Date.now();
+    const elapsed = Math.floor((now - state.startedAt)/1000);
+    state.elapsed = elapsed;
+
+    // enforce time limit if set
+    if(EXAM.timeLimitSeconds && elapsed >= EXAM.timeLimitSeconds && !state.submitted){
+      state.elapsed = EXAM.timeLimitSeconds;
+      saveState();
+      showReview();
+    }else{
+      saveState();
+    }
+    renderTimer();
+  }, 1000);
+}
+function renderTimer(){
+  let s = state.elapsed || 0;
+  if(EXAM.timeLimitSeconds){
+    s = Math.max(0, EXAM.timeLimitSeconds - s);
+  }
+  const mm = String(Math.floor(s/60)).padStart(2,"0");
+  const ss = String(s%60).padStart(2,"0");
+  setText("timer", `${mm}:${ss}`);
+}
+
+/* -------------------------
+   Events
+------------------------- */
+
+function bindUI(){
+  el("btnPrev").addEventListener("click", ()=>{
+    state.currentIndex = clamp(state.currentIndex - 1, 0, EXAM.questions.length-1);
+    saveState(); renderAll();
+  });
+  el("btnNext").addEventListener("click", ()=>{
+    state.currentIndex = clamp(state.currentIndex + 1, 0, EXAM.questions.length-1);
+    saveState(); renderAll();
+  });
+
+  el("btnFlag").addEventListener("click", ()=>{
+    const q = EXAM.questions[state.currentIndex];
+    state.flagged[q.id] = !state.flagged[q.id];
+    saveState(); renderAll();
+  });
+
+  el("btnReview").addEventListener("click", ()=>{
+    // If not submitted, this acts like a "check progress" screen but we keep it simple:
+    // submit only if user wants
+    alert("Review shows after Submit. Use Submit when you're ready to grade.");
+  });
+
+  el("btnSubmit").addEventListener("click", ()=>{
+    if(state.submitted){
+      // Already submitted: just re-render
+      renderAll();
+      return;
+    }
+    const unanswered = EXAM.questions.length - getAnsweredCount();
+    const proceed = confirm(unanswered
+      ? `You have ${unanswered} unanswered question(s). Submit anyway?`
+      : "Submit and grade now?"
+    );
+    if(!proceed) return;
+    showReview();
+  });
+
+  el("btnReset").addEventListener("click", ()=>{
+    const ok = confirm("Reset all answers and restart?");
+    if(ok) resetState();
+  });
+}
+
+/* -------------------------
+   Render All
+------------------------- */
+
+function renderAll(){
+  renderHeader();
+  renderNav();
+  renderTimer();
+
+  const q = EXAM.questions[state.currentIndex];
+
+  // Update flag button label
+  el("btnFlag").textContent = state.flagged[q.id] ? "Flagged" : "Flag";
+
+  // Disable interactions after submit
+  el("btnSubmit").textContent = state.submitted ? "Submitted" : "Submit";
+  el("btnSubmit").disabled = false;
+
+  // If submitted, show results panel
+  if(state.submitted && state.lastScore){
+    el("resultBox").classList.remove("hidden");
+    el("helpBox").classList.add("hidden");
+  }
+
+  renderQuestion();
+}
+
+/* -------------------------
+   Init
+------------------------- */
+
+function init(){
+  loadState();
+
+  // Ensure currentIndex in bounds
+  state.currentIndex = clamp(state.currentIndex || 0, 0, EXAM.questions.length-1);
+
+  setText("modeLabel", EXAM.mode || "Practice");
+  setText("totalCount", EXAM.questions.length);
+
+  bindUI();
+  renderAll();
+  startTimer();
+}
+
+init();
+</script>
+</body>
+</html>
