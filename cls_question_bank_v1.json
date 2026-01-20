@@ -1592,6 +1592,460 @@
       "answer": false,
       "note": "Blind finger sweeps are specifically discouraged.",
       "source": "CLS 05.pdf"
+    },
+    {
+      "id": "CLS-M03-SC01",
+      "module": "03",
+      "type": "single",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": true,
+      "prompt": "SCENARIO: You are in Care Under Fire. A teammate is down in an exposed area and you can still hear incoming rounds. The casualty is yelling and appears able to move. What is your best immediate action?",
+      "options": [
+        "Move immediately to the casualty and begin a head-to-toe assessment",
+        "Direct the casualty to remain engaged, apply self-aid, and move to cover if able",
+        "Stop firing and run to drag the casualty out as quickly as possible",
+        "Begin Tactical Field Care interventions where they are"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "CUF priorities emphasize return fire/take cover, gaining/maintaining fire superiority, and directing the casualty to self-aid and move to cover if able. Approaching while the area is still a kill zone is specifically discouraged.",
+      "tags": [
+        "CUF",
+        "fire-superiority",
+        "self-aid"
+      ],
+      "sourceRef": "CUF principles / kill zone"
+    },
+    {
+      "id": "CLS-M03-SC02",
+      "module": "03",
+      "type": "single",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": true,
+      "prompt": "SCENARIO: During Care Under Fire, you see bright red blood pooling near a casualty\u2019s leg and clothing rapidly soaking with blood. The casualty cannot move. What action aligns best with CUF guidance?",
+      "options": [
+        "Apply a tourniquet high and tight above the wound and then move the casualty based on the tactical situation",
+        "Perform airway maneuvers first because breathing is always first priority",
+        "Delay hemorrhage control until you reach Tactical Field Care",
+        "Loosen any tourniquet every few minutes to allow blood flow"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "CUF emphasizes controlling life-threatening bleeding with a tourniquet (\u2018high and tight\u2019) and moving the casualty out of the kill zone if they are unable to move. Delaying hemorrhage control can be fatal.",
+      "tags": [
+        "CUF",
+        "tourniquet",
+        "massive-bleeding"
+      ],
+      "sourceRef": "High and tight / CUF hemorrhage"
+    },
+    {
+      "id": "CLS-M05-SC01",
+      "module": "05",
+      "type": "single",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": true,
+      "prompt": "SCENARIO: In Tactical Field Care, a casualty has facial trauma and is conscious but struggling to breathe. What positioning guidance best fits the airway management slides?",
+      "options": [
+        "Force them flat on their back to keep the spine straight",
+        "Assist them to sit up and lean forward if that allows easier breathing",
+        "Immediately perform a blind finger sweep to clear the airway",
+        "Place them in recovery position regardless of shock status"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Conscious casualties should be assisted into a position that allows them to breathe easily. Severe facial trauma casualties can often protect their airway by sitting up and leaning forward. Blind finger sweeps are discouraged.",
+      "tags": [
+        "TTA",
+        "airway",
+        "positioning"
+      ],
+      "sourceRef": "Airway management / no blind sweep"
+    },
+    {
+      "id": "CLS-M05-SC02",
+      "module": "05",
+      "type": "single",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": true,
+      "prompt": "SCENARIO: An unconscious casualty is found in Tactical Field Care. You suspect a neck/spinal injury. There is no visible airway obstruction. Which airway maneuver is most appropriate?",
+      "options": [
+        "Head-tilt chin lift",
+        "Jaw thrust",
+        "Blind finger sweep",
+        "Abdominal thrusts"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "When neck or spinal injury is suspected, the jaw thrust method is recommended. Blind finger sweeps are specifically warned against.",
+      "tags": [
+        "TTA",
+        "airway",
+        "spinal"
+      ],
+      "sourceRef": "Jaw thrust for suspected spinal"
+    },
+    {
+      "id": "CLS-M05-SC03",
+      "module": "05",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: In Tactical Field Care, a casualty has a penetrating wound to the chest. You expose the chest and see signs consistent with penetrating trauma. Select ALL actions that best align with the respiration assessment guidance.",
+      "options": [
+        "Expose the chest to assess for chest injury indicators",
+        "Apply a chest seal (vented, if available) when penetrating trauma is identified",
+        "Ignore bruising/contusions because only gunshot wounds matter",
+        "Treat tension pneumothorax with a tourniquet",
+        "Continue to reassess respirations as part of MARCH"
+      ],
+      "answer": [
+        0,
+        1,
+        4
+      ],
+      "rationale": "Respiration assessment guidance lists exposing the chest and applying a chest seal (vented if available) for penetrating trauma. The module also emphasizes reassessment as you proceed through MARCH.",
+      "tags": [
+        "TTA",
+        "respiration",
+        "chest-seal"
+      ],
+      "sourceRef": "Respiration assessment / chest seal"
+    },
+    {
+      "id": "CLS-M05-SC04",
+      "module": "05",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": true,
+      "prompt": "SCENARIO: During assessment, the casualty is pale/clammy, breathing rapidly, and has altered mental status. Select ALL findings that match the module\u2019s shock indicators.",
+      "options": [
+        "Altered mental status",
+        "Rapid breathing",
+        "Sweaty, cool, clammy skin",
+        "Excess thirst",
+        "Strong bounding radial pulse"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "rationale": "The shock slide lists altered mental status, rapid breathing, sweaty cool clammy skin, and excess thirst among indicators. A strong bounding radial pulse is not presented as a shock indicator.",
+      "tags": [
+        "TTA",
+        "shock"
+      ],
+      "sourceRef": "Shock indicators list"
+    },
+    {
+      "id": "CLS-M05-SC05",
+      "module": "05",
+      "type": "single",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "prompt": "SCENARIO: You are treating a casualty in warm weather after significant blood loss. A teammate says hypothermia prevention isn\u2019t necessary because it\u2019s hot. What is the best response based on the module?",
+      "options": [
+        "Agree \u2014 hypothermia prevention is only for cold environments",
+        "Disagree \u2014 blood loss can significantly drop body temperature even in hot weather; begin prevention early",
+        "Agree \u2014 hypothermia only matters after evacuation",
+        "Disagree \u2014 but only start prevention if the casualty is shivering"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "The module states hypothermia is easier to prevent than treat and should begin as soon as possible. It also notes blood loss can cause significant temperature drop even in hot weather.",
+      "tags": [
+        "TTA",
+        "hypothermia"
+      ],
+      "sourceRef": "Hypothermia prevention"
+    },
+    {
+      "id": "CLS-M04-SC01",
+      "module": "04",
+      "type": "single",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": true,
+      "prompt": "SCENARIO: You are preparing to extract a casualty from a vehicle/platform in Tactical Field Care. Which principle is stated as the FIRST priority in extraction guidance?",
+      "options": [
+        "Speed",
+        "Safety",
+        "Documentation",
+        "Splinting"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Extraction principles explicitly state safety is the first principle and is critical. Other considerations follow.",
+      "tags": [
+        "TFC",
+        "extraction"
+      ],
+      "sourceRef": "Extraction principles"
+    },
+    {
+      "id": "CLS-M04-SC02",
+      "module": "04",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": true,
+      "prompt": "SCENARIO: During Tactical Field Care, you are providing care and coordinating evacuation. Select ALL actions that align with the communication/documentation guidance.",
+      "options": [
+        "Communicate evacuation requirements to tactical leadership immediately",
+        "Keep the casualty\u2019s DD Form 1380 up to date",
+        "Relay a MIST report (Mechanism, Injuries, Symptoms, Treatment)",
+        "Avoid documenting medications to save time",
+        "Only communicate once; do not update leadership as care changes"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "rationale": "Guidance emphasizes timely comms to leadership for evac requirements, keeping DD Form 1380 current, and using the MIST report. Leadership should be updated as status/interventions change.",
+      "tags": [
+        "TFC",
+        "communication",
+        "MIST",
+        "DD1380"
+      ],
+      "sourceRef": "Communication & documentation"
+    },
+    {
+      "id": "CLS-M03-SC03",
+      "module": "03",
+      "type": "single",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": true,
+      "prompt": "SCENARIO: In Care Under Fire, you and a casualty reach cover. The casualty\u2019s leg is badly bleeding, and their JFAK is accessible. What action best follows CLS guidance?",
+      "options": [
+        "Apply a tourniquet high and tight using the casualty\u2019s JFAK, then reassess the tactical situation",
+        "Wait until Tactical Field Care to control the bleeding",
+        "Use your own med bag supplies first to preserve the casualty\u2019s kit",
+        "Loosen the tourniquet every few minutes to restore circulation"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "CLS guidance stresses rapid hemorrhage control in CUF, using a high-and-tight tourniquet, and prioritizing the casualty\u2019s JFAK to preserve your supplies for additional casualties.",
+      "tags": [
+        "CUF",
+        "tourniquet",
+        "JFAK"
+      ],
+      "sourceRef": "Use casualty JFAK first"
+    },
+    {
+      "id": "CLS-M04-SC03",
+      "module": "04",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": true,
+      "prompt": "SCENARIO: You are moving a casualty toward a casualty collection point in Tactical Field Care. Select ALL actions that align with extraction principles and continued care.",
+      "options": [
+        "Maintain safety of the team and casualty throughout movement",
+        "Continue MARCH reassessment during movement",
+        "Stop all reassessments once movement starts",
+        "Use the casualty\u2019s JFAK before drawing on your own supplies",
+        "Prioritize speed even if it increases exposure to hazards"
+      ],
+      "answer": [
+        0,
+        1,
+        3
+      ],
+      "rationale": "Extraction guidance emphasizes safety as the first priority, continuing MARCH-based reassessment, and using the casualty\u2019s JFAK first when possible. Speed is important but never replaces safety.",
+      "tags": [
+        "TFC",
+        "extraction",
+        "MARCH",
+        "JFAK"
+      ],
+      "sourceRef": "Extraction principles / use casualty JFAK"
+    },
+    {
+      "id": "CLS-M05-SC06",
+      "module": "05",
+      "type": "single",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "prompt": "SCENARIO: A casualty shows signs of shock after bleeding is controlled. Which action best reflects immediate CLS care?",
+      "options": [
+        "Prevent hypothermia, monitor closely, and prepare for evacuation",
+        "Force large amounts of oral fluids immediately",
+        "Place the casualty prone to improve circulation",
+        "Delay care until all documentation is complete"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Shock management includes preventing hypothermia early, monitoring status, and preparing for evacuation. Forcing oral fluids is not always appropriate, and delaying care is unsafe.",
+      "tags": [
+        "TTA",
+        "shock",
+        "hypothermia"
+      ],
+      "sourceRef": "Shock management / hypothermia prevention"
     }
-  ]
+  ],
+  "modules": [
+    {
+      "id": "01",
+      "title": "Principles and Applications of TCCC",
+      "locked": false,
+      "questionCount": 13
+    },
+    {
+      "id": "02",
+      "title": "Medical Equipment",
+      "locked": false,
+      "questionCount": 15
+    },
+    {
+      "id": "03",
+      "title": "Care Under Fire",
+      "locked": false,
+      "questionCount": 24
+    },
+    {
+      "id": "04",
+      "title": "Principles and Application of Tactical Field Care",
+      "locked": false,
+      "questionCount": 19
+    },
+    {
+      "id": "05",
+      "title": "Tactical Trauma Assessment (In Depth)",
+      "locked": false,
+      "questionCount": 30
+    },
+    {
+      "id": "06",
+      "title": "Module 06",
+      "locked": true,
+      "questionCount": 0
+    },
+    {
+      "id": "07",
+      "title": "Module 07",
+      "locked": true,
+      "questionCount": 0
+    },
+    {
+      "id": "08",
+      "title": "Module 08",
+      "locked": true,
+      "questionCount": 0
+    },
+    {
+      "id": "09",
+      "title": "Module 09",
+      "locked": true,
+      "questionCount": 0
+    },
+    {
+      "id": "10",
+      "title": "Module 10",
+      "locked": true,
+      "questionCount": 0
+    },
+    {
+      "id": "11",
+      "title": "Module 11",
+      "locked": true,
+      "questionCount": 0
+    },
+    {
+      "id": "12",
+      "title": "Module 12",
+      "locked": true,
+      "questionCount": 0
+    },
+    {
+      "id": "13",
+      "title": "Module 13",
+      "locked": true,
+      "questionCount": 0
+    },
+    {
+      "id": "14",
+      "title": "Module 14",
+      "locked": true,
+      "questionCount": 0
+    },
+    {
+      "id": "15",
+      "title": "Module 15",
+      "locked": true,
+      "questionCount": 0
+    },
+    {
+      "id": "16",
+      "title": "Module 16",
+      "locked": true,
+      "questionCount": 0
+    },
+    {
+      "id": "17",
+      "title": "Module 17",
+      "locked": true,
+      "questionCount": 0
+    },
+    {
+      "id": "18",
+      "title": "Module 18",
+      "locked": true,
+      "questionCount": 0
+    },
+    {
+      "id": "19",
+      "title": "Module 19",
+      "locked": true,
+      "questionCount": 0
+    },
+    {
+      "id": "20",
+      "title": "Module 20",
+      "locked": true,
+      "questionCount": 0
+    }
+  ],
+  "profiles": {
+    "finalExam": {
+      "id": "FINAL",
+      "title": "Final Exam",
+      "totalQuestions": 50,
+      "timeLimitSeconds": 3000,
+      "difficultyMix": {
+        "min": 2,
+        "max": 5
+      },
+      "includeModules": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05"
+      ],
+      "preferScenarioPct": 40
+    }
+  }
 }
