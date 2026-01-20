@@ -229,6 +229,14 @@
       border-color:rgba(212,175,55,.55);
       background:rgba(212,175,55,.12);
     }
+    .opt.correct{
+      border-color:rgba(115, 224, 160, .7);
+      background:rgba(115, 224, 160, .14);
+    }
+    .opt.incorrect{
+      border-color:rgba(255, 117, 134, .7);
+      background:rgba(255, 117, 134, .12);
+    }
 
     /* DnD */
     .dndGrid{
@@ -370,6 +378,28 @@
       border-radius:16px;
       background:rgba(0,0,0,.12);
     }
+    .resultBox.inline{
+      margin-top:16px;
+      border-color:rgba(255,255,255,.14);
+      background:rgba(0,0,0,.18);
+    }
+    .resultStatus{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:750;
+      margin-bottom:8px;
+    }
+    .resultStatus.correct{color:#9ff0bf;}
+    .resultStatus.incorrect{color:#ffb3bd;}
+    .answerKey{
+      margin-top:6px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      font-size:13px;
+    }
+    .answerKey strong{color:var(--text);}
     .scoreBig{
       font-size:34px;
       font-weight:900;
