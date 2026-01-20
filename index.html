@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>QuayeWorks Testing Site</title>
+  <title>Classes</title>
   <style>
     :root{
-      --bg:#0b0f0d;
-      --panel:#0f1713;
-      --panel2:#0c120f;
-      --text:#e7f0ea;
-      --muted:#a8b8af;
-      --line:#1c2a23;
-      --accent:#d6b25e;    /* “gold” */
-      --accent2:#59c27d;   /* success */
-      --danger:#ff5b6b;
+      --bg:#08142e;
+      --panel:#0f1f3f;
+      --panel2:#0b1a38;
+      --text:#f9fbff;
+      --muted:#c7d2e6;
+      --line:#1a2f57;
+      --accent:#d4af37;    /* gold */
+      --accent2:#ffffff;   /* white */
+      --danger:#ff7586;
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius: 18px;
       --radius2: 12px;
@@ -26,9 +26,9 @@
       margin:0;
       font-family:var(--font);
       background:
-        radial-gradient(900px 500px at 20% 0%, rgba(214,178,94,.14), transparent 60%),
-        radial-gradient(700px 480px at 90% 10%, rgba(89,194,125,.12), transparent 55%),
-        linear-gradient(180deg, #070a08, #0b0f0d 30%, #070a08);
+        radial-gradient(900px 500px at 20% 0%, rgba(212,175,55,.16), transparent 60%),
+        radial-gradient(700px 480px at 90% 10%, rgba(255,255,255,.08), transparent 55%),
+        linear-gradient(180deg, #050c20, #08142e 30%, #050c20);
       color:var(--text);
     }
     a{color:inherit}
@@ -46,7 +46,7 @@
       justify-content:space-between;
       padding:14px 16px;
       border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(15,23,19,.92), rgba(12,18,15,.86));
+      background:linear-gradient(180deg, rgba(15,31,63,.92), rgba(11,26,56,.86));
       border-radius:var(--radius);
       box-shadow:var(--shadow);
       position:sticky;
@@ -110,7 +110,7 @@
     .dot{
       width:8px;height:8px;border-radius:99px;
       background:var(--accent);
-      box-shadow:0 0 0 3px rgba(214,178,94,.12);
+      box-shadow:0 0 0 3px rgba(212,175,55,.12);
     }
     .btn{
       border:1px solid var(--line);
@@ -123,11 +123,11 @@
       transition:transform .06s ease, background .2s ease, border-color .2s ease;
       user-select:none;
     }
-    .btn:hover{background:rgba(255,255,255,.05); border-color:rgba(214,178,94,.35)}
+    .btn:hover{background:rgba(255,255,255,.05); border-color:rgba(212,175,55,.35)}
     .btn:active{transform:translateY(1px)}
     .btn.primary{
-      border-color:rgba(214,178,94,.5);
-      background:linear-gradient(180deg, rgba(214,178,94,.18), rgba(214,178,94,.10));
+      border-color:rgba(212,175,55,.5);
+      background:linear-gradient(180deg, rgba(212,175,55,.18), rgba(212,175,55,.10));
       color:#fff;
     }
     .btn.danger{
@@ -150,7 +150,7 @@
 
     .card{
       border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(15,23,19,.85), rgba(12,18,15,.78));
+      background:linear-gradient(180deg, rgba(15,31,63,.85), rgba(11,26,56,.78));
       border-radius:var(--radius);
       box-shadow:var(--shadow);
       overflow:hidden;
@@ -189,7 +189,7 @@
     .progressInner{
       height:100%;
       width:0%;
-      background:linear-gradient(90deg, rgba(214,178,94,.9), rgba(89,194,125,.75));
+      background:linear-gradient(90deg, rgba(212,175,55,.95), rgba(255,255,255,.75));
       border-right:1px solid rgba(255,255,255,.15);
       transition:width .25s ease;
     }
@@ -224,7 +224,7 @@
       transition: background .2s ease, border-color .2s ease, transform .06s ease;
       user-select:none;
     }
-    .opt:hover{border-color:rgba(214,178,94,.35); background:rgba(255,255,255,.03)}
+    .opt:hover{border-color:rgba(212,175,55,.35); background:rgba(255,255,255,.03)}
     .opt:active{transform:translateY(1px)}
     .opt input{margin-top:3px}
     .opt .label{
@@ -233,8 +233,8 @@
       font-size:14px;
     }
     .opt.selected{
-      border-color:rgba(214,178,94,.55);
-      background:rgba(214,178,94,.12);
+      border-color:rgba(212,175,55,.55);
+      background:rgba(212,175,55,.12);
     }
 
     /* DnD */
@@ -273,16 +273,16 @@
     .chip:active{cursor:grabbing; transform:translateY(1px)}
     .chip.dragging{
       opacity:.6;
-      border-color:rgba(214,178,94,.55);
-      background:rgba(214,178,94,.12);
+      border-color:rgba(212,175,55,.55);
+      background:rgba(212,175,55,.12);
     }
     .dropTarget{
-      outline:2px dashed rgba(214,178,94,.0);
+      outline:2px dashed rgba(212,175,55,.0);
       outline-offset:3px;
       transition:outline-color .15s ease;
     }
     .dropTarget.over{
-      outline-color:rgba(214,178,94,.55);
+      outline-color:rgba(212,175,55,.55);
     }
     .matchRow{
       display:flex;
@@ -318,8 +318,8 @@
     .slot.filled{
       border-style:solid;
       color:var(--text);
-      background:rgba(214,178,94,.10);
-      border-color:rgba(214,178,94,.45);
+      background:rgba(212,175,55,.10);
+      border-color:rgba(212,175,55,.45);
     }
 
     /* Nav */
@@ -341,16 +341,16 @@
       transition:background .2s ease, border-color .2s ease;
       user-select:none;
     }
-    .navBtn:hover{border-color:rgba(214,178,94,.35); background:rgba(255,255,255,.04)}
+    .navBtn:hover{border-color:rgba(212,175,55,.35); background:rgba(255,255,255,.04)}
     .navBtn.current{
       color:var(--text);
-      border-color:rgba(214,178,94,.55);
-      background:rgba(214,178,94,.12);
+      border-color:rgba(212,175,55,.55);
+      background:rgba(212,175,55,.12);
     }
     .navBtn.answered{
-      color:#d8f2e1;
-      border-color:rgba(89,194,125,.45);
-      background:rgba(89,194,125,.10);
+      color:#fff7dd;
+      border-color:rgba(212,175,55,.55);
+      background:rgba(212,175,55,.12);
     }
 
     /* Footer controls */
@@ -447,7 +447,7 @@
       cursor:pointer;
       transition:transform .06s ease, border-color .2s ease, background .2s ease;
     }
-    .courseTile:hover{border-color:rgba(214,178,94,.35); background:rgba(255,255,255,.05)}
+    .courseTile:hover{border-color:rgba(212,175,55,.35); background:rgba(255,255,255,.05)}
     .courseTile.locked{
       opacity:.5;
       cursor:not-allowed;
@@ -469,7 +469,7 @@
       position:fixed;
       right:20px;
       bottom:24px;
-      background:rgba(12,18,15,.96);
+      background:rgba(8,20,46,.96);
       border:1px solid var(--line);
       padding:12px 14px;
       border-radius:12px;
@@ -499,8 +499,8 @@
           </div>
         </div>
         <div class="titles">
-          <div class="h1" id="siteTitle">QuayeWorks Testing Site</div>
-          <div class="sub" id="siteSubtitle">Login-gated course catalog • QuayeWorks</div>
+          <div class="h1" id="siteTitle">Classes</div>
+          <div class="sub" id="siteSubtitle">by QuayeWorks</div>
         </div>
       </div>
 
@@ -514,7 +514,7 @@
           <span><span id="answeredCount">0</span>/<span id="totalCount">0</span> answered</span>
         </div>
         <div class="pill" title="Timer">
-          <span class="dot" style="background:var(--accent2); box-shadow:0 0 0 3px rgba(89,194,125,.12)"></span>
+          <span class="dot" style="background:var(--accent2); box-shadow:0 0 0 3px rgba(255,255,255,.12)"></span>
           <span id="timer">00:00</span>
         </div>
         <button class="btn" id="btnReset" title="Clear answers and restart">Reset</button>
@@ -551,7 +551,7 @@
         <div class="card">
           <div class="cardHeader">
             <div>
-              <div class="cardTitle">QuayeWorks Testing</div>
+              <div class="cardTitle">Classes</div>
               <div class="cardMeta">A lightweight, offline-ready test runner for CLS training.</div>
             </div>
           </div>
@@ -680,7 +680,7 @@
 
 <script>
 /**
- * QuayeWorks Testing Site (single-file)
+ * Classes (single-file)
  * - Login gate + course catalog
  * - CLS exam runner
  * - Local autosave via localStorage
@@ -726,12 +726,12 @@ function renderView(){
   el("examControls").classList.toggle("hidden", currentView !== "exam");
 
   if(currentView === "exam"){
-    setText("siteTitle", "CLS Practice Exam");
-    setText("siteSubtitle", "Modern test runner • QuayeWorks");
+    setText("siteTitle", "Classes");
+    setText("siteSubtitle", "by QuayeWorks");
     startTimer();
   }else{
-    setText("siteTitle", "QuayeWorks Testing Site");
-    setText("siteSubtitle", "Login-gated course catalog • QuayeWorks");
+    setText("siteTitle", "Classes");
+    setText("siteSubtitle", "by QuayeWorks");
     stopTimer();
   }
 }
