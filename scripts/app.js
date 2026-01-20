@@ -1276,6 +1276,10 @@ function bindUI(){
     if(ok) resetState();
   });
 
+  el("btnBackToModules").addEventListener("click", ()=>{
+    setView(VIEW_MODULES);
+  });
+
   el("btnLogin").addEventListener("click", handleLogin);
   el("loginPass").addEventListener("keydown", (e)=>{
     if(e.key === "Enter") handleLogin();
