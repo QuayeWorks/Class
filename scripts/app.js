@@ -168,17 +168,35 @@ function el(id){ return document.getElementById(id); }
 function setText(id, txt){ el(id).textContent = txt; }
 function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 function deepCopy(x){ return JSON.parse(JSON.stringify(x)); }
+function normalizeModuleId(moduleId){
+  const raw = String(moduleId ?? "").trim();
+  if(/^\d+$/.test(raw)){
+    return raw.padStart(2, "0");
+  }
+  return raw;
+}
+
+function getQuestionCountsByModule(questions){
+  const counts = {};
+  (questions || []).forEach((q)=>{
+    const id = normalizeModuleId(q.module);
+    if(!id) return;
+    counts[id] = (counts[id] || 0) + 1;
+  });
+  return counts;
+}
 
 function normalizeQuestions(raw){
   const questions = (raw.questions || []).map((q)=> {
     if(q.type === "true_false"){
       return {
         ...q,
+        module: normalizeModuleId(q.module),
         options: ["True", "False"],
         answer: typeof q.answer === "boolean" ? q.answer : Boolean(q.answer)
       };
     }
-    return { ...q };
+    return { ...q, module: normalizeModuleId(q.module) };
   });
 
   return questions;
@@ -229,17 +247,15 @@ function buildModules(raw){
     ? deepCopy(raw.modules)
     : buildDefaultModules();
 
-  const counts = {};
-  (raw.questions || []).forEach((q)=>{
-    counts[q.module] = (counts[q.module] || 0) + 1;
-  });
+  const counts = getQuestionCountsByModule(raw.questions);
 
   return base.map((mod)=>{
-    const count = counts[mod.id] || 0;
+    const normalizedId = normalizeModuleId(mod.id);
+    const count = counts[normalizedId] || 0;
     return {
-      id: mod.id,
-      title: mod.title || `Module ${mod.id}`,
-      locked: typeof mod.locked === "boolean" ? mod.locked : count === 0,
+      id: normalizedId,
+      title: mod.title || `Module ${normalizedId}`,
+      locked: count === 0,
       questionCount: count
     };
   });
@@ -256,21 +272,24 @@ function buildFinalProfile(raw, modules){
     preferScenarioPct: 40
   };
   const profile = raw.profiles && raw.profiles.finalExam ? raw.profiles.finalExam : fallback;
-  const unlocked = new Set(modules.filter(m => !m.locked).map(m => m.id));
+  const unlocked = new Set(modules.filter(m => !m.locked).map(m => normalizeModuleId(m.id)));
   return {
     ...fallback,
     ...profile,
-    includeModules: (profile.includeModules || fallback.includeModules).filter(id => unlocked.has(id))
+    includeModules: (profile.includeModules || fallback.includeModules)
+      .map((id)=> normalizeModuleId(id))
+      .filter(id => unlocked.has(id))
   };
 }
 
 function buildExamForModule(moduleId){
-  const moduleInfo = MODULES.find(m => m.id === moduleId);
-  const questions = RAW_DATA.questions.filter(q => q.module === moduleId);
+  const normalizedId = normalizeModuleId(moduleId);
+  const moduleInfo = MODULES.find(m => m.id === normalizedId);
+  const questions = RAW_DATA.questions.filter(q => q.module === normalizedId);
   return {
-    id: `MODULE_${moduleId}`,
-    title: moduleInfo ? moduleInfo.title : `Module ${moduleId}`,
-    mode: moduleInfo ? moduleInfo.title : `Module ${moduleId}`,
+    id: `MODULE_${normalizedId}`,
+    title: moduleInfo ? moduleInfo.title : `Module ${normalizedId}`,
+    mode: moduleInfo ? moduleInfo.title : `Module ${normalizedId}`,
     timeLimitSeconds: 25 * 60,
     questions
   };
@@ -369,8 +388,9 @@ function getOrCreateFinalExamBundle(profile){
 function selectFinalExamQuestions(profile, rng){
   const minDifficulty = profile.difficultyMix?.min ?? 1;
   const maxDifficulty = profile.difficultyMix?.max ?? 5;
+  const includeModules = (profile.includeModules || []).map((id)=> normalizeModuleId(id));
   const eligible = RAW_DATA.questions.filter((q)=>{
-    const inModule = profile.includeModules.includes(q.module);
+    const inModule = includeModules.includes(q.module);
     const diff = q.difficulty ?? 1;
     return inModule && diff >= minDifficulty && diff <= maxDifficulty;
   });
@@ -1065,11 +1085,16 @@ function renderModuleSelect(){
 
     const title = document.createElement("div");
     title.className = "courseTitle";
-    title.textContent = `Module ${mod.id}`;
+    title.textContent = mod.title || `Module ${mod.id}`;
 
     const meta = document.createElement("div");
     meta.className = "courseMeta";
-    meta.textContent = `${mod.title} • ${mod.questionCount} question${mod.questionCount === 1 ? "" : "s"}`;
+    const count = mod.questionCount || 0;
+    if(count > 0){
+      meta.textContent = `Ready • ${count} question${count === 1 ? "" : "s"}`;
+    }else{
+      meta.textContent = "Locked / Coming soon";
+    }
 
     tile.appendChild(title);
     tile.appendChild(meta);
@@ -1149,9 +1174,10 @@ function setExamSession(exam, key, orderOverride){
 }
 
 function startModuleExam(moduleId){
-  const exam = buildExamForModule(moduleId);
-  const key = `${MODULE_STORAGE_PREFIX}${moduleId}_v1`;
-  localStorage.setItem(LAST_EXAM_KEY, JSON.stringify({ type: "module", id: moduleId }));
+  const normalizedId = normalizeModuleId(moduleId);
+  const exam = buildExamForModule(normalizedId);
+  const key = `${MODULE_STORAGE_PREFIX}${normalizedId}_v1`;
+  localStorage.setItem(LAST_EXAM_KEY, JSON.stringify({ type: "module", id: normalizedId }));
   setExamSession(exam, key);
 }
 
@@ -1314,6 +1340,14 @@ async function init(){
     RAW_DATA.questions = normalizeQuestions(raw);
     MODULES = buildModules(RAW_DATA);
     FINAL_PROFILE = buildFinalProfile(RAW_DATA, MODULES);
+    const moduleSet = [...new Set(RAW_DATA.questions.map(q => q.module))];
+    console.log("CLS question modules loaded:", moduleSet);
+    const countsByModule = getQuestionCountsByModule(RAW_DATA.questions);
+    const moduleLockReport = buildDefaultModules().map((mod)=> {
+      const count = countsByModule[mod.id] || 0;
+      return { module: mod.id, count, locked: count === 0 };
+    });
+    console.log("CLS module counts/locks:", moduleLockReport);
   }catch(e){
     console.error("Failed to load exam data", e);
     showToast("Failed to load exam data.");
