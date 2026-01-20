@@ -495,6 +495,596 @@
       ],
       "answer": ["cuf1", "cuf2", "cuf3", "cuf4"],
       "note": "CUF emphasizes fire superiority and controlling life-threatening bleeding before movement when feasible. Source: CLS 01/03"
+    },
+    {
+      "id": "CLS-M01-Q05",
+      "module": "01",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which are listed as key factors influencing TCCC?",
+      "options": [
+        "Hostile fire",
+        "Tactical considerations",
+        "Environmental considerations",
+        "Wounding patterns",
+        "Equipment constraints",
+        "Delays in reaching higher levels of care",
+        "Level of first responder training and experience",
+        "Weather forecasts from higher headquarters"
+      ],
+      "answer": [0, 1, 2, 3, 4, 5, 6],
+      "note": "Key factors influencing TCCC are listed on the 'Key Factors' slide.",
+      "source": "CLS 01.pdf (Key factors influencing TCCC)",
+      "sourceLines": "turn3file9:L14-L21"
+    },
+    {
+      "id": "CLS-M01-Q06",
+      "module": "01",
+      "type": "order",
+      "points": 3,
+      "prompt": "Put the three phases of TCCC in the correct order.",
+      "hint": "Drag to reorder from first → last.",
+      "steps": [
+        { "key": "p1", "label": "Care Under Fire (CUF)" },
+        { "key": "p2", "label": "Tactical Field Care (TFC)" },
+        { "key": "p3", "label": "Tactical Evacuation Care (TACEVAC)" }
+      ],
+      "answer": ["p1", "p2", "p3"],
+      "note": "TCCC has three phases: CUF → TFC → TACEVAC.",
+      "source": "CLS 01.pdf (Three phases of TCCC)",
+      "sourceLines": "turn3file9:L43-L70"
+    },
+    {
+      "id": "CLS-M01-Q07",
+      "module": "01",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: In a Care Under Fire situation, what must the CLS do according to the roles/responsibilities slide?",
+      "options": [
+        "Respond to suppression of hostile fire to minimize risk of injury",
+        "Minimize additional injury to previously injured service members",
+        "Perform a full head-to-toe trauma assessment before moving the casualty",
+        "Maintain security and situational awareness while tending to casualties (TFC responsibility)"
+      ],
+      "answer": [0, 1],
+      "note": "The slide lists CUF-specific responsibilities.",
+      "source": "CLS 01.pdf (Roles and responsibilities of the Combat Lifesaver)",
+      "sourceLines": "turn3file12:L67-L75"
+    },
+    {
+      "id": "CLS-M01-Q08",
+      "module": "01",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: In Tactical Field Care, what must CLS service members do according to the roles/responsibilities slide?",
+      "options": [
+        "Maintain security and situational awareness",
+        "Continue to tend to casualties",
+        "Prepare for evacuation",
+        "Immediately perform evacuation without reassessment"
+      ],
+      "answer": [0, 1, 2],
+      "note": "The TFC responsibilities are listed on the roles/responsibilities slide.",
+      "source": "CLS 01.pdf (Roles and responsibilities of the Combat Lifesaver)",
+      "sourceLines": "turn3file12:L71-L75"
+    },
+    {
+      "id": "CLS-M01-Q09",
+      "module": "01",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "Role 1 care is also referred to as unit-level medical care or self-aid, buddy aid, combat lifesaver, and/or medic care.",
+      "answer": true,
+      "note": "Role 1 care synonyms are explicitly listed.",
+      "source": "CLS 01.pdf (First Responder Care / Role 1)",
+      "sourceLines": "turn3file9:L4-L7"
+    },
+    {
+      "id": "CLS-M01-Q10",
+      "module": "01",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Role 1 care includes which of the following?",
+      "options": [
+        "Immediate lifesaving measures",
+        "Treatment for disease and non-battle injury (DNBI)",
+        "Treatment for degradation of functional capability from factors not attributed to enemy action",
+        "Surgical interventions at a hospital"
+      ],
+      "answer": [0, 1, 2],
+      "note": "Role 1 scope is described in the Role 1 care slide text.",
+      "source": "CLS 01.pdf (First Responder Care / Role 1)",
+      "sourceLines": "turn3file9:L8-L12"
+    },
+    {
+      "id": "CLS-M02-Q07",
+      "module": "02",
+      "type": "single",
+      "points": 1,
+      "prompt": "Hemostatic gauze is described as:",
+      "options": [
+        "Gauze rolls used to stop major life-threatening bleeding",
+        "A device used to treat airway obstruction",
+        "A blanket used to prevent hypothermia",
+        "A rigid shield used to protect an injured eye"
+      ],
+      "answer": [0],
+      "note": "Hemostatic gauze purpose is defined in the equipment overview.",
+      "source": "CLS 02.pdf (Hemostatic gauze definition)",
+      "sourceLines": "turn3file5:L5-L7"
+    },
+    {
+      "id": "CLS-M02-Q08",
+      "module": "02",
+      "type": "single",
+      "points": 1,
+      "prompt": "An NPA (nasopharyngeal airway) is described as:",
+      "options": [
+        "A nonsterile, rubber tube-shaped device inserted into a casualty’s nostril",
+        "A needle inserted into the chest to treat tension pneumothorax",
+        "An adhesive dressing used to seal penetrating chest wounds",
+        "A medication pack used only for traumatic injuries"
+      ],
+      "answer": [0],
+      "note": "NPA description appears in the equipment overview.",
+      "source": "CLS 02.pdf (NPA definition)",
+      "sourceLines": "turn3file5:L14-L19"
+    },
+    {
+      "id": "CLS-M02-Q09",
+      "module": "02",
+      "type": "single",
+      "points": 1,
+      "prompt": "A vented chest seal is used for:",
+      "options": [
+        "Treating penetrating wounds to the chest",
+        "Stabilizing broken bones",
+        "Preventing hypothermia",
+        "Treating traumatic brain injury"
+      ],
+      "answer": [0],
+      "note": "Vented chest seal purpose appears in the equipment overview.",
+      "source": "CLS 02.pdf (Vented chest seal purpose)",
+      "sourceLines": "turn3file5:L20-L23"
+    },
+    {
+      "id": "CLS-M02-Q10",
+      "module": "02",
+      "type": "single",
+      "points": 1,
+      "prompt": "The NDC 10–14 gauge 3.25\" needle catheter is described as a device used to:",
+      "options": [
+        "Treat tension pneumothorax",
+        "Control massive extremity bleeding",
+        "Seal an open chest wound without venting",
+        "Evaluate for traumatic brain injury"
+      ],
+      "answer": [0],
+      "note": "Needle catheter purpose appears in the equipment overview.",
+      "source": "CLS 02.pdf (Needle catheter purpose)",
+      "sourceLines": "turn3file5:L24-L30"
+    },
+    {
+      "id": "CLS-M02-Q11",
+      "module": "02",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "MACE2 is used for identifying possible traumatic brain injury (TBI).",
+      "answer": true,
+      "note": "MACE2 purpose is stated under Documentation.",
+      "source": "CLS 02.pdf (MACE2 purpose)",
+      "sourceLines": "turn3file5:L69-L73"
+    },
+    {
+      "id": "CLS-M02-Q12",
+      "module": "02",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which medications are listed as components of the Combat Wound Medication Pack (CWMP) in the equipment overview?",
+      "options": [
+        "Moxifloxacin 400mg tab",
+        "Acetaminophen (two 650mg tabs)",
+        "Meloxicam 15mg tab",
+        "Ibuprofen 800mg tab"
+      ],
+      "answer": [0, 1, 2],
+      "note": "CWMP contents are listed in the overview slide.",
+      "source": "CLS 02.pdf (CWMP contents)",
+      "sourceLines": "turn3file5:L34-L46"
+    },
+    {
+      "id": "CLS-M03-Q11",
+      "module": "03",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "During Care Under Fire, you should NOT approach a casualty while the casualty is inside of a kill zone.",
+      "answer": true,
+      "note": "Kill zone warning is explicitly stated under CUF principles.",
+      "source": "CLS 03.pdf (Fire superiority principles / kill zone)",
+      "sourceLines": "turn3file8:L17-L25"
+    },
+    {
+      "id": "CLS-M03-Q12",
+      "module": "03",
+      "type": "single",
+      "points": 1,
+      "prompt": "If a casualty is unable to move to cover, when should you go to them to aid in movement (when tactically feasible)?",
+      "options": [
+        "Immediately, regardless of enemy fire",
+        "Only after fire has been suppressed and fire superiority has been gained",
+        "Only after a full MARCH PAWS assessment is completed",
+        "Only after MEDEVAC arrives"
+      ],
+      "answer": [1],
+      "note": "The slide states to go to them when fire is suppressed and fire superiority gained.",
+      "source": "CLS 03.pdf (If casualty is unable to move)",
+      "sourceLines": "turn3file8:L37-L41"
+    },
+    {
+      "id": "CLS-M03-Q13",
+      "module": "03",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: If a casualty is unable to move to cover, what items are suggested to aid movement?",
+      "options": [
+        "Rope",
+        "Dragging straps",
+        "Chemical cold packs",
+        "Field-expedient litter straps"
+      ],
+      "answer": [0, 1],
+      "note": "Rope and dragging straps are explicitly listed examples.",
+      "source": "CLS 03.pdf (Aid them in movement)",
+      "sourceLines": "turn3file8:L37-L42"
+    },
+    {
+      "id": "CLS-M03-Q14",
+      "module": "03",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "When moving casualties under fire, spinal injuries are not to be a concern during Care Under Fire movements.",
+      "answer": true,
+      "note": "Stated explicitly in the casualty movement guidance section.",
+      "source": "CLS 03.pdf (Casualty movement guidance)",
+      "sourceLines": "turn3file11:L7-L8"
+    },
+    {
+      "id": "CLS-M03-Q15",
+      "module": "03",
+      "type": "single",
+      "points": 1,
+      "prompt": "Which one-person carry method should be used for a conscious casualty only?",
+      "options": [
+        "Neck drag",
+        "Cradle-drop drag",
+        "Support carry",
+        "Fore and aft carry"
+      ],
+      "answer": [2],
+      "note": "Support carry is listed for conscious casualty only.",
+      "source": "CLS 03.pdf (Drag/carry methods)",
+      "sourceLines": "turn3file11:L19-L21"
+    },
+    {
+      "id": "CLS-M03-Q16",
+      "module": "03",
+      "type": "single",
+      "points": 1,
+      "prompt": "Which statement best describes an advantage of the neck drag during CUF?",
+      "options": [
+        "It limits the casualty and rescuer from exposure to enemy fire",
+        "It requires no training and is risk-free",
+        "It is used only for vehicle extraction",
+        "It is the best method for stairs"
+      ],
+      "answer": [0],
+      "note": "Neck drag advantage is explicitly described.",
+      "source": "CLS 03.pdf (Neck drag)",
+      "sourceLines": "turn3file11:L10-L13"
+    },
+    {
+      "id": "CLS-M03-Q17",
+      "module": "03",
+      "type": "single",
+      "points": 1,
+      "prompt": "Cradle-drop drag is described as effective for:",
+      "options": [
+        "Moving a casualty up or down stairs/steps or short distances",
+        "Treating penetrating chest wounds",
+        "Applying a tourniquet one-handed",
+        "Preventing hypothermia"
+      ],
+      "answer": [0],
+      "note": "Cradle-drop drag use-case is stated in the drag/carry list.",
+      "source": "CLS 03.pdf (Cradle-drop drag)",
+      "sourceLines": "turn3file11:L13-L15"
+    },
+    {
+      "id": "CLS-M03-Q18",
+      "module": "03",
+      "type": "single",
+      "points": 1,
+      "prompt": "Fore and aft carry exposes:",
+      "options": [
+        "Two rescuers to hostile fire instead of one",
+        "Only the casualty to hostile fire",
+        "No one to hostile fire",
+        "Only one rescuer to hostile fire"
+      ],
+      "answer": [0],
+      "note": "Fore and aft carry disadvantage is stated explicitly.",
+      "source": "CLS 03.pdf (Two-person drag/carry)",
+      "sourceLines": "turn3file11:L33-L36"
+    },
+    {
+      "id": "CLS-M04-Q07",
+      "module": "04",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "Extractions will vary based on the mission and vehicles located in your Area of Responsibility (AOR).",
+      "answer": true,
+      "note": "Extraction variability is stated explicitly.",
+      "source": "CLS 04.pdf (Casualty removal/extraction principles)",
+      "sourceLines": "turn3file3:L6-L8"
+    },
+    {
+      "id": "CLS-M04-Q08",
+      "module": "04",
+      "type": "single",
+      "points": 1,
+      "prompt": "In casualty removal/extraction principles, what is stated as the first principle?",
+      "options": [
+        "Speed",
+        "Safety",
+        "Training",
+        "Documentation"
+      ],
+      "answer": [1],
+      "note": "The slide states: 'The first principle is safety.'",
+      "source": "CLS 04.pdf (Extraction principles)",
+      "sourceLines": "turn3file3:L9-L10"
+    },
+    {
+      "id": "CLS-M04-Q09",
+      "module": "04",
+      "type": "single",
+      "points": 1,
+      "prompt": "In casualty removal/extraction principles, the second principle states that:",
+      "options": [
+        "MARCH still applies; initiate lifesaving measures like a tourniquet before extraction if possible",
+        "Only move casualties after MEDEVAC arrives",
+        "Do not treat until extraction is complete",
+        "Only medics can apply tourniquets"
+      ],
+      "answer": [0],
+      "note": "The slide states MARCH still applies and suggests initiating lifesaving measures before extraction if possible.",
+      "source": "CLS 04.pdf (Extraction principles)",
+      "sourceLines": "turn3file3:L10-L13"
+    },
+    {
+      "id": "CLS-M04-Q10",
+      "module": "04",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: When communicating with a casualty in TFC, what actions are listed?",
+      "options": [
+        "Encourage",
+        "Reassure",
+        "Explain care each step of the way",
+        "Ignore the casualty to maintain tempo"
+      ],
+      "answer": [0, 1, 2],
+      "note": "Communication actions are listed on the communication slide.",
+      "source": "CLS 04.pdf (Communication)",
+      "sourceLines": "turn3file3:L29-L35"
+    },
+    {
+      "id": "CLS-M04-Q11",
+      "module": "04",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "All assessment and medical care (including interventions and medications) should be documented on the DD Form 1380.",
+      "answer": true,
+      "note": "Documentation requirement is explicit.",
+      "source": "CLS 04.pdf (Communicate relevant casualty data)",
+      "sourceLines": "turn3file3:L53-L56"
+    },
+    {
+      "id": "CLS-M04-Q12",
+      "module": "04",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which items are included in the MIST report?",
+      "options": [
+        "Mechanism of injury",
+        "Injuries",
+        "Symptoms",
+        "Treatment",
+        "Time zone"
+      ],
+      "answer": [0, 1, 2, 3],
+      "note": "MIST components are listed under MEDEVAC communication.",
+      "source": "CLS 04.pdf (MIST report)",
+      "sourceLines": "turn3file3:L59-L64"
+    },
+    {
+      "id": "CLS-M04-Q13",
+      "module": "04",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "A MIST report may change as the casualty status and interventions performed change.",
+      "answer": true,
+      "note": "Stated explicitly in the hand-off guidance.",
+      "source": "CLS 04.pdf (Handoff with medic/MEDEVAC)",
+      "sourceLines": "turn3file3:L74-L77"
+    },
+    {
+      "id": "CLS-M05-Q10",
+      "module": "05",
+      "type": "single",
+      "points": 1,
+      "prompt": "If you suspect a casualty has suffered a neck or spinal injury, which airway-opening maneuver should you use?",
+      "options": [
+        "Head-tilt chin lift",
+        "Jaw thrust",
+        "Recovery position",
+        "Abdominal thrusts"
+      ],
+      "answer": [1],
+      "note": "Jaw thrust is recommended when neck/spinal injury suspected.",
+      "source": "CLS 05.pdf (Opening the airway)",
+      "sourceLines": "turn3file0:L5-L7"
+    },
+    {
+      "id": "CLS-M05-Q11",
+      "module": "05",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which airway-opening maneuvers are listed for a casualty without an airway obstruction?",
+      "options": [
+        "Head-tilt chin lift",
+        "Jaw thrust",
+        "Needle decompression",
+        "Chest seal application"
+      ],
+      "answer": [0, 1],
+      "note": "Opening the airway maneuvers listed include head-tilt chin lift and jaw thrust.",
+      "source": "CLS 05.pdf (Opening the airway)",
+      "sourceLines": "turn3file0:L1-L4"
+    },
+    {
+      "id": "CLS-M05-Q12",
+      "module": "05",
+      "type": "single",
+      "points": 1,
+      "prompt": "For an unconscious casualty not in shock, what position is recommended for airway management?",
+      "options": [
+        "Recovery position",
+        "Prone position",
+        "Supine with legs elevated only",
+        "Seated leaning forward"
+      ],
+      "answer": [0],
+      "note": "The slide states to place an unconscious casualty not in shock into the recovery position.",
+      "source": "CLS 05.pdf (Airway management / recovery position)",
+      "sourceLines": "turn3file0:L19-L21"
+    },
+    {
+      "id": "CLS-M05-Q13",
+      "module": "05",
+      "type": "single",
+      "points": 1,
+      "prompt": "Casualties with severe facial trauma can often protect their own airways by:",
+      "options": [
+        "Sitting up and leaning forward",
+        "Lying flat on their back",
+        "Having the responder perform a blind finger sweep",
+        "Drinking water slowly"
+      ],
+      "answer": [0],
+      "note": "Severe facial trauma airway guidance is explicitly stated.",
+      "source": "CLS 05.pdf (Managing the airway)",
+      "sourceLines": "turn3file0:L15-L18"
+    },
+    {
+      "id": "CLS-M05-Q14",
+      "module": "05",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: When assessing for life-threatening chest injury, what should the responder expose the chest to assess for?",
+      "options": [
+        "Gunshot or shrapnel wound",
+        "Blunt-force trauma",
+        "Bruising or contusions",
+        "Any deformities of the chest",
+        "Sunburn severity"
+      ],
+      "answer": [0, 1, 2, 3],
+      "note": "Chest injury assessment indicators are listed on the respiration assessment slide.",
+      "source": "CLS 05.pdf (Life-threatening chest injury)",
+      "sourceLines": "turn3file0:L31-L36"
+    },
+    {
+      "id": "CLS-M05-Q15",
+      "module": "05",
+      "type": "single",
+      "points": 1,
+      "prompt": "If penetrating trauma is found or identified during chest assessment, what is the indicated action?",
+      "options": [
+        "Apply a chest seal (vented, if available)",
+        "Apply a tourniquet to the neck",
+        "Perform a blind finger sweep",
+        "Give CWMP immediately regardless of injury"
+      ],
+      "answer": [0],
+      "note": "Penetrating chest trauma guidance states to apply a chest seal (vented if available).",
+      "source": "CLS 05.pdf (Penetrating trauma action)",
+      "sourceLines": "turn3file0:L36-L39"
+    },
+    {
+      "id": "CLS-M05-Q16",
+      "module": "05",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Under 'Reassess Treatments' in circulation, what should be reassessed?",
+      "options": [
+        "Airway",
+        "Respirations",
+        "All treatment for massive hemorrhage",
+        "Only splinting"
+      ],
+      "answer": [0, 1, 2],
+      "note": "Reassess airway, respirations, and massive hemorrhage treatments.",
+      "source": "CLS 05.pdf (Reassess treatments)",
+      "sourceLines": "turn3file15:L4-L7"
+    },
+    {
+      "id": "CLS-M05-Q17",
+      "module": "05",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which are listed signs and symptoms of shock?",
+      "options": [
+        "Weak or absent radial pulses (or low blood pressure)",
+        "Altered mental status",
+        "Increased heart rate",
+        "Rapid breathing",
+        "Sweaty, cool, clammy skin",
+        "Previous severe bleeding"
+      ],
+      "answer": [0, 1, 2, 3, 4, 5],
+      "note": "Shock signs/symptoms list appears on the 'General indicator of shock' slide.",
+      "source": "CLS 05.pdf (Shock indicators)",
+      "sourceLines": "turn3file0:L48-L70"
+    },
+    {
+      "id": "CLS-M05-Q18",
+      "module": "05",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which statements about hypothermia prevention are listed?",
+      "options": [
+        "Hypothermia is much easier to prevent than to treat",
+        "Begin hypothermia prevention as soon as possible",
+        "Decreased body temperature interferes with blood clotting and increases bleeding risk",
+        "Blood loss can cause a significant drop in body temperature even in hot weather",
+        "Hypothermia is only an issue in cold environments"
+      ],
+      "answer": [0, 1, 2, 3],
+      "note": "Hypothermia prevention guidance emphasizes early prevention and hot-environment relevance.",
+      "source": "CLS 05.pdf (Hypothermia prevention)",
+      "sourceLines": "turn3file15:L37-L51"
+    },
+    {
+      "id": "CLS-M05-Q19",
+      "module": "05",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "If a penetrating eye injury is suspected, do not cover both eyes unless both eyes are injured.",
+      "answer": true,
+      "note": "Eye injury guidance explicitly states this rule.",
+      "source": "CLS 05.pdf (Eye injuries)",
+      "sourceLines": "turn3file15:L53-L56"
     }
   ]
 } 
