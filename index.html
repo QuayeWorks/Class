@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CLS Practice Exam • QuayeWorks</title>
+  <title>QuayeWorks Testing Site</title>
   <style>
     :root{
       --bg:#0b0f0d;
@@ -409,6 +409,79 @@
     .warn{
       color:#ffe7a6;
     }
+
+    /* Auth + courses */
+    .view{margin-top:16px;}
+    .authGrid{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap:16px;
+    }
+    @media (max-width: 900px){
+      .authGrid{grid-template-columns:1fr;}
+    }
+    .formRow{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;}
+    .input{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:14px;
+    }
+    .input::placeholder{color:rgba(168,184,175,.65)}
+    .courseGrid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap:16px;
+      margin-top:16px;
+    }
+    .courseTile{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+      background:rgba(255,255,255,.03);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      cursor:pointer;
+      transition:transform .06s ease, border-color .2s ease, background .2s ease;
+    }
+    .courseTile:hover{border-color:rgba(214,178,94,.35); background:rgba(255,255,255,.05)}
+    .courseTile.locked{
+      opacity:.5;
+      cursor:not-allowed;
+      background:rgba(255,255,255,.02);
+    }
+    .courseTitle{font-weight:800; font-size:16px;}
+    .courseMeta{color:var(--muted); font-size:12px;}
+    .lockBadge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      font-size:11px;
+      color:var(--muted);
+    }
+    .toast{
+      position:fixed;
+      right:20px;
+      bottom:24px;
+      background:rgba(12,18,15,.96);
+      border:1px solid var(--line);
+      padding:12px 14px;
+      border-radius:12px;
+      color:var(--text);
+      box-shadow:var(--shadow);
+      opacity:0;
+      transform:translateY(8px);
+      transition:opacity .2s ease, transform .2s ease;
+      pointer-events:none;
+      z-index:100;
+    }
+    .toast.show{opacity:1; transform:translateY(0);}
   </style>
 </head>
 <body>
@@ -426,12 +499,16 @@
           </div>
         </div>
         <div class="titles">
-          <div class="h1">CLS Practice Exam</div>
-          <div class="sub">Modern test runner • QuayeWorks</div>
+          <div class="h1" id="siteTitle">QuayeWorks Testing Site</div>
+          <div class="sub" id="siteSubtitle">Login-gated course catalog • QuayeWorks</div>
         </div>
       </div>
 
-      <div class="statusRow">
+      <div class="statusRow hidden" id="courseControls">
+        <button class="btn danger logoutBtn" id="btnLogoutCourses" title="Log out">Logout</button>
+      </div>
+
+      <div class="statusRow hidden" id="examControls">
         <div class="pill" title="Progress">
           <span class="dot"></span>
           <span><span id="answeredCount">0</span>/<span id="totalCount">0</span> answered</span>
@@ -442,80 +519,156 @@
         </div>
         <button class="btn" id="btnReset" title="Clear answers and restart">Reset</button>
         <button class="btn primary" id="btnSubmit" title="Finish and grade">Submit</button>
+        <button class="btn danger logoutBtn" id="btnLogoutExam" title="Log out">Logout</button>
       </div>
     </div>
 
-    <div class="grid">
-      <!-- Main -->
-      <div class="card" id="mainCard">
-        <div class="cardHeader">
-          <div>
-            <div class="cardTitle" id="qTitle">Question</div>
-            <div class="cardMeta" id="qMeta">Type • Points</div>
-            <div class="progressOuter" aria-label="Progress bar">
-              <div class="progressInner" id="progressBar"></div>
+    <div class="view" id="loginView">
+      <div class="authGrid">
+        <div class="card">
+          <div class="cardHeader">
+            <div>
+              <div class="cardTitle">Login</div>
+              <div class="cardMeta">Use your demo credentials to access courses.</div>
             </div>
           </div>
-          <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-end;">
-            <span class="tag" title="Exam mode"><strong id="modeLabel">Practice</strong></span>
-            <span class="tag" title="Autosave status">Autosave <strong id="saveLabel">On</strong></span>
+          <div class="cardBody">
+            <div class="formRow">
+              <label class="small" for="loginUser">Username</label>
+              <input class="input" id="loginUser" type="text" placeholder="Enter username" autocomplete="username">
+            </div>
+            <div class="formRow">
+              <label class="small" for="loginPass">Password</label>
+              <input class="input" id="loginPass" type="password" placeholder="Enter password" autocomplete="current-password">
+            </div>
+            <div class="small warn hidden" id="loginError">Invalid credentials.</div>
+            <div style="margin-top:14px; display:flex; gap:10px;">
+              <button class="btn primary" id="btnLogin">Login</button>
+            </div>
           </div>
         </div>
 
-        <div class="cardBody">
-          <div class="qText" id="qText"></div>
-          <div class="qHint" id="qHint"></div>
-
-          <div id="qArea"></div>
-
-          <div class="hr"></div>
-          <div class="small" id="qNote"></div>
-        </div>
-
-        <div class="controls">
-          <div class="leftControls">
-            <button class="btn" id="btnPrev">← Prev</button>
-            <button class="btn" id="btnNext">Next →</button>
+        <div class="card">
+          <div class="cardHeader">
+            <div>
+              <div class="cardTitle">QuayeWorks Testing</div>
+              <div class="cardMeta">A lightweight, offline-ready test runner for CLS training.</div>
+            </div>
           </div>
-          <div class="rightControls">
-            <button class="btn" id="btnFlag">Flag</button>
-            <button class="btn" id="btnReview">Review</button>
+          <div class="cardBody">
+            <div class="small">
+              Demo access is protected by a simple front-end gate for local/static use.
+            </div>
+            <div class="hr"></div>
+            <div class="small">
+              Credentials:
+              <br>Username: <b>GoArmy</b>
+              <br>Password: <b>GoArmy</b>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Sidebar -->
+    <div class="view hidden" id="coursesView">
       <div class="card">
         <div class="cardHeader">
           <div>
-            <div class="cardTitle">Question Navigator</div>
-            <div class="cardMeta">Jump to any item • Green = answered</div>
+            <div class="cardTitle">Course Catalog</div>
+            <div class="cardMeta">Select a course to begin. Locked courses will appear as “Coming soon.”</div>
           </div>
         </div>
-        <div class="navGrid" id="navGrid"></div>
         <div class="cardBody">
-          <div class="resultBox hidden" id="resultBox">
-            <div class="small">Your score</div>
-            <div class="scoreBig" id="scoreBig">0%</div>
-            <div class="breakdown" id="breakdown"></div>
-            <div class="hr"></div>
-            <div class="small warn">
-              Tip: Use “Review” to see what you missed and why.
+          <div class="courseGrid">
+            <div class="courseTile" id="courseCls">
+              <div class="courseTitle">CLS</div>
+              <div class="courseMeta">Combat Lifesaver practice exam • Ready</div>
+              <div class="tag"><strong>Open</strong></div>
+            </div>
+            <div class="courseTile locked" id="courseCisco" title="Coming soon">
+              <div class="courseTitle">Cisco IT</div>
+              <div class="courseMeta">Enterprise fundamentals • Coming soon</div>
+              <div class="lockBadge">🔒 Locked</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="view hidden" id="examView">
+      <div class="grid">
+        <!-- Main -->
+        <div class="card" id="mainCard">
+          <div class="cardHeader">
+            <div>
+              <div class="cardTitle" id="qTitle">Question</div>
+              <div class="cardMeta" id="qMeta">Type • Points</div>
+              <div class="progressOuter" aria-label="Progress bar">
+                <div class="progressInner" id="progressBar"></div>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-end;">
+              <span class="tag" title="Exam mode"><strong id="modeLabel">Practice</strong></span>
+              <span class="tag" title="Autosave status">Autosave <strong id="saveLabel">On</strong></span>
             </div>
           </div>
 
-          <div class="resultBox" id="helpBox">
-            <div class="small">
-              This is a <b>template</b>. When you upload the CLS PDF later, we’ll extract and swap in real questions.
-            </div>
+          <div class="cardBody">
+            <div class="qText" id="qText"></div>
+            <div class="qHint" id="qHint"></div>
+
+            <div id="qArea"></div>
+
             <div class="hr"></div>
-            <div class="small">
-              Supported types:
-              <br>• Single-choice
-              <br>• Multi-select
-              <br>• “Select all that do NOT apply”
-              <br>• Drag & drop match
-              <br>• Drag & drop ordering
+            <div class="small" id="qNote"></div>
+          </div>
+
+          <div class="controls">
+            <div class="leftControls">
+              <button class="btn" id="btnPrev">← Prev</button>
+              <button class="btn" id="btnNext">Next →</button>
+            </div>
+            <div class="rightControls">
+              <button class="btn" id="btnFlag">Flag</button>
+              <button class="btn" id="btnReview">Review</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="card">
+          <div class="cardHeader">
+            <div>
+              <div class="cardTitle">Question Navigator</div>
+              <div class="cardMeta">Jump to any item • Green = answered</div>
+            </div>
+          </div>
+          <div class="navGrid" id="navGrid"></div>
+          <div class="cardBody">
+            <div class="resultBox hidden" id="resultBox">
+              <div class="small">Your score</div>
+              <div class="scoreBig" id="scoreBig">0%</div>
+              <div class="breakdown" id="breakdown"></div>
+              <div class="hr"></div>
+              <div class="small warn">
+                Tip: Use “Review” to see what you missed and why.
+              </div>
+            </div>
+
+            <div class="resultBox" id="helpBox">
+              <div class="small">
+                This is a <b>template</b>. When you upload the CLS PDF later, we’ll extract and swap in real questions.
+              </div>
+              <div class="hr"></div>
+              <div class="small">
+                Supported types:
+                <br>• Single-choice
+                <br>• Multi-select
+                <br>• “Select all that do NOT apply”
+                <br>• Drag & drop match
+                <br>• Drag & drop ordering
+                <br>• True/False
+              </div>
             </div>
           </div>
         </div>
@@ -523,13 +676,95 @@
     </div>
   </div>
 
+  <div class="toast" id="toast">Coming soon.</div>
+
 <script>
 /**
- * CLS Exam App (single-file)
- * - No frameworks
+ * QuayeWorks Testing Site (single-file)
+ * - Login gate + course catalog
+ * - CLS exam runner
  * - Local autosave via localStorage
- * - Multiple question types + drag & drop
  */
+
+/* -------------------------
+   Auth + Views
+------------------------- */
+
+const AUTH_KEY = "qw_auth";
+const VIEW_KEY = "qw_view";
+const AUTH_USER = "GoArmy";
+const AUTH_PASS = "GoArmy";
+
+let currentView = "login";
+
+function isAuthed(){
+  return localStorage.getItem(AUTH_KEY) === "true";
+}
+
+function setView(view){
+  currentView = view;
+  if(isAuthed()){
+    localStorage.setItem(VIEW_KEY, view);
+  }
+  renderView();
+}
+
+function renderView(){
+  const authed = isAuthed();
+  if(!authed){
+    currentView = "login";
+    localStorage.removeItem(VIEW_KEY);
+  }else{
+    currentView = localStorage.getItem(VIEW_KEY) || currentView || "courses";
+  }
+
+  el("loginView").classList.toggle("hidden", currentView !== "login");
+  el("coursesView").classList.toggle("hidden", currentView !== "courses");
+  el("examView").classList.toggle("hidden", currentView !== "exam");
+
+  el("courseControls").classList.toggle("hidden", currentView !== "courses");
+  el("examControls").classList.toggle("hidden", currentView !== "exam");
+
+  if(currentView === "exam"){
+    setText("siteTitle", "CLS Practice Exam");
+    setText("siteSubtitle", "Modern test runner • QuayeWorks");
+    startTimer();
+  }else{
+    setText("siteTitle", "QuayeWorks Testing Site");
+    setText("siteSubtitle", "Login-gated course catalog • QuayeWorks");
+    stopTimer();
+  }
+}
+
+function handleLogin(){
+  const user = el("loginUser").value.trim();
+  const pass = el("loginPass").value.trim();
+  if(user === AUTH_USER && pass === AUTH_PASS){
+    localStorage.setItem(AUTH_KEY, "true");
+    localStorage.setItem("qw_auth_ts", Date.now().toString());
+    el("loginError").classList.add("hidden");
+    setView("courses");
+  }else{
+    el("loginError").classList.remove("hidden");
+  }
+}
+
+function handleLogout(){
+  localStorage.removeItem(AUTH_KEY);
+  localStorage.removeItem(VIEW_KEY);
+  localStorage.removeItem("qw_auth_ts");
+  setView("login");
+}
+
+function showToast(msg){
+  const t = el("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(()=>{
+    t.classList.remove("show");
+  }, 2200);
+}
 
 /* -------------------------
    Question Data (EDIT ME)
@@ -574,6 +809,15 @@ const EXAM = {
     },
     {
       id: "q3",
+      type: "true_false",
+      points: 1,
+      prompt: "A tourniquet should be loosened periodically once applied.",
+      hint: "Consider standard CLS/TCCC guidance.",
+      answer: false,
+      note: "Once applied, a tourniquet is NOT loosened unless directed by protocol."
+    },
+    {
+      id: "q4",
       type: "multi_not",
       points: 2,
       prompt: "Select ALL that do NOT apply: Which are NOT appropriate tourniquet placement guidelines?",
@@ -590,7 +834,7 @@ const EXAM = {
       note: "Tourniquets are not loosened once applied in tactical care unless directed by protocol/medical authority."
     },
     {
-      id: "q4",
+      id: "q5",
       type: "match",
       points: 3,
       prompt: "Drag the correct TERM into each definition.",
@@ -612,7 +856,7 @@ const EXAM = {
       note: "This is a simple matching demo; you’ll replace with real CLS content later."
     },
     {
-      id: "q5",
+      id: "q6",
       type: "order",
       points: 3,
       prompt: "Put these steps in the correct order for applying a pressure dressing (demo).",
@@ -640,6 +884,7 @@ const state = {
   startedAt: null,
   elapsed: 0,
   currentIndex: 0,
+  questionOrder: [],
   // answers stored by question id
   answers: {},
   flagged: {},
@@ -671,10 +916,12 @@ function resetState(){
   state.startedAt = null;
   state.elapsed = 0;
   state.currentIndex = 0;
+  state.questionOrder = [];
   state.answers = {};
   state.flagged = {};
   state.submitted = false;
   state.lastScore = null;
+  ensureQuestionOrder(true);
   renderAll();
 }
 
@@ -687,6 +934,15 @@ function setText(id, txt){ el(id).textContent = txt; }
 function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 function deepCopy(x){ return JSON.parse(JSON.stringify(x)); }
 
+function shuffle(arr){
+  const copy = [...arr];
+  for(let i = copy.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
 function questionTypeLabel(q){
   switch(q.type){
     case "single": return "Multiple choice (single)";
@@ -694,16 +950,39 @@ function questionTypeLabel(q){
     case "multi_not": return "Select all that do NOT apply";
     case "match": return "Drag & drop matching";
     case "order": return "Drag & drop ordering";
+    case "true_false": return "True / False";
     default: return q.type;
   }
 }
 
+function getQuestionsInOrder(){
+  const map = new Map(EXAM.questions.map(q => [q.id, q]));
+  const order = Array.isArray(state.questionOrder) && state.questionOrder.length
+    ? state.questionOrder
+    : EXAM.questions.map(q => q.id);
+  return order.map(id => map.get(id)).filter(Boolean);
+}
+
+function ensureQuestionOrder(force = false){
+  const ids = EXAM.questions.map(q => q.id);
+  const hasAll = Array.isArray(state.questionOrder)
+    && state.questionOrder.length === ids.length
+    && state.questionOrder.every(id => ids.includes(id));
+
+  if(!force && hasAll) return;
+
+  state.questionOrder = shuffle(ids);
+  state.currentIndex = 0;
+  saveState();
+}
+
 function getAnsweredCount(){
   let c = 0;
-  for(const q of EXAM.questions){
+  for(const q of getQuestionsInOrder()){
     const a = state.answers[q.id];
     if(a == null) continue;
     if(q.type === "single" && Number.isInteger(a)) c++;
+    else if(q.type === "true_false" && typeof a === "boolean") c++;
     else if((q.type === "multi" || q.type === "multi_not") && Array.isArray(a) && a.length) c++;
     else if(q.type === "match" && a && typeof a === "object" && Object.keys(a).length) c++;
     else if(q.type === "order" && Array.isArray(a) && a.length) c++;
@@ -715,6 +994,7 @@ function isAnswered(q){
   const a = state.answers[q.id];
   if(a == null) return false;
   if(q.type === "single") return Number.isInteger(a);
+  if(q.type === "true_false") return typeof a === "boolean";
   if(q.type === "multi" || q.type === "multi_not") return Array.isArray(a) && a.length > 0;
   if(q.type === "match") return a && typeof a === "object" && Object.keys(a).length > 0;
   if(q.type === "order") return Array.isArray(a) && a.length === q.steps.length;
@@ -734,7 +1014,7 @@ function grade(){
   let possible = 0;
   const perQ = [];
 
-  for(const q of EXAM.questions){
+  for(const q of getQuestionsInOrder()){
     possible += q.points;
     let qEarn = 0;
 
@@ -742,6 +1022,10 @@ function grade(){
 
     if(q.type === "single"){
       if(Number.isInteger(a) && a === q.answer[0]) qEarn = q.points;
+    }
+
+    if(q.type === "true_false"){
+      if(typeof a === "boolean" && a === q.answer) qEarn = q.points;
     }
 
     if(q.type === "multi" || q.type === "multi_not"){
@@ -793,7 +1077,9 @@ function renderNav(){
   const grid = el("navGrid");
   grid.innerHTML = "";
 
-  EXAM.questions.forEach((q, i)=>{
+  const ordered = getQuestionsInOrder();
+
+  ordered.forEach((q, i)=>{
     const b = document.createElement("div");
     b.className = "navBtn";
     b.textContent = (i+1);
@@ -814,15 +1100,16 @@ function renderNav(){
 
 function renderHeader(){
   setText("modeLabel", EXAM.mode || "Practice");
-  setText("totalCount", EXAM.questions.length);
+  setText("totalCount", getQuestionsInOrder().length);
   setText("answeredCount", getAnsweredCount());
 
-  const pct = Math.round((getAnsweredCount() / EXAM.questions.length) * 100);
+  const pct = Math.round((getAnsweredCount() / getQuestionsInOrder().length) * 100);
   el("progressBar").style.width = pct + "%";
 }
 
 function renderQuestion(){
-  const q = EXAM.questions[state.currentIndex];
+  const ordered = getQuestionsInOrder();
+  const q = ordered[state.currentIndex];
   if(!q) return;
 
   setText("qTitle", `Question ${state.currentIndex+1}`);
@@ -887,6 +1174,44 @@ function renderQuestion(){
     }
   }
 
+  if(q.type === "true_false"){
+    const answersDiv = document.createElement("div");
+    answersDiv.className = "answers";
+    const current = state.answers[q.id];
+    const options = [
+      { label: "True", value: true },
+      { label: "False", value: false }
+    ];
+
+    options.forEach((opt)=>{
+      const row = document.createElement("div");
+      row.className = "opt";
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = q.id;
+      input.checked = current === opt.value;
+
+      const label = document.createElement("div");
+      label.className = "label";
+      label.textContent = opt.label;
+
+      if(input.checked) row.classList.add("selected");
+
+      row.addEventListener("click", ()=>{
+        if(state.submitted) return;
+        state.answers[q.id] = opt.value;
+        saveState();
+        renderAll();
+      });
+
+      row.appendChild(input);
+      row.appendChild(label);
+      answersDiv.appendChild(row);
+    });
+
+    area.appendChild(answersDiv);
+  }
+
   if(q.type === "match"){
     area.appendChild(renderMatch(q));
   }
@@ -897,7 +1222,7 @@ function renderQuestion(){
 
   // Prev/Next buttons
   el("btnPrev").disabled = state.currentIndex === 0;
-  el("btnNext").disabled = state.currentIndex === EXAM.questions.length - 1;
+  el("btnNext").disabled = state.currentIndex === ordered.length - 1;
 }
 
 function renderMatch(q){
@@ -1130,7 +1455,7 @@ function showReview(){
   bd.innerHTML = "";
   const lines = [
     `Points: ${g.earned} / ${g.possible}`,
-    `Answered: ${getAnsweredCount()} / ${EXAM.questions.length}`,
+    `Answered: ${getAnsweredCount()} / ${getQuestionsInOrder().length}`,
     `Flagged: ${Object.keys(state.flagged).length}`
   ];
   for(const s of lines){
@@ -1149,7 +1474,9 @@ function showReview(){
 let timerHandle = null;
 function startTimer(){
   if(timerHandle) clearInterval(timerHandle);
-  if(!state.startedAt) state.startedAt = Date.now();
+  if(!state.startedAt){
+    state.startedAt = Date.now() - (state.elapsed || 0) * 1000;
+  }
 
   timerHandle = setInterval(()=>{
     const now = Date.now();
@@ -1167,6 +1494,12 @@ function startTimer(){
     renderTimer();
   }, 1000);
 }
+
+function stopTimer(){
+  if(timerHandle) clearInterval(timerHandle);
+  timerHandle = null;
+}
+
 function renderTimer(){
   let s = state.elapsed || 0;
   if(EXAM.timeLimitSeconds){
@@ -1183,16 +1516,16 @@ function renderTimer(){
 
 function bindUI(){
   el("btnPrev").addEventListener("click", ()=>{
-    state.currentIndex = clamp(state.currentIndex - 1, 0, EXAM.questions.length-1);
+    state.currentIndex = clamp(state.currentIndex - 1, 0, getQuestionsInOrder().length-1);
     saveState(); renderAll();
   });
   el("btnNext").addEventListener("click", ()=>{
-    state.currentIndex = clamp(state.currentIndex + 1, 0, EXAM.questions.length-1);
+    state.currentIndex = clamp(state.currentIndex + 1, 0, getQuestionsInOrder().length-1);
     saveState(); renderAll();
   });
 
   el("btnFlag").addEventListener("click", ()=>{
-    const q = EXAM.questions[state.currentIndex];
+    const q = getQuestionsInOrder()[state.currentIndex];
     state.flagged[q.id] = !state.flagged[q.id];
     saveState(); renderAll();
   });
@@ -1209,7 +1542,7 @@ function bindUI(){
       renderAll();
       return;
     }
-    const unanswered = EXAM.questions.length - getAnsweredCount();
+    const unanswered = getQuestionsInOrder().length - getAnsweredCount();
     const proceed = confirm(unanswered
       ? `You have ${unanswered} unanswered question(s). Submit anyway?`
       : "Submit and grade now?"
@@ -1222,6 +1555,27 @@ function bindUI(){
     const ok = confirm("Reset all answers and restart?");
     if(ok) resetState();
   });
+
+  el("btnLogin").addEventListener("click", handleLogin);
+  el("loginPass").addEventListener("keydown", (e)=>{
+    if(e.key === "Enter") handleLogin();
+  });
+
+  document.querySelectorAll(".logoutBtn").forEach(btn => {
+    btn.addEventListener("click", handleLogout);
+  });
+
+  el("courseCls").addEventListener("click", ()=>{
+    if(!isAuthed()) return;
+    ensureQuestionOrder();
+    setView("exam");
+    renderAll();
+  });
+
+  el("courseCisco").addEventListener("click", (e)=>{
+    e.preventDefault();
+    showToast("Cisco IT is coming soon.");
+  });
 }
 
 /* -------------------------
@@ -1233,7 +1587,7 @@ function renderAll(){
   renderNav();
   renderTimer();
 
-  const q = EXAM.questions[state.currentIndex];
+  const q = getQuestionsInOrder()[state.currentIndex];
 
   // Update flag button label
   el("btnFlag").textContent = state.flagged[q.id] ? "Flagged" : "Flag";
@@ -1257,16 +1611,21 @@ function renderAll(){
 
 function init(){
   loadState();
+  ensureQuestionOrder();
 
   // Ensure currentIndex in bounds
-  state.currentIndex = clamp(state.currentIndex || 0, 0, EXAM.questions.length-1);
+  state.currentIndex = clamp(state.currentIndex || 0, 0, getQuestionsInOrder().length-1);
 
   setText("modeLabel", EXAM.mode || "Practice");
-  setText("totalCount", EXAM.questions.length);
+  setText("totalCount", getQuestionsInOrder().length);
 
   bindUI();
   renderAll();
-  startTimer();
+
+  if(isAuthed()){
+    currentView = localStorage.getItem(VIEW_KEY) || "courses";
+  }
+  renderView();
 }
 
 init();
