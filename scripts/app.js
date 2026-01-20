@@ -114,6 +114,7 @@ const defaultState = {
   answers: {},
   flagged: {},
   orderTouched: {},
+  helpOpen: {},
   submitted: false,
   lastScore: null,
   examId: null
@@ -594,6 +595,29 @@ function getCorrectAnswerText(q){
   return "";
 }
 
+function getCorrectAnswerLines(q){
+  if(q.type === "single" || q.type === "true_false"){
+    const line = getCorrectAnswerText(q);
+    return line ? [line] : [];
+  }
+  if(q.type === "multi" || q.type === "multi_not"){
+    return q.answer.map(idx => q.options[idx]).filter(Boolean);
+  }
+  if(q.type === "match"){
+    return q.definitions.map((d)=>{
+      const term = q.terms.find(t => t.key === d.expect);
+      return `${d.text} → ${term ? term.label : d.expect}`;
+    });
+  }
+  if(q.type === "order"){
+    return q.answer.map((key)=>{
+      const step = q.steps.find(s => s.key === key);
+      return step ? step.label : key;
+    });
+  }
+  return [];
+}
+
 /* -------------------------
    Grading
 ------------------------- */
@@ -705,7 +729,6 @@ function renderQuestion(){
   setText("qMeta", `${questionTypeLabel(q)} • ${q.points} pt${q.points===1?"":"s"}`);
   setText("qText", q.prompt);
   setText("qHint", q.hint || "");
-  setText("qNote", state.submitted ? "" : (q.note || ""));
 
   const area = el("qArea");
   area.innerHTML = "";
@@ -828,23 +851,72 @@ function renderQuestion(){
     status.className = `resultStatus ${correct ? "correct" : "incorrect"}`;
     status.textContent = `${correct ? "✅ Correct" : "❌ Incorrect"}`;
     review.appendChild(status);
-
-    const answerKey = document.createElement("div");
-    answerKey.className = "answerKey";
-
-    const correctLine = document.createElement("div");
-    correctLine.innerHTML = `<strong>Correct answer:</strong> ${getCorrectAnswerText(q) || "N/A"}`;
-    answerKey.appendChild(correctLine);
-
-    const rationale = q.rationale || q.note;
-    if(rationale){
-      const rationaleLine = document.createElement("div");
-      rationaleLine.innerHTML = `<strong>Why:</strong> ${rationale}`;
-      answerKey.appendChild(rationaleLine);
-    }
-
-    review.appendChild(answerKey);
     area.appendChild(review);
+  }
+
+  const helpControls = el("helpControls");
+  const helpPanel = el("helpPanel");
+  const helpContent = el("helpContent");
+  const btnHelpToggle = el("btnHelpToggle");
+  const qid = q.id;
+  const open = !!(state.helpOpen && state.helpOpen[qid]);
+
+  if(state.submitted){
+    helpControls.classList.remove("hidden");
+    btnHelpToggle.textContent = open ? "Hide Help" : "View Help";
+    helpPanel.classList.toggle("hidden", !open);
+    helpContent.innerHTML = "";
+
+    if(open){
+      const correctBlock = document.createElement("div");
+      const correctLabel = document.createElement("strong");
+      correctLabel.textContent = "Correct answer(s):";
+      correctBlock.appendChild(correctLabel);
+
+      const lines = getCorrectAnswerLines(q);
+      if(lines.length <= 1){
+        const text = document.createElement("span");
+        text.textContent = ` ${lines[0] || "N/A"}`;
+        correctBlock.appendChild(text);
+      }else{
+        const list = document.createElement("ul");
+        list.className = "helpList";
+        lines.forEach((line)=>{
+          const item = document.createElement("li");
+          item.textContent = line;
+          list.appendChild(item);
+        });
+        correctBlock.appendChild(list);
+      }
+      helpContent.appendChild(correctBlock);
+
+      const rationale = q.rationale || q.note;
+      if(rationale){
+        const rationaleLine = document.createElement("div");
+        const label = document.createElement("strong");
+        label.textContent = q.rationale ? "Rationale:" : "Note:";
+        rationaleLine.appendChild(label);
+        const text = document.createElement("span");
+        text.textContent = ` ${rationale}`;
+        rationaleLine.appendChild(text);
+        helpContent.appendChild(rationaleLine);
+      }
+
+      if(q.sourceRef){
+        const sourceLine = document.createElement("div");
+        const label = document.createElement("strong");
+        label.textContent = "Source:";
+        sourceLine.appendChild(label);
+        const text = document.createElement("span");
+        text.textContent = ` ${q.sourceRef}`;
+        sourceLine.appendChild(text);
+        helpContent.appendChild(sourceLine);
+      }
+    }
+  }else{
+    helpControls.classList.add("hidden");
+    helpPanel.classList.add("hidden");
+    helpContent.innerHTML = "";
   }
 
   // Prev/Next buttons
@@ -1068,6 +1140,7 @@ function showReview(){
   const g = grade();
   state.lastScore = g;
   state.submitted = true;
+  state.helpOpen = {};
   saveState();
 
   // show result panel
@@ -1183,6 +1256,9 @@ function setExamSession(exam, key, orderOverride){
   state.examId = exam.id;
   if(!state.orderTouched || typeof state.orderTouched !== "object"){
     state.orderTouched = {};
+  }
+  if(!state.helpOpen || typeof state.helpOpen !== "object"){
+    state.helpOpen = {};
   }
 
   EXAM.questions.filter(q => q.type === "order").forEach((q)=>{
@@ -1304,6 +1380,19 @@ function bindUI(){
     );
     if(!proceed) return;
     showReview();
+  });
+
+  el("btnHelpToggle").addEventListener("click", ()=>{
+    if(!state.submitted) return;
+    const q = getQuestionsInOrder()[state.currentIndex];
+    if(!q) return;
+    if(!state.helpOpen || typeof state.helpOpen !== "object"){
+      state.helpOpen = {};
+    }
+    const current = !!state.helpOpen[q.id];
+    state.helpOpen[q.id] = !current;
+    saveState();
+    renderQuestion();
   });
 
   el("btnReset").addEventListener("click", ()=>{
