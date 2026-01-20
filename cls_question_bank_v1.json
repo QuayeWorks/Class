@@ -1,0 +1,500 @@
+{ 
+  "version": "1.0",
+  "courseId": "CLS",
+  "courseTitle": "Combat Lifesaver (CLS) Practice Exam",
+  "sourceModules": [
+    { "module": "01", "title": "Principles and Applications of TCCC" },
+    { "module": "02", "title": "Medical Equipment" },
+    { "module": "03", "title": "Care Under Fire" },
+    { "module": "04", "title": "Principles and Application of Tactical Field Care" },
+    { "module": "05", "title": "Tactical Trauma Assessment (In Depth)" }
+  ],
+  "notes": [
+    "Question types supported: single, multi, multi_not, order, match, true_false.",
+    "true_false questions store answer as boolean (true/false).",
+    "order questions store answer as ordered list of step keys."
+  ],
+  "questions": [
+    {
+      "id": "CLS-M01-Q01",
+      "module": "01",
+      "type": "single",
+      "points": 1,
+      "prompt": "Which TCCC tier does the Combat Lifesaver (CLS) fall under?",
+      "options": [
+        "TCCC Tier 1 – All Service Members",
+        "TCCC Tier 2 – Combat Lifesaver",
+        "TCCC Tier 3 – Combat Medic/Corpsman",
+        "TCCC Tier 4 – Combat Paramedic/Provider"
+      ],
+      "answer": [1],
+      "note": "CLS is TCCC Tier 2. Source: CLS 01"
+    },
+    {
+      "id": "CLS-M01-Q02",
+      "module": "01",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "TCCC focuses on treating all injuries equally, regardless of their impact on survivability.",
+      "answer": false,
+      "note": "TCCC prioritizes preventable causes of death. Source: CLS 01"
+    },
+    {
+      "id": "CLS-M01-Q03",
+      "module": "01",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which are listed preventable causes of death addressed by TCCC?",
+      "options": [
+        "Bleeding from arm and leg injuries",
+        "Junctional bleeding (e.g., groin)",
+        "Noncompressible abdominal bleeding (e.g., gunshot wound to abdomen)",
+        "Hypothermia",
+        "Tension pneumothorax and airway problems"
+      ],
+      "answer": [0, 1, 2, 4],
+      "note": "These are listed under TCCC importance / preventable death causes. Source: CLS 01"
+    },
+    {
+      "id": "CLS-M01-Q04",
+      "module": "01",
+      "type": "single",
+      "points": 1,
+      "prompt": "Which of the following is NOT one of the three goals of TCCC?",
+      "options": [
+        "Treat the casualty",
+        "Prevent additional casualties",
+        "Complete the mission",
+        "Evacuate the casualty as soon as possible"
+      ],
+      "answer": [3],
+      "note": "The three goals are treat casualty, prevent additional casualties, complete mission. Source: CLS 01"
+    },
+
+    {
+      "id": "CLS-M02-Q01",
+      "module": "02",
+      "type": "single",
+      "points": 1,
+      "prompt": "What is the primary purpose of a tourniquet in CLS care?",
+      "options": [
+        "Stabilize fractures",
+        "Control massive extremity bleeding",
+        "Treat airway obstruction",
+        "Prevent infection"
+      ],
+      "answer": [1],
+      "note": "Tourniquet is a device to stop massive bleeding. Source: CLS 02"
+    },
+    {
+      "id": "CLS-M02-Q02",
+      "module": "02",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "The Combat Wound Medication Pack (CWMP) should be used for all injuries, including minor cuts and abrasions.",
+      "answer": false,
+      "note": "CWMP is for traumatic and penetrating injuries only. Source: CLS 02/05"
+    },
+    {
+      "id": "CLS-M02-Q03",
+      "module": "02",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which items are included in the medical equipment content overview for CLS training?",
+      "options": [
+        "Hemostatic gauze",
+        "Emergency bandage / trauma dressing",
+        "Nasopharyngeal airway (NPA) with water-based lubricant",
+        "Vented chest seal",
+        "Rigid eye shield"
+      ],
+      "answer": [0, 1, 2, 3, 4],
+      "note": "These items appear across equipment overview slides. Source: CLS 02"
+    },
+    {
+      "id": "CLS-M02-Q04",
+      "module": "02",
+      "type": "single",
+      "points": 1,
+      "prompt": "When rendering aid to a casualty, which supplies should be used first?",
+      "options": [
+        "Supplies from the CLS bag",
+        "Supplies from the nearest aid station",
+        "The casualty’s JFAK",
+        "Any available supplies"
+      ],
+      "answer": [2],
+      "note": "Always use the casualty’s JFAK first. Source: CLS 01/02/04"
+    },
+    {
+      "id": "CLS-M02-Q05",
+      "module": "02",
+      "type": "single",
+      "points": 1,
+      "prompt": "What is the DD Form 1380 (TCCC Card) used for?",
+      "options": [
+        "Recording unit weapons serial numbers",
+        "Documenting all assessment and treatment before evacuation or handoff",
+        "Requesting resupply from logistics",
+        "Tracking training attendance only"
+      ],
+      "answer": [1],
+      "note": "DD Form 1380 is the DoD-approved standard for documenting assessment/treatment. Source: CLS 02/04/05"
+    },
+    {
+      "id": "CLS-M02-Q06",
+      "module": "02",
+      "type": "single",
+      "points": 1,
+      "prompt": "A MEDEVAC request is divided into how many lines of information?",
+      "options": ["3", "5", "9", "12"],
+      "answer": [2],
+      "note": "MEDEVAC request uses a 9-line format. Source: CLS 02/01/05"
+    },
+
+    {
+      "id": "CLS-M03-Q01",
+      "module": "03",
+      "type": "single",
+      "points": 1,
+      "prompt": "Which action takes priority during Care Under Fire (CUF)?",
+      "options": [
+        "Conduct a full MARCH assessment",
+        "Apply pressure bandages",
+        "Gain fire superiority / suppress hostile fire",
+        "Splint fractures"
+      ],
+      "answer": [2],
+      "note": "CUF priorities emphasize suppression of hostile fire and tactical safety. Source: CLS 01/03"
+    },
+    {
+      "id": "CLS-M03-Q02",
+      "module": "03",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "A rescuer should immediately move toward a casualty even if hostile fire is ongoing.",
+      "answer": false,
+      "note": "Do not attempt rescue until hostile fire is suppressed / fire superiority gained. Source: CLS 01/03"
+    },
+    {
+      "id": "CLS-M03-Q03",
+      "module": "03",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which are signs of life-threatening bleeding?",
+      "options": [
+        "Traumatic amputation of an arm or leg",
+        "Pulsatile (pulsing) or steady bleeding from a wound",
+        "Bright red blood pooling on the ground",
+        "Overlying clothes soaked with blood",
+        "Minor oozing from superficial abrasions"
+      ],
+      "answer": [0, 1, 2, 3],
+      "note": "Listed signs used to identify life-threatening bleeding. Source: CLS 03/05"
+    },
+    {
+      "id": "CLS-M03-Q04",
+      "module": "03",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "In Care Under Fire movements, spinal injuries are not a primary concern compared to getting the casualty to cover.",
+      "answer": true,
+      "note": "CUF movement emphasizes speed and cover; spinal concerns are deprioritized during CUF movement. Source: CLS 03"
+    },
+    {
+      "id": "CLS-M03-Q05",
+      "module": "03",
+      "type": "single",
+      "points": 1,
+      "prompt": "During CUF, where should a tourniquet be placed for life-threatening bleeding?",
+      "options": [
+        "Directly on the wound",
+        "High and tight above the wound",
+        "Only 1 inch above the wound",
+        "Over the nearest joint"
+      ],
+      "answer": [1],
+      "note": "CUF guidance uses 'high and tight' application. Source: CLS 01/03"
+    },
+    {
+      "id": "CLS-M03-Q06",
+      "module": "03",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "When helping a buddy, you should use your own tourniquet before checking the casualty’s JFAK.",
+      "answer": false,
+      "note": "Use the casualty’s JFAK first; do not use your own tourniquet before the casualty’s. Source: CLS 03"
+    },
+    {
+      "id": "CLS-M03-Q07",
+      "module": "03",
+      "type": "single",
+      "points": 1,
+      "prompt": "How quickly can a casualty bleed to death from a major artery injury (as taught in CUF materials)?",
+      "options": ["30 seconds", "As little as 3 minutes", "10 minutes", "30 minutes"],
+      "answer": [1],
+      "note": "CUF materials emphasize catastrophic hemorrhage can kill in as little as 3 minutes. Source: CLS 03/05"
+    },
+    {
+      "id": "CLS-M03-Q08",
+      "module": "03",
+      "type": "multi_not",
+      "points": 2,
+      "prompt": "Select ALL that do NOT apply: Which actions are NOT consistent with CUF principles?",
+      "options": [
+        "Return fire and take cover",
+        "Approach a casualty while they are inside a kill zone",
+        "Suppress hostile fire to gain fire superiority",
+        "Direct casualty to apply self-aid and move to cover (if able)",
+        "Conduct a full head-to-toe exam before moving the casualty"
+      ],
+      "answer": [1, 4],
+      "note": "Do not approach in kill zone; CUF is not the phase for a full deliberate assessment. Source: CLS 03/01"
+    },
+    {
+      "id": "CLS-M03-Q09",
+      "module": "03",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which one-person drag/carry methods are referenced in CUF training materials?",
+      "options": [
+        "Neck drag",
+        "Cradle-drop drag",
+        "Kit or arm drag",
+        "Support carry",
+        "Fireman’s carry (explicitly listed)"
+      ],
+      "answer": [0, 1, 2, 3],
+      "note": "These are listed one-person methods; fireman’s carry is not listed in the referenced snippet. Source: CLS 03"
+    },
+
+    {
+      "id": "CLS-M04-Q01",
+      "module": "04",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "Tactical Field Care (TFC) is rendered when the casualty and the person rendering care are no longer under effective enemy fire or threat.",
+      "answer": true,
+      "note": "TFC begins when not under effective enemy fire or threat. Source: CLS 04"
+    },
+    {
+      "id": "CLS-M04-Q02",
+      "module": "04",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which actions support security and safety during Tactical Field Care?",
+      "options": [
+        "Establish a security perimeter per SOP/battle drills",
+        "Clear and secure weapons",
+        "Secure communications",
+        "Mix weapons and radios with shock or narcotics",
+        "Redistribute sensitive items if needed"
+      ],
+      "answer": [0, 1, 2, 4],
+      "note": "Weapons/radios do not mix well with shock or narcotics; security is a priority. Source: CLS 04"
+    },
+    {
+      "id": "CLS-M04-Q03",
+      "module": "04",
+      "type": "single",
+      "points": 1,
+      "prompt": "Which injury is the #1 priority when triaging multiple casualties in TFC guidance?",
+      "options": [
+        "Altered mental status",
+        "Respiratory distress",
+        "Massive bleeding",
+        "Penetrating trauma into the box (torso)"
+      ],
+      "answer": [2],
+      "note": "Triage prioritization lists massive bleeding as #1. Source: CLS 04"
+    },
+    {
+      "id": "CLS-M04-Q04",
+      "module": "04",
+      "type": "single",
+      "points": 1,
+      "prompt": "What does the acronym MIST stand for (as used for casualty handoff/communication)?",
+      "options": [
+        "Medical, Injury, Status, Triage",
+        "Mechanism of injury, Injuries, Symptoms, Treatment",
+        "Massive bleeding, Intervention, Seal, Transport",
+        "Monitor, Inspect, Stabilize, Treat"
+      ],
+      "answer": [1],
+      "note": "MIST: Mechanism, Injuries, Symptoms, Treatment. Source: CLS 04/05/01"
+    },
+    {
+      "id": "CLS-M04-Q05",
+      "module": "04",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "During TFC, the tactical situation could change back to Care Under Fire (CUF) at any time.",
+      "answer": true,
+      "note": "TFC does not mean danger is over; it can revert to CUF. Source: CLS 04"
+    },
+    {
+      "id": "CLS-M04-Q06",
+      "module": "04",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which principles are stated for casualty removal/extraction?",
+      "options": [
+        "Safety is the first principle",
+        "The second principle of MARCH still applies; initiate lifesaving measures if possible",
+        "The third principle is training",
+        "Extraction is identical across all missions and vehicles",
+        "Always delay tourniquet application until after extraction"
+      ],
+      "answer": [0, 1, 2],
+      "note": "Extraction varies; safety, MARCH still applies, training. Source: CLS 04"
+    },
+
+    {
+      "id": "CLS-M05-Q01",
+      "module": "05",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: What does MARCH PAWS stand for?",
+      "options": [
+        "Massive bleeding",
+        "Airway",
+        "Respiration (breathing)",
+        "Circulation",
+        "Hypothermia / Head injuries",
+        "Pain",
+        "Antibiotics",
+        "Wounds",
+        "Splinting"
+      ],
+      "answer": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      "note": "MARCH during life-threatening; PAWS after. Source: CLS 05/04/01"
+    },
+    {
+      "id": "CLS-M05-Q02",
+      "module": "05",
+      "type": "single",
+      "points": 1,
+      "prompt": "A Tactical Trauma Assessment (TTA) uses which mnemonic to prioritize care?",
+      "options": ["ABCDE", "MARCH PAWS", "SAMPLE", "RICE"],
+      "answer": [1],
+      "note": "TTA prioritization uses MARCH PAWS. Source: CLS 05"
+    },
+    {
+      "id": "CLS-M05-Q03",
+      "module": "05",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "Whenever possible, the responder should don latex-free gloves as a precaution during a Tactical Trauma Assessment.",
+      "answer": true,
+      "note": "Body Substance Isolation (BSI) guidance. Source: CLS 05"
+    },
+    {
+      "id": "CLS-M05-Q04",
+      "module": "05",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: A casualty blood sweep should include checking which areas?",
+      "options": [
+        "Neck",
+        "Axillary (armpit)",
+        "Inguinal (groin)",
+        "Legs and arms",
+        "Abdomen and chest (raking motion)",
+        "Back"
+      ],
+      "answer": [0, 1, 2, 3, 4, 5],
+      "note": "Blood sweep is rapid head-to-toe check for unrecognized life-threatening bleeding. Source: CLS 05"
+    },
+    {
+      "id": "CLS-M05-Q05",
+      "module": "05",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which are signs and symptoms of shock listed in the TTA module?",
+      "options": [
+        "Weak or absent radial pulses (or low blood pressure)",
+        "Altered mental status",
+        "Increased heart rate",
+        "Rapid breathing",
+        "Sweaty, cool, clammy skin",
+        "Previous severe bleeding"
+      ],
+      "answer": [0, 1, 2, 3, 4, 5],
+      "note": "These indicators are listed as shock signs/symptoms. Source: CLS 05"
+    },
+    {
+      "id": "CLS-M05-Q06",
+      "module": "05",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which statements about hypothermia prevention are taught in TTA materials?",
+      "options": [
+        "Hypothermia is easier to prevent than to treat",
+        "Begin hypothermia prevention as soon as possible",
+        "Decreased body temperature interferes with blood clotting and increases bleeding risk",
+        "Blood loss can significantly drop body temperature even in hot weather",
+        "Hypothermia is only an issue in cold environments"
+      ],
+      "answer": [0, 1, 2, 3],
+      "note": "Hypothermia prevention must begin early and applies even in hot environments. Source: CLS 05"
+    },
+    {
+      "id": "CLS-M05-Q07",
+      "module": "05",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "If a penetrating eye injury is suspected, you should cover both eyes even if only one eye is injured.",
+      "answer": false,
+      "note": "Do not cover both eyes unless both are injured. Source: CLS 05"
+    },
+    {
+      "id": "CLS-M05-Q08",
+      "module": "05",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which CWMP components and notes are stated in the TTA module?",
+      "options": [
+        "CWMP is found in the JFAK",
+        "Document all medications administered (and time given) on DD Form 1380",
+        "Meloxicam can give significant pain relief and will not alter the casualty’s mental status",
+        "CWMP contains an oral antibiotic medication (Moxifloxacin)",
+        "Acetaminophen is used for pain management"
+      ],
+      "answer": [0, 1, 2, 3, 4],
+      "note": "CWMP items and documentation guidance are listed. Source: CLS 05"
+    },
+    {
+      "id": "CLS-M05-Q09",
+      "module": "05",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: After dressing known wounds, bandages should be assessed for which warning signs?",
+      "options": [
+        "Increased pain",
+        "Skin discoloration",
+        "Irregular pulse",
+        "Improved appetite",
+        "Sudden hair loss"
+      ],
+      "answer": [0, 1, 2],
+      "note": "If warning signs exist, bandage may be too tight; loosen while controlling bleeding. Source: CLS 05"
+    },
+
+    {
+      "id": "CLS-M03-Q10",
+      "module": "03",
+      "type": "order",
+      "points": 3,
+      "prompt": "Put these Care Under Fire actions in the correct order (general sequence).",
+      "hint": "Drag to reorder from first → last.",
+      "steps": [
+        { "key": "cuf1", "label": "Return fire and take cover" },
+        { "key": "cuf2", "label": "Gain fire superiority / suppress hostile fire" },
+        { "key": "cuf3", "label": "Apply tourniquet to control life-threatening bleeding" },
+        { "key": "cuf4", "label": "Move casualty to safety / cover" }
+      ],
+      "answer": ["cuf1", "cuf2", "cuf3", "cuf4"],
+      "note": "CUF emphasizes fire superiority and controlling life-threatening bleeding before movement when feasible. Source: CLS 01/03"
+    }
+  ]
+} 
