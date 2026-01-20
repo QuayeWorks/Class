@@ -495,6 +495,246 @@
       ],
       "answer": ["cuf1", "cuf2", "cuf3", "cuf4"],
       "note": "CUF emphasizes fire superiority and controlling life-threatening bleeding before movement when feasible. Source: CLS 01/03"
+    },
+    {
+      "id": "CLS-M01-Q11",
+      "module": "01",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "TCCC training applies only to combat environments and does not apply to noncombat settings.",
+      "answer": false,
+      "note": "TCCC applies to both combat and noncombat environments.",
+      "source": "CLS 01.pdf"
+    },
+    {
+      "id": "CLS-M01-Q12",
+      "module": "01",
+      "type": "single",
+      "points": 1,
+      "prompt": "Which publication standardizes combat casualty care for all Service members?",
+      "options": [
+        "JP 3-0",
+        "DoDI 1322.24",
+        "AR 40-501",
+        "FM 4-02"
+      ],
+      "answer": [1],
+      "note": "DoDI 1322.24 mandates standardized combat casualty care.",
+      "source": "CLS 01.pdf"
+    },
+    {
+      "id": "CLS-M01-Q13",
+      "module": "01",
+      "type": "multi_not",
+      "points": 2,
+      "prompt": "Select ALL that do NOT apply: Which actions are NOT goals of TCCC?",
+      "options": [
+        "Treat the casualty",
+        "Prevent additional casualties",
+        "Complete the mission",
+        "Ensure zero injuries occur",
+        "Maximize comfort regardless of tactical risk"
+      ],
+      "answer": [3, 4],
+      "note": "Goals are limited to three; zero injury and comfort maximization are not listed.",
+      "source": "CLS 01.pdf"
+    },
+    {
+      "id": "CLS-M02-Q13",
+      "module": "02",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "Expired medical equipment may be deployed if it appears undamaged.",
+      "answer": false,
+      "note": "Expired or unsealed equipment must be replaced.",
+      "source": "CLS 02.pdf"
+    },
+    {
+      "id": "CLS-M02-Q14",
+      "module": "02",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: When inspecting a JFAK or CLS bag, what should be checked?",
+      "options": [
+        "Seals and wrappers",
+        "Expiration dates",
+        "That all required equipment is present",
+        "That equipment has been previously used in training",
+        "That items exceed deployment timeframe"
+      ],
+      "answer": [0, 1, 2],
+      "note": "Used, missing, or expired equipment must be replaced.",
+      "source": "CLS 02.pdf"
+    },
+    {
+      "id": "CLS-M02-Q15",
+      "module": "02",
+      "type": "single",
+      "points": 1,
+      "prompt": "Which item provides domed protection for eye injuries WITHOUT applying pressure?",
+      "options": [
+        "Vented chest seal",
+        "Rigid eye shield",
+        "Elastic bandage",
+        "Occlusive dressing"
+      ],
+      "answer": [1],
+      "note": "Rigid eye shield protects eye injuries without pressure.",
+      "source": "CLS 02.pdf"
+    },
+    {
+      "id": "CLS-M03-Q19",
+      "module": "03",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "In Care Under Fire, controlling life-threatening bleeding may take priority over casualty movement when tactically feasible.",
+      "answer": true,
+      "note": "Bleeding control may occur before movement when possible.",
+      "source": "CLS 03.pdf"
+    },
+    {
+      "id": "CLS-M03-Q20",
+      "module": "03",
+      "type": "multi_not",
+      "points": 2,
+      "prompt": "Select ALL that do NOT apply: Which actions should NOT be performed during Care Under Fire?",
+      "options": [
+        "Return fire and take cover",
+        "Conduct a deliberate head-to-toe assessment",
+        "Apply a hasty tourniquet",
+        "Direct casualty to self-aid and move",
+        "Gain fire superiority"
+      ],
+      "answer": [1],
+      "note": "Deliberate assessments are not performed during CUF.",
+      "source": "CLS 03.pdf"
+    },
+    {
+      "id": "CLS-M03-Q21",
+      "module": "03",
+      "type": "single",
+      "points": 1,
+      "prompt": "Which carry method exposes two rescuers to hostile fire?",
+      "options": [
+        "Neck drag",
+        "Cradle-drop drag",
+        "Support carry",
+        "Fore and aft carry"
+      ],
+      "answer": [3],
+      "note": "Fore and aft carry exposes two rescuers.",
+      "source": "CLS 03.pdf"
+    },
+    {
+      "id": "CLS-M04-Q14",
+      "module": "04",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "Limited medical supplies are a consideration during Tactical Field Care.",
+      "answer": true,
+      "note": "Medical supplies are limited to what is carried into the field.",
+      "source": "CLS 04.pdf"
+    },
+    {
+      "id": "CLS-M04-Q15",
+      "module": "04",
+      "type": "single",
+      "points": 1,
+      "prompt": "What should be done with weapons and radios when a casualty has altered mental status?",
+      "options": [
+        "Leave them with the casualty",
+        "Secure them to prevent accidental harm",
+        "Ignore them during treatment",
+        "Discard them"
+      ],
+      "answer": [1],
+      "note": "Weapons and communications must be secured.",
+      "source": "CLS 04.pdf"
+    },
+    {
+      "id": "CLS-M04-Q16",
+      "module": "04",
+      "type": "multi",
+      "points": 2,
+      "prompt": "Select ALL that apply: Which factors must be communicated to leadership during TFC?",
+      "options": [
+        "Evacuation requirements",
+        "Casualty treatment status",
+        "MIST report information",
+        "Personal opinions on leadership decisions"
+      ],
+      "answer": [0, 1, 2],
+      "note": "Leadership communication must include accurate casualty data.",
+      "source": "CLS 04.pdf"
+    },
+    {
+      "id": "CLS-M05-Q20",
+      "module": "05",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "A casualty with severe injuries can bleed to death in as little as three minutes.",
+      "answer": true,
+      "note": "This warning is emphasized during hemorrhage instruction.",
+      "source": "CLS 05.pdf"
+    },
+    {
+      "id": "CLS-M05-Q21",
+      "module": "05",
+      "type": "single",
+      "points": 1,
+      "prompt": "During a casualty blood sweep, which motion is recommended for the chest and abdomen?",
+      "options": [
+        "Circular motion",
+        "Raking motion",
+        "Tapping motion",
+        "Compression motion"
+      ],
+      "answer": [1],
+      "note": "Chest and abdomen are checked using a raking motion.",
+      "source": "CLS 05.pdf"
+    },
+    {
+      "id": "CLS-M05-Q22",
+      "module": "05",
+      "type": "multi_not",
+      "points": 2,
+      "prompt": "Select ALL that do NOT apply: Which are NOT signs of shock?",
+      "options": [
+        "Altered mental status",
+        "Weak radial pulse",
+        "Cool, clammy skin",
+        "Strong bounding pulse",
+        "Rapid breathing"
+      ],
+      "answer": [3],
+      "note": "A strong bounding pulse is not a shock indicator.",
+      "source": "CLS 05.pdf"
+    },
+    {
+      "id": "CLS-M05-Q23",
+      "module": "05",
+      "type": "single",
+      "points": 1,
+      "prompt": "Why must hypothermia prevention begin as soon as possible?",
+      "options": [
+        "It improves comfort only",
+        "It interferes with blood clotting and increases bleeding risk if untreated",
+        "It prevents infection",
+        "It replaces the need for hemorrhage control"
+      ],
+      "answer": [1],
+      "note": "Hypothermia worsens bleeding and clotting.",
+      "source": "CLS 05.pdf"
+    },
+    {
+      "id": "CLS-M05-Q24",
+      "module": "05",
+      "type": "true_false",
+      "points": 1,
+      "prompt": "Blind finger sweeps are recommended when blood or foreign objects are visible in the airway.",
+      "answer": false,
+      "note": "Blind finger sweeps are specifically discouraged.",
+      "source": "CLS 05.pdf"
     }
   ]
 } 
