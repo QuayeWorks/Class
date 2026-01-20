@@ -1904,6 +1904,938 @@
         "hypothermia"
       ],
       "sourceRef": "Shock management / hypothermia prevention"
+    },
+    {
+      "id": "CLS-M06-Q01",
+      "module": "06",
+      "type": "single",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "prompt": "Which type of bleeding is typically bright red and spurting, and may be life-threatening?",
+      "options": [
+        "Capillary",
+        "Venous",
+        "Arterial",
+        "Lymphatic"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "Module 06 describes arterial bleeding as bright red and spurting; it is urgent and often difficult to control."
+    },
+    {
+      "id": "CLS-M06-Q02",
+      "module": "06",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Which findings suggest life-threatening hemorrhage?",
+      "options": [
+        "Pulsatile (pulsing) or steady bleeding from the wound",
+        "Bright red blood pooling on the ground",
+        "Overlying clothes soaked with blood",
+        "Bandages becoming steadily soaked/ineffective",
+        "Minor oozing from a superficial scrape"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "rationale": "Module 06 lists pooling, soaked clothes, ineffective bandages, pulsatile/steady bleeding, and amputations as signs of severe hemorrhage."
+    },
+    {
+      "id": "CLS-M06-Q03",
+      "module": "06",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Characteristics of non-life-threatening bleeding include:",
+      "options": [
+        "No pulsatile or steady bleeding from the wound",
+        "No blood pooling on the ground",
+        "Clothes NOT soaked with blood",
+        "Bandages effective and not steadily soaking through",
+        "Partial or complete traumatic limb amputation"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "rationale": "Module 06 defines non-life-threatening bleeds by absence of pooling, soaked clothes, arterial/venous patterns, and absence of amputation."
+    },
+    {
+      "id": "CLS-M06-Q04",
+      "module": "06",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Tools for life-threatening hemorrhage control include:",
+      "options": [
+        "Direct pressure",
+        "CoTCCC-recommended tourniquet",
+        "Hemostatic dressing and pressure bandages",
+        "Pressure Delivery Device (PDD)",
+        "Hot packs for fever control"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "rationale": "Module 06 lists these tools explicitly as hemorrhage control tools."
+    },
+    {
+      "id": "CLS-M06-Q05",
+      "module": "06",
+      "type": "true_false",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "prompt": "Direct pressure can be used as a temporary measure until a tourniquet or dressing is in place.",
+      "answer": true,
+      "rationale": "Module 06 states direct pressure can and should be used temporarily until definitive control is applied."
+    },
+    {
+      "id": "CLS-M06-Q06",
+      "module": "06",
+      "type": "single",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "prompt": "Which tourniquet should be used as the FIRST option when available?",
+      "options": [
+        "The responder\u2019s tourniquet from their own JFAK",
+        "The casualty\u2019s tourniquet from the casualty\u2019s own JFAK",
+        "A belt or improvised tourniquet",
+        "A pressure dressing only"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 06 states the first option is the casualty\u2019s TQ from their own JFAK."
+    },
+    {
+      "id": "CLS-M06-Q07",
+      "module": "06",
+      "type": "single",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "In Tactical Field Care (TFC), where should a deliberate tourniquet be applied?",
+      "options": [
+        "Over clothing, 6 inches above the wound",
+        "Directly on the skin, 2\u20133 inches above the wound",
+        "Directly over the nearest joint",
+        "Only directly on the wound"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 06 states deliberate TQs in TFC are applied 2\u20133 inches above the wound directly on the skin."
+    },
+    {
+      "id": "CLS-M06-Q08",
+      "module": "06",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Tourniquet effectiveness checks include:",
+      "options": [
+        "Bleeding has stopped",
+        "No distal pulse below the tourniquet",
+        "Pulse becomes stronger below the tourniquet",
+        "Tourniquet is placed over a joint"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "rationale": "Module 06 states effectiveness is confirmed by bleeding stopped and no distal pulse."
+    },
+    {
+      "id": "CLS-M06-Q09",
+      "module": "06",
+      "type": "multi_not",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that do NOT apply: Which are tourniquet pitfalls/mistakes?",
+      "options": [
+        "Not pulling all slack out before tightening",
+        "Not making it tight enough to stop bleeding and eliminate distal pulse",
+        "Loosening tourniquets to allow recirculation",
+        "Placing tourniquets over joints",
+        "Documenting tourniquet time during TFC (not CUF)"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "rationale": "Module 06 lists these as pitfalls; documenting time during TFC is correct guidance (not a mistake)."
+    },
+    {
+      "id": "CLS-M06-Q10",
+      "module": "06",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Hemostatic dressing guidance includes:",
+      "options": [
+        "It is safe and helps blood clot at the bleeding site",
+        "A JFAK contains one hemostatic dressing and one dry sterile gauze",
+        "Do NOT pack hemostatic dressing into the abdomen or chest",
+        "Hemostatic dressing is only used after evacuation"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "rationale": "Module 06 explicitly states these points and warns not to pack abdomen/chest."
+    },
+    {
+      "id": "CLS-M06-Q11",
+      "module": "06",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": true,
+      "prompt": "SCENARIO: You identify a compressible junctional bleed that is not amenable to a limb tourniquet. Select ALL appropriate interventions based on Module 06.",
+      "options": [
+        "Use a CoTCCC-recommended hemostatic dressing",
+        "Pack the wound with constant pressure at the source within 90 seconds",
+        "Hold direct pressure over the packed wound for at least 3 minutes",
+        "Pack hemostatic dressing into the abdomen if the wound is near the torso"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "rationale": "Module 06 supports hemostatic dressing for compressible junctional hemorrhage and emphasizes packing with constant pressure and holding pressure for at least 3 minutes; abdomen/chest packing is contraindicated."
+    },
+    {
+      "id": "CLS-M07-Q01",
+      "module": "07",
+      "type": "single",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "prompt": "Airway obstruction on the battlefield is often due to:",
+      "options": [
+        "Dehydration",
+        "Maxillofacial trauma",
+        "Hypothermia",
+        "Fractured femur"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 07 states airway obstruction is often due to maxillofacial trauma."
+    },
+    {
+      "id": "CLS-M07-Q02",
+      "module": "07",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Signs of an obstructed airway include:",
+      "options": [
+        "Snoring or gurgling sounds",
+        "Visible blood or foreign objects in the airway",
+        "Maxillofacial trauma observed",
+        "Casualty indicates they can\u2019t breathe properly",
+        "Strong, steady breathing with no distress"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "rationale": "Module 07 lists these as airway obstruction signs."
+    },
+    {
+      "id": "CLS-M07-Q03",
+      "module": "07",
+      "type": "true_false",
+      "points": 1,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "If you see visible objects obstructing the airway, you should perform a blind finger sweep to clear it.",
+      "answer": false,
+      "rationale": "Module 07 states to remove visible objects but do NOT perform a blind finger sweep."
+    },
+    {
+      "id": "CLS-M07-Q04",
+      "module": "07",
+      "type": "single",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "If you suspect a neck or spinal injury, which maneuver should you use to open the airway?",
+      "options": [
+        "Head-tilt chin-lift",
+        "Jaw-thrust",
+        "Recovery position",
+        "Abdominal thrusts"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 07 specifies jaw-thrust when spinal/neck injury is suspected."
+    },
+    {
+      "id": "CLS-M07-Q05",
+      "module": "07",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Maintaining the airway/positioning guidance includes:",
+      "options": [
+        "Let a casualty breathe in the position that works best for them (including sitting up)",
+        "Do not force airway procedures that make breathing more difficult if they can breathe on their own",
+        "Force all breathing casualties flat on their back",
+        "Severe facial injuries may protect their airway by sitting up and leaning forward"
+      ],
+      "answer": [
+        0,
+        1,
+        3
+      ],
+      "rationale": "Module 07 advises allowing comfortable breathing position and notes severe facial injuries often do best sitting up/leaning forward."
+    },
+    {
+      "id": "CLS-M07-Q06",
+      "module": "07",
+      "type": "single",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "For an unconscious casualty not in shock, what position is recommended?",
+      "options": [
+        "Recovery position",
+        "Supine with legs elevated",
+        "Prone position",
+        "Sitting upright"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Module 07 states unconscious casualty not in shock should be placed into the recovery position."
+    },
+    {
+      "id": "CLS-M07-Q07",
+      "module": "07",
+      "type": "true_false",
+      "points": 1,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "An NPA may be used on a conscious or unconscious casualty.",
+      "answer": true,
+      "rationale": "Module 07 explicitly states an NPA may be used on conscious or unconscious casualties."
+    },
+    {
+      "id": "CLS-M07-Q08",
+      "module": "07",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "You should NOT attempt to insert an NPA if clear fluid is coming from the nose or ears.",
+      "answer": true,
+      "rationale": "Module 07 warns that clear fluid may be CSF indicating possible skull fracture\u2014do not insert NPA."
+    },
+    {
+      "id": "CLS-M07-SC01",
+      "module": "07",
+      "type": "single",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": true,
+      "prompt": "SCENARIO: In Tactical Field Care, a casualty is breathing on their own but is unconscious and has no obvious airway obstruction. What is the recommended next airway step?",
+      "options": [
+        "Do nothing\u2014airway is never a concern if breathing is present",
+        "Insert a nasopharyngeal airway (NPA)",
+        "Perform a blind finger sweep",
+        "Immediately perform needle decompression"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 07 states if the casualty is breathing on their own but unconscious/semi-conscious with no obstruction, airway management is achieved through an NPA."
+    },
+    {
+      "id": "CLS-M08-Q01",
+      "module": "08",
+      "type": "single",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "prompt": "Respiratory distress means:",
+      "options": [
+        "Normal breathing with no effort",
+        "Difficulty breathing (rapid or abnormally slow), difficult to get air in or out",
+        "Only coughing",
+        "Only shallow breathing while asleep"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 08 defines respiratory distress as difficulty breathing (rapid or abnormally slow)."
+    },
+    {
+      "id": "CLS-M08-Q02",
+      "module": "08",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Signs/symptoms of an open pneumothorax (sucking chest wound) include:",
+      "options": [
+        "Sucking or hissing sound when inhaling",
+        "Froth or bubbles around the injury",
+        "Puncture wound of the chest",
+        "Coughing up blood / blood-tinged sputum",
+        "Improved breathing with exertion"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "rationale": "Module 08 lists these findings for open pneumothorax/sucking chest wound."
+    },
+    {
+      "id": "CLS-M08-Q03",
+      "module": "08",
+      "type": "true_false",
+      "points": 1,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "If you are not sure whether a wound penetrated the chest wall completely, treat it as an open chest wound.",
+      "answer": true,
+      "rationale": "Module 08 explicitly instructs to treat as open chest wound if unsure."
+    },
+    {
+      "id": "CLS-M08-Q04",
+      "module": "08",
+      "type": "single",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Recommended treatment for an open/sucking chest wound is:",
+      "options": [
+        "Prompt application of a vented chest seal",
+        "A tourniquet placed over the chest",
+        "Blind finger sweep",
+        "No intervention unless unconscious"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Module 08 recommends prompt application of a vented chest seal; use nonvented if vented not available."
+    },
+    {
+      "id": "CLS-M08-Q05",
+      "module": "08",
+      "type": "single",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "If a vented chest seal is NOT available, what should be used?",
+      "options": [
+        "No seal",
+        "A nonvented chest seal",
+        "A tourniquet",
+        "A pressure dressing only"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 08 states to use a nonvented chest seal if vented is not available."
+    },
+    {
+      "id": "CLS-M08-Q06",
+      "module": "08",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Vented chest seals allow air to escape out of the chest, while nonvented seals do not.",
+      "answer": true,
+      "rationale": "Module 08 directly contrasts vented vs nonvented behavior."
+    },
+    {
+      "id": "CLS-M08-Q07",
+      "module": "08",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that apply: If a casualty with a chest seal worsens, you should suspect tension pneumothorax and:",
+      "options": [
+        "Monitor closely and consider tension pneumothorax",
+        "Burp or temporarily remove the dressing",
+        "Ignore it\u2014worsening is expected",
+        "Apply a second chest seal over the first"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "rationale": "Module 08: worsening condition after seal suggests tension pneumothorax; treat by burping/temporarily removing dressing."
+    },
+    {
+      "id": "CLS-M08-Q08",
+      "module": "08",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Signs/symptoms of progressive respiratory distress consistent with tension pneumothorax include:",
+      "options": [
+        "Progressive difficulty breathing",
+        "Shortness of breath",
+        "Confusion/lightheadedness/agitation due to lack of oxygen",
+        "Bluish discoloration around mouth/lips",
+        "Distended jugular veins"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "rationale": "Module 08 lists these signs for progressive respiratory distress/tension pneumothorax."
+    },
+    {
+      "id": "CLS-M08-Q09",
+      "module": "08",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "You should put a needle decompression (NDC) through a chest seal if that is where the injury is located.",
+      "answer": false,
+      "rationale": "Module 08 explicitly says DO NOT put NDC through a chest seal; use alternate site."
+    },
+    {
+      "id": "CLS-M08-Q10",
+      "module": "08",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": false,
+      "prompt": "Select ALL that apply: If initial needle decompression does not improve the casualty, guidance includes:",
+      "options": [
+        "Attempt a second NDC at the alternate recommended site",
+        "If symptoms recur after initial response, repeat NDC beside the original site",
+        "If no improvement after second NDC, proceed with circulation assessment/treatment per MARCH",
+        "Immediately discontinue MARCH and wait for evacuation"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "rationale": "Module 08 provides steps for unsuccessful or recurrent tension pneumothorax treatment."
+    },
+    {
+      "id": "CLS-M08-SC01",
+      "module": "08",
+      "type": "single",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: In TFC, a casualty has a chest puncture wound with frothy bubbles and a hissing sound on inhalation. What is the best immediate treatment taught in this module?",
+      "options": [
+        "Promptly apply a vented chest seal (or nonvented if vented is not available)",
+        "Apply a tourniquet high and tight around the chest",
+        "Wait to treat until symptoms worsen",
+        "Perform a blind finger sweep"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "These findings match open pneumothorax/sucking chest wound; Module 08 recommends prompt application of a vented chest seal (or nonvented if vented unavailable)."
+    },
+    {
+      "id": "CLS-M09-Q01",
+      "module": "09",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Pelvic fracture may be suspected after blunt force or blast with which findings?",
+      "options": [
+        "Pelvic pain",
+        "Major lower limb amputation or near amputation",
+        "Bruising/deformities/penetrating injuries near pelvis",
+        "Pelvic instability or crepitus",
+        "Unconsciousness or shock"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "rationale": "Module 09 lists these physical signs suggesting pelvic fracture."
+    },
+    {
+      "id": "CLS-M09-Q02",
+      "module": "09",
+      "type": "true_false",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "prompt": "If a pelvic fracture is suspected, the casualty will require advanced evaluation by medical personnel.",
+      "answer": true,
+      "rationale": "Module 09 explicitly states suspected pelvic fractures require advanced evaluation."
+    },
+    {
+      "id": "CLS-M09-Q03",
+      "module": "09",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Reassessment in hemorrhage control includes:",
+      "options": [
+        "Reassess all previous and current applied tourniquets for tight/effective",
+        "If ineffective, apply a second tourniquet side-by-side",
+        "Reassess previous/current hemostatic dressings for effectiveness",
+        "Apply a tourniquet over clothing as standard practice"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "rationale": "Module 09 lists reassessment of tourniquets and hemostatic dressings; TQs in TFC should be on skin."
+    },
+    {
+      "id": "CLS-M09-Q04",
+      "module": "09",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "CoTCCC-recommended tourniquets in Tactical Field Care are applied directly to the skin 2\u20133 inches above the bleeding site.",
+      "answer": true,
+      "rationale": "Module 09 states TFC tourniquets are applied directly on skin 2\u20133 inches above bleeding site."
+    },
+    {
+      "id": "CLS-M09-Q05",
+      "module": "09",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Indications for tourniquet replacement include:",
+      "options": [
+        "Tourniquet applied over the uniform",
+        "Tourniquet applied too proximal (>3 inches above the wound)",
+        "More than 2 hours to surgery",
+        "Casualty is awake and calm"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "rationale": "Module 09 lists these indications for tourniquet replacement."
+    },
+    {
+      "id": "CLS-M09-Q06",
+      "module": "09",
+      "type": "order",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": false,
+      "prompt": "Order the steps for tourniquet conversion (as presented).",
+      "hint": "Drag to reorder from first \u2192 last.",
+      "steps": [
+        {
+          "key": "c1",
+          "label": "Pack wound and hold pressure for 3 minutes"
+        },
+        {
+          "key": "c2",
+          "label": "Apply pressure bandage"
+        },
+        {
+          "key": "c3",
+          "label": "Slowly release tourniquet over 1 minute, ensuring no rebleeding occurs"
+        },
+        {
+          "key": "c4",
+          "label": "Document findings/treatments on DD Form 1380 (TCCC Card)"
+        }
+      ],
+      "answer": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ],
+      "rationale": "Module 09 lists tourniquet conversion steps: pack + hold 3 min \u2192 pressure bandage \u2192 slowly release over 1 min with no rebleeding \u2192 document on DD1380."
+    },
+    {
+      "id": "CLS-M09-Q07",
+      "module": "09",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Contraindications for tourniquet conversion include:",
+      "options": [
+        "Shock",
+        "Inability to closely monitor for rebleeding",
+        "Amputation",
+        "Minor abrasion only",
+        "Tourniquet in place more than 6 hours (consider not converting)"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "rationale": "Module 09 lists shock, inability to monitor, and amputation as contraindications; also consider not converting if >6 hours."
+    },
+    {
+      "id": "CLS-M09-SC01",
+      "module": "09",
+      "type": "single",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: In TFC, a casualty has a tourniquet placed over their uniform and bleeding is controlled. Evacuation to surgery is expected to take more than 2 hours. What is the best next action per this module?",
+      "options": [
+        "Do nothing\u2014if bleeding stopped, it never needs reassessment",
+        "Consider tourniquet replacement using a new tourniquet placed 2\u20133 inches proximal to the wound on skin, then slowly release original to check for rebleeding",
+        "Loosen the tourniquet every 10 minutes to restore circulation",
+        "Remove the tourniquet immediately"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 09 indicates replacement is considered when TQ is over uniform and >2 hours to surgery; replacement involves a new TQ on skin and controlled release of the original while watching for rebleeding."
+    },
+    {
+      "id": "CLS-M10-Q01",
+      "module": "10",
+      "type": "single",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "prompt": "Shock is best described as:",
+      "options": [
+        "Too much oxygen delivery to tissues",
+        "Inadequate blood flow to body tissues leading to inadequate oxygen delivery",
+        "A normal response to exertion",
+        "Only a psychological reaction to combat"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 10 defines shock as inadequate blood flow and inadequate oxygen delivery to cells/tissues."
+    },
+    {
+      "id": "CLS-M10-Q02",
+      "module": "10",
+      "type": "true_false",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "prompt": "On the battlefield, assume shock is from severe blood loss (hemorrhagic shock).",
+      "answer": true,
+      "rationale": "Module 10 states to assume hemorrhagic shock from severe blood loss in battlefield context."
+    },
+    {
+      "id": "CLS-M10-Q03",
+      "module": "10",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Select ALL that apply: General indicators of shock include:",
+      "options": [
+        "Mental confusion",
+        "Weak or absent radial pulse",
+        "Rapid breathing",
+        "Sweaty, cool, clammy skin",
+        "Excessive thirst"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "rationale": "Module 10 lists these as signs/symptoms of shock."
+    },
+    {
+      "id": "CLS-M10-Q04",
+      "module": "10",
+      "type": "single",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "The best TACTICAL indicators of shock (if no head injury) are:",
+      "options": [
+        "Normal skin color and mild thirst",
+        "Decreased state of consciousness and/or abnormal, weak, absent radial pulse",
+        "High fever and coughing",
+        "Dilated pupils only"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 10: best tactical indicators are decreased consciousness (if no head injury) and weak/absent radial pulse."
+    },
+    {
+      "id": "CLS-M10-Q05",
+      "module": "10",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "If BOTH mental confusion and weak/absent radial pulse are present, the casualty has likely lost a significant amount of blood.",
+      "answer": true,
+      "rationale": "Module 10 states if both indicators exist, significant blood loss has occurred."
+    },
+    {
+      "id": "CLS-M10-Q06",
+      "module": "10",
+      "type": "single",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "What is the most important action to prevent hemorrhagic shock?",
+      "options": [
+        "Give fluids by mouth to everyone",
+        "Control bleeding (effective hemorrhage control)",
+        "Apply ice packs to wounds",
+        "Delay hemorrhage control until evacuation"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 10 emphasizes preventing shock by controlling bleeding and reassessing hemorrhage control measures."
+    },
+    {
+      "id": "CLS-M10-Q07",
+      "module": "10",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Assess for shock as soon as hemorrhage is controlled, the airway is open, and respirations have been managed.",
+      "answer": true,
+      "rationale": "Module 10 specifies timing for shock assessment after MARCH priorities are addressed."
+    },
+    {
+      "id": "CLS-M10-Q08",
+      "module": "10",
+      "type": "single",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "How often does the module recommend checking a casualty for AVPU during reassessment?",
+      "options": [
+        "Every 5 minutes",
+        "Every 15 minutes",
+        "Every hour",
+        "Only once at the start"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 10 states to check every 15 minutes for AVPU."
+    },
+    {
+      "id": "CLS-M10-Q09",
+      "module": "10",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "If a casualty becomes unconscious OR their breathing rate drops below two respirations every 15 seconds, insert an NPA.",
+      "answer": true,
+      "rationale": "Module 10 provides this reassessment trigger for NPA insertion."
+    },
+    {
+      "id": "CLS-M10-Q10",
+      "module": "10",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Fluids by mouth are permissible if the casualty is conscious and can swallow.",
+      "answer": true,
+      "rationale": "Module 10 explicitly allows oral fluids if conscious and able to swallow."
+    },
+    {
+      "id": "CLS-M10-Q11",
+      "module": "10",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Shock management guidance includes:",
+      "options": [
+        "Place casualty in recovery position",
+        "Reassess the casualty frequently for onset of shock",
+        "Evacuate if medical help is not available",
+        "Ignore hypothermia risk in hot environments"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "rationale": "Module 10 includes recovery position, reassess frequently, and evacuate if needed; it warns hypothermia risk exists even in hot environments."
+    },
+    {
+      "id": "CLS-M10-SC01",
+      "module": "10",
+      "type": "single",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: In TFC, bleeding appears controlled, airway is open, and respirations are managed. The casualty is now confused and you cannot feel a radial pulse. What does this combination most strongly indicate (per the module\u2019s tactical indicators)?",
+      "options": [
+        "Mild dehydration only",
+        "Significant blood loss with likely hemorrhagic shock",
+        "An allergic reaction only",
+        "Normal recovery after stress"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 10 states the best tactical indicators are decreased mental status (without head injury) and weak/absent radial pulse; together they indicate significant blood loss and shock."
     }
   ],
   "modules": [
