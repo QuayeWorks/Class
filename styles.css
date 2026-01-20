@@ -192,6 +192,7 @@
       font-size:15px;
       line-height:1.5;
       font-weight:650;
+      white-space:pre-line;
     }
     .qHint{
       margin-top:8px;

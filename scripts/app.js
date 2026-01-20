@@ -177,6 +177,23 @@ function normalizeModuleId(moduleId){
   return raw;
 }
 
+function normalizePrompt(q){
+  const prompt = String(q.prompt ?? "").trim();
+  if(q.type === "multi" || q.type === "multi_not"){
+    const instruction = q.type === "multi"
+      ? "Select ALL that apply."
+      : "Select ALL that do NOT apply.";
+    if(prompt.toLowerCase().includes(instruction.toLowerCase())) return prompt;
+    return prompt ? `${instruction}\n${prompt}` : instruction;
+  }
+  if(q.type === "order"){
+    const instruction = "Place the following steps in the correct order.";
+    if(prompt.toLowerCase().includes(instruction.toLowerCase())) return prompt;
+    return prompt ? `${prompt}\n${instruction}` : instruction;
+  }
+  return prompt;
+}
+
 function getQuestionCountsByModule(questions){
   const counts = {};
   (questions || []).forEach((q)=>{
@@ -193,11 +210,12 @@ function normalizeQuestions(raw){
       return {
         ...q,
         module: normalizeModuleId(q.module),
+        prompt: normalizePrompt(q),
         options: ["True", "False"],
         answer: typeof q.answer === "boolean" ? q.answer : Boolean(q.answer)
       };
     }
-    return { ...q, module: normalizeModuleId(q.module) };
+    return { ...q, module: normalizeModuleId(q.module), prompt: normalizePrompt(q) };
   });
 
   return questions;
