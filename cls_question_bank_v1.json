@@ -22,6 +22,26 @@
     {
       "module": "05",
       "title": "Tactical Trauma Assessment (In Depth)"
+    },
+    {
+      "module": "06",
+      "title": "Massive Hemorrhage Control"
+    },
+    {
+      "module": "07",
+      "title": "Airway Management"
+    },
+    {
+      "module": "08",
+      "title": "Respiration Assesment and Management"
+    },
+    {
+      "module": "09",
+      "title": "Circulation and Hemorrhage Control"
+    },
+    {
+      "module": "10",
+      "title": "Shock Recognition"
     }
   ],
   "notes": [
