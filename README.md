@@ -1,6 +1,6 @@
-# QuayeWorks Testing Site (Static HTML)
+# QuayeWorks Testing Site
 
-A lightweight, modern testing site with a login gate, a course catalog, and a full-featured exam runner. Designed for offline/static usage (no backend required).
+A simple site for learners to sign in, pick a class, and practice questions in one place.
 
 ## Features
 
@@ -48,7 +48,7 @@ The app stores progress in localStorage.
 
 ## Customizing Questions
 
-Questions live in the `EXAM.questions` array in the HTML.
+Questions live in the `EXAM.questions` array in `scripts/exam-data.js`.
 
 Example True/False question:
 
