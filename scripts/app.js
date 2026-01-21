@@ -209,14 +209,31 @@ function setExamContext({ courseId, profile, moduleId }){
   });
 }
 
+function normalizeMultiPrompt(prompt, instruction, instructionRegex){
+  let remaining = String(prompt ?? "").trim();
+  if(!remaining) return instruction;
+  while(instructionRegex.test(remaining)){
+    remaining = remaining.replace(instructionRegex, "").trim();
+  }
+  if(!remaining) return `${instruction}:`;
+  return `${instruction}: ${remaining}`;
+}
+
 function normalizePrompt(q){
   const prompt = String(q.prompt ?? "").trim();
-  if(q.type === "multi" || q.type === "multi_not"){
-    const instruction = q.type === "multi"
-      ? "Select ALL that apply."
-      : "Select ALL that do NOT apply.";
-    if(prompt.toLowerCase().includes(instruction.toLowerCase())) return prompt;
-    return prompt ? `${instruction}\n${prompt}` : instruction;
+  if(q.type === "multi"){
+    return normalizeMultiPrompt(
+      prompt,
+      "Select ALL that apply",
+      /^select\s+all\s+that\s+apply\s*(?:[.:]|\n|$)\s*/i
+    );
+  }
+  if(q.type === "multi_not"){
+    return normalizeMultiPrompt(
+      prompt,
+      "Select ALL that do NOT apply",
+      /^select\s+all\s+that\s+do\s+not\s+apply\s*(?:[.:]|\n|$)\s*/i
+    );
   }
   if(q.type === "order"){
     const instruction = "Place the following steps in the correct order.";
@@ -814,13 +831,6 @@ function renderQuestion(){
 
     area.appendChild(answersDiv);
 
-    if(q.type === "multi_not"){
-      const warn = document.createElement("div");
-      warn.className = "small warn";
-      warn.style.marginTop = "10px";
-      warn.textContent = "Reminder: Choose the items that are NOT correct.";
-      area.appendChild(warn);
-    }
   }
 
   if(q.type === "true_false"){
