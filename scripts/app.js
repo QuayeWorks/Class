@@ -24,6 +24,9 @@ let RAW_DATA = null;
 let MODULES = [];
 let FINAL_PROFILE = null;
 let storageKey = null;
+let currentCourseId = null;
+let currentProfile = null;
+let currentModuleId = null;
 
 function isAuthed(){
   return localStorage.getItem(AUTH_KEY) === "true";
@@ -101,8 +104,8 @@ function showToast(msg){
    State + Persistence
 ------------------------- */
 
-const MODULE_STORAGE_PREFIX = "qw_cls_state_module_";
-const FINAL_STORAGE_KEY = "qw_cls_state_final_v1";
+const COURSE_ID = "cls";
+const STORAGE_VERSION = "v1";
 const FINAL_BUNDLE_KEY = "qw_cls_final_exam_bundle_v1";
 const LAST_EXAM_KEY = "qw_cls_last_exam_v1";
 
@@ -129,10 +132,10 @@ function resetStateObject(){
   Object.assign(state, deepCopy(defaultState));
 }
 
-function loadState(){
+function loadState(key){
   try{
-    if(!storageKey) return;
-    const raw = localStorage.getItem(storageKey);
+    if(!key) return;
+    const raw = localStorage.getItem(key);
     if(!raw) return;
     const parsed = JSON.parse(raw);
     Object.assign(state, parsed);
@@ -140,26 +143,29 @@ function loadState(){
     console.warn("Failed to load state", e);
   }
 }
-function saveState(){
+function saveState(key){
   try{
-    if(!storageKey) return;
-    localStorage.setItem(storageKey, JSON.stringify(state));
+    if(!key) return;
+    localStorage.setItem(key, JSON.stringify(state));
     setText("saveLabel", "On");
   }catch(e){
     setText("saveLabel", "Off");
     console.warn("Failed to save state", e);
   }
 }
-function resetState(){
+function resetStateForCurrentExam(){
   if(storageKey){
     localStorage.removeItem(storageKey);
   }
   if(EXAM && FINAL_PROFILE && EXAM.id === FINAL_PROFILE.id){
     localStorage.removeItem(FINAL_BUNDLE_KEY);
   }
+  stopTimer();
   resetStateObject();
   ensureQuestionOrder(true);
+  state.currentIndex = 0;
   renderAll();
+  startTimer();
 }
 
 /* -------------------------
@@ -176,6 +182,26 @@ function normalizeModuleId(moduleId){
     return raw.padStart(2, "0");
   }
   return raw;
+}
+function buildStorageKey({ courseId, profile, moduleId, version = STORAGE_VERSION }){
+  if(!courseId || !profile) return null;
+  const parts = ["qw", String(courseId).toLowerCase(), profile];
+  if(profile === "module" && moduleId){
+    parts.push(normalizeModuleId(moduleId));
+  }
+  parts.push(version);
+  return parts.join(":");
+}
+
+function setExamContext({ courseId, profile, moduleId }){
+  currentCourseId = courseId;
+  currentProfile = profile;
+  currentModuleId = moduleId ?? null;
+  storageKey = buildStorageKey({
+    courseId: currentCourseId,
+    profile: currentProfile,
+    moduleId: currentModuleId
+  });
 }
 
 function normalizePrompt(q){
@@ -360,7 +386,7 @@ function ensureQuestionOrder(force = false){
 
   state.questionOrder = shuffle(ids);
   state.currentIndex = 0;
-  saveState();
+  saveState(storageKey);
 }
 
 function getOrCreateFinalExamBundle(profile){
@@ -703,7 +729,7 @@ function renderNav(){
 
     b.addEventListener("click", ()=>{
       state.currentIndex = i;
-      saveState();
+      saveState(storageKey);
       renderAll();
     });
 
@@ -772,7 +798,7 @@ function renderQuestion(){
           else arr.push(idx);
           state.answers[q.id] = arr;
         }
-        saveState();
+        saveState(storageKey);
         renderAll();
       });
 
@@ -822,7 +848,7 @@ function renderQuestion(){
       row.addEventListener("click", ()=>{
         if(state.submitted) return;
         state.answers[q.id] = opt.value;
-        saveState();
+        saveState(storageKey);
         renderAll();
       });
 
@@ -977,7 +1003,7 @@ function renderMatch(q){
         const next = { ...(state.answers[q.id] || {}) };
         delete next[d.id];
         state.answers[q.id] = next;
-        saveState();
+        saveState(storageKey);
         renderAll();
       });
     }else{
@@ -1091,7 +1117,7 @@ function wireDnD(root, q){
           }
           next[defid] = dragData.key;
           state.answers[q.id] = next;
-          saveState();
+          saveState(storageKey);
           renderAll();
         }
       }
@@ -1125,7 +1151,7 @@ function wireDnD(root, q){
 
         state.answers[q.id] = order;
         state.orderTouched[q.id] = true;
-        saveState();
+        saveState(storageKey);
         renderAll();
       }
     });
@@ -1141,7 +1167,7 @@ function showReview(){
   state.lastScore = g;
   state.submitted = true;
   state.helpOpen = {};
-  saveState();
+  saveState(storageKey);
 
   // show result panel
   el("resultBox").classList.remove("hidden");
@@ -1247,11 +1273,18 @@ function renderModuleSelect(){
   grid.appendChild(finalTile);
 }
 
+function teardownExam(){
+  stopTimer();
+  dragData = null;
+  document.querySelectorAll(".dropTarget").forEach((el)=> el.classList.remove("over"));
+}
+
 function setExamSession(exam, key, orderOverride){
+  teardownExam();
   EXAM = exam;
   storageKey = key;
   resetStateObject();
-  loadState();
+  loadState(storageKey);
 
   state.examId = exam.id;
   if(!state.orderTouched || typeof state.orderTouched !== "object"){
@@ -1287,7 +1320,8 @@ function setExamSession(exam, key, orderOverride){
 function startModuleExam(moduleId){
   const normalizedId = normalizeModuleId(moduleId);
   const exam = buildExamForModule(normalizedId);
-  const key = `${MODULE_STORAGE_PREFIX}${normalizedId}_v1`;
+  setExamContext({ courseId: COURSE_ID, profile: "module", moduleId: normalizedId });
+  const key = storageKey;
   localStorage.setItem(LAST_EXAM_KEY, JSON.stringify({ type: "module", id: normalizedId }));
   setExamSession(exam, key);
 }
@@ -1295,7 +1329,9 @@ function startModuleExam(moduleId){
 function startFinalExam(){
   const exam = buildFinalExam();
   localStorage.setItem(LAST_EXAM_KEY, JSON.stringify({ type: "final" }));
-  setExamSession(exam, FINAL_STORAGE_KEY, exam.order);
+  setExamContext({ courseId: COURSE_ID, profile: "final", moduleId: null });
+  const key = storageKey;
+  setExamSession(exam, key, exam.order);
 }
 
 /* -------------------------
@@ -1317,10 +1353,10 @@ function startTimer(){
     // enforce time limit if set
     if(EXAM.timeLimitSeconds && elapsed >= EXAM.timeLimitSeconds && !state.submitted){
       state.elapsed = EXAM.timeLimitSeconds;
-      saveState();
+      saveState(storageKey);
       showReview();
     }else{
-      saveState();
+      saveState(storageKey);
     }
     renderTimer();
   }, 1000);
@@ -1348,17 +1384,17 @@ function renderTimer(){
 function bindUI(){
   el("btnPrev").addEventListener("click", ()=>{
     state.currentIndex = clamp(state.currentIndex - 1, 0, getQuestionsInOrder().length-1);
-    saveState(); renderAll();
+    saveState(storageKey); renderAll();
   });
   el("btnNext").addEventListener("click", ()=>{
     state.currentIndex = clamp(state.currentIndex + 1, 0, getQuestionsInOrder().length-1);
-    saveState(); renderAll();
+    saveState(storageKey); renderAll();
   });
 
   el("btnFlag").addEventListener("click", ()=>{
     const q = getQuestionsInOrder()[state.currentIndex];
     state.flagged[q.id] = !state.flagged[q.id];
-    saveState(); renderAll();
+    saveState(storageKey); renderAll();
   });
 
   el("btnReview").addEventListener("click", ()=>{
@@ -1391,13 +1427,13 @@ function bindUI(){
     }
     const current = !!state.helpOpen[q.id];
     state.helpOpen[q.id] = !current;
-    saveState();
+    saveState(storageKey);
     renderQuestion();
   });
 
   el("btnReset").addEventListener("click", ()=>{
     const ok = confirm("Reset all answers and restart?");
-    if(ok) resetState();
+    if(ok) resetStateForCurrentExam();
   });
 
   el("btnBackToModules").addEventListener("click", ()=>{
