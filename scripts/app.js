@@ -173,6 +173,11 @@ function resetStateForCurrentExam(){
 ------------------------- */
 
 function el(id){ return document.getElementById(id); }
+function setHidden(id, hidden){
+  const node = el(id);
+  if(!node) return;
+  node.classList.toggle("hidden", hidden);
+}
 function setText(id, txt){ el(id).textContent = txt; }
 function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 function deepCopy(x){ return JSON.parse(JSON.stringify(x)); }
@@ -1170,8 +1175,8 @@ function showReview(){
   saveState(storageKey);
 
   // show result panel
-  el("resultBox").classList.remove("hidden");
-  el("helpBox").classList.add("hidden");
+  setHidden("resultBox", false);
+  setHidden("helpPanel", true);
 
   setText("scoreBig", `${g.pct}%`);
 
@@ -1486,11 +1491,11 @@ function renderAll(){
 
   // If submitted, show results panel
   if(state.submitted && state.lastScore){
-    el("resultBox").classList.remove("hidden");
-    el("helpBox").classList.add("hidden");
+    setHidden("resultBox", false);
+    setHidden("helpPanel", true);
   }else{
-    el("resultBox").classList.add("hidden");
-    el("helpBox").classList.remove("hidden");
+    setHidden("resultBox", true);
+    setHidden("helpPanel", false);
   }
 
   renderQuestion();
