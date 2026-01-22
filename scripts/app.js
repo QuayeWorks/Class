@@ -119,6 +119,7 @@ function showToast(msg){
 const COURSE_ID = "cls";
 const STORAGE_VERSION = "v1";
 const LAST_EXAM_KEY = "qw_cls_last_exam_v1";
+const FINAL_EXAM_STORAGE_KEY = "qw:cls:final:v1";
 
 const defaultState = {
   startedAt: null,
@@ -169,6 +170,9 @@ function resetStateForCurrentExam(){
   if(storageKey){
     localStorage.removeItem(storageKey);
   }
+  if(currentProfile === "final"){
+    localStorage.removeItem(FINAL_EXAM_STORAGE_KEY);
+  }
   stopTimer();
   resetStateObject();
   ensureQuestionOrder(true);
@@ -216,6 +220,9 @@ function setExamContext({ courseId, profile, moduleId }){
     profile: currentProfile,
     moduleId: currentModuleId
   });
+  if(currentProfile === "final"){
+    storageKey = FINAL_EXAM_STORAGE_KEY;
+  }
 }
 
 function normalizeMultiPrompt(prompt, instruction, instructionRegex){
@@ -340,7 +347,7 @@ function buildModules(raw){
 
 function buildFinalProfile(raw, modules){
   const unlockedModules = modules.filter(m => !m.locked).map(m => m.id);
-  const eligibleModules = unlockedModules.filter(id => id !== "20");
+  const eligibleModules = unlockedModules;
   const fallback = {
     id: "FINAL",
     title: "Final Exam",
@@ -364,7 +371,7 @@ function buildFinalProfile(raw, modules){
     timeLimitSeconds: profile.timeLimitSeconds ?? resolvedTotal * 60,
     includeModules: (profile.includeModules || fallback.includeModules)
       .map((id)=> normalizeModuleId(id))
-      .filter(id => unlocked.has(id) && id !== "20")
+      .filter(id => unlocked.has(id))
   };
 }
 
@@ -489,27 +496,44 @@ function getOrCreateFinalExamBundle(profile){
 }
 
 function selectFinalExamQuestions(profile, rng){
-  const minDifficulty = profile.difficultyMix?.min ?? 1;
-  const maxDifficulty = profile.difficultyMix?.max ?? 5;
   const includeModules = (profile.includeModules || []).map((id)=> normalizeModuleId(id));
   const eligible = RAW_DATA.questions.filter((q)=>{
     const inModule = includeModules.includes(q.module);
-    const diff = q.difficulty ?? 1;
-    return inModule && diff >= minDifficulty && diff <= maxDifficulty;
+    return inModule && !q.excludeFromFinalExam;
   });
 
-  if(!eligible.length){
+  const desiredCount = clamp(profile.totalQuestions || FINAL_EXAM_DEFAULT, FINAL_EXAM_MIN, FINAL_EXAM_MAX);
+  const eligiblePool = eligible.map((q)=>({
+    ...q,
+    difficulty: q.difficulty ?? 3,
+    scenario: q.scenario ?? false
+  }));
+  console.log("FINAL: desiredCount", desiredCount);
+  console.log("FINAL: unlockedModules", includeModules);
+  console.log("FINAL: eligiblePool size", eligiblePool.length);
+  console.log("FINAL: eligible modules breakdown", eligiblePool.reduce((m,q)=>{
+    const k = String(q.module).padStart(2,"0");
+    m[k] = (m[k]||0)+1;
+    return m;
+  }, {}));
+
+  if(eligiblePool.length < FINAL_EXAM_MIN){
+    console.warn("Final Exam pool too small:", eligiblePool.length);
+    showToast(`Final Exam pool too small (${eligiblePool.length}).`);
+  }
+
+  if(!eligiblePool.length){
     return [];
   }
 
   const totalQuestions = Math.min(
-    clamp(profile.totalQuestions || FINAL_EXAM_DEFAULT, FINAL_EXAM_MIN, FINAL_EXAM_MAX),
-    eligible.length
+    desiredCount,
+    eligiblePool.length
   );
   const scenarioTarget = Math.round(totalQuestions * ((profile.preferScenarioPct || FINAL_EXAM_SCENARIO_PCT) / 100));
 
   const modulePools = {};
-  eligible.forEach((q)=>{
+  eligiblePool.forEach((q)=>{
     if(!modulePools[q.module]) modulePools[q.module] = [];
     modulePools[q.module].push(q);
   });
@@ -635,7 +659,7 @@ function selectFinalExamQuestions(profile, rng){
   });
 
   if(selected.length < totalQuestions){
-    const remainingPool = seededShuffle(eligible.filter(q => !selectedIds.has(q.id)), rng);
+    const remainingPool = seededShuffle(eligiblePool.filter(q => !selectedIds.has(q.id)), rng);
     selected.push(...remainingPool.slice(0, totalQuestions - selected.length));
   }
 
@@ -1397,6 +1421,17 @@ function renderModuleSelect(){
     finalTag.className = "tag";
     finalTag.innerHTML = "<strong>Launch</strong>";
     finalTile.appendChild(finalTag);
+
+    const regenTag = document.createElement("button");
+    regenTag.type = "button";
+    regenTag.className = "tag";
+    regenTag.innerHTML = "<strong>Regenerate</strong>";
+    regenTag.addEventListener("click", (event)=>{
+      event.stopPropagation();
+      localStorage.removeItem(FINAL_EXAM_STORAGE_KEY);
+      startFinalExam();
+    });
+    finalTile.appendChild(regenTag);
   }else{
     const lock = document.createElement("div");
     lock.className = "lockBadge";
