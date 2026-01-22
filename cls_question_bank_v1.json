@@ -57,10 +57,10 @@
       "points": 1,
       "prompt": "Which TCCC tier does the Combat Lifesaver (CLS) fall under?",
       "options": [
-        "TCCC Tier 1 \u2013 All Service Members",
-        "TCCC Tier 2 \u2013 Combat Lifesaver",
-        "TCCC Tier 3 \u2013 Combat Medic/Corpsman",
-        "TCCC Tier 4 \u2013 Combat Paramedic/Provider"
+        "TCCC Tier 1 – All Service Members",
+        "TCCC Tier 2 – Combat Lifesaver",
+        "TCCC Tier 3 – Combat Medic/Corpsman",
+        "TCCC Tier 4 – Combat Paramedic/Provider"
       ],
       "answer": [
         1
@@ -171,13 +171,13 @@
       "options": [
         "Supplies from the CLS bag",
         "Supplies from the nearest aid station",
-        "The casualty\u2019s JFAK",
+        "The casualty’s JFAK",
         "Any available supplies"
       ],
       "answer": [
         2
       ],
-      "note": "Always use the casualty\u2019s JFAK first. Source: CLS 01/02/04"
+      "note": "Always use the casualty’s JFAK first. Source: CLS 01/02/04"
     },
     {
       "id": "CLS-M02-Q05",
@@ -291,9 +291,9 @@
       "module": "03",
       "type": "true_false",
       "points": 1,
-      "prompt": "When helping a buddy, you should use your own tourniquet before checking the casualty\u2019s JFAK.",
+      "prompt": "When helping a buddy, you should use your own tourniquet before checking the casualty’s JFAK.",
       "answer": false,
-      "note": "Use the casualty\u2019s JFAK first; do not use your own tourniquet before the casualty\u2019s. Source: CLS 03"
+      "note": "Use the casualty’s JFAK first; do not use your own tourniquet before the casualty’s. Source: CLS 03"
     },
     {
       "id": "CLS-M03-Q07",
@@ -342,7 +342,7 @@
         "Cradle-drop drag",
         "Kit or arm drag",
         "Support carry",
-        "Fireman\u2019s carry (explicitly listed)"
+        "Fireman’s carry (explicitly listed)"
       ],
       "answer": [
         0,
@@ -350,7 +350,7 @@
         2,
         3
       ],
-      "note": "These are listed one-person methods; fireman\u2019s carry is not listed in the referenced snippet. Source: CLS 03"
+      "note": "These are listed one-person methods; fireman’s carry is not listed in the referenced snippet. Source: CLS 03"
     },
     {
       "id": "CLS-M04-Q01",
@@ -588,7 +588,7 @@
       "options": [
         "CWMP is found in the JFAK",
         "Document all medications administered (and time given) on DD Form 1380",
-        "Meloxicam can give significant pain relief and will not alter the casualty\u2019s mental status",
+        "Meloxicam can give significant pain relief and will not alter the casualty’s mental status",
         "CWMP contains an oral antibiotic medication (Moxifloxacin)",
         "Acetaminophen is used for pain management"
       ],
@@ -627,7 +627,7 @@
       "type": "order",
       "points": 3,
       "prompt": "Put these Care Under Fire actions in the correct order (general sequence).",
-      "hint": "Drag to reorder from first \u2192 last.",
+      "hint": "Drag to reorder from first → last.",
       "steps": [
         {
           "key": "cuf1",
@@ -689,7 +689,7 @@
       "type": "order",
       "points": 3,
       "prompt": "Put the three phases of TCCC in the correct order.",
-      "hint": "Drag to reorder from first \u2192 last.",
+      "hint": "Drag to reorder from first → last.",
       "steps": [
         {
           "key": "p1",
@@ -709,7 +709,7 @@
         "p2",
         "p3"
       ],
-      "note": "TCCC has three phases: CUF \u2192 TFC \u2192 TACEVAC.",
+      "note": "TCCC has three phases: CUF → TFC → TACEVAC.",
       "source": "CLS 01.pdf (Three phases of TCCC)",
       "sourceLines": "turn3file9:L43-L70"
     },
@@ -812,7 +812,7 @@
       "points": 1,
       "prompt": "An NPA (nasopharyngeal airway) is described as:",
       "options": [
-        "A sterile, rubber tube-shaped device inserted into a casualty\u2019s nostril",
+        "A sterile, rubber tube-shaped device inserted into a casualty’s nostril",
         "A needle inserted into the chest to treat tension pneumothorax",
         "An adhesive dressing used to seal penetrating chest wounds",
         "A medication pack used only for traumatic injuries"
@@ -848,7 +848,7 @@
       "module": "02",
       "type": "single",
       "points": 1,
-      "prompt": "The NDC 10\u201314 gauge 3.25\" needle catheter is described as a device used to:",
+      "prompt": "The NDC 10–14 gauge 3.25\" needle catheter is described as a device used to:",
       "options": [
         "Treat tension pneumothorax",
         "Control massive extremity bleeding",
@@ -1646,7 +1646,7 @@
       "points": 3,
       "difficulty": 4,
       "scenario": true,
-      "prompt": "SCENARIO: During Care Under Fire, you see bright red blood pooling near a casualty\u2019s leg and clothing rapidly soaking with blood. The casualty cannot move. What action aligns best with CUF guidance?",
+      "prompt": "SCENARIO: During Care Under Fire, you see bright red blood pooling near a casualty’s leg and clothing rapidly soaking with blood. The casualty cannot move. What action aligns best with CUF guidance?",
       "options": [
         "Apply a tourniquet high and tight above the wound and then move the casualty based on the tactical situation",
         "Perform airway maneuvers first because breathing is always first priority",
@@ -1656,7 +1656,7 @@
       "answer": [
         0
       ],
-      "rationale": "CUF emphasizes controlling life-threatening bleeding with a tourniquet (\u2018high and tight\u2019) and moving the casualty out of the kill zone if they are unable to move. Delaying hemorrhage control can be fatal.",
+      "rationale": "CUF emphasizes controlling life-threatening bleeding with a tourniquet (‘high and tight’) and moving the casualty out of the kill zone if they are unable to move. Delaying hemorrhage control can be fatal.",
       "tags": [
         "CUF",
         "tourniquet",
@@ -1749,7 +1749,7 @@
       "points": 3,
       "difficulty": 4,
       "scenario": true,
-      "prompt": "SCENARIO: During assessment, the casualty is pale/clammy, breathing rapidly, and has altered mental status. Select ALL findings that match the module\u2019s shock indicators.",
+      "prompt": "SCENARIO: During assessment, the casualty is pale/clammy, breathing rapidly, and has altered mental status. Select ALL findings that match the module’s shock indicators.",
       "options": [
         "Altered mental status",
         "Rapid breathing",
@@ -1777,12 +1777,12 @@
       "points": 2,
       "difficulty": 4,
       "scenario": true,
-      "prompt": "SCENARIO: You are treating a casualty in warm weather after significant blood loss. A teammate says hypothermia prevention isn\u2019t necessary because it\u2019s hot. What is the best response based on the module?",
+      "prompt": "SCENARIO: You are treating a casualty in warm weather after significant blood loss. A teammate says hypothermia prevention isn’t necessary because it’s hot. What is the best response based on the module?",
       "options": [
-        "Agree \u2014 hypothermia prevention is only for cold environments",
-        "Disagree \u2014 blood loss can significantly drop body temperature even in hot weather; begin prevention early",
-        "Agree \u2014 hypothermia only matters after evacuation",
-        "Disagree \u2014 but only start prevention if the casualty is shivering"
+        "Agree — hypothermia prevention is only for cold environments",
+        "Disagree — blood loss can significantly drop body temperature even in hot weather; begin prevention early",
+        "Agree — hypothermia only matters after evacuation",
+        "Disagree — but only start prevention if the casualty is shivering"
       ],
       "answer": [
         1
@@ -1828,7 +1828,7 @@
       "prompt": "SCENARIO: During Tactical Field Care, you are providing care and coordinating evacuation. Select ALL actions that align with the communication/documentation guidance.",
       "options": [
         "Communicate evacuation requirements to tactical leadership immediately",
-        "Keep the casualty\u2019s DD Form 1380 up to date",
+        "Keep the casualty’s DD Form 1380 up to date",
         "Relay a MIST report (Mechanism, Injuries, Symptoms, Treatment)",
         "Avoid documenting medications to save time",
         "Only communicate once; do not update leadership as care changes"
@@ -1854,17 +1854,17 @@
       "points": 3,
       "difficulty": 4,
       "scenario": true,
-      "prompt": "SCENARIO: In Care Under Fire, you and a casualty reach cover. The casualty\u2019s leg is badly bleeding, and their JFAK is accessible. What action best follows CLS guidance?",
+      "prompt": "SCENARIO: In Care Under Fire, you and a casualty reach cover. The casualty’s leg is badly bleeding, and their JFAK is accessible. What action best follows CLS guidance?",
       "options": [
-        "Apply a tourniquet high and tight using the casualty\u2019s JFAK, then reassess the tactical situation",
+        "Apply a tourniquet high and tight using the casualty’s JFAK, then reassess the tactical situation",
         "Wait until Tactical Field Care to control the bleeding",
-        "Use your own med bag supplies first to preserve the casualty\u2019s kit",
+        "Use your own med bag supplies first to preserve the casualty’s kit",
         "Loosen the tourniquet every few minutes to restore circulation"
       ],
       "answer": [
         0
       ],
-      "rationale": "CLS guidance stresses rapid hemorrhage control in CUF, using a high-and-tight tourniquet, and prioritizing the casualty\u2019s JFAK to preserve your supplies for additional casualties.",
+      "rationale": "CLS guidance stresses rapid hemorrhage control in CUF, using a high-and-tight tourniquet, and prioritizing the casualty’s JFAK to preserve your supplies for additional casualties.",
       "tags": [
         "CUF",
         "tourniquet",
@@ -1884,7 +1884,7 @@
         "Maintain safety of the team and casualty throughout movement",
         "Continue MARCH reassessment during movement",
         "Stop all reassessments once movement starts",
-        "Use the casualty\u2019s JFAK before drawing on your own supplies",
+        "Use the casualty’s JFAK before drawing on your own supplies",
         "Prioritize speed even if it increases exposure to hazards"
       ],
       "answer": [
@@ -1892,7 +1892,7 @@
         1,
         3
       ],
-      "rationale": "Extraction guidance emphasizes safety as the first priority, continuing MARCH-based reassessment, and using the casualty\u2019s JFAK first when possible. Speed is important but never replaces safety.",
+      "rationale": "Extraction guidance emphasizes safety as the first priority, continuing MARCH-based reassessment, and using the casualty’s JFAK first when possible. Speed is important but never replaces safety.",
       "tags": [
         "TFC",
         "extraction",
@@ -2034,15 +2034,15 @@
       "scenario": false,
       "prompt": "Which tourniquet should be used as the FIRST option when available?",
       "options": [
-        "The responder\u2019s tourniquet from their own JFAK",
-        "The casualty\u2019s tourniquet from the casualty\u2019s own JFAK",
+        "The responder’s tourniquet from their own JFAK",
+        "The casualty’s tourniquet from the casualty’s own JFAK",
         "A belt or improvised tourniquet",
         "A pressure dressing only"
       ],
       "answer": [
         1
       ],
-      "rationale": "Module 06 states the first option is the casualty\u2019s TQ from their own JFAK."
+      "rationale": "Module 06 states the first option is the casualty’s TQ from their own JFAK."
     },
     {
       "id": "CLS-M06-Q07",
@@ -2054,14 +2054,14 @@
       "prompt": "In Tactical Field Care (TFC), where should a deliberate tourniquet be applied?",
       "options": [
         "Over clothing, 6 inches above the wound",
-        "Directly on the skin, 2\u20133 inches above the wound",
+        "Directly on the skin, 2–3 inches above the wound",
         "Directly over the nearest joint",
         "Only directly on the wound"
       ],
       "answer": [
         1
       ],
-      "rationale": "Module 06 states deliberate TQs in TFC are applied 2\u20133 inches above the wound directly on the skin."
+      "rationale": "Module 06 states deliberate TQs in TFC are applied 2–3 inches above the wound directly on the skin."
     },
     {
       "id": "CLS-M06-Q08",
@@ -2179,7 +2179,7 @@
         "Snoring or gurgling sounds",
         "Visible blood or foreign objects in the airway",
         "Maxillofacial trauma observed",
-        "Casualty indicates they can\u2019t breathe properly",
+        "Casualty indicates they can’t breathe properly",
         "Strong, steady breathing with no distress"
       ],
       "answer": [
@@ -2280,7 +2280,7 @@
       "scenario": false,
       "prompt": "You should NOT attempt to insert an NPA if clear fluid is coming from the nose or ears.",
       "answer": true,
-      "rationale": "Module 07 warns that clear fluid may be CSF indicating possible skull fracture\u2014do not insert NPA."
+      "rationale": "Module 07 warns that clear fluid may be CSF indicating possible skull fracture—do not insert NPA."
     },
     {
       "id": "CLS-M07-SC01",
@@ -2291,7 +2291,7 @@
       "scenario": true,
       "prompt": "SCENARIO: In Tactical Field Care, a casualty is breathing on their own but is unconscious and has no obvious airway obstruction. What is the recommended next airway step?",
       "options": [
-        "Do nothing\u2014airway is never a concern if breathing is present",
+        "Do nothing—airway is never a concern if breathing is present",
         "Insert a nasopharyngeal airway (NPA)",
         "Perform a blind finger sweep",
         "Immediately perform needle decompression"
@@ -2414,7 +2414,7 @@
       "options": [
         "Monitor closely and consider tension pneumothorax",
         "Burp or temporarily remove the dressing",
-        "Ignore it\u2014worsening is expected",
+        "Ignore it—worsening is expected",
         "Apply a second chest seal over the first"
       ],
       "answer": [
@@ -2561,9 +2561,9 @@
       "points": 2,
       "difficulty": 4,
       "scenario": false,
-      "prompt": "CoTCCC-recommended tourniquets in Tactical Field Care are applied directly to the skin 2\u20133 inches above the bleeding site.",
+      "prompt": "CoTCCC-recommended tourniquets in Tactical Field Care are applied directly to the skin 2–3 inches above the bleeding site.",
       "answer": true,
-      "rationale": "Module 09 states TFC tourniquets are applied directly on skin 2\u20133 inches above bleeding site."
+      "rationale": "Module 09 states TFC tourniquets are applied directly on skin 2–3 inches above bleeding site."
     },
     {
       "id": "CLS-M09-Q05",
@@ -2594,7 +2594,7 @@
       "difficulty": 5,
       "scenario": false,
       "prompt": "Order the steps for tourniquet conversion (as presented).",
-      "hint": "Drag to reorder from first \u2192 last.",
+      "hint": "Drag to reorder from first → last.",
       "steps": [
         {
           "key": "c1",
@@ -2619,7 +2619,7 @@
         "c3",
         "c4"
       ],
-      "rationale": "Module 09 lists tourniquet conversion steps: pack + hold 3 min \u2192 pressure bandage \u2192 slowly release over 1 min with no rebleeding \u2192 document on DD1380."
+      "rationale": "Module 09 lists tourniquet conversion steps: pack + hold 3 min → pressure bandage → slowly release over 1 min with no rebleeding → document on DD1380."
     },
     {
       "id": "CLS-M09-Q07",
@@ -2653,8 +2653,8 @@
       "scenario": true,
       "prompt": "SCENARIO: In TFC, a casualty has a tourniquet placed over their uniform and bleeding is controlled. Evacuation to surgery is expected to take more than 2 hours. What is the best next action per this module?",
       "options": [
-        "Do nothing\u2014if bleeding stopped, it never needs reassessment",
-        "Consider tourniquet replacement using a new tourniquet placed 2\u20133 inches proximal to the wound on skin, then slowly release original to check for rebleeding",
+        "Do nothing—if bleeding stopped, it never needs reassessment",
+        "Consider tourniquet replacement using a new tourniquet placed 2–3 inches proximal to the wound on skin, then slowly release original to check for rebleeding",
         "Loosen the tourniquet every 10 minutes to restore circulation",
         "Remove the tourniquet immediately"
       ],
@@ -2846,7 +2846,7 @@
       "points": 3,
       "difficulty": 5,
       "scenario": true,
-      "prompt": "SCENARIO: In TFC, bleeding appears controlled, airway is open, and respirations are managed. The casualty is now confused and you cannot feel a radial pulse. What does this combination most strongly indicate (per the module\u2019s tactical indicators)?",
+      "prompt": "SCENARIO: In TFC, bleeding appears controlled, airway is open, and respirations are managed. The casualty is now confused and you cannot feel a radial pulse. What does this combination most strongly indicate (per the module’s tactical indicators)?",
       "options": [
         "Mild dehydration only",
         "Significant blood loss with likely hemorrhagic shock",
@@ -2857,6 +2857,712 @@
         1
       ],
       "rationale": "Module 10 states the best tactical indicators are decreased mental status (without head injury) and weak/absent radial pulse; together they indicate significant blood loss and shock."
+    },
+    {
+      "id": "CLS-M11-Q01",
+      "module": "11",
+      "type": "single",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "prompt": "Hypothermia is best defined as:",
+      "options": [
+        "An increase in body temperature",
+        "A decrease in body temperature",
+        "Loss of consciousness from shock only",
+        "A decrease in blood pressure only"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 11 defines hypothermia as a decrease in body temperature.",
+      "sourceRef": "CLS 11 p5"
+    },
+    {
+      "id": "CLS-M11-Q02",
+      "module": "11",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Why is hypothermia dangerous in trauma casualties?",
+      "options": [
+        "Even a small decrease in temperature can interfere with blood clotting",
+        "It increases the risk of bleeding to death",
+        "Casualties in shock are unable to generate body heat effectively",
+        "It only matters in cold climates"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "rationale": "Module 11 states hypothermia interferes with clotting, increases bleeding risk, and shock casualties cannot generate heat effectively; it can occur even in warm temperatures.",
+      "sourceRef": "CLS 11 p5"
+    },
+    {
+      "id": "CLS-M11-Q03",
+      "module": "11",
+      "type": "true_false",
+      "points": 1,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Hypothermia can be a problem for hemorrhagic shock casualties even with warm ambient temperatures.",
+      "answer": true,
+      "rationale": "Module 11 explicitly states hypothermia is a problem in hemorrhagic shock even with warm ambient temperatures.",
+      "sourceRef": "CLS 11 p5"
+    },
+    {
+      "id": "CLS-M11-Q04",
+      "module": "11",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Hypothermia prevention steps include:",
+      "options": [
+        "Minimize the casualty’s exposure to the elements",
+        "Keep protective gear on or with the casualty if feasible",
+        "Replace wet clothing with dry, if possible",
+        "Place the casualty directly on bare ground to cool them"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "rationale": "Module 11 lists minimizing exposure, keeping protective gear, and replacing wet clothing; keeping casualty off the ground helps prevent hypothermia.",
+      "sourceRef": "CLS 11 p6"
+    },
+    {
+      "id": "CLS-M11-Q05",
+      "module": "11",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Hypothermia is much easier to prevent than to treat, so prevention should begin as soon as possible.",
+      "answer": true,
+      "rationale": "Module 11 states prevention is easier than treatment and should begin as soon as possible.",
+      "sourceRef": "CLS 11 p7"
+    },
+    {
+      "id": "CLS-M11-Q06",
+      "module": "11",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Passive hypothermia materials provide heating by:",
+      "options": [
+        "Keeping the casualty’s body heat contained in the passive material",
+        "Keeping the casualty off the ground",
+        "Generating chemical heat by exposure to air",
+        "Directly heating the casualty’s skin"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "rationale": "Module 11 describes passive materials as containing body heat and keeping the casualty off the ground. Chemical heat is active warming, not passive.",
+      "sourceRef": "CLS 11 p10"
+    },
+    {
+      "id": "CLS-M11-Q07",
+      "module": "11",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Key points of passive hypothermia management include:",
+      "options": [
+        "Place a poncho or blanket under the casualty to protect from damp/cold ground",
+        "If no rewarming equipment is available, use dry blankets/poncho liners/sleeping bags to retain heat and keep the casualty dry",
+        "Wrap the passive shell completely around the casualty, including the head, but do not cover the face",
+        "Passive hypothermia prevention reverses hypothermia on its own"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "rationale": "Module 11 states passive prevention does not reverse hypothermia, and lists these management steps including not covering the face.",
+      "sourceRef": "CLS 11 p11"
+    },
+    {
+      "id": "CLS-M11-Q08",
+      "module": "11",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: A casualty has significant blood loss in warm weather. Select ALL correct statements based on Module 11.",
+      "options": [
+        "Blood loss can cause a significant drop in body temperature even in hot weather",
+        "Begin hypothermia prevention as soon as possible",
+        "Hypothermia prevention is unnecessary in warm ambient temperatures",
+        "Get the casualty onto an insulated surface as soon as possible"
+      ],
+      "answer": [
+        0,
+        1,
+        3
+      ],
+      "rationale": "Module 11 emphasizes that blood loss can cause hypothermia even in hot weather and that prevention should start early; insulated surfaces help.",
+      "sourceRef": "CLS 11 p7"
+    },
+    {
+      "id": "CLS-M11-Q09",
+      "module": "11",
+      "type": "multi_not",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that do NOT apply: Which statements about active hypothermia blankets are incorrect?",
+      "options": [
+        "They activate when heating elements are exposed to air",
+        "They should be placed directly on the casualty’s skin",
+        "They may cause burns if placed directly on skin",
+        "Oxygen levels at higher altitude may limit chemical heat generation"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 11 says active blankets are activated by air exposure and are not applied directly on skin because burns can occur; altitude oxygen may limit reaction.",
+      "sourceRef": "CLS 11 p8–9"
+    },
+    {
+      "id": "CLS-M12-Q01",
+      "module": "12",
+      "type": "single",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "prompt": "Head injury is trauma to the:",
+      "options": [
+        "Scalp, skull, and/or brain",
+        "Chest wall only",
+        "Abdomen only",
+        "Arms and legs only"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Module 12 defines head injury as trauma to the scalp, skull, and/or brain.",
+      "sourceRef": "CLS 12 p6"
+    },
+    {
+      "id": "CLS-M12-Q02",
+      "module": "12",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Potential mechanisms/external forces that may cause a head injury include:",
+      "options": [
+        "Vehicle blast event, collision, or rollover",
+        "Presence within 50 meters of a blast (inside or outside)",
+        "A direct blow to the head or witnessed loss of consciousness",
+        "Exposure to more than one blast event",
+        "Minor abrasion to the forearm only"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "rationale": "Module 12 lists these mechanisms and blast proximity guidance.",
+      "sourceRef": "CLS 12 p6"
+    },
+    {
+      "id": "CLS-M12-Q03",
+      "module": "12",
+      "type": "single",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "According to the IED checklist, which item corresponds to the letter 'H'?",
+      "options": [
+        "Headaches and/or vomiting",
+        "Hearing loss only",
+        "Hyperventilation only",
+        "Hypothermia"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "The IED checklist shows H = Headaches and/or vomiting.",
+      "sourceRef": "CLS 12 p7"
+    },
+    {
+      "id": "CLS-M12-Q04",
+      "module": "12",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Signs and symptoms requiring MACE 2 evaluation by medical personnel include:",
+      "options": [
+        "Deteriorating level of consciousness",
+        "Double vision",
+        "Increased restlessness; combative or agitated behavior",
+        "Repeat vomiting",
+        "Seizures",
+        "Weakness or tingling in arms or legs",
+        "Severe or worsening headache",
+        "Improved mood after injury"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "rationale": "Module 12 lists these signs/symptoms as triggers for MACE 2 evaluation.",
+      "sourceRef": "CLS 12 p8"
+    },
+    {
+      "id": "CLS-M12-Q05",
+      "module": "12",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Head injury evaluations are most effective when performed as soon as possible after the injury.",
+      "answer": true,
+      "rationale": "Module 12 states evaluations are most effective when done as soon as possible.",
+      "sourceRef": "CLS 12 p8"
+    },
+    {
+      "id": "CLS-M12-SC01",
+      "module": "12",
+      "type": "single",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: A Soldier was within 50 meters of a blast and is now increasingly agitated with a worsening headache. What is the best next step per Module 12 guidance?",
+      "options": [
+        "Ignore symptoms unless there is visible bleeding",
+        "Treat as likely TBI and ensure evaluation by medical personnel (MACE 2 indicators present)",
+        "Give CWMP immediately to resolve headache",
+        "Place a tourniquet on an extremity to prevent shock"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Blast proximity plus agitation/restlessness and worsening headache match MACE 2 evaluation indicators; module says evaluate ASAP.",
+      "sourceRef": "CLS 12 p6–8"
+    },
+    {
+      "id": "CLS-M13-Q01",
+      "module": "13",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that apply: When should you suspect a penetrating eye injury?",
+      "options": [
+        "Bleeding surrounding the eye, inside the eyeball, or coming from the eyeball",
+        "Obvious penetration of shrapnel or debris into the eyeball or eye socket",
+        "Protruding objects from the globe of the eyeball",
+        "Swelling or lacerations of the globe of the eyeball",
+        "Reduced vision and swelling of the eye area",
+        "Misshapen or distorted parts of the eye",
+        "Minor eyelid twitch only"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "rationale": "Module 13 lists these findings as reasons to suspect penetrating eye injury.",
+      "sourceRef": "CLS 13 p8"
+    },
+    {
+      "id": "CLS-M13-Q02",
+      "module": "13",
+      "type": "order",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Put the actions in order if a penetrating eye injury is noted or suspected.",
+      "hint": "Drag to reorder from first → last.",
+      "steps": [
+        {
+          "key": "e1",
+          "label": "Perform a rapid field test of visual acuity and document findings"
+        },
+        {
+          "key": "e2",
+          "label": "Cover the affected eye with a rigid eye shield (NOT a pressure patch)"
+        },
+        {
+          "key": "e3",
+          "label": "Administer the casualty’s complete Combat Wound Medication Pack (CWMP)"
+        },
+        {
+          "key": "e4",
+          "label": "Document all treatments performed on DD Form 1380"
+        }
+      ],
+      "answer": [
+        "e1",
+        "e2",
+        "e3",
+        "e4"
+      ],
+      "rationale": "Module 13 lists these steps in sequence and emphasizes documentation on DD Form 1380.",
+      "sourceRef": "CLS 13 p9"
+    },
+    {
+      "id": "CLS-M13-Q03",
+      "module": "13",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "A rigid eye shield is safer than a patch or pressure dressing for suspected penetrating eye trauma.",
+      "answer": true,
+      "rationale": "Module 13 emphasizes DO NOT APPLY PRESSURE; pressure can force interior eye contents out through a cut/laceration.",
+      "sourceRef": "CLS 13 p10"
+    },
+    {
+      "id": "CLS-M13-Q04",
+      "module": "13",
+      "type": "single",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "If a rigid eye shield is not available, what can be used to protect the injured eye?",
+      "options": [
+        "A pressure patch",
+        "The casualty’s tactical eyewear",
+        "A tight elastic bandage around the head",
+        "An occlusive chest seal"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 13 states rigid eye shield is found in JFAK; if not available, use casualty’s tactical eyewear.",
+      "sourceRef": "CLS 13 p11"
+    },
+    {
+      "id": "CLS-M13-Q05",
+      "module": "13",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Do not cover both eyes unless both eyes are injured or strongly suspected to be injured.",
+      "answer": true,
+      "rationale": "Module 13 explicitly says DO NOT cover both eyes unless both eyes are injured; place shields over both only when sure/strongly suspect both injured.",
+      "sourceRef": "CLS 13 p11"
+    },
+    {
+      "id": "CLS-M13-SC01",
+      "module": "13",
+      "type": "single",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: A casualty has shrapnel embedded near the eye and you suspect penetrating eye trauma. Which dressing should be used?",
+      "options": [
+        "A pressure dressing to secure the object",
+        "A rigid eye shield without applying pressure",
+        "A hemostatic dressing packed into the eye socket",
+        "A vented chest seal"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 13 stresses using a rigid eye shield (NOT a pressure patch) and avoiding pressure/manipulation because it can worsen injury.",
+      "sourceRef": "CLS 13 p9–10"
+    },
+    {
+      "id": "CLS-M14-Q01",
+      "module": "14",
+      "type": "true_false",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "prompt": "The Combat Wound Medication Pack (CWMP) is found in the JFAK and contains medications taken by mouth.",
+      "answer": true,
+      "rationale": "Module 14 states CWMP is found in JFAK and contains oral medications.",
+      "sourceRef": "CLS 14 p7"
+    },
+    {
+      "id": "CLS-M14-Q02",
+      "module": "14",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Select ALL that apply: CWMP contains which medications (by role)?",
+      "options": [
+        "Acetaminophen (pain management)",
+        "Moxifloxacin (antibiotic)",
+        "Meloxicam (anti-inflammatory)",
+        "Epinephrine (allergic reaction)"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "rationale": "Module 14 labels acetaminophen and meloxicam as pain meds and moxifloxacin as antibiotic; epinephrine is not part of CWMP here.",
+      "sourceRef": "CLS 14 p8"
+    },
+    {
+      "id": "CLS-M14-Q03",
+      "module": "14",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that apply: When should CWMP be given (GIVE criteria)?",
+      "options": [
+        "Conscious and able to swallow",
+        "Has mild to moderate pain",
+        "Is still able to fight if needed",
+        "Any penetrating wounds or break of the skin",
+        "Unconscious or unable to swallow"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "rationale": "Module 14 lists GIVE criteria exactly and contrasts with DON'T GIVE (unable to swallow).",
+      "sourceRef": "CLS 14 p12"
+    },
+    {
+      "id": "CLS-M14-Q04",
+      "module": "14",
+      "type": "multi_not",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that do NOT apply: When should CWMP NOT be given (DON’T GIVE criteria)?",
+      "options": [
+        "Unable to swallow or take oral meds (unconscious or severe facial trauma/burns)",
+        "Known allergies",
+        "Conscious and able to swallow",
+        "Still able to fight if needed"
+      ],
+      "answer": [
+        0,
+        1
+      ],
+      "rationale": "Module 14 lists DON'T GIVE: unable to swallow/take oral meds and known allergies; refer to medic if unconscious.",
+      "sourceRef": "CLS 14 p12"
+    },
+    {
+      "id": "CLS-M14-Q05",
+      "module": "14",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "All medications administered (and time given) should be documented on DD Form 1380.",
+      "answer": true,
+      "rationale": "Module 14 explicitly instructs documentation of meds and time on DD Form 1380.",
+      "sourceRef": "CLS 14 p7"
+    },
+    {
+      "id": "CLS-M14-Q06",
+      "module": "14",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "CWMP should be given as soon as possible for wounds after life-threatening issues have been addressed.",
+      "answer": true,
+      "rationale": "Module 14 summary states CWMP should be given ASAP after life-threatening issues have been addressed.",
+      "sourceRef": "CLS 14 p14"
+    },
+    {
+      "id": "CLS-M14-SC01",
+      "module": "14",
+      "type": "single",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: A casualty has a penetrating wound and is conscious, able to swallow, and has mild to moderate pain. What is the correct CWMP action?",
+      "options": [
+        "Do not give CWMP unless a medic arrives",
+        "Give the casualty all three medications in the CWMP",
+        "Give only the antibiotic and save pain meds for later",
+        "Give CWMP even if the casualty has a known allergy"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 14 states that for mild to moderate pain with ability to fight and penetrating/break of skin, the casualty should take all three medications in CWMP (unless contraindications like allergies).",
+      "sourceRef": "CLS 14 p11–12"
+    },
+    {
+      "id": "CLS-M15-Q01",
+      "module": "15",
+      "type": "true_false",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Once applied, hemorrhage control interventions and wound dressings must be frequently reassessed; do not apply and forget.",
+      "answer": true,
+      "rationale": "Module 15 emphasizes frequent reassessment and warns against applying and forgetting.",
+      "sourceRef": "CLS 15 p6"
+    },
+    {
+      "id": "CLS-M15-Q02",
+      "module": "15",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that apply: If re-bleeding is observed and bleeding is not controlled, actions include:",
+      "options": [
+        "Tighten the tourniquet (TQ)",
+        "Tighten the pressure bandages",
+        "Redress the wounds",
+        "Ignore it if the casualty is awake",
+        "Reassess prior life-threatening wounds to ensure bleeding is still controlled"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "rationale": "Module 15 lists these responses under watch for re-bleeding and reassessment of life-threatening wounds.",
+      "sourceRef": "CLS 15 p7"
+    },
+    {
+      "id": "CLS-M15-Q03",
+      "module": "15",
+      "type": "order",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Put the steps in order for treating a wound that continues to bleed with hemostatic dressing.",
+      "hint": "Drag to reorder from first → last.",
+      "steps": [
+        {
+          "key": "w1",
+          "label": "Pack the wound with hemostatic dressing"
+        },
+        {
+          "key": "w2",
+          "label": "Hold pressure for 3 minutes"
+        },
+        {
+          "key": "w3",
+          "label": "Carefully observe for continued bleeding from under the gauze to confirm control"
+        },
+        {
+          "key": "w4",
+          "label": "Once bleeding has stopped, apply a pressure bandage over the hemostatic dressing"
+        }
+      ],
+      "answer": [
+        "w1",
+        "w2",
+        "w3",
+        "w4"
+      ],
+      "rationale": "Module 15 states pack bleeding wounds, apply pressure for 3 minutes, observe for continued bleeding, then apply pressure bandage after control.",
+      "sourceRef": "CLS 15 p8"
+    },
+    {
+      "id": "CLS-M15-Q04",
+      "module": "15",
+      "type": "multi",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Minor wound dressing guidance includes:",
+      "options": [
+        "Dress previously untreated wounds with gauze and direct pressure",
+        "Non-life-threatening bleeding usually does not need hemostatic dressings",
+        "If no gauze is available, use clean dry cloth (torn clothing, cravats, etc.)",
+        "Always pack minor abrasions with hemostatic gauze"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "rationale": "Module 15 states minor wounds can be dressed with gauze/pressure; hemostatic is usually not needed; clean dry cloth can be used if no gauze.",
+      "sourceRef": "CLS 15 p9"
+    },
+    {
+      "id": "CLS-M15-Q05",
+      "module": "15",
+      "type": "multi",
+      "points": 3,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "Select ALL that apply: Assess applied bandages for which warning signs?",
+      "options": [
+        "Increased pain",
+        "Pale or bluish skin",
+        "Pulse issues",
+        "Improved appetite"
+      ],
+      "answer": [
+        0,
+        1,
+        2
+      ],
+      "rationale": "Module 15 lists increased pain, pale/bluish skin, and pulse as warning signs; it may indicate an emergency and bandage may be too tight.",
+      "sourceRef": "CLS 15 p10"
+    },
+    {
+      "id": "CLS-M15-Q06",
+      "module": "15",
+      "type": "single",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": false,
+      "prompt": "If a bandage appears too tight (warning signs present), what should you do?",
+      "options": [
+        "Leave it as-is; tighter is always better",
+        "Loosen as needed while keeping bleeding controlled",
+        "Remove all dressings completely and do not replace",
+        "Apply a chest seal over the bandage"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 15 says loosen as needed while maintaining hemorrhage control.",
+      "sourceRef": "CLS 15 p10"
+    },
+    {
+      "id": "CLS-M15-SC01",
+      "module": "15",
+      "type": "single",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: A casualty’s wound was dressed earlier. During reassessment you see blood flowing around the bandage and the dressing is soaked through. What is the best action per Module 15?",
+      "options": [
+        "Do nothing; once dressed, wounds should be left alone",
+        "Treat for re-bleeding by tightening bandage/TQ as needed and redressing the wound, then reassess for control",
+        "Remove the bandage and leave the wound open to air",
+        "Only address it after evacuation"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Module 15 repeatedly emphasizes reassessment and treating re-bleeding by tightening controls and redressing as needed.",
+      "sourceRef": "CLS 15 p7–8"
     }
   ],
   "modules": [
