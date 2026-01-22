@@ -3970,6 +3970,228 @@
         2
       ],
       "rationale": "Module 20 reinforces MARCH priorities: massive hemorrhage is addressed first."
+    },
+    {
+      "id": "CLS-M10-SC01",
+      "module": "10",
+      "type": "single",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: A casualty has controlled bleeding but remains pale, clammy, confused, and tachycardic. Which conclusion best aligns with CLS shock recognition guidance?",
+      "options": [
+        "Bleeding is no longer a concern",
+        "Shock is unlikely since hemorrhage is controlled",
+        "The casualty is likely still in shock and requires continued monitoring and hypothermia prevention",
+        "The symptoms indicate only pain response"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "CLS teaches that shock may persist even after hemorrhage control; signs include altered mental status, tachycardia, and cool clammy skin. Continued monitoring and hypothermia prevention are required."
+    },
+    {
+      "id": "CLS-M11-SC02",
+      "module": "11",
+      "type": "multi",
+      "points": 4,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: A casualty with massive blood loss is lying on warm ground in direct sunlight. Select ALL actions that best prevent hypothermia.",
+      "options": [
+        "Insulate the casualty from the ground",
+        "Cover the casualty with dry materials",
+        "Delay hypothermia prevention until evacuation",
+        "Begin prevention immediately despite warm weather",
+        "Expose the casualty to air to reduce sweating"
+      ],
+      "answer": [
+        0,
+        1,
+        3
+      ],
+      "rationale": "CLS emphasizes hypothermia prevention even in warm environments. Blood loss causes rapid heat loss; insulation and early prevention are critical."
+    },
+    {
+      "id": "CLS-M12-SC02",
+      "module": "12",
+      "type": "multi_not",
+      "points": 4,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: A casualty was within 50 meters of a blast and is now vomiting and increasingly agitated. Select ALL actions that do NOT align with CLS head injury guidance.",
+      "options": [
+        "Initiate monitoring and seek MACE 2 evaluation",
+        "Ignore symptoms because there is no visible head wound",
+        "Recognize this as a possible TBI",
+        "Delay evaluation until evacuation only"
+      ],
+      "answer": [
+        1,
+        3
+      ],
+      "rationale": "CLS guidance stresses blast exposure plus vomiting/agitation as TBI indicators requiring evaluation; ignoring or delaying care is incorrect."
+    },
+    {
+      "id": "CLS-M13-SC02",
+      "module": "13",
+      "type": "single",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: A casualty has a penetrating eye injury with visible fluid leakage from the globe. Which intervention is most appropriate?",
+      "options": [
+        "Apply direct pressure to stop fluid loss",
+        "Cover with a rigid eye shield without pressure",
+        "Irrigate aggressively with saline",
+        "Pack the wound with gauze"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "CLS eye injury guidance strictly prohibits pressure or packing; a rigid eye shield protects the eye without worsening injury."
+    },
+    {
+      "id": "CLS-M14-SC02",
+      "module": "14",
+      "type": "multi",
+      "points": 4,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: A casualty has a penetrating wound, is conscious, able to swallow, but reports a known allergy to one CWMP medication. Select ALL correct CLS actions.",
+      "options": [
+        "Withhold all CWMP medications",
+        "Do not administer the medication associated with the allergy",
+        "Document the allergy and medications given on DD Form 1380",
+        "Administer remaining appropriate CWMP medications if safe",
+        "Administer CWMP anyway because pain control is critical"
+      ],
+      "answer": [
+        1,
+        2,
+        3
+      ],
+      "rationale": "CLS guidance requires respecting known allergies, documenting care, and administering only safe medications."
+    },
+    {
+      "id": "CLS-M15-SC02",
+      "module": "15",
+      "type": "single",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: After applying a pressure bandage, a casualty reports increasing pain and numbness distal to the bandage. What is the best CLS action?",
+      "options": [
+        "Ignore the complaint unless bleeding resumes",
+        "Loosen the bandage while maintaining hemorrhage control",
+        "Remove all dressings completely",
+        "Apply a second bandage tighter than the first"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "CLS teaches that warning signs such as pain, numbness, or discoloration indicate overly tight bandages and require adjustment."
+    },
+    {
+      "id": "CLS-M16-SC02",
+      "module": "16",
+      "type": "multi_not",
+      "points": 4,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: A casualty has partial-thickness burns after an explosion. Select ALL actions that do NOT align with CLS burn management.",
+      "options": [
+        "Cover burns with dry sterile dressings",
+        "Pop blisters to relieve pressure",
+        "Address life-threatening injuries first",
+        "Initiate hypothermia prevention"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "CLS burn care prohibits blister popping and emphasizes dry coverage, life-threat priority, and hypothermia prevention."
+    },
+    {
+      "id": "CLS-M17-SC02",
+      "module": "17",
+      "type": "single",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: A casualty has an open fracture with bleeding controlled. Before splinting, what must be reassessed?",
+      "options": [
+        "Weapon status only",
+        "Circulation, sensation, and movement (CSM)",
+        "Pain level only",
+        "Evacuation priority only"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "CLS fracture management requires CSM checks before and after splinting to detect compromise."
+    },
+    {
+      "id": "CLS-M18-SC02",
+      "module": "18",
+      "type": "multi",
+      "points": 4,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: During monitoring, a casualty’s mental status worsens and respirations increase. Select ALL correct CLS responses.",
+      "options": [
+        "Reassess MARCH priorities",
+        "Assume the casualty is improving",
+        "Prepare for evacuation",
+        "Document changes on DD Form 1380",
+        "Stop monitoring once evacuation is requested"
+      ],
+      "answer": [
+        0,
+        2,
+        3
+      ],
+      "rationale": "CLS monitoring requires reassessment, documentation, and preparation for evacuation when deterioration occurs."
+    },
+    {
+      "id": "CLS-M19-SC02",
+      "module": "19",
+      "type": "single",
+      "points": 3,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: You are preparing a casualty for evacuation under enemy threat. Which principle overrides speed?",
+      "options": [
+        "Comfort",
+        "Documentation",
+        "Safety",
+        "Pain management"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "CLS extraction principles state safety is always the first priority, even during evacuation."
+    },
+    {
+      "id": "CLS-M20-SC02",
+      "module": "20",
+      "type": "multi",
+      "points": 5,
+      "difficulty": 5,
+      "scenario": true,
+      "prompt": "SCENARIO: Multiple casualties are present. Select ALL actions that best align with CLS priorities across MARCH.",
+      "options": [
+        "Control massive hemorrhage first",
+        "Delay airway management until evacuation",
+        "Prevent hypothermia early",
+        "Reassess interventions continuously",
+        "Treat least injured casualty first"
+      ],
+      "answer": [
+        0,
+        2,
+        3
+      ],
+      "rationale": "CLS integrates MARCH priorities across all modules: hemorrhage control, hypothermia prevention, and continuous reassessment."
     }
   ],
   "modules": [
@@ -4031,67 +4253,67 @@
       "id": "10",
       "title": "Shock Recognition",
       "locked": false,
-      "questionCount": 12
+      "questionCount": 13
     },
     {
       "id": "11",
       "title": "Hypothermia Prevention",
       "locked": false,
-      "questionCount": 9
+      "questionCount": 10
     },
     {
       "id": "12",
       "title": "Head Injuries",
       "locked": false,
-      "questionCount": 6
+      "questionCount": 7
     },
     {
       "id": "13",
       "title": "Eye Injuries",
       "locked": false,
-      "questionCount": 6
+      "questionCount": 7
     },
     {
       "id": "14",
       "title": "Analgesics and Antibiotics",
       "locked": false,
-      "questionCount": 7
+      "questionCount": 8
     },
     {
       "id": "15",
       "title": "Wound Management",
       "locked": false,
-      "questionCount": 7
+      "questionCount": 8
     },
     {
       "id": "16",
       "title": "Burns",
       "locked": false,
-      "questionCount": 5
+      "questionCount": 6
     },
     {
       "id": "17",
       "title": "Fractures",
       "locked": false,
-      "questionCount": 5
+      "questionCount": 6
     },
     {
       "id": "18",
       "title": "Casualty Monitoring",
       "locked": false,
-      "questionCount": 4
+      "questionCount": 5
     },
     {
       "id": "19",
       "title": "Pre-Evacuation Procedures",
       "locked": false,
-      "questionCount": 3
+      "questionCount": 4
     },
     {
       "id": "20",
       "title": "Final CLS Review",
       "locked": false,
-      "questionCount": 2
+      "questionCount": 3
     }
   ],
   "profiles": {
