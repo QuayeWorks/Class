@@ -18,6 +18,18 @@ const VIEW_COURSES = "courses";
 const VIEW_MODULES = "clsModules";
 const VIEW_EXAM = "exam";
 
+const FINAL_EXAM_MIN = 50;
+const FINAL_EXAM_MAX = 75;
+const FINAL_EXAM_DEFAULT = 60;
+const FINAL_EXAM_MIN_PER_MODULE = 2;
+const FINAL_EXAM_MAX_SHARE = 0.2;
+const FINAL_EXAM_SCENARIO_PCT = 35;
+const FINAL_EXAM_MIN_MODULES_READY = 5;
+const FINAL_EXAM_WEIGHTS = null;
+
+const PARTIAL_CREDIT_MULTI_MIN_CORRECT = 3;
+const PARTIAL_CREDIT_MIN_POINTS = 3;
+
 let currentView = "login";
 let EXAM = null;
 let RAW_DATA = null;
@@ -106,7 +118,6 @@ function showToast(msg){
 
 const COURSE_ID = "cls";
 const STORAGE_VERSION = "v1";
-const FINAL_BUNDLE_KEY = "qw_cls_final_exam_bundle_v1";
 const LAST_EXAM_KEY = "qw_cls_last_exam_v1";
 
 const defaultState = {
@@ -120,7 +131,8 @@ const defaultState = {
   helpOpen: {},
   submitted: false,
   lastScore: null,
-  examId: null
+  examId: null,
+  finalExam: null
 };
 
 const state = { ...defaultState };
@@ -156,9 +168,6 @@ function saveState(key){
 function resetStateForCurrentExam(){
   if(storageKey){
     localStorage.removeItem(storageKey);
-  }
-  if(EXAM && FINAL_PROFILE && EXAM.id === FINAL_PROFILE.id){
-    localStorage.removeItem(FINAL_BUNDLE_KEY);
   }
   stopTimer();
   resetStateObject();
@@ -330,23 +339,32 @@ function buildModules(raw){
 }
 
 function buildFinalProfile(raw, modules){
+  const unlockedModules = modules.filter(m => !m.locked).map(m => m.id);
+  const eligibleModules = unlockedModules.filter(id => id !== "20");
   const fallback = {
     id: "FINAL",
     title: "Final Exam",
-    totalQuestions: 50,
-    timeLimitSeconds: 50 * 60,
+    totalQuestions: FINAL_EXAM_DEFAULT,
+    timeLimitSeconds: FINAL_EXAM_DEFAULT * 60,
     difficultyMix: { min: 2, max: 5 },
-    includeModules: modules.filter(m => !m.locked).map(m => m.id),
-    preferScenarioPct: 40
+    includeModules: eligibleModules,
+    preferScenarioPct: FINAL_EXAM_SCENARIO_PCT
   };
   const profile = raw.profiles && raw.profiles.finalExam ? raw.profiles.finalExam : fallback;
   const unlocked = new Set(modules.filter(m => !m.locked).map(m => normalizeModuleId(m.id)));
+  const resolvedTotal = clamp(
+    profile.totalQuestions ?? fallback.totalQuestions,
+    FINAL_EXAM_MIN,
+    FINAL_EXAM_MAX
+  );
   return {
     ...fallback,
     ...profile,
+    totalQuestions: resolvedTotal,
+    timeLimitSeconds: profile.timeLimitSeconds ?? resolvedTotal * 60,
     includeModules: (profile.includeModules || fallback.includeModules)
       .map((id)=> normalizeModuleId(id))
-      .filter(id => unlocked.has(id))
+      .filter(id => unlocked.has(id) && id !== "20")
   };
 }
 
@@ -411,21 +429,43 @@ function ensureQuestionOrder(force = false){
   saveState(storageKey);
 }
 
-function getOrCreateFinalExamBundle(profile){
+function readStoredState(key){
   try{
-    const raw = localStorage.getItem(FINAL_BUNDLE_KEY);
-    if(raw){
-      const parsed = JSON.parse(raw);
-      const map = new Map(RAW_DATA.questions.map(q => [q.id, q]));
-      const valid = Array.isArray(parsed.questionIds)
-        && parsed.questionIds.length
-        && parsed.questionIds.every(id => map.has(id));
-      if(valid){
-        return parsed;
-      }
-    }
+    if(!key) return null;
+    const raw = localStorage.getItem(key);
+    if(!raw) return null;
+    return JSON.parse(raw);
   }catch(e){
-    console.warn("Failed to read final exam bundle", e);
+    console.warn("Failed to read stored state", e);
+    return null;
+  }
+}
+
+function writeStoredState(key, next){
+  try{
+    if(!key) return;
+    localStorage.setItem(key, JSON.stringify(next));
+  }catch(e){
+    console.warn("Failed to write stored state", e);
+  }
+}
+
+function getOrCreateFinalExamBundle(profile){
+  const stored = readStoredState(storageKey);
+  if(stored && stored.finalExam && Array.isArray(stored.finalExam.questionIds)){
+    const map = new Map(RAW_DATA.questions.map(q => [q.id, q]));
+    const valid = stored.finalExam.questionIds.length
+      && stored.finalExam.questionIds.every(id => map.has(id));
+    if(valid){
+      const storedOrder = Array.isArray(stored.questionOrder)
+        && stored.questionOrder.length === stored.finalExam.questionIds.length
+        ? stored.questionOrder
+        : null;
+      return {
+        ...stored.finalExam,
+        order: storedOrder
+      };
+    }
   }
 
   const seed = Math.floor(Math.random() * 2**31);
@@ -433,24 +473,19 @@ function getOrCreateFinalExamBundle(profile){
   const questions = selectFinalExamQuestions(profile, rng);
   const order = seededShuffle(questions.map(q => q.id), rng);
   const bundle = {
-    seed,
+    seed: String(seed),
     questionIds: questions.map(q => q.id),
-    order,
-    profile: {
-      totalQuestions: profile.totalQuestions,
-      includeModules: profile.includeModules,
-      difficultyMix: profile.difficultyMix,
-      preferScenarioPct: profile.preferScenarioPct
-    },
-    createdAt: Date.now()
+    totalQuestions: questions.length,
+    createdAt: new Date().toISOString()
   };
 
-  try{
-    localStorage.setItem(FINAL_BUNDLE_KEY, JSON.stringify(bundle));
-  }catch(e){
-    console.warn("Failed to store final exam bundle", e);
-  }
-  return bundle;
+  const nextState = {
+    ...deepCopy(defaultState),
+    finalExam: bundle,
+    questionOrder: order
+  };
+  writeStoredState(storageKey, nextState);
+  return { ...bundle, order };
 }
 
 function selectFinalExamQuestions(profile, rng){
@@ -467,8 +502,11 @@ function selectFinalExamQuestions(profile, rng){
     return [];
   }
 
-  const totalQuestions = Math.min(profile.totalQuestions, eligible.length);
-  const scenarioTarget = Math.round(totalQuestions * ((profile.preferScenarioPct || 0) / 100));
+  const totalQuestions = Math.min(
+    clamp(profile.totalQuestions || FINAL_EXAM_DEFAULT, FINAL_EXAM_MIN, FINAL_EXAM_MAX),
+    eligible.length
+  );
+  const scenarioTarget = Math.round(totalQuestions * ((profile.preferScenarioPct || FINAL_EXAM_SCENARIO_PCT) / 100));
 
   const modulePools = {};
   eligible.forEach((q)=>{
@@ -477,43 +515,86 @@ function selectFinalExamQuestions(profile, rng){
   });
 
   const moduleIds = Object.keys(modulePools);
-  const moduleCount = moduleIds.length;
-  let minPerModule = 0;
-  if(totalQuestions >= moduleCount * 5 && moduleIds.every(id => modulePools[id].length >= 5)){
-    minPerModule = 5;
-  }else if(totalQuestions >= moduleCount && moduleIds.every(id => modulePools[id].length >= 1)){
-    minPerModule = 1;
+  const minEligibleModules = moduleIds.filter(id => modulePools[id].length >= FINAL_EXAM_MIN_PER_MODULE);
+  const minApplies = totalQuestions >= minEligibleModules.length * FINAL_EXAM_MIN_PER_MODULE;
+  const maxPerModule = Math.ceil(totalQuestions * FINAL_EXAM_MAX_SHARE);
+
+  let useManualWeights = FINAL_EXAM_WEIGHTS && Object.keys(FINAL_EXAM_WEIGHTS).length;
+  let weights = {};
+  moduleIds.forEach((id)=>{
+    const weight = useManualWeights
+      ? (FINAL_EXAM_WEIGHTS[id] ?? 0)
+      : modulePools[id].length;
+    weights[id] = weight;
+  });
+
+  let totalWeight = moduleIds.reduce((sum, id)=> sum + Math.max(0, weights[id]), 0);
+  if(useManualWeights && totalWeight === 0){
+    useManualWeights = false;
+    weights = {};
+    moduleIds.forEach((id)=>{
+      weights[id] = modulePools[id].length;
+    });
+    totalWeight = moduleIds.reduce((sum, id)=> sum + Math.max(0, weights[id]), 0);
+  }
+  const allocations = {};
+  let minTotal = 0;
+
+  moduleIds.forEach((id)=>{
+    const poolSize = modulePools[id].length;
+    const weight = Math.max(0, weights[id]);
+    const minForModule = (minApplies && poolSize >= FINAL_EXAM_MIN_PER_MODULE)
+      && (!useManualWeights || weight > 0)
+      ? Math.min(FINAL_EXAM_MIN_PER_MODULE, poolSize, maxPerModule)
+      : 0;
+    allocations[id] = minForModule;
+    minTotal += minForModule;
+  });
+
+  let remainingSlots = totalQuestions - minTotal;
+  if(remainingSlots < 0){
+    remainingSlots = 0;
   }
 
-  const totalAvailable = moduleIds.reduce((sum, id)=> sum + modulePools[id].length, 0);
-  const allocations = {};
   moduleIds.forEach((id)=>{
-    const base = Math.floor(totalQuestions * (modulePools[id].length / totalAvailable));
-    allocations[id] = Math.min(modulePools[id].length, Math.max(base, minPerModule));
+    const weight = Math.max(0, weights[id]);
+    if(!weight || !totalWeight || remainingSlots <= 0) return;
+    const add = Math.floor(remainingSlots * (weight / totalWeight));
+    allocations[id] += add;
+  });
+
+  moduleIds.forEach((id)=>{
+    const cap = Math.min(modulePools[id].length, maxPerModule);
+    allocations[id] = Math.min(allocations[id], cap);
   });
 
   let allocated = Object.values(allocations).reduce((sum, v)=> sum + v, 0);
-  while(allocated > totalQuestions){
-    const sortable = moduleIds
-      .map(id => ({ id, count: allocations[id] }))
-      .sort((a,b)=> b.count - a.count);
-    for(const mod of sortable){
-      if(allocations[mod.id] > 0){
-        allocations[mod.id] -= 1;
-        allocated -= 1;
-        if(allocated === totalQuestions) break;
-      }
-    }
-  }
-
   while(allocated < totalQuestions){
     const sortable = moduleIds
-      .map(id => ({ id, remaining: modulePools[id].length - allocations[id] }))
-      .filter(mod => mod.remaining > 0)
-      .sort((a,b)=> b.remaining - a.remaining);
+      .map(id => ({
+        id,
+        weight: Math.max(0, weights[id]),
+        remaining: Math.min(modulePools[id].length, maxPerModule) - allocations[id]
+      }))
+      .filter(mod => mod.remaining > 0 && (!useManualWeights || mod.weight > 0))
+      .sort((a,b)=> b.remaining - a.remaining || b.weight - a.weight);
     if(!sortable.length) break;
     allocations[sortable[0].id] += 1;
     allocated += 1;
+  }
+
+  while(allocated > totalQuestions){
+    const sortable = moduleIds
+      .map(id => ({
+        id,
+        count: allocations[id],
+        weight: Math.max(0, weights[id])
+      }))
+      .filter(mod => mod.count > 0)
+      .sort((a,b)=> b.count - a.count || a.weight - b.weight);
+    if(!sortable.length) break;
+    allocations[sortable[0].id] -= 1;
+    allocated -= 1;
   }
 
   let scenarioRemaining = scenarioTarget;
@@ -593,6 +674,31 @@ function isAnswered(q){
 
 function normalizeIndexArray(arr){
   return [...new Set(arr)].sort((a,b)=>a-b);
+}
+
+function shouldApplyMultiPartialCredit(q){
+  const correctCount = Array.isArray(q.answer) ? q.answer.length : 0;
+  return correctCount >= PARTIAL_CREDIT_MULTI_MIN_CORRECT || q.points >= PARTIAL_CREDIT_MIN_POINTS;
+}
+
+function scoreMultiPartial(q, selections){
+  if(!Array.isArray(selections) || !Array.isArray(q.answer) || !q.answer.length){
+    return 0;
+  }
+  const correct = new Set(q.answer);
+  const student = new Set(selections);
+  let tp = 0;
+  let fp = 0;
+  correct.forEach((idx)=>{
+    if(student.has(idx)) tp += 1;
+  });
+  student.forEach((idx)=>{
+    if(!correct.has(idx)) fp += 1;
+  });
+  const raw = (tp - fp) / correct.size;
+  const fraction = clamp(raw, 0, 1);
+  const earned = fraction * q.points;
+  return Math.round(earned * 100) / 100;
 }
 
 function isCorrectAnswer(q){
@@ -694,7 +800,11 @@ function grade(){
         const ans = normalizeIndexArray(a);
         const key = normalizeIndexArray(q.answer);
         // exact match scoring (simple + strict)
-        if(ans.length === key.length && ans.every((v,i)=>v===key[i])) qEarn = q.points;
+        if(ans.length === key.length && ans.every((v,i)=>v===key[i])){
+          qEarn = q.points;
+        }else if(shouldApplyMultiPartialCredit(q)){
+          qEarn = scoreMultiPartial(q, ans);
+        }
       }
     }
 
@@ -774,7 +884,16 @@ function renderQuestion(){
   if(!q) return;
 
   setText("qTitle", `Question ${state.currentIndex+1}`);
-  setText("qMeta", `${questionTypeLabel(q)} • ${q.points} pt${q.points===1?"":"s"}`);
+  const metaParts = [];
+  if(EXAM && FINAL_PROFILE && EXAM.id === FINAL_PROFILE.id){
+    const moduleInfo = MODULES.find(m => m.id === q.module);
+    if(moduleInfo){
+      metaParts.push(moduleInfo.title);
+    }
+  }
+  metaParts.push(questionTypeLabel(q));
+  metaParts.push(`${q.points} pt${q.points===1?"":"s"}`);
+  setText("qMeta", metaParts.join(" • "));
   setText("qText", q.prompt);
   setText("qHint", q.hint || "");
 
@@ -1255,11 +1374,13 @@ function renderModuleSelect(){
       startModuleExam(mod.id);
     });
 
-    grid.appendChild(tile);
-  });
+  grid.appendChild(tile);
+});
 
   const finalTile = document.createElement("div");
-  finalTile.className = "courseTile";
+  const unlockedCount = FINAL_PROFILE.includeModules.length;
+  const finalReady = unlockedCount >= FINAL_EXAM_MIN_MODULES_READY;
+  finalTile.className = `courseTile${finalReady ? "" : " locked"}`;
 
   const finalTitle = document.createElement("div");
   finalTitle.className = "courseTitle";
@@ -1267,19 +1388,25 @@ function renderModuleSelect(){
 
   const finalMeta = document.createElement("div");
   finalMeta.className = "courseMeta";
-  finalMeta.textContent = `Randomized subset • ${FINAL_PROFILE.totalQuestions} questions`;
-
-  const finalTag = document.createElement("div");
-  finalTag.className = "tag";
-  finalTag.innerHTML = "<strong>Launch</strong>";
+  finalMeta.textContent = `50–75 Questions • ${finalReady ? "Ready" : `Unlock ${FINAL_EXAM_MIN_MODULES_READY}+ modules`}`;
 
   finalTile.appendChild(finalTitle);
   finalTile.appendChild(finalMeta);
-  finalTile.appendChild(finalTag);
+  if(finalReady){
+    const finalTag = document.createElement("div");
+    finalTag.className = "tag";
+    finalTag.innerHTML = "<strong>Launch</strong>";
+    finalTile.appendChild(finalTag);
+  }else{
+    const lock = document.createElement("div");
+    lock.className = "lockBadge";
+    lock.textContent = "🔒 Locked";
+    finalTile.appendChild(lock);
+  }
 
   finalTile.addEventListener("click", ()=>{
-    if(!FINAL_PROFILE.includeModules.length){
-      showToast("Final exam requires unlocked modules.");
+    if(!finalReady){
+      showToast("Final exam requires more unlocked modules.");
       return;
     }
     startFinalExam();
@@ -1342,9 +1469,9 @@ function startModuleExam(moduleId){
 }
 
 function startFinalExam(){
+  setExamContext({ courseId: COURSE_ID, profile: "final", moduleId: null });
   const exam = buildFinalExam();
   localStorage.setItem(LAST_EXAM_KEY, JSON.stringify({ type: "final" }));
-  setExamContext({ courseId: COURSE_ID, profile: "final", moduleId: null });
   const key = storageKey;
   setExamSession(exam, key, exam.order);
 }
