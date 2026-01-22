@@ -42,6 +42,26 @@
     {
       "module": "10",
       "title": "Shock Recognition"
+    },
+    {
+      "module": "11",
+      "title": "Hypothermia Prevention"
+    },
+    {
+      "module": "12",
+      "title": "Head Injuries"
+    },
+    {
+      "module": "13",
+      "title": "Eye Injuries"
+    },
+    {
+      "module": "14",
+      "title": "Analgesics and Antibiotics"
+    },
+    {
+      "module": "15",
+      "title": "Wound Management"
     }
   ],
   "notes": [
@@ -3599,61 +3619,61 @@
     {
       "id": "06",
       "title": "Massive Hemorrhage Control",
-      "locked": true,
+      "locked": false,
       "questionCount": 0
     },
     {
       "id": "07",
       "title": "Airway Management ",
-      "locked": true,
+      "locked": false,
       "questionCount": 0
     },
     {
       "id": "08",
       "title": "Respiration Assesment and Management",
-      "locked": true,
+      "locked": false,
       "questionCount": 0
     },
     {
       "id": "09",
       "title": "Circulation and Hemorrhage Control",
-      "locked": true,
+      "locked": false,
       "questionCount": 0
     },
     {
       "id": "10",
       "title": "Shock Recognition",
-      "locked": true,
+      "locked": false,
       "questionCount": 0
     },
     {
       "id": "11",
-      "title": "Module 11",
-      "locked": true,
+      "title": "Hypothermia Prevention",
+      "locked": false,
       "questionCount": 0
     },
     {
       "id": "12",
-      "title": "Module 12",
-      "locked": true,
+      "title": "Head Injuries",
+      "locked": false,
       "questionCount": 0
     },
     {
       "id": "13",
-      "title": "Module 13",
-      "locked": true,
+      "title": "Eye Injuries",
+      "locked": false,
       "questionCount": 0
     },
     {
       "id": "14",
-      "title": "Module 14",
-      "locked": true,
+      "title": "Analgesics and Antibiotics",
+      "locked": false,
       "questionCount": 0
     },
     {
       "id": "15",
-      "title": "Module 15",
-      "locked": true,
+      "title": "Wound Management",
+      "locked": false,
       "questionCount": 0
     },
     {
