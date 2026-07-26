@@ -39,7 +39,7 @@
           <span class="dot" style="background:var(--accent2); box-shadow:0 0 0 3px rgba(255,255,255,.12)"></span>
           <span id="timer">00:00</span>
         </div>
-        <button class="btn" id="btnBackToModules" title="Back to modules">← Modules</button>
+        <button class="btn" id="btnBackToModules" title="Back to course">&larr; Course</button>
         <button class="btn" id="btnReset" title="Clear answers and restart">Reset</button>
         <button class="btn primary" id="btnSubmit" title="Finish and grade">Submit</button>
         <button class="btn danger logoutBtn" id="btnLogoutExam" title="Log out">Logout</button>
@@ -114,10 +114,26 @@
             <div class="cardTitle" id="moduleViewTitle">Module Select</div>
             <div class="cardMeta" id="moduleViewMeta">Choose a module or launch the Final Exam.</div>
           </div>
-          <button class="btn" id="btnBackToCourses">← Catalog</button>
+          <button class="btn" id="btnBackToCourses">&larr; Catalog</button>
         </div>
         <div class="cardBody">
           <div class="courseGrid" id="moduleGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="view hidden" id="domainView">
+      <div class="card">
+        <div class="cardHeader">
+          <div>
+            <div class="eyebrow" id="domainObjective">Domain</div>
+            <div class="cardTitle" id="domainViewTitle">Domain Chapters</div>
+            <div class="cardMeta" id="domainViewMeta">Choose a chapter quiz or launch the randomized domain test.</div>
+          </div>
+          <button class="btn" id="btnBackToDomains">&larr; Domains</button>
+        </div>
+        <div class="cardBody">
+          <div class="courseGrid" id="chapterGrid"></div>
         </div>
       </div>
     </div>
@@ -128,9 +144,9 @@
           <div>
             <div class="eyebrow" id="reviewObjective">Objective</div>
             <div class="cardTitle" id="reviewTitle">Module Review</div>
-            <div class="cardMeta" id="reviewDomain">Security+ Review</div>
+            <div class="cardMeta" id="reviewDomain">CompTIA Security+ SY0-701</div>
           </div>
-          <button class="btn" id="btnBackToModuleSelect">← Modules</button>
+          <button class="btn" id="btnBackToModuleSelect">&larr; Modules</button>
         </div>
         <div class="cardBody reviewBody">
           <section class="reviewHero">
@@ -170,7 +186,7 @@
           <div class="cardHeader">
             <div>
               <div class="cardTitle" id="qTitle">Question</div>
-              <div class="cardMeta" id="qMeta">Type • Points</div>
+              <div class="cardMeta" id="qMeta">Type &bull; Points</div>
               <div class="progressOuter" aria-label="Progress bar">
                 <div class="progressInner" id="progressBar"></div>
               </div>
@@ -198,8 +214,8 @@
 
           <div class="controls">
             <div class="leftControls">
-              <button class="btn" id="btnPrev">← Prev</button>
-              <button class="btn" id="btnNext">Next →</button>
+              <button class="btn" id="btnPrev">&larr; Prev</button>
+              <button class="btn" id="btnNext">Next &rarr;</button>
             </div>
             <div class="rightControls">
               <button class="btn" id="btnFlag">Flag</button>
@@ -213,7 +229,7 @@
           <div class="cardHeader">
             <div>
               <div class="cardTitle">Question Navigator</div>
-              <div class="cardMeta">Jump to any item • Green = answered</div>
+              <div class="cardMeta">Jump to any item &bull; Green = answered</div>
             </div>
           </div>
           <div class="navGrid" id="navGrid"></div>
@@ -224,7 +240,7 @@
               <div class="breakdown" id="breakdown"></div>
               <div class="hr"></div>
               <div class="small warn">
-                Tip: Use “Review” to see what you missed and why.
+                Tip: Use "Review" to see what you missed and why.
               </div>
             </div>
 

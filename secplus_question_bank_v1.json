@@ -1,15 +1,15 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "courseId": "secplus",
-  "courseTitle": "Security+ SY0-701 Review",
+  "courseTitle": "CompTIA Security+ SY0-701",
   "practiceTimeLimitSeconds": 2700,
   "modules": [
     {
       "id": "01",
-      "title": "Compare and contrast various types of security controls",
-      "domain": "1.0 General Security Concepts",
+      "title": "Comparing and Contrasting the Various Types of Controls",
+      "domain": "Domain 1: General Security Concepts",
       "objective": "1.1",
-      "summary": "Security controls are classified by what they do—prevent, deter, detect, correct, compensate, or direct—and by how they are implemented through technical, managerial, operational, or physical means.",
+      "summary": "Security controls are classified by what they do - prevent, deter, detect, correct, compensate, or direct - and by how they are implemented through technical, managerial, operational, or physical means.",
       "keyTerms": [
         "preventive control",
         "deterrent control",
@@ -31,7 +31,7 @@
       "commonTraps": [
         "Do not confuse a control's purpose with its implementation category.",
         "A warning banner is usually deterrent or directive, while the authentication mechanism behind it is preventive.",
-        "A compensating control is an approved alternative—not simply a weaker or missing control."
+        "A compensating control is an approved alternative, not simply a weaker or missing control."
       ],
       "miniScenarios": [
         {
@@ -42,12 +42,13 @@
           "title": "Layered facility security",
           "text": "Lighting and signs deter, a badge reader prevents unauthorized entry, cameras detect activity, and an incident procedure directs staff."
         }
-      ]
+      ],
+      "domainId": "01"
     },
     {
       "id": "02",
-      "title": "Summarize fundamental security concepts",
-      "domain": "1.0 General Security Concepts",
+      "title": "Summarizing Fundamental Security Concepts",
+      "domain": "Domain 1: General Security Concepts",
       "objective": "1.2",
       "summary": "Core security concepts include the CIA triad, authentication and authorization, non-repudiation, zero trust, physical safeguards, and deception or disruption techniques.",
       "keyTerms": [
@@ -82,12 +83,13 @@
           "title": "Remote administrator",
           "text": "A valid password is not enough in zero trust; device posture, MFA, role, location, and requested resource can all affect access."
         }
-      ]
+      ],
+      "domainId": "01"
     },
     {
       "id": "03",
-      "title": "Explain the importance of change management processes and the impact to security",
-      "domain": "1.0 General Security Concepts",
+      "title": "Understanding Change Management's Security Impact",
+      "domain": "Domain 1: General Security Concepts",
       "objective": "1.3",
       "summary": "Secure change management uses ownership, impact analysis, testing, approvals, maintenance windows, rollback plans, documentation, and version control to reduce unintended risk.",
       "keyTerms": [
@@ -122,12 +124,13 @@
           "title": "Database upgrade",
           "text": "Identify application dependencies, test against representative data, define backout triggers, notify stakeholders, and verify service after deployment."
         }
-      ]
+      ],
+      "domainId": "01"
     },
     {
       "id": "04",
-      "title": "Explain the importance of using appropriate cryptographic solutions",
-      "domain": "1.0 General Security Concepts",
+      "title": "Understanding the Importance of Using Appropriate Cryptographic Solutions",
+      "domain": "Domain 1: General Security Concepts",
       "objective": "1.4",
       "summary": "Cryptographic solutions protect data through hashing, symmetric and asymmetric encryption, digital signatures, certificates, secure key exchange, and protected key storage such as HSMs and TPMs.",
       "keyTerms": [
@@ -162,12 +165,13 @@
           "title": "Certificate warning",
           "text": "A browser warning may result from an expired certificate, hostname mismatch, untrusted issuer, broken chain, or revoked certificate."
         }
-      ]
+      ],
+      "domainId": "01"
     },
     {
       "id": "05",
-      "title": "Compare and contrast common threat actors and motivations",
-      "domain": "2.0 Threats, Vulnerabilities, and Mitigations",
+      "title": "Comparing and Contrasting Common Threat Actors and Motivations",
+      "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations",
       "objective": "2.1",
       "summary": "Threat actors differ in resources, access, sophistication, and motivation. Attribution relies on observed behavior and evidence rather than one isolated indicator.",
       "keyTerms": [
@@ -202,12 +206,13 @@
           "title": "Unapproved cloud storage",
           "text": "An employee uploads work files to a personal service to collaborate faster. This is shadow IT and creates data-governance risk."
         }
-      ]
+      ],
+      "domainId": "02"
     },
     {
       "id": "06",
-      "title": "Explain common threat vectors and attack surfaces",
-      "domain": "2.0 Threats, Vulnerabilities, and Mitigations",
+      "title": "Understanding Common Threat Vectors and Attack Surfaces",
+      "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations",
       "objective": "2.2",
       "summary": "Attackers gain initial access through social engineering, vulnerable services, suppliers, removable media, wireless networks, cloud misconfiguration, and other exposed attack surfaces.",
       "keyTerms": [
@@ -242,12 +247,13 @@
           "title": "Vendor update",
           "text": "A legitimate signed update contains malicious code inserted during the vendor's build process. This is a software supply-chain compromise."
         }
-      ]
+      ],
+      "domainId": "02"
     },
     {
       "id": "07",
-      "title": "Explain various types of vulnerabilities",
-      "domain": "2.0 Threats, Vulnerabilities, and Mitigations",
+      "title": "Understanding Various Types of Vulnerabilities",
+      "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations",
       "objective": "2.3",
       "summary": "Vulnerabilities arise from insecure code, broken authorization, unsafe input handling, memory errors, weak configuration, default credentials, and unsupported systems.",
       "keyTerms": [
@@ -282,12 +288,13 @@
           "title": "Cloud metadata request",
           "text": "An image-import feature fetches an attacker-supplied URL that points to an internal metadata service. That behavior indicates SSRF."
         }
-      ]
+      ],
+      "domainId": "02"
     },
     {
       "id": "08",
-      "title": "Given a scenario, analyze indicators of malicious activity",
-      "domain": "2.0 Threats, Vulnerabilities, and Mitigations",
+      "title": "Understanding Indicators of Malicious Activity",
+      "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations",
       "objective": "2.4",
       "summary": "Security analysts correlate endpoint, identity, network, DNS, and command-line indicators to distinguish ransomware, credential attacks, persistence, tunneling, and other malicious activity.",
       "keyTerms": [
@@ -311,7 +318,7 @@
       "commonTraps": [
         "Impossible travel may be caused by VPNs or shared egress points, so validate context before declaring compromise.",
         "PowerShell is a legitimate administration tool; encoded or hidden execution plus suspicious network activity raises confidence.",
-        "Many failed logins followed by one success can indicate password spraying, brute force, or a legitimate user—scope and pattern matter."
+        "Many failed logins followed by one success can indicate password spraying, brute force, or a legitimate user; scope and pattern matter."
       ],
       "miniScenarios": [
         {
@@ -322,19 +329,671 @@
           "title": "Service-ticket spike",
           "text": "A workstation requests many Kerberos service tickets for SPN accounts and then performs no normal service access. Investigate possible Kerberoasting."
         }
+      ],
+      "domainId": "02"
+    },
+    {
+      "id": "09",
+      "domainId": "02",
+      "title": "Understanding the Purpose of Mitigation Techniques Used to Secure the Enterprise",
+      "domain": "Domain 2: Threats, Vulnerabilities, and Mitigations",
+      "objective": "2.5",
+      "summary": "Enterprise mitigation reduces attack paths and limits impact through segmentation, access control, hardening, isolation, patching, and application control.",
+      "keyTerms": [
+        "Network segmentation",
+        "Application allow list",
+        "Quarantine",
+        "Least privilege"
+      ],
+      "mustKnowFacts": [
+        "Network segmentation: Separates systems into controlled zones to limit lateral movement.",
+        "Application allow list: Permits only explicitly approved software to execute.",
+        "Quarantine: Isolates a suspicious endpoint while preserving it for investigation.",
+        "Least privilege: Limits accounts and processes to the minimum permissions required."
+      ],
+      "commonTraps": [
+        "Do not select a network segmentation control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 9 application",
+          "text": "A compromised workstation is attempting to contact file servers across several departments. Which mitigation MOST directly limits the attacker's lateral movement? Correct focus: Network segmentation."
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "domainId": "03",
+      "title": "Comparing and Contrasting Security Implications of Different Architecture Models",
+      "domain": "Domain 3: Security Architecture",
+      "objective": "3.1",
+      "summary": "Architecture models shift control, visibility, responsibility, and failure modes across on-premises, cloud, hybrid, virtualized, serverless, and edge environments.",
+      "keyTerms": [
+        "Shared responsibility",
+        "Serverless",
+        "Hybrid architecture",
+        "Edge computing"
+      ],
+      "mustKnowFacts": [
+        "Shared responsibility: Divides security duties between a cloud provider and its customer.",
+        "Serverless: Runs provider-managed functions without customer-managed servers.",
+        "Hybrid architecture: Combines on-premises resources with cloud services.",
+        "Edge computing: Processes data near the users or devices that produce it."
+      ],
+      "commonTraps": [
+        "Do not select a shared responsibility control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 10 application",
+          "text": "A company moves a database to a managed cloud service. The provider patches the database engine, while the company controls accounts and data permissions. Which concept explains this division? Correct focus: Shared responsibility."
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "domainId": "03",
+      "title": "Applying Security Principles to Secure Enterprise Infrastructure",
+      "domain": "Domain 3: Security Architecture",
+      "objective": "3.2",
+      "summary": "Secure infrastructure uses well-defined trust zones, hardened network devices, controlled protocols, resilient paths, and fail-safe behavior.",
+      "keyTerms": [
+        "DMZ",
+        "Jump server",
+        "Fail closed",
+        "Network access control"
+      ],
+      "mustKnowFacts": [
+        "DMZ: A screened network segment for public-facing services.",
+        "Jump server: A hardened intermediary used to administer protected systems.",
+        "Fail closed: Blocks access when a security control fails.",
+        "Network access control: Evaluates device or user posture before granting network access."
+      ],
+      "commonTraps": [
+        "Do not select a dmz control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 11 application",
+          "text": "Administrators must manage production servers without exposing management ports to user networks. Which design is BEST? Correct focus: Use a hardened jump server in a management zone."
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "domainId": "03",
+      "title": "Comparing and Contrasting Concepts and Strategies to Protect Data",
+      "domain": "Domain 3: Security Architecture",
+      "objective": "3.3",
+      "summary": "Data protection follows classification and ownership through its full lifecycle and uses controls such as encryption, masking, tokenization, and DLP.",
+      "keyTerms": [
+        "Data at rest",
+        "Tokenization",
+        "Data masking",
+        "Data loss prevention"
+      ],
+      "mustKnowFacts": [
+        "Data at rest: Stored data that is not actively moving across a network.",
+        "Tokenization: Replaces sensitive values with non-sensitive tokens mapped in a protected system.",
+        "Data masking: Obscures sensitive fields while preserving a usable format.",
+        "Data loss prevention: Detects or blocks unauthorized transfer of sensitive information."
+      ],
+      "commonTraps": [
+        "Do not select a data at rest control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 12 application",
+          "text": "Developers need realistic customer records for testing but must not see actual Social Security numbers. Which control is MOST appropriate? Correct focus: Data masking."
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "domainId": "03",
+      "title": "Understanding the Importance of Resilience and Recovery in Security Architecture",
+      "domain": "Domain 3: Security Architecture",
+      "objective": "3.4",
+      "summary": "Resilient architecture combines redundancy, geographic diversity, tested backups, capacity planning, and recovery objectives to sustain or restore operations.",
+      "keyTerms": [
+        "Recovery time objective",
+        "Recovery point objective",
+        "High availability",
+        "Geographic dispersion"
+      ],
+      "mustKnowFacts": [
+        "Recovery time objective: Maximum acceptable time to restore a service after disruption.",
+        "Recovery point objective: Maximum acceptable amount of data loss measured in time.",
+        "High availability: Design that minimizes service interruption through redundancy.",
+        "Geographic dispersion: Places resources in separate locations to reduce shared-failure risk."
+      ],
+      "commonTraps": [
+        "Do not select a recovery time objective control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 13 application",
+          "text": "A business can tolerate losing no more than 15 minutes of transaction data after an outage. Which value is being defined? Correct focus: Recovery point objective."
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "domainId": "04",
+      "title": "Applying Common Security Techniques to Computing Resources",
+      "domain": "Domain 4: Security Operations",
+      "objective": "4.1",
+      "summary": "Computing resources require platform-specific hardening, secure baselines, endpoint protection, patching, and isolation across servers, mobile devices, containers, and embedded systems.",
+      "keyTerms": [
+        "Secure baseline",
+        "Endpoint detection and response",
+        "Container image",
+        "Mobile device management"
+      ],
+      "mustKnowFacts": [
+        "Secure baseline: An approved set of minimum configuration requirements.",
+        "Endpoint detection and response: Monitors endpoint behavior and supports investigation and containment.",
+        "Container image: A packaged template whose provenance and vulnerabilities should be verified.",
+        "Mobile device management: Centrally applies policy and controls to enrolled mobile devices."
+      ],
+      "commonTraps": [
+        "Do not select a secure baseline control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 14 application",
+          "text": "A company wants to enforce screen locks, encryption, and remote wipe on corporate phones. Which control BEST meets the requirement? Correct focus: Mobile device management."
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "domainId": "04",
+      "title": "Understanding the Security Implications of Hardware, Software, and Data Asset Management",
+      "domain": "Domain 4: Security Operations",
+      "objective": "4.2",
+      "summary": "Asset management tracks hardware, software, and data from acquisition through assignment, monitoring, ownership changes, and secure disposal.",
+      "keyTerms": [
+        "Asset inventory",
+        "Data owner",
+        "Sanitization",
+        "End of life"
+      ],
+      "mustKnowFacts": [
+        "Asset inventory: Authoritative record of assets and relevant attributes.",
+        "Data owner: Role accountable for classification and access decisions.",
+        "Sanitization: Removes data so it cannot be recovered using a defined method.",
+        "End of life: Point when a product no longer receives normal vendor support."
+      ],
+      "commonTraps": [
+        "Do not select a asset inventory control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 15 application",
+          "text": "A leased storage array is being returned to its vendor. What should occur BEFORE the equipment leaves company control? Correct focus: Verify approved media sanitization."
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "domainId": "04",
+      "title": "Understanding Various Activities Associated with Vulnerability Management",
+      "domain": "Domain 4: Security Operations",
+      "objective": "4.3",
+      "summary": "Vulnerability management discovers weaknesses, validates and prioritizes findings in business context, remediates risk, and verifies closure.",
+      "keyTerms": [
+        "Credentialed scan",
+        "False positive",
+        "Compensating control",
+        "Risk-based prioritization"
+      ],
+      "mustKnowFacts": [
+        "Credentialed scan: Authenticates to a host for deeper configuration and patch assessment.",
+        "False positive: Reported vulnerability that is not actually present or exploitable.",
+        "Compensating control: Alternate safeguard used when direct remediation is not feasible.",
+        "Risk-based prioritization: Ranks findings using severity, exposure, exploitability, and asset value."
+      ],
+      "commonTraps": [
+        "Do not select a credentialed scan control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 16 application",
+          "text": "Two systems have the same critical CVSS score. One is internet-facing and actively exploited; the other is isolated in a lab. Which should be remediated first? Correct focus: The internet-facing, actively exploited system."
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "domainId": "04",
+      "title": "Understanding Security Alerting and Monitoring Concepts and Tools",
+      "domain": "Domain 4: Security Operations",
+      "objective": "4.4",
+      "summary": "Effective monitoring centralizes useful telemetry, establishes baselines, correlates events, tunes alerts, and routes actionable findings for response.",
+      "keyTerms": [
+        "SIEM",
+        "NetFlow",
+        "Packet capture",
+        "Alert tuning"
+      ],
+      "mustKnowFacts": [
+        "SIEM: Centralizes and correlates logs to support detection and investigation.",
+        "NetFlow: Summarizes network conversations without recording full packet payloads.",
+        "Packet capture: Records packet headers and payloads for detailed network analysis.",
+        "Alert tuning: Adjusts detection logic to reduce noise while preserving useful coverage."
+      ],
+      "commonTraps": [
+        "Do not select a siem control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 17 application",
+          "text": "An analyst needs to identify which internal hosts communicated with a suspicious IP during the last hour without inspecting payload content. Which source is MOST efficient? Correct focus: NetFlow records."
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "domainId": "04",
+      "title": "Modifying Enterprise Capabilities to Enhance Security",
+      "domain": "Domain 4: Security Operations",
+      "objective": "4.5",
+      "summary": "Security teams enhance enterprise defenses by configuring firewalls, IDS/IPS, DNS and web filtering, email protections, DLP, NAC, and related controls.",
+      "keyTerms": [
+        "Intrusion prevention system",
+        "DNS filtering",
+        "Network access control",
+        "Web application firewall"
+      ],
+      "mustKnowFacts": [
+        "Intrusion prevention system: Detects and can automatically block suspicious network activity.",
+        "DNS filtering: Blocks resolution of known malicious or disallowed domains.",
+        "Network access control: Restricts network admission using identity or device posture.",
+        "Web application firewall: Filters HTTP traffic to protect web applications."
+      ],
+      "commonTraps": [
+        "Do not select a intrusion prevention system control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 18 application",
+          "text": "Users are being redirected to newly registered phishing domains. Which control can block access before a browser obtains the destination IP address? Correct focus: DNS filtering."
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "domainId": "04",
+      "title": "Implementing and Maintaining Identity and Access Management",
+      "domain": "Domain 4: Security Operations",
+      "objective": "4.6",
+      "summary": "IAM manages identity proofing, account provisioning, authentication, federation, authorization, periodic review, and timely deprovisioning.",
+      "keyTerms": [
+        "Federation",
+        "Single sign-on",
+        "Role-based access control",
+        "Just-in-time access"
+      ],
+      "mustKnowFacts": [
+        "Federation: Uses trust between identity domains to enable access across organizations or services.",
+        "Single sign-on: Allows one authenticated session to access multiple authorized services.",
+        "Role-based access control: Assigns permissions according to job roles.",
+        "Just-in-time access: Grants privileged access only when needed and for a limited duration."
+      ],
+      "commonTraps": [
+        "Do not select a federation control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 19 application",
+          "text": "A cloud administrator receives elevated permissions only after approval, and the permissions expire after one hour. Which approach is being used? Correct focus: Just-in-time access."
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "domainId": "04",
+      "title": "Understanding the Importance of Automation and Orchestration Related to Secure Operations",
+      "domain": "Domain 4: Security Operations",
+      "objective": "4.7",
+      "summary": "Automation and orchestration improve consistency and response speed through scripts, APIs, infrastructure as code, and tested runbooks, while introducing scale and dependency risks.",
+      "keyTerms": [
+        "Automation",
+        "Orchestration",
+        "Infrastructure as code",
+        "Runbook"
+      ],
+      "mustKnowFacts": [
+        "Automation: Uses technology to perform a task with limited manual effort.",
+        "Orchestration: Coordinates multiple automated tasks into an end-to-end workflow.",
+        "Infrastructure as code: Defines infrastructure in version-controlled machine-readable files.",
+        "Runbook: Documents repeatable steps for an operational or response process."
+      ],
+      "commonTraps": [
+        "Do not select a automation control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 20 application",
+          "text": "A phishing alert automatically enriches an IP, disables a compromised account, isolates a host, and opens a ticket. What BEST describes this capability? Correct focus: Security orchestration."
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "domainId": "04",
+      "title": "Understanding Appropriate Incident Response Activities",
+      "domain": "Domain 4: Security Operations",
+      "objective": "4.8",
+      "summary": "Incident response uses preparation, detection, analysis, containment, eradication, recovery, and lessons learned while preserving evidence and communication.",
+      "keyTerms": [
+        "Containment",
+        "Eradication",
+        "Recovery",
+        "Chain of custody"
+      ],
+      "mustKnowFacts": [
+        "Containment: Limits the spread or impact of an active incident.",
+        "Eradication: Removes the root cause and malicious artifacts.",
+        "Recovery: Restores systems to normal operation and watches for recurrence.",
+        "Chain of custody: Documents evidence handling and possession from collection onward."
+      ],
+      "commonTraps": [
+        "Do not select a containment control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 21 application",
+          "text": "An infected endpoint is disconnected from production but kept powered on for volatile evidence collection. Which response phase is primarily occurring? Correct focus: Containment."
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "domainId": "04",
+      "title": "Using Data Sources to Support an Investigation",
+      "domain": "Domain 4: Security Operations",
+      "objective": "4.9",
+      "summary": "Investigations correlate endpoint, identity, application, network, cloud, and vulnerability data while accounting for time, integrity, scope, and collection limits.",
+      "keyTerms": [
+        "Authentication log",
+        "DNS log",
+        "Endpoint telemetry",
+        "Metadata"
+      ],
+      "mustKnowFacts": [
+        "Authentication log: Records sign-in attempts and related identity events.",
+        "DNS log: Records name-resolution queries and responses.",
+        "Endpoint telemetry: Captures process, file, registry, and host activity.",
+        "Metadata: Describes attributes such as timestamps, ownership, or message headers."
+      ],
+      "commonTraps": [
+        "Do not select a authentication log control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 22 application",
+          "text": "An analyst is tracing a suspicious PowerShell process to the account that launched it and the file it downloaded. Which source is MOST useful? Correct focus: Endpoint telemetry."
+        }
+      ]
+    },
+    {
+      "id": "23",
+      "domainId": "05",
+      "title": "Summarizing Elements of Effective Security Governance",
+      "domain": "Domain 5: Security Program Management and Oversight",
+      "objective": "5.1",
+      "summary": "Security governance aligns policies, standards, procedures, roles, oversight, and exceptions with business objectives and accountability.",
+      "keyTerms": [
+        "Policy",
+        "Standard",
+        "Procedure",
+        "Guideline"
+      ],
+      "mustKnowFacts": [
+        "Policy: High-level statement of management intent and required direction.",
+        "Standard: Mandatory requirement that supports a policy.",
+        "Procedure: Step-by-step instructions for completing a task.",
+        "Guideline: Recommended but generally non-mandatory practice."
+      ],
+      "commonTraps": [
+        "Do not select a policy control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 23 application",
+          "text": "A document requires all company laptops to use AES-256 full-disk encryption. What type of governance document is this MOST likely to be? Correct focus: Standard."
+        }
+      ]
+    },
+    {
+      "id": "24",
+      "domainId": "05",
+      "title": "Understanding Elements of the Risk Management Process",
+      "domain": "Domain 5: Security Program Management and Oversight",
+      "objective": "5.2",
+      "summary": "Risk management identifies assets and threats, analyzes likelihood and impact, selects treatments, records ownership, and monitors residual risk.",
+      "keyTerms": [
+        "Risk register",
+        "Annual loss expectancy",
+        "Risk transfer",
+        "Risk acceptance"
+      ],
+      "mustKnowFacts": [
+        "Risk register: Tracks identified risks, owners, treatments, and status.",
+        "Annual loss expectancy: Estimated yearly loss calculated from single loss expectancy and annual rate of occurrence.",
+        "Risk transfer: Shifts part of financial impact to another party, such as through insurance.",
+        "Risk acceptance: Formally acknowledges residual risk without additional treatment."
+      ],
+      "commonTraps": [
+        "Do not select a risk register control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 24 application",
+          "text": "A $100,000 loss is expected once every five years. What is the annual loss expectancy? Correct focus: $20,000."
+        }
+      ]
+    },
+    {
+      "id": "25",
+      "domainId": "05",
+      "title": "Understanding the Processes Associated with Third-Party Risk Assessment and Management",
+      "domain": "Domain 5: Security Program Management and Oversight",
+      "objective": "5.3",
+      "summary": "Third-party risk management performs due diligence before onboarding, defines contract controls, monitors performance, and plans secure offboarding.",
+      "keyTerms": [
+        "Due diligence",
+        "Right-to-audit clause",
+        "Service-level agreement",
+        "Supply chain risk"
+      ],
+      "mustKnowFacts": [
+        "Due diligence: Evaluates a supplier before entering or expanding a relationship.",
+        "Right-to-audit clause: Contract term allowing verification of a supplier's control environment.",
+        "Service-level agreement: Defines measurable service expectations and remedies.",
+        "Supply chain risk: Exposure introduced through vendors, components, services, or dependencies."
+      ],
+      "commonTraps": [
+        "Do not select a due diligence control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 25 application",
+          "text": "A company needs contractual authority to verify a cloud vendor's security controls. Which provision is MOST relevant? Correct focus: Right-to-audit clause."
+        }
+      ]
+    },
+    {
+      "id": "26",
+      "domainId": "05",
+      "title": "Summarizing Elements of Effective Security Compliance",
+      "domain": "Domain 5: Security Program Management and Oversight",
+      "objective": "5.4",
+      "summary": "Compliance translates legal, regulatory, contractual, industry, and privacy obligations into controls, evidence, reporting, and remediation.",
+      "keyTerms": [
+        "Regulation",
+        "Contractual requirement",
+        "Data controller",
+        "Data processor"
+      ],
+      "mustKnowFacts": [
+        "Regulation: Mandatory rule issued under governmental authority.",
+        "Contractual requirement: Security obligation agreed between parties.",
+        "Data controller: Determines the purposes and means of processing personal data.",
+        "Data processor: Processes personal data on behalf of a controller."
+      ],
+      "commonTraps": [
+        "Do not select a regulation control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 26 application",
+          "text": "A retailer must protect cardholder data because its agreement requires adherence to PCI DSS. What type of obligation is this primarily? Correct focus: Contractual and industry requirement."
+        }
+      ]
+    },
+    {
+      "id": "27",
+      "domainId": "05",
+      "title": "Understanding Types and Purposes of Audits and Assessments",
+      "domain": "Domain 5: Security Program Management and Oversight",
+      "objective": "5.5",
+      "summary": "Audits and assessments provide different levels of independence and assurance through control reviews, attestations, vulnerability assessments, and penetration testing.",
+      "keyTerms": [
+        "Internal audit",
+        "External audit",
+        "Vulnerability assessment",
+        "Penetration test"
+      ],
+      "mustKnowFacts": [
+        "Internal audit: Independent review performed within the organization.",
+        "External audit: Assessment performed by an independent outside party.",
+        "Vulnerability assessment: Identifies and prioritizes weaknesses, generally without exploiting them.",
+        "Penetration test: Attempts authorized exploitation to demonstrate attack paths and impact."
+      ],
+      "commonTraps": [
+        "Do not select a internal audit control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 27 application",
+          "text": "Leadership wants an authorized team to exploit weaknesses and demonstrate whether sensitive records can be reached. Which assessment is MOST appropriate? Correct focus: Penetration test."
+        }
+      ]
+    },
+    {
+      "id": "28",
+      "domainId": "05",
+      "title": "Implementing Security Awareness Practices",
+      "domain": "Domain 5: Security Program Management and Oversight",
+      "objective": "5.6",
+      "summary": "Security awareness combines role-based training, phishing simulations, clear reporting channels, reinforcement, and meaningful metrics to change behavior.",
+      "keyTerms": [
+        "Phishing simulation",
+        "Role-based training",
+        "Insider threat awareness",
+        "Reporting culture"
+      ],
+      "mustKnowFacts": [
+        "Phishing simulation: Controlled exercise that measures and reinforces resistance to social engineering.",
+        "Role-based training: Instruction tailored to the risks and responsibilities of a job.",
+        "Insider threat awareness: Training to recognize and report concerning internal behavior.",
+        "Reporting culture: Environment where users can promptly report mistakes or suspicious activity without undue fear."
+      ],
+      "commonTraps": [
+        "Do not select a phishing simulation control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 28 application",
+          "text": "Developers handle secrets and production deployments. Which training approach BEST addresses their unique risk? Correct focus: Role-based secure development training."
+        }
+      ]
+    },
+    {
+      "id": "29",
+      "domainId": "05",
+      "title": "Final Preparation",
+      "domain": "Domain 5: Security Program Management and Oversight",
+      "objective": "Final Review",
+      "summary": "Final preparation maps weak areas to exam objectives, mixes recall with scenario practice, rehearses performance-based items, and uses a deliberate test-day strategy.",
+      "keyTerms": [
+        "Exam objectives",
+        "Performance-based question",
+        "Error log",
+        "Timed practice"
+      ],
+      "mustKnowFacts": [
+        "Exam objectives: Authoritative outline of the knowledge and skills tested.",
+        "Performance-based question: Interactive item that requires applying knowledge to a scenario or task.",
+        "Error log: Record of missed concepts, reasoning errors, and corrective review.",
+        "Timed practice: Rehearsal that builds pacing and decision-making under an exam limit."
+      ],
+      "commonTraps": [
+        "Do not select a exam objectives control when the scenario is asking for a different outcome.",
+        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
+        "Separate a governance or process requirement from the technical control that implements it."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Chapter 29 application",
+          "text": "A learner repeatedly misses questions about identity federation but keeps retaking full exams. What is the BEST next step? Correct focus: Use the error log to review the mapped objective, then retest that topic."
+        }
       ]
     }
   ],
   "profiles": {
     "finalExam": {
       "id": "SECPLUS_FINAL",
-      "title": "Security+ Final Exam",
+      "title": "CompTIA Security+ SY0-701 Final Exam",
       "totalQuestions": 90,
       "timeLimitSeconds": 5400,
       "minQuestions": 90,
       "maxQuestions": 90,
-      "minModulesReady": 8,
-      "minPerModule": 5,
+      "minModulesReady": 29,
+      "minPerModule": 2,
       "maxModuleShare": 0.2,
       "difficultyMix": {
         "min": 2,
@@ -348,19 +1007,61 @@
         "05",
         "06",
         "07",
-        "08"
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29"
       ],
       "preferScenarioPct": 60,
       "pbqFirst": 5,
       "moduleWeights": {
-        "01": 12,
-        "02": 13,
-        "03": 10,
-        "04": 15,
-        "05": 12,
-        "06": 13,
-        "07": 13,
-        "08": 12
+        "10": 4.5,
+        "11": 4.5,
+        "12": 4.5,
+        "13": 4.5,
+        "14": 3.111111111111111,
+        "15": 3.111111111111111,
+        "16": 3.111111111111111,
+        "17": 3.111111111111111,
+        "18": 3.111111111111111,
+        "19": 3.111111111111111,
+        "20": 3.111111111111111,
+        "21": 3.111111111111111,
+        "22": 3.111111111111111,
+        "23": 2.857142857142857,
+        "24": 2.857142857142857,
+        "25": 2.857142857142857,
+        "26": 2.857142857142857,
+        "27": 2.857142857142857,
+        "28": 2.857142857142857,
+        "29": 2.857142857142857,
+        "01": 3,
+        "02": 3,
+        "03": 3,
+        "04": 3,
+        "05": 4.4,
+        "06": 4.4,
+        "07": 4.4,
+        "08": 4.4,
+        "09": 4.4
       }
     }
   },
@@ -3372,6 +4073,4733 @@
         "m08s4"
       ],
       "rationale": "Validate and preserve evidence, determine scope, contain, then eradicate and recover with follow-up monitoring."
+    },
+    {
+      "id": "SEC-M09-Q001",
+      "module": "09",
+      "domain": "2.0",
+      "objective": "2.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.5",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Separates systems into controlled zones to limit lateral movement?",
+      "options": [
+        "Network segmentation",
+        "Application allow list",
+        "Quarantine",
+        "Least privilege"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Network segmentation separates systems into controlled zones to limit lateral movement."
+    },
+    {
+      "id": "SEC-M09-Q002",
+      "module": "09",
+      "domain": "2.0",
+      "objective": "2.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.5",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "A compromised workstation is attempting to contact file servers across several departments. Which mitigation MOST directly limits the attacker's lateral movement?",
+      "options": [
+        "Network segmentation",
+        "Password complexity",
+        "Data classification",
+        "Security awareness training"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Segmentation places controls between zones, limiting which systems a compromised host can reach."
+    },
+    {
+      "id": "SEC-M09-Q003",
+      "module": "09",
+      "domain": "2.0",
+      "objective": "2.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.5",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Permits only explicitly approved software to execute?",
+      "options": [
+        "Quarantine",
+        "Network segmentation",
+        "Least privilege",
+        "Application allow list"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Application allow list permits only explicitly approved software to execute."
+    },
+    {
+      "id": "SEC-M09-Q004",
+      "module": "09",
+      "domain": "2.0",
+      "objective": "2.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.5",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 9. Select ALL actions that support the security goal.",
+      "options": [
+        "Patch exploited vulnerabilities promptly",
+        "Permit all east-west traffic by default",
+        "Restrict administrative privileges",
+        "Allow users to install any executable",
+        "Isolate untrusted workloads"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Patch exploited vulnerabilities promptly; Restrict administrative privileges; Isolate untrusted workloads. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M09-Q005",
+      "module": "09",
+      "domain": "2.0",
+      "objective": "2.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.5",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 9 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Permit all east-west traffic by default",
+        "Patch exploited vulnerabilities promptly",
+        "Restrict administrative privileges",
+        "Allow users to install any executable",
+        "Isolate untrusted workloads"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Permit all east-west traffic by default; Allow users to install any executable. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M09-Q006",
+      "module": "09",
+      "domain": "2.0",
+      "objective": "2.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.5",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 9 term to its description.",
+      "terms": [
+        {
+          "key": "m09t1",
+          "label": "Network segmentation"
+        },
+        {
+          "key": "m09t2",
+          "label": "Application allow list"
+        },
+        {
+          "key": "m09t3",
+          "label": "Quarantine"
+        },
+        {
+          "key": "m09t4",
+          "label": "Least privilege"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m09d1",
+          "text": "Separates systems into controlled zones to limit lateral movement",
+          "expect": "m09t1"
+        },
+        {
+          "id": "m09d2",
+          "text": "Permits only explicitly approved software to execute",
+          "expect": "m09t2"
+        },
+        {
+          "id": "m09d3",
+          "text": "Isolates a suspicious endpoint while preserving it for investigation",
+          "expect": "m09t3"
+        },
+        {
+          "id": "m09d4",
+          "text": "Limits accounts and processes to the minimum permissions required",
+          "expect": "m09t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M09-Q007",
+      "module": "09",
+      "domain": "2.0",
+      "objective": "2.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.5",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 9 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m09s1",
+          "label": "Identify the attack path"
+        },
+        {
+          "key": "m09s2",
+          "label": "Select a risk-appropriate mitigation"
+        },
+        {
+          "key": "m09s3",
+          "label": "Implement and test the control"
+        },
+        {
+          "key": "m09s4",
+          "label": "Monitor effectiveness and adjust"
+        }
+      ],
+      "answer": [
+        "m09s1",
+        "m09s2",
+        "m09s3",
+        "m09s4"
+      ],
+      "rationale": "The process begins with \"Identify the attack path\" and ends with \"Monitor effectiveness and adjust.\""
+    },
+    {
+      "id": "SEC-M09-Q008",
+      "module": "09",
+      "domain": "2.0",
+      "objective": "2.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.5",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Least privilege is best described as: Limits accounts and processes to the minimum permissions required.",
+      "answer": true,
+      "rationale": "True. Least privilege limits accounts and processes to the minimum permissions required."
+    },
+    {
+      "id": "SEC-M10-Q001",
+      "module": "10",
+      "domain": "3.0",
+      "objective": "3.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.1",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Divides security duties between a cloud provider and its customer?",
+      "options": [
+        "Shared responsibility",
+        "Serverless",
+        "Hybrid architecture",
+        "Edge computing"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Shared responsibility divides security duties between a cloud provider and its customer."
+    },
+    {
+      "id": "SEC-M10-Q002",
+      "module": "10",
+      "domain": "3.0",
+      "objective": "3.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.1",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "A company moves a database to a managed cloud service. The provider patches the database engine, while the company controls accounts and data permissions. Which concept explains this division?",
+      "options": [
+        "Shared responsibility",
+        "Air gap",
+        "Implicit trust",
+        "Resource pooling"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Cloud security responsibilities are divided between the provider and customer according to the service model."
+    },
+    {
+      "id": "SEC-M10-Q003",
+      "module": "10",
+      "domain": "3.0",
+      "objective": "3.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.1",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Runs provider-managed functions without customer-managed servers?",
+      "options": [
+        "Hybrid architecture",
+        "Shared responsibility",
+        "Edge computing",
+        "Serverless"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Serverless runs provider-managed functions without customer-managed servers."
+    },
+    {
+      "id": "SEC-M10-Q004",
+      "module": "10",
+      "domain": "3.0",
+      "objective": "3.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.1",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 10. Select ALL actions that support the security goal.",
+      "options": [
+        "Document provider and customer responsibilities",
+        "Assume the provider secures customer identities automatically",
+        "Apply consistent policy across hybrid environments",
+        "Expose management interfaces to the public internet",
+        "Evaluate vendor concentration risk"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Document provider and customer responsibilities; Apply consistent policy across hybrid environments; Evaluate vendor concentration risk. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M10-Q005",
+      "module": "10",
+      "domain": "3.0",
+      "objective": "3.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.1",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 10 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Assume the provider secures customer identities automatically",
+        "Document provider and customer responsibilities",
+        "Apply consistent policy across hybrid environments",
+        "Expose management interfaces to the public internet",
+        "Evaluate vendor concentration risk"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Assume the provider secures customer identities automatically; Expose management interfaces to the public internet. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M10-Q006",
+      "module": "10",
+      "domain": "3.0",
+      "objective": "3.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.1",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 10 term to its description.",
+      "terms": [
+        {
+          "key": "m10t1",
+          "label": "Shared responsibility"
+        },
+        {
+          "key": "m10t2",
+          "label": "Serverless"
+        },
+        {
+          "key": "m10t3",
+          "label": "Hybrid architecture"
+        },
+        {
+          "key": "m10t4",
+          "label": "Edge computing"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m10d1",
+          "text": "Divides security duties between a cloud provider and its customer",
+          "expect": "m10t1"
+        },
+        {
+          "id": "m10d2",
+          "text": "Runs provider-managed functions without customer-managed servers",
+          "expect": "m10t2"
+        },
+        {
+          "id": "m10d3",
+          "text": "Combines on-premises resources with cloud services",
+          "expect": "m10t3"
+        },
+        {
+          "id": "m10d4",
+          "text": "Processes data near the users or devices that produce it",
+          "expect": "m10t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M10-Q007",
+      "module": "10",
+      "domain": "3.0",
+      "objective": "3.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.1",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 10 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m10s1",
+          "label": "Identify business and data requirements"
+        },
+        {
+          "key": "m10s2",
+          "label": "Compare architecture trust boundaries"
+        },
+        {
+          "key": "m10s3",
+          "label": "Select and configure the model"
+        },
+        {
+          "key": "m10s4",
+          "label": "Continuously reassess architecture risk"
+        }
+      ],
+      "answer": [
+        "m10s1",
+        "m10s2",
+        "m10s3",
+        "m10s4"
+      ],
+      "rationale": "The process begins with \"Identify business and data requirements\" and ends with \"Continuously reassess architecture risk.\""
+    },
+    {
+      "id": "SEC-M10-Q008",
+      "module": "10",
+      "domain": "3.0",
+      "objective": "3.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.1",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Edge computing is best described as: Processes data near the users or devices that produce it.",
+      "answer": true,
+      "rationale": "True. Edge computing processes data near the users or devices that produce it."
+    },
+    {
+      "id": "SEC-M11-Q001",
+      "module": "11",
+      "domain": "3.0",
+      "objective": "3.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.2",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: A screened network segment for public-facing services?",
+      "options": [
+        "DMZ",
+        "Jump server",
+        "Fail closed",
+        "Network access control"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "DMZ a screened network segment for public-facing services."
+    },
+    {
+      "id": "SEC-M11-Q002",
+      "module": "11",
+      "domain": "3.0",
+      "objective": "3.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.2",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "Administrators must manage production servers without exposing management ports to user networks. Which design is BEST?",
+      "options": [
+        "Use a hardened jump server in a management zone",
+        "Enable management from every VLAN",
+        "Publish SSH directly to the internet",
+        "Share a local administrator account"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "A hardened jump server centralizes and restricts administrative access to protected systems."
+    },
+    {
+      "id": "SEC-M11-Q003",
+      "module": "11",
+      "domain": "3.0",
+      "objective": "3.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.2",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: A hardened intermediary used to administer protected systems?",
+      "options": [
+        "Fail closed",
+        "DMZ",
+        "Network access control",
+        "Jump server"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Jump server a hardened intermediary used to administer protected systems."
+    },
+    {
+      "id": "SEC-M11-Q004",
+      "module": "11",
+      "domain": "3.0",
+      "objective": "3.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.2",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 11. Select ALL actions that support the security goal.",
+      "options": [
+        "Separate management traffic from user traffic",
+        "Configure security gateways to fail open without a business need",
+        "Disable unused ports and protocols",
+        "Place public and internal services in one unrestricted subnet",
+        "Use secure administrative protocols"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Separate management traffic from user traffic; Disable unused ports and protocols; Use secure administrative protocols. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M11-Q005",
+      "module": "11",
+      "domain": "3.0",
+      "objective": "3.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.2",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 11 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Configure security gateways to fail open without a business need",
+        "Separate management traffic from user traffic",
+        "Disable unused ports and protocols",
+        "Place public and internal services in one unrestricted subnet",
+        "Use secure administrative protocols"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Configure security gateways to fail open without a business need; Place public and internal services in one unrestricted subnet. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M11-Q006",
+      "module": "11",
+      "domain": "3.0",
+      "objective": "3.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.2",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 11 term to its description.",
+      "terms": [
+        {
+          "key": "m11t1",
+          "label": "DMZ"
+        },
+        {
+          "key": "m11t2",
+          "label": "Jump server"
+        },
+        {
+          "key": "m11t3",
+          "label": "Fail closed"
+        },
+        {
+          "key": "m11t4",
+          "label": "Network access control"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m11d1",
+          "text": "A screened network segment for public-facing services",
+          "expect": "m11t1"
+        },
+        {
+          "id": "m11d2",
+          "text": "A hardened intermediary used to administer protected systems",
+          "expect": "m11t2"
+        },
+        {
+          "id": "m11d3",
+          "text": "Blocks access when a security control fails",
+          "expect": "m11t3"
+        },
+        {
+          "id": "m11d4",
+          "text": "Evaluates device or user posture before granting network access",
+          "expect": "m11t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M11-Q007",
+      "module": "11",
+      "domain": "3.0",
+      "objective": "3.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.2",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 11 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m11s1",
+          "label": "Map trust zones and data flows"
+        },
+        {
+          "key": "m11s2",
+          "label": "Place controls at trust boundaries"
+        },
+        {
+          "key": "m11s3",
+          "label": "Harden and test infrastructure"
+        },
+        {
+          "key": "m11s4",
+          "label": "Monitor configurations and traffic"
+        }
+      ],
+      "answer": [
+        "m11s1",
+        "m11s2",
+        "m11s3",
+        "m11s4"
+      ],
+      "rationale": "The process begins with \"Map trust zones and data flows\" and ends with \"Monitor configurations and traffic.\""
+    },
+    {
+      "id": "SEC-M11-Q008",
+      "module": "11",
+      "domain": "3.0",
+      "objective": "3.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.2",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Network access control is best described as: Evaluates device or user posture before granting network access.",
+      "answer": true,
+      "rationale": "True. Network access control evaluates device or user posture before granting network access."
+    },
+    {
+      "id": "SEC-M12-Q001",
+      "module": "12",
+      "domain": "3.0",
+      "objective": "3.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.3",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Stored data that is not actively moving across a network?",
+      "options": [
+        "Data at rest",
+        "Tokenization",
+        "Data masking",
+        "Data loss prevention"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Data at rest stored data that is not actively moving across a network."
+    },
+    {
+      "id": "SEC-M12-Q002",
+      "module": "12",
+      "domain": "3.0",
+      "objective": "3.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.3",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "Developers need realistic customer records for testing but must not see actual Social Security numbers. Which control is MOST appropriate?",
+      "options": [
+        "Data masking",
+        "Port mirroring",
+        "Network segmentation",
+        "Digital signing"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Masking obscures sensitive fields while retaining data structures useful for testing."
+    },
+    {
+      "id": "SEC-M12-Q003",
+      "module": "12",
+      "domain": "3.0",
+      "objective": "3.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.3",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Replaces sensitive values with non-sensitive tokens mapped in a protected system?",
+      "options": [
+        "Data masking",
+        "Data at rest",
+        "Data loss prevention",
+        "Tokenization"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Tokenization replaces sensitive values with non-sensitive tokens mapped in a protected system."
+    },
+    {
+      "id": "SEC-M12-Q004",
+      "module": "12",
+      "domain": "3.0",
+      "objective": "3.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.3",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 12. Select ALL actions that support the security goal.",
+      "options": [
+        "Classify data before choosing controls",
+        "Copy production data into test systems without sanitizing it",
+        "Encrypt sensitive data in transit and at rest",
+        "Retain sensitive data indefinitely without a requirement",
+        "Restrict access based on ownership and need"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Classify data before choosing controls; Encrypt sensitive data in transit and at rest; Restrict access based on ownership and need. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M12-Q005",
+      "module": "12",
+      "domain": "3.0",
+      "objective": "3.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.3",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 12 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Copy production data into test systems without sanitizing it",
+        "Classify data before choosing controls",
+        "Encrypt sensitive data in transit and at rest",
+        "Retain sensitive data indefinitely without a requirement",
+        "Restrict access based on ownership and need"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Copy production data into test systems without sanitizing it; Retain sensitive data indefinitely without a requirement. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M12-Q006",
+      "module": "12",
+      "domain": "3.0",
+      "objective": "3.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.3",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 12 term to its description.",
+      "terms": [
+        {
+          "key": "m12t1",
+          "label": "Data at rest"
+        },
+        {
+          "key": "m12t2",
+          "label": "Tokenization"
+        },
+        {
+          "key": "m12t3",
+          "label": "Data masking"
+        },
+        {
+          "key": "m12t4",
+          "label": "Data loss prevention"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m12d1",
+          "text": "Stored data that is not actively moving across a network",
+          "expect": "m12t1"
+        },
+        {
+          "id": "m12d2",
+          "text": "Replaces sensitive values with non-sensitive tokens mapped in a protected system",
+          "expect": "m12t2"
+        },
+        {
+          "id": "m12d3",
+          "text": "Obscures sensitive fields while preserving a usable format",
+          "expect": "m12t3"
+        },
+        {
+          "id": "m12d4",
+          "text": "Detects or blocks unauthorized transfer of sensitive information",
+          "expect": "m12t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M12-Q007",
+      "module": "12",
+      "domain": "3.0",
+      "objective": "3.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.3",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 12 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m12s1",
+          "label": "Inventory and classify data"
+        },
+        {
+          "key": "m12s2",
+          "label": "Assign ownership and handling rules"
+        },
+        {
+          "key": "m12s3",
+          "label": "Apply protection throughout the lifecycle"
+        },
+        {
+          "key": "m12s4",
+          "label": "Monitor use and securely dispose of data"
+        }
+      ],
+      "answer": [
+        "m12s1",
+        "m12s2",
+        "m12s3",
+        "m12s4"
+      ],
+      "rationale": "The process begins with \"Inventory and classify data\" and ends with \"Monitor use and securely dispose of data.\""
+    },
+    {
+      "id": "SEC-M12-Q008",
+      "module": "12",
+      "domain": "3.0",
+      "objective": "3.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.3",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Data loss prevention is best described as: Detects or blocks unauthorized transfer of sensitive information.",
+      "answer": true,
+      "rationale": "True. Data loss prevention detects or blocks unauthorized transfer of sensitive information."
+    },
+    {
+      "id": "SEC-M13-Q001",
+      "module": "13",
+      "domain": "3.0",
+      "objective": "3.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.4",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Maximum acceptable time to restore a service after disruption?",
+      "options": [
+        "Recovery time objective",
+        "Recovery point objective",
+        "High availability",
+        "Geographic dispersion"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Recovery time objective maximum acceptable time to restore a service after disruption."
+    },
+    {
+      "id": "SEC-M13-Q002",
+      "module": "13",
+      "domain": "3.0",
+      "objective": "3.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.4",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "A business can tolerate losing no more than 15 minutes of transaction data after an outage. Which value is being defined?",
+      "options": [
+        "Recovery point objective",
+        "Recovery time objective",
+        "Mean time to repair",
+        "Service-level agreement"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "RPO defines the maximum acceptable data loss measured backward from the disruption."
+    },
+    {
+      "id": "SEC-M13-Q003",
+      "module": "13",
+      "domain": "3.0",
+      "objective": "3.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.4",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Maximum acceptable amount of data loss measured in time?",
+      "options": [
+        "High availability",
+        "Recovery time objective",
+        "Geographic dispersion",
+        "Recovery point objective"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Recovery point objective maximum acceptable amount of data loss measured in time."
+    },
+    {
+      "id": "SEC-M13-Q004",
+      "module": "13",
+      "domain": "3.0",
+      "objective": "3.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.4",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 13. Select ALL actions that support the security goal.",
+      "options": [
+        "Keep backups isolated from production credentials",
+        "Treat an untested backup as a proven recovery capability",
+        "Test restoration procedures regularly",
+        "Place all redundant systems in one failure zone",
+        "Remove single points of failure for critical services"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Keep backups isolated from production credentials; Test restoration procedures regularly; Remove single points of failure for critical services. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M13-Q005",
+      "module": "13",
+      "domain": "3.0",
+      "objective": "3.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.4",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 13 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Treat an untested backup as a proven recovery capability",
+        "Keep backups isolated from production credentials",
+        "Test restoration procedures regularly",
+        "Place all redundant systems in one failure zone",
+        "Remove single points of failure for critical services"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Treat an untested backup as a proven recovery capability; Place all redundant systems in one failure zone. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M13-Q006",
+      "module": "13",
+      "domain": "3.0",
+      "objective": "3.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.4",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 13 term to its description.",
+      "terms": [
+        {
+          "key": "m13t1",
+          "label": "Recovery time objective"
+        },
+        {
+          "key": "m13t2",
+          "label": "Recovery point objective"
+        },
+        {
+          "key": "m13t3",
+          "label": "High availability"
+        },
+        {
+          "key": "m13t4",
+          "label": "Geographic dispersion"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m13d1",
+          "text": "Maximum acceptable time to restore a service after disruption",
+          "expect": "m13t1"
+        },
+        {
+          "id": "m13d2",
+          "text": "Maximum acceptable amount of data loss measured in time",
+          "expect": "m13t2"
+        },
+        {
+          "id": "m13d3",
+          "text": "Design that minimizes service interruption through redundancy",
+          "expect": "m13t3"
+        },
+        {
+          "id": "m13d4",
+          "text": "Places resources in separate locations to reduce shared-failure risk",
+          "expect": "m13t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M13-Q007",
+      "module": "13",
+      "domain": "3.0",
+      "objective": "3.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.4",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 13 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m13s1",
+          "label": "Complete a business impact analysis"
+        },
+        {
+          "key": "m13s2",
+          "label": "Set recovery objectives"
+        },
+        {
+          "key": "m13s3",
+          "label": "Design and implement resilient controls"
+        },
+        {
+          "key": "m13s4",
+          "label": "Exercise recovery and improve the plan"
+        }
+      ],
+      "answer": [
+        "m13s1",
+        "m13s2",
+        "m13s3",
+        "m13s4"
+      ],
+      "rationale": "The process begins with \"Complete a business impact analysis\" and ends with \"Exercise recovery and improve the plan.\""
+    },
+    {
+      "id": "SEC-M13-Q008",
+      "module": "13",
+      "domain": "3.0",
+      "objective": "3.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 3.4",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Geographic dispersion is best described as: Places resources in separate locations to reduce shared-failure risk.",
+      "answer": true,
+      "rationale": "True. Geographic dispersion places resources in separate locations to reduce shared-failure risk."
+    },
+    {
+      "id": "SEC-M14-Q001",
+      "module": "14",
+      "domain": "4.0",
+      "objective": "4.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.1",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: An approved set of minimum configuration requirements?",
+      "options": [
+        "Secure baseline",
+        "Endpoint detection and response",
+        "Container image",
+        "Mobile device management"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Secure baseline an approved set of minimum configuration requirements."
+    },
+    {
+      "id": "SEC-M14-Q002",
+      "module": "14",
+      "domain": "4.0",
+      "objective": "4.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.1",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "A company wants to enforce screen locks, encryption, and remote wipe on corporate phones. Which control BEST meets the requirement?",
+      "options": [
+        "Mobile device management",
+        "Web application firewall",
+        "Network load balancer",
+        "Data warehouse"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "MDM centrally enforces device policy and supports actions such as remote lock or wipe."
+    },
+    {
+      "id": "SEC-M14-Q003",
+      "module": "14",
+      "domain": "4.0",
+      "objective": "4.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.1",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Monitors endpoint behavior and supports investigation and containment?",
+      "options": [
+        "Container image",
+        "Secure baseline",
+        "Mobile device management",
+        "Endpoint detection and response"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Endpoint detection and response monitors endpoint behavior and supports investigation and containment."
+    },
+    {
+      "id": "SEC-M14-Q004",
+      "module": "14",
+      "domain": "4.0",
+      "objective": "4.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.1",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 14. Select ALL actions that support the security goal.",
+      "options": [
+        "Remove unnecessary services from system images",
+        "Run all containers with privileged access",
+        "Scan container images before deployment",
+        "Allow unmanaged devices to access sensitive resources",
+        "Use centrally managed endpoint protection"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Remove unnecessary services from system images; Scan container images before deployment; Use centrally managed endpoint protection. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M14-Q005",
+      "module": "14",
+      "domain": "4.0",
+      "objective": "4.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.1",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 14 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Run all containers with privileged access",
+        "Remove unnecessary services from system images",
+        "Scan container images before deployment",
+        "Allow unmanaged devices to access sensitive resources",
+        "Use centrally managed endpoint protection"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Run all containers with privileged access; Allow unmanaged devices to access sensitive resources. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M14-Q006",
+      "module": "14",
+      "domain": "4.0",
+      "objective": "4.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.1",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 14 term to its description.",
+      "terms": [
+        {
+          "key": "m14t1",
+          "label": "Secure baseline"
+        },
+        {
+          "key": "m14t2",
+          "label": "Endpoint detection and response"
+        },
+        {
+          "key": "m14t3",
+          "label": "Container image"
+        },
+        {
+          "key": "m14t4",
+          "label": "Mobile device management"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m14d1",
+          "text": "An approved set of minimum configuration requirements",
+          "expect": "m14t1"
+        },
+        {
+          "id": "m14d2",
+          "text": "Monitors endpoint behavior and supports investigation and containment",
+          "expect": "m14t2"
+        },
+        {
+          "id": "m14d3",
+          "text": "A packaged template whose provenance and vulnerabilities should be verified",
+          "expect": "m14t3"
+        },
+        {
+          "id": "m14d4",
+          "text": "Centrally applies policy and controls to enrolled mobile devices",
+          "expect": "m14t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M14-Q007",
+      "module": "14",
+      "domain": "4.0",
+      "objective": "4.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.1",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 14 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m14s1",
+          "label": "Establish a secure baseline"
+        },
+        {
+          "key": "m14s2",
+          "label": "Deploy hardened configurations"
+        },
+        {
+          "key": "m14s3",
+          "label": "Monitor for drift and threats"
+        },
+        {
+          "key": "m14s4",
+          "label": "Patch or isolate noncompliant resources"
+        }
+      ],
+      "answer": [
+        "m14s1",
+        "m14s2",
+        "m14s3",
+        "m14s4"
+      ],
+      "rationale": "The process begins with \"Establish a secure baseline\" and ends with \"Patch or isolate noncompliant resources.\""
+    },
+    {
+      "id": "SEC-M14-Q008",
+      "module": "14",
+      "domain": "4.0",
+      "objective": "4.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.1",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Mobile device management is best described as: Centrally applies policy and controls to enrolled mobile devices.",
+      "answer": true,
+      "rationale": "True. Mobile device management centrally applies policy and controls to enrolled mobile devices."
+    },
+    {
+      "id": "SEC-M15-Q001",
+      "module": "15",
+      "domain": "4.0",
+      "objective": "4.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.2",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Authoritative record of assets and relevant attributes?",
+      "options": [
+        "Asset inventory",
+        "Data owner",
+        "Sanitization",
+        "End of life"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Asset inventory authoritative record of assets and relevant attributes."
+    },
+    {
+      "id": "SEC-M15-Q002",
+      "module": "15",
+      "domain": "4.0",
+      "objective": "4.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.2",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "A leased storage array is being returned to its vendor. What should occur BEFORE the equipment leaves company control?",
+      "options": [
+        "Verify approved media sanitization",
+        "Remove the asset tag only",
+        "Delete visible folders",
+        "Disable monitoring alerts"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Approved and verified sanitization protects residual data before custody changes."
+    },
+    {
+      "id": "SEC-M15-Q003",
+      "module": "15",
+      "domain": "4.0",
+      "objective": "4.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.2",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Role accountable for classification and access decisions?",
+      "options": [
+        "Sanitization",
+        "Asset inventory",
+        "End of life",
+        "Data owner"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Data owner role accountable for classification and access decisions."
+    },
+    {
+      "id": "SEC-M15-Q004",
+      "module": "15",
+      "domain": "4.0",
+      "objective": "4.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.2",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 15. Select ALL actions that support the security goal.",
+      "options": [
+        "Record asset ownership and location",
+        "Keep unsupported systems hidden from the inventory",
+        "Track software licenses and versions",
+        "Assume deleting files sanitizes storage media",
+        "Verify sanitization or destruction at disposal"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Record asset ownership and location; Track software licenses and versions; Verify sanitization or destruction at disposal. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M15-Q005",
+      "module": "15",
+      "domain": "4.0",
+      "objective": "4.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.2",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 15 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Keep unsupported systems hidden from the inventory",
+        "Record asset ownership and location",
+        "Track software licenses and versions",
+        "Assume deleting files sanitizes storage media",
+        "Verify sanitization or destruction at disposal"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Keep unsupported systems hidden from the inventory; Assume deleting files sanitizes storage media. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M15-Q006",
+      "module": "15",
+      "domain": "4.0",
+      "objective": "4.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.2",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 15 term to its description.",
+      "terms": [
+        {
+          "key": "m15t1",
+          "label": "Asset inventory"
+        },
+        {
+          "key": "m15t2",
+          "label": "Data owner"
+        },
+        {
+          "key": "m15t3",
+          "label": "Sanitization"
+        },
+        {
+          "key": "m15t4",
+          "label": "End of life"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m15d1",
+          "text": "Authoritative record of assets and relevant attributes",
+          "expect": "m15t1"
+        },
+        {
+          "id": "m15d2",
+          "text": "Role accountable for classification and access decisions",
+          "expect": "m15t2"
+        },
+        {
+          "id": "m15d3",
+          "text": "Removes data so it cannot be recovered using a defined method",
+          "expect": "m15t3"
+        },
+        {
+          "id": "m15d4",
+          "text": "Point when a product no longer receives normal vendor support",
+          "expect": "m15t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M15-Q007",
+      "module": "15",
+      "domain": "4.0",
+      "objective": "4.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.2",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 15 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m15s1",
+          "label": "Acquire and register the asset"
+        },
+        {
+          "key": "m15s2",
+          "label": "Assign ownership and classification"
+        },
+        {
+          "key": "m15s3",
+          "label": "Monitor use and lifecycle status"
+        },
+        {
+          "key": "m15s4",
+          "label": "Sanitize and document disposal"
+        }
+      ],
+      "answer": [
+        "m15s1",
+        "m15s2",
+        "m15s3",
+        "m15s4"
+      ],
+      "rationale": "The process begins with \"Acquire and register the asset\" and ends with \"Sanitize and document disposal.\""
+    },
+    {
+      "id": "SEC-M15-Q008",
+      "module": "15",
+      "domain": "4.0",
+      "objective": "4.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.2",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "End of life is best described as: Point when a product no longer receives normal vendor support.",
+      "answer": true,
+      "rationale": "True. End of life point when a product no longer receives normal vendor support."
+    },
+    {
+      "id": "SEC-M16-Q001",
+      "module": "16",
+      "domain": "4.0",
+      "objective": "4.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.3",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Authenticates to a host for deeper configuration and patch assessment?",
+      "options": [
+        "Credentialed scan",
+        "False positive",
+        "Compensating control",
+        "Risk-based prioritization"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Credentialed scan authenticates to a host for deeper configuration and patch assessment."
+    },
+    {
+      "id": "SEC-M16-Q002",
+      "module": "16",
+      "domain": "4.0",
+      "objective": "4.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.3",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "Two systems have the same critical CVSS score. One is internet-facing and actively exploited; the other is isolated in a lab. Which should be remediated first?",
+      "options": [
+        "The internet-facing, actively exploited system",
+        "The isolated lab system",
+        "Whichever scan completed first",
+        "Both must always have identical priority"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Risk-based prioritization considers exposure, active exploitation, and business context in addition to base severity."
+    },
+    {
+      "id": "SEC-M16-Q003",
+      "module": "16",
+      "domain": "4.0",
+      "objective": "4.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.3",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Reported vulnerability that is not actually present or exploitable?",
+      "options": [
+        "Compensating control",
+        "Credentialed scan",
+        "Risk-based prioritization",
+        "False positive"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "False positive reported vulnerability that is not actually present or exploitable."
+    },
+    {
+      "id": "SEC-M16-Q004",
+      "module": "16",
+      "domain": "4.0",
+      "objective": "4.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.3",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 16. Select ALL actions that support the security goal.",
+      "options": [
+        "Validate high-impact findings",
+        "Treat every scanner finding as equally urgent",
+        "Prioritize using asset and threat context",
+        "Close a finding without verification",
+        "Rescan after remediation"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Validate high-impact findings; Prioritize using asset and threat context; Rescan after remediation. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M16-Q005",
+      "module": "16",
+      "domain": "4.0",
+      "objective": "4.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.3",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 16 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Treat every scanner finding as equally urgent",
+        "Validate high-impact findings",
+        "Prioritize using asset and threat context",
+        "Close a finding without verification",
+        "Rescan after remediation"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Treat every scanner finding as equally urgent; Close a finding without verification. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M16-Q006",
+      "module": "16",
+      "domain": "4.0",
+      "objective": "4.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.3",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 16 term to its description.",
+      "terms": [
+        {
+          "key": "m16t1",
+          "label": "Credentialed scan"
+        },
+        {
+          "key": "m16t2",
+          "label": "False positive"
+        },
+        {
+          "key": "m16t3",
+          "label": "Compensating control"
+        },
+        {
+          "key": "m16t4",
+          "label": "Risk-based prioritization"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m16d1",
+          "text": "Authenticates to a host for deeper configuration and patch assessment",
+          "expect": "m16t1"
+        },
+        {
+          "id": "m16d2",
+          "text": "Reported vulnerability that is not actually present or exploitable",
+          "expect": "m16t2"
+        },
+        {
+          "id": "m16d3",
+          "text": "Alternate safeguard used when direct remediation is not feasible",
+          "expect": "m16t3"
+        },
+        {
+          "id": "m16d4",
+          "text": "Ranks findings using severity, exposure, exploitability, and asset value",
+          "expect": "m16t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M16-Q007",
+      "module": "16",
+      "domain": "4.0",
+      "objective": "4.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.3",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 16 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m16s1",
+          "label": "Discover vulnerabilities"
+        },
+        {
+          "key": "m16s2",
+          "label": "Analyze and prioritize findings"
+        },
+        {
+          "key": "m16s3",
+          "label": "Remediate or formally treat risk"
+        },
+        {
+          "key": "m16s4",
+          "label": "Verify closure and report status"
+        }
+      ],
+      "answer": [
+        "m16s1",
+        "m16s2",
+        "m16s3",
+        "m16s4"
+      ],
+      "rationale": "The process begins with \"Discover vulnerabilities\" and ends with \"Verify closure and report status.\""
+    },
+    {
+      "id": "SEC-M16-Q008",
+      "module": "16",
+      "domain": "4.0",
+      "objective": "4.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.3",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Risk-based prioritization is best described as: Ranks findings using severity, exposure, exploitability, and asset value.",
+      "answer": true,
+      "rationale": "True. Risk-based prioritization ranks findings using severity, exposure, exploitability, and asset value."
+    },
+    {
+      "id": "SEC-M17-Q001",
+      "module": "17",
+      "domain": "4.0",
+      "objective": "4.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.4",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Centralizes and correlates logs to support detection and investigation?",
+      "options": [
+        "SIEM",
+        "NetFlow",
+        "Packet capture",
+        "Alert tuning"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "SIEM centralizes and correlates logs to support detection and investigation."
+    },
+    {
+      "id": "SEC-M17-Q002",
+      "module": "17",
+      "domain": "4.0",
+      "objective": "4.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.4",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "An analyst needs to identify which internal hosts communicated with a suspicious IP during the last hour without inspecting payload content. Which source is MOST efficient?",
+      "options": [
+        "NetFlow records",
+        "Printed access policy",
+        "Full-disk image",
+        "Password history"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Flow records efficiently summarize endpoints, ports, protocols, volume, and timing."
+    },
+    {
+      "id": "SEC-M17-Q003",
+      "module": "17",
+      "domain": "4.0",
+      "objective": "4.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.4",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Summarizes network conversations without recording full packet payloads?",
+      "options": [
+        "Packet capture",
+        "SIEM",
+        "Alert tuning",
+        "NetFlow"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "NetFlow summarizes network conversations without recording full packet payloads."
+    },
+    {
+      "id": "SEC-M17-Q004",
+      "module": "17",
+      "domain": "4.0",
+      "objective": "4.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.4",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 17. Select ALL actions that support the security goal.",
+      "options": [
+        "Synchronize system clocks",
+        "Disable noisy alerts without investigating their cause",
+        "Centralize high-value logs",
+        "Collect logs without retention or review requirements",
+        "Tune detections using documented baselines"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Synchronize system clocks; Centralize high-value logs; Tune detections using documented baselines. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M17-Q005",
+      "module": "17",
+      "domain": "4.0",
+      "objective": "4.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.4",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 17 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Disable noisy alerts without investigating their cause",
+        "Synchronize system clocks",
+        "Centralize high-value logs",
+        "Collect logs without retention or review requirements",
+        "Tune detections using documented baselines"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Disable noisy alerts without investigating their cause; Collect logs without retention or review requirements. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M17-Q006",
+      "module": "17",
+      "domain": "4.0",
+      "objective": "4.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.4",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 17 term to its description.",
+      "terms": [
+        {
+          "key": "m17t1",
+          "label": "SIEM"
+        },
+        {
+          "key": "m17t2",
+          "label": "NetFlow"
+        },
+        {
+          "key": "m17t3",
+          "label": "Packet capture"
+        },
+        {
+          "key": "m17t4",
+          "label": "Alert tuning"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m17d1",
+          "text": "Centralizes and correlates logs to support detection and investigation",
+          "expect": "m17t1"
+        },
+        {
+          "id": "m17d2",
+          "text": "Summarizes network conversations without recording full packet payloads",
+          "expect": "m17t2"
+        },
+        {
+          "id": "m17d3",
+          "text": "Records packet headers and payloads for detailed network analysis",
+          "expect": "m17t3"
+        },
+        {
+          "id": "m17d4",
+          "text": "Adjusts detection logic to reduce noise while preserving useful coverage",
+          "expect": "m17t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M17-Q007",
+      "module": "17",
+      "domain": "4.0",
+      "objective": "4.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.4",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 17 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m17s1",
+          "label": "Identify monitoring requirements"
+        },
+        {
+          "key": "m17s2",
+          "label": "Collect and normalize telemetry"
+        },
+        {
+          "key": "m17s3",
+          "label": "Correlate and triage alerts"
+        },
+        {
+          "key": "m17s4",
+          "label": "Tune detections and measure results"
+        }
+      ],
+      "answer": [
+        "m17s1",
+        "m17s2",
+        "m17s3",
+        "m17s4"
+      ],
+      "rationale": "The process begins with \"Identify monitoring requirements\" and ends with \"Tune detections and measure results.\""
+    },
+    {
+      "id": "SEC-M17-Q008",
+      "module": "17",
+      "domain": "4.0",
+      "objective": "4.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.4",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Alert tuning is best described as: Adjusts detection logic to reduce noise while preserving useful coverage.",
+      "answer": true,
+      "rationale": "True. Alert tuning adjusts detection logic to reduce noise while preserving useful coverage."
+    },
+    {
+      "id": "SEC-M18-Q001",
+      "module": "18",
+      "domain": "4.0",
+      "objective": "4.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.5",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Detects and can automatically block suspicious network activity?",
+      "options": [
+        "Intrusion prevention system",
+        "DNS filtering",
+        "Network access control",
+        "Web application firewall"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Intrusion prevention system detects and can automatically block suspicious network activity."
+    },
+    {
+      "id": "SEC-M18-Q002",
+      "module": "18",
+      "domain": "4.0",
+      "objective": "4.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.5",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "Users are being redirected to newly registered phishing domains. Which control can block access before a browser obtains the destination IP address?",
+      "options": [
+        "DNS filtering",
+        "Full-disk encryption",
+        "File integrity monitoring",
+        "Database replication"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "DNS filtering can prevent resolution of malicious or disallowed domain names."
+    },
+    {
+      "id": "SEC-M18-Q003",
+      "module": "18",
+      "domain": "4.0",
+      "objective": "4.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.5",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Blocks resolution of known malicious or disallowed domains?",
+      "options": [
+        "Network access control",
+        "Intrusion prevention system",
+        "Web application firewall",
+        "DNS filtering"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "DNS filtering blocks resolution of known malicious or disallowed domains."
+    },
+    {
+      "id": "SEC-M18-Q004",
+      "module": "18",
+      "domain": "4.0",
+      "objective": "4.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.5",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 18. Select ALL actions that support the security goal.",
+      "options": [
+        "Test security rules before broad deployment",
+        "Deploy broad blocking rules without an exception plan",
+        "Use deny rules narrowly enough to avoid unnecessary outages",
+        "Leave temporary firewall rules in place indefinitely",
+        "Review control logs after changes"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Test security rules before broad deployment; Use deny rules narrowly enough to avoid unnecessary outages; Review control logs after changes. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M18-Q005",
+      "module": "18",
+      "domain": "4.0",
+      "objective": "4.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.5",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 18 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Deploy broad blocking rules without an exception plan",
+        "Test security rules before broad deployment",
+        "Use deny rules narrowly enough to avoid unnecessary outages",
+        "Leave temporary firewall rules in place indefinitely",
+        "Review control logs after changes"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Deploy broad blocking rules without an exception plan; Leave temporary firewall rules in place indefinitely. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M18-Q006",
+      "module": "18",
+      "domain": "4.0",
+      "objective": "4.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.5",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 18 term to its description.",
+      "terms": [
+        {
+          "key": "m18t1",
+          "label": "Intrusion prevention system"
+        },
+        {
+          "key": "m18t2",
+          "label": "DNS filtering"
+        },
+        {
+          "key": "m18t3",
+          "label": "Network access control"
+        },
+        {
+          "key": "m18t4",
+          "label": "Web application firewall"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m18d1",
+          "text": "Detects and can automatically block suspicious network activity",
+          "expect": "m18t1"
+        },
+        {
+          "id": "m18d2",
+          "text": "Blocks resolution of known malicious or disallowed domains",
+          "expect": "m18t2"
+        },
+        {
+          "id": "m18d3",
+          "text": "Restricts network admission using identity or device posture",
+          "expect": "m18t3"
+        },
+        {
+          "id": "m18d4",
+          "text": "Filters HTTP traffic to protect web applications",
+          "expect": "m18t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M18-Q007",
+      "module": "18",
+      "domain": "4.0",
+      "objective": "4.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.5",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 18 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m18s1",
+          "label": "Define the threat or control gap"
+        },
+        {
+          "key": "m18s2",
+          "label": "Select and stage the capability change"
+        },
+        {
+          "key": "m18s3",
+          "label": "Test and deploy with approval"
+        },
+        {
+          "key": "m18s4",
+          "label": "Monitor impact and tune the control"
+        }
+      ],
+      "answer": [
+        "m18s1",
+        "m18s2",
+        "m18s3",
+        "m18s4"
+      ],
+      "rationale": "The process begins with \"Define the threat or control gap\" and ends with \"Monitor impact and tune the control.\""
+    },
+    {
+      "id": "SEC-M18-Q008",
+      "module": "18",
+      "domain": "4.0",
+      "objective": "4.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.5",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Web application firewall is best described as: Filters HTTP traffic to protect web applications.",
+      "answer": true,
+      "rationale": "True. Web application firewall filters HTTP traffic to protect web applications."
+    },
+    {
+      "id": "SEC-M19-Q001",
+      "module": "19",
+      "domain": "4.0",
+      "objective": "4.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.6",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Uses trust between identity domains to enable access across organizations or services?",
+      "options": [
+        "Federation",
+        "Single sign-on",
+        "Role-based access control",
+        "Just-in-time access"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Federation uses trust between identity domains to enable access across organizations or services."
+    },
+    {
+      "id": "SEC-M19-Q002",
+      "module": "19",
+      "domain": "4.0",
+      "objective": "4.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.6",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "A cloud administrator receives elevated permissions only after approval, and the permissions expire after one hour. Which approach is being used?",
+      "options": [
+        "Just-in-time access",
+        "Shared accounts",
+        "Implicit deny bypass",
+        "Password spraying"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "JIT access limits standing privilege by granting elevation only for an approved time window."
+    },
+    {
+      "id": "SEC-M19-Q003",
+      "module": "19",
+      "domain": "4.0",
+      "objective": "4.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.6",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Allows one authenticated session to access multiple authorized services?",
+      "options": [
+        "Role-based access control",
+        "Federation",
+        "Just-in-time access",
+        "Single sign-on"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Single sign-on allows one authenticated session to access multiple authorized services."
+    },
+    {
+      "id": "SEC-M19-Q004",
+      "module": "19",
+      "domain": "4.0",
+      "objective": "4.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.6",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 19. Select ALL actions that support the security goal.",
+      "options": [
+        "Use MFA for privileged and remote access",
+        "Use shared administrator accounts",
+        "Review access after role changes",
+        "Grant permanent privilege for occasional tasks",
+        "Disable accounts promptly when employment ends"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Use MFA for privileged and remote access; Review access after role changes; Disable accounts promptly when employment ends. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M19-Q005",
+      "module": "19",
+      "domain": "4.0",
+      "objective": "4.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.6",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 19 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Use shared administrator accounts",
+        "Use MFA for privileged and remote access",
+        "Review access after role changes",
+        "Grant permanent privilege for occasional tasks",
+        "Disable accounts promptly when employment ends"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Use shared administrator accounts; Grant permanent privilege for occasional tasks. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M19-Q006",
+      "module": "19",
+      "domain": "4.0",
+      "objective": "4.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.6",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 19 term to its description.",
+      "terms": [
+        {
+          "key": "m19t1",
+          "label": "Federation"
+        },
+        {
+          "key": "m19t2",
+          "label": "Single sign-on"
+        },
+        {
+          "key": "m19t3",
+          "label": "Role-based access control"
+        },
+        {
+          "key": "m19t4",
+          "label": "Just-in-time access"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m19d1",
+          "text": "Uses trust between identity domains to enable access across organizations or services",
+          "expect": "m19t1"
+        },
+        {
+          "id": "m19d2",
+          "text": "Allows one authenticated session to access multiple authorized services",
+          "expect": "m19t2"
+        },
+        {
+          "id": "m19d3",
+          "text": "Assigns permissions according to job roles",
+          "expect": "m19t3"
+        },
+        {
+          "id": "m19d4",
+          "text": "Grants privileged access only when needed and for a limited duration",
+          "expect": "m19t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M19-Q007",
+      "module": "19",
+      "domain": "4.0",
+      "objective": "4.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.6",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 19 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m19s1",
+          "label": "Proof and create the identity"
+        },
+        {
+          "key": "m19s2",
+          "label": "Assign least-privilege access"
+        },
+        {
+          "key": "m19s3",
+          "label": "Review and adjust entitlements"
+        },
+        {
+          "key": "m19s4",
+          "label": "Disable and archive the account when no longer needed"
+        }
+      ],
+      "answer": [
+        "m19s1",
+        "m19s2",
+        "m19s3",
+        "m19s4"
+      ],
+      "rationale": "The process begins with \"Proof and create the identity\" and ends with \"Disable and archive the account when no longer needed.\""
+    },
+    {
+      "id": "SEC-M19-Q008",
+      "module": "19",
+      "domain": "4.0",
+      "objective": "4.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.6",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Just-in-time access is best described as: Grants privileged access only when needed and for a limited duration.",
+      "answer": true,
+      "rationale": "True. Just-in-time access grants privileged access only when needed and for a limited duration."
+    },
+    {
+      "id": "SEC-M20-Q001",
+      "module": "20",
+      "domain": "4.0",
+      "objective": "4.7",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.7",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Uses technology to perform a task with limited manual effort?",
+      "options": [
+        "Automation",
+        "Orchestration",
+        "Infrastructure as code",
+        "Runbook"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Automation uses technology to perform a task with limited manual effort."
+    },
+    {
+      "id": "SEC-M20-Q002",
+      "module": "20",
+      "domain": "4.0",
+      "objective": "4.7",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.7",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "A phishing alert automatically enriches an IP, disables a compromised account, isolates a host, and opens a ticket. What BEST describes this capability?",
+      "options": [
+        "Security orchestration",
+        "Manual change control",
+        "Data minimization",
+        "Cold-site recovery"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Orchestration coordinates several automated tools and tasks into one response workflow."
+    },
+    {
+      "id": "SEC-M20-Q003",
+      "module": "20",
+      "domain": "4.0",
+      "objective": "4.7",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.7",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Coordinates multiple automated tasks into an end-to-end workflow?",
+      "options": [
+        "Infrastructure as code",
+        "Automation",
+        "Runbook",
+        "Orchestration"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Orchestration coordinates multiple automated tasks into an end-to-end workflow."
+    },
+    {
+      "id": "SEC-M20-Q004",
+      "module": "20",
+      "domain": "4.0",
+      "objective": "4.7",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.7",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 20. Select ALL actions that support the security goal.",
+      "options": [
+        "Test automation with limited scope",
+        "Give automation unrestricted credentials",
+        "Use approvals for high-impact actions",
+        "Deploy untested response actions directly to production",
+        "Version and review scripts and playbooks"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Test automation with limited scope; Use approvals for high-impact actions; Version and review scripts and playbooks. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M20-Q005",
+      "module": "20",
+      "domain": "4.0",
+      "objective": "4.7",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.7",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 20 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Give automation unrestricted credentials",
+        "Test automation with limited scope",
+        "Use approvals for high-impact actions",
+        "Deploy untested response actions directly to production",
+        "Version and review scripts and playbooks"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Give automation unrestricted credentials; Deploy untested response actions directly to production. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M20-Q006",
+      "module": "20",
+      "domain": "4.0",
+      "objective": "4.7",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.7",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 20 term to its description.",
+      "terms": [
+        {
+          "key": "m20t1",
+          "label": "Automation"
+        },
+        {
+          "key": "m20t2",
+          "label": "Orchestration"
+        },
+        {
+          "key": "m20t3",
+          "label": "Infrastructure as code"
+        },
+        {
+          "key": "m20t4",
+          "label": "Runbook"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m20d1",
+          "text": "Uses technology to perform a task with limited manual effort",
+          "expect": "m20t1"
+        },
+        {
+          "id": "m20d2",
+          "text": "Coordinates multiple automated tasks into an end-to-end workflow",
+          "expect": "m20t2"
+        },
+        {
+          "id": "m20d3",
+          "text": "Defines infrastructure in version-controlled machine-readable files",
+          "expect": "m20t3"
+        },
+        {
+          "id": "m20d4",
+          "text": "Documents repeatable steps for an operational or response process",
+          "expect": "m20t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M20-Q007",
+      "module": "20",
+      "domain": "4.0",
+      "objective": "4.7",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.7",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 20 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m20s1",
+          "label": "Define the repeatable process"
+        },
+        {
+          "key": "m20s2",
+          "label": "Build and test the workflow"
+        },
+        {
+          "key": "m20s3",
+          "label": "Deploy with safeguards and approvals"
+        },
+        {
+          "key": "m20s4",
+          "label": "Monitor outcomes and refine logic"
+        }
+      ],
+      "answer": [
+        "m20s1",
+        "m20s2",
+        "m20s3",
+        "m20s4"
+      ],
+      "rationale": "The process begins with \"Define the repeatable process\" and ends with \"Monitor outcomes and refine logic.\""
+    },
+    {
+      "id": "SEC-M20-Q008",
+      "module": "20",
+      "domain": "4.0",
+      "objective": "4.7",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.7",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Runbook is best described as: Documents repeatable steps for an operational or response process.",
+      "answer": true,
+      "rationale": "True. Runbook documents repeatable steps for an operational or response process."
+    },
+    {
+      "id": "SEC-M21-Q001",
+      "module": "21",
+      "domain": "4.0",
+      "objective": "4.8",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.8",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Limits the spread or impact of an active incident?",
+      "options": [
+        "Containment",
+        "Eradication",
+        "Recovery",
+        "Chain of custody"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Containment limits the spread or impact of an active incident."
+    },
+    {
+      "id": "SEC-M21-Q002",
+      "module": "21",
+      "domain": "4.0",
+      "objective": "4.8",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.8",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "An infected endpoint is disconnected from production but kept powered on for volatile evidence collection. Which response phase is primarily occurring?",
+      "options": [
+        "Containment",
+        "Recovery",
+        "Lessons learned",
+        "Preparation"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Isolating the endpoint limits spread while preserving the system for investigation."
+    },
+    {
+      "id": "SEC-M21-Q003",
+      "module": "21",
+      "domain": "4.0",
+      "objective": "4.8",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.8",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Removes the root cause and malicious artifacts?",
+      "options": [
+        "Recovery",
+        "Containment",
+        "Chain of custody",
+        "Eradication"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Eradication removes the root cause and malicious artifacts."
+    },
+    {
+      "id": "SEC-M21-Q004",
+      "module": "21",
+      "domain": "4.0",
+      "objective": "4.8",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.8",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 21. Select ALL actions that support the security goal.",
+      "options": [
+        "Follow documented communication paths",
+        "Erase an affected host before required evidence is collected",
+        "Preserve evidence with chain-of-custody records",
+        "Let unapproved staff communicate publicly about the incident",
+        "Conduct lessons learned after recovery"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Follow documented communication paths; Preserve evidence with chain-of-custody records; Conduct lessons learned after recovery. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M21-Q005",
+      "module": "21",
+      "domain": "4.0",
+      "objective": "4.8",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.8",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 21 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Erase an affected host before required evidence is collected",
+        "Follow documented communication paths",
+        "Preserve evidence with chain-of-custody records",
+        "Let unapproved staff communicate publicly about the incident",
+        "Conduct lessons learned after recovery"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Erase an affected host before required evidence is collected; Let unapproved staff communicate publicly about the incident. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M21-Q006",
+      "module": "21",
+      "domain": "4.0",
+      "objective": "4.8",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.8",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 21 term to its description.",
+      "terms": [
+        {
+          "key": "m21t1",
+          "label": "Containment"
+        },
+        {
+          "key": "m21t2",
+          "label": "Eradication"
+        },
+        {
+          "key": "m21t3",
+          "label": "Recovery"
+        },
+        {
+          "key": "m21t4",
+          "label": "Chain of custody"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m21d1",
+          "text": "Limits the spread or impact of an active incident",
+          "expect": "m21t1"
+        },
+        {
+          "id": "m21d2",
+          "text": "Removes the root cause and malicious artifacts",
+          "expect": "m21t2"
+        },
+        {
+          "id": "m21d3",
+          "text": "Restores systems to normal operation and watches for recurrence",
+          "expect": "m21t3"
+        },
+        {
+          "id": "m21d4",
+          "text": "Documents evidence handling and possession from collection onward",
+          "expect": "m21t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M21-Q007",
+      "module": "21",
+      "domain": "4.0",
+      "objective": "4.8",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.8",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 21 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m21s1",
+          "label": "Prepare response capabilities"
+        },
+        {
+          "key": "m21s2",
+          "label": "Detect and analyze the incident"
+        },
+        {
+          "key": "m21s3",
+          "label": "Contain, eradicate, and recover"
+        },
+        {
+          "key": "m21s4",
+          "label": "Document lessons and improve controls"
+        }
+      ],
+      "answer": [
+        "m21s1",
+        "m21s2",
+        "m21s3",
+        "m21s4"
+      ],
+      "rationale": "The process begins with \"Prepare response capabilities\" and ends with \"Document lessons and improve controls.\""
+    },
+    {
+      "id": "SEC-M21-Q008",
+      "module": "21",
+      "domain": "4.0",
+      "objective": "4.8",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.8",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Chain of custody is best described as: Documents evidence handling and possession from collection onward.",
+      "answer": true,
+      "rationale": "True. Chain of custody documents evidence handling and possession from collection onward."
+    },
+    {
+      "id": "SEC-M22-Q001",
+      "module": "22",
+      "domain": "4.0",
+      "objective": "4.9",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.9",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Records sign-in attempts and related identity events?",
+      "options": [
+        "Authentication log",
+        "DNS log",
+        "Endpoint telemetry",
+        "Metadata"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Authentication log records sign-in attempts and related identity events."
+    },
+    {
+      "id": "SEC-M22-Q002",
+      "module": "22",
+      "domain": "4.0",
+      "objective": "4.9",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.9",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "An analyst is tracing a suspicious PowerShell process to the account that launched it and the file it downloaded. Which source is MOST useful?",
+      "options": [
+        "Endpoint telemetry",
+        "Building access policy",
+        "Printer inventory",
+        "Backup retention schedule"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Endpoint telemetry connects process creation, user context, command lines, and file activity."
+    },
+    {
+      "id": "SEC-M22-Q003",
+      "module": "22",
+      "domain": "4.0",
+      "objective": "4.9",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.9",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Records name-resolution queries and responses?",
+      "options": [
+        "Endpoint telemetry",
+        "Authentication log",
+        "Metadata",
+        "DNS log"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "DNS log records name-resolution queries and responses."
+    },
+    {
+      "id": "SEC-M22-Q004",
+      "module": "22",
+      "domain": "4.0",
+      "objective": "4.9",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.9",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 22. Select ALL actions that support the security goal.",
+      "options": [
+        "Normalize timestamps before building a timeline",
+        "Rely on a single alert as complete proof",
+        "Correlate multiple independent sources",
+        "Change evidence files during analysis without recording it",
+        "Preserve original evidence integrity"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Normalize timestamps before building a timeline; Correlate multiple independent sources; Preserve original evidence integrity. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M22-Q005",
+      "module": "22",
+      "domain": "4.0",
+      "objective": "4.9",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.9",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 22 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Rely on a single alert as complete proof",
+        "Normalize timestamps before building a timeline",
+        "Correlate multiple independent sources",
+        "Change evidence files during analysis without recording it",
+        "Preserve original evidence integrity"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Rely on a single alert as complete proof; Change evidence files during analysis without recording it. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M22-Q006",
+      "module": "22",
+      "domain": "4.0",
+      "objective": "4.9",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.9",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 22 term to its description.",
+      "terms": [
+        {
+          "key": "m22t1",
+          "label": "Authentication log"
+        },
+        {
+          "key": "m22t2",
+          "label": "DNS log"
+        },
+        {
+          "key": "m22t3",
+          "label": "Endpoint telemetry"
+        },
+        {
+          "key": "m22t4",
+          "label": "Metadata"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m22d1",
+          "text": "Records sign-in attempts and related identity events",
+          "expect": "m22t1"
+        },
+        {
+          "id": "m22d2",
+          "text": "Records name-resolution queries and responses",
+          "expect": "m22t2"
+        },
+        {
+          "id": "m22d3",
+          "text": "Captures process, file, registry, and host activity",
+          "expect": "m22t3"
+        },
+        {
+          "id": "m22d4",
+          "text": "Describes attributes such as timestamps, ownership, or message headers",
+          "expect": "m22t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M22-Q007",
+      "module": "22",
+      "domain": "4.0",
+      "objective": "4.9",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.9",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 22 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m22s1",
+          "label": "Define the investigative question"
+        },
+        {
+          "key": "m22s2",
+          "label": "Collect relevant data sources"
+        },
+        {
+          "key": "m22s3",
+          "label": "Normalize and correlate the evidence"
+        },
+        {
+          "key": "m22s4",
+          "label": "Document findings and preserve evidence"
+        }
+      ],
+      "answer": [
+        "m22s1",
+        "m22s2",
+        "m22s3",
+        "m22s4"
+      ],
+      "rationale": "The process begins with \"Define the investigative question\" and ends with \"Document findings and preserve evidence.\""
+    },
+    {
+      "id": "SEC-M22-Q008",
+      "module": "22",
+      "domain": "4.0",
+      "objective": "4.9",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 4.9",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Metadata is best described as: Describes attributes such as timestamps, ownership, or message headers.",
+      "answer": true,
+      "rationale": "True. Metadata describes attributes such as timestamps, ownership, or message headers."
+    },
+    {
+      "id": "SEC-M23-Q001",
+      "module": "23",
+      "domain": "5.0",
+      "objective": "5.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.1",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: High-level statement of management intent and required direction?",
+      "options": [
+        "Policy",
+        "Standard",
+        "Procedure",
+        "Guideline"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Policy high-level statement of management intent and required direction."
+    },
+    {
+      "id": "SEC-M23-Q002",
+      "module": "23",
+      "domain": "5.0",
+      "objective": "5.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.1",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "A document requires all company laptops to use AES-256 full-disk encryption. What type of governance document is this MOST likely to be?",
+      "options": [
+        "Standard",
+        "Guideline",
+        "Procedure",
+        "Risk register"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "A standard states a specific mandatory requirement that supports broader policy."
+    },
+    {
+      "id": "SEC-M23-Q003",
+      "module": "23",
+      "domain": "5.0",
+      "objective": "5.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.1",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Mandatory requirement that supports a policy?",
+      "options": [
+        "Procedure",
+        "Policy",
+        "Guideline",
+        "Standard"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Standard mandatory requirement that supports a policy."
+    },
+    {
+      "id": "SEC-M23-Q004",
+      "module": "23",
+      "domain": "5.0",
+      "objective": "5.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.1",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 23. Select ALL actions that support the security goal.",
+      "options": [
+        "Assign policy ownership",
+        "Approve policy exceptions verbally with no expiration",
+        "Review governance documents on a schedule",
+        "Publish requirements without assigning accountability",
+        "Use a documented exception process"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Assign policy ownership; Review governance documents on a schedule; Use a documented exception process. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M23-Q005",
+      "module": "23",
+      "domain": "5.0",
+      "objective": "5.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.1",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 23 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Approve policy exceptions verbally with no expiration",
+        "Assign policy ownership",
+        "Review governance documents on a schedule",
+        "Publish requirements without assigning accountability",
+        "Use a documented exception process"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Approve policy exceptions verbally with no expiration; Publish requirements without assigning accountability. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M23-Q006",
+      "module": "23",
+      "domain": "5.0",
+      "objective": "5.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.1",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 23 term to its description.",
+      "terms": [
+        {
+          "key": "m23t1",
+          "label": "Policy"
+        },
+        {
+          "key": "m23t2",
+          "label": "Standard"
+        },
+        {
+          "key": "m23t3",
+          "label": "Procedure"
+        },
+        {
+          "key": "m23t4",
+          "label": "Guideline"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m23d1",
+          "text": "High-level statement of management intent and required direction",
+          "expect": "m23t1"
+        },
+        {
+          "id": "m23d2",
+          "text": "Mandatory requirement that supports a policy",
+          "expect": "m23t2"
+        },
+        {
+          "id": "m23d3",
+          "text": "Step-by-step instructions for completing a task",
+          "expect": "m23t3"
+        },
+        {
+          "id": "m23d4",
+          "text": "Recommended but generally non-mandatory practice",
+          "expect": "m23t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M23-Q007",
+      "module": "23",
+      "domain": "5.0",
+      "objective": "5.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.1",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 23 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m23s1",
+          "label": "Identify governance requirements"
+        },
+        {
+          "key": "m23s2",
+          "label": "Draft and approve policy hierarchy"
+        },
+        {
+          "key": "m23s3",
+          "label": "Communicate and implement requirements"
+        },
+        {
+          "key": "m23s4",
+          "label": "Review effectiveness and update documents"
+        }
+      ],
+      "answer": [
+        "m23s1",
+        "m23s2",
+        "m23s3",
+        "m23s4"
+      ],
+      "rationale": "The process begins with \"Identify governance requirements\" and ends with \"Review effectiveness and update documents.\""
+    },
+    {
+      "id": "SEC-M23-Q008",
+      "module": "23",
+      "domain": "5.0",
+      "objective": "5.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.1",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Guideline is best described as: Recommended but generally non-mandatory practice.",
+      "answer": true,
+      "rationale": "True. Guideline recommended but generally non-mandatory practice."
+    },
+    {
+      "id": "SEC-M24-Q001",
+      "module": "24",
+      "domain": "5.0",
+      "objective": "5.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.2",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Tracks identified risks, owners, treatments, and status?",
+      "options": [
+        "Risk register",
+        "Annual loss expectancy",
+        "Risk transfer",
+        "Risk acceptance"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Risk register tracks identified risks, owners, treatments, and status."
+    },
+    {
+      "id": "SEC-M24-Q002",
+      "module": "24",
+      "domain": "5.0",
+      "objective": "5.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.2",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "A $100,000 loss is expected once every five years. What is the annual loss expectancy?",
+      "options": [
+        "$20,000",
+        "$50,000",
+        "$100,000",
+        "$500,000"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "ALE equals SLE multiplied by ARO: $100,000 x 0.2 = $20,000."
+    },
+    {
+      "id": "SEC-M24-Q003",
+      "module": "24",
+      "domain": "5.0",
+      "objective": "5.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.2",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Estimated yearly loss calculated from single loss expectancy and annual rate of occurrence?",
+      "options": [
+        "Risk transfer",
+        "Risk register",
+        "Risk acceptance",
+        "Annual loss expectancy"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Annual loss expectancy estimated yearly loss calculated from single loss expectancy and annual rate of occurrence."
+    },
+    {
+      "id": "SEC-M24-Q004",
+      "module": "24",
+      "domain": "5.0",
+      "objective": "5.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.2",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 24. Select ALL actions that support the security goal.",
+      "options": [
+        "Assign every material risk an owner",
+        "Treat a risk score as permanent",
+        "Consider likelihood and business impact",
+        "Accept material risk without authorized approval",
+        "Track residual risk after treatment"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Assign every material risk an owner; Consider likelihood and business impact; Track residual risk after treatment. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M24-Q005",
+      "module": "24",
+      "domain": "5.0",
+      "objective": "5.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.2",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 24 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Treat a risk score as permanent",
+        "Assign every material risk an owner",
+        "Consider likelihood and business impact",
+        "Accept material risk without authorized approval",
+        "Track residual risk after treatment"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Treat a risk score as permanent; Accept material risk without authorized approval. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M24-Q006",
+      "module": "24",
+      "domain": "5.0",
+      "objective": "5.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.2",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 24 term to its description.",
+      "terms": [
+        {
+          "key": "m24t1",
+          "label": "Risk register"
+        },
+        {
+          "key": "m24t2",
+          "label": "Annual loss expectancy"
+        },
+        {
+          "key": "m24t3",
+          "label": "Risk transfer"
+        },
+        {
+          "key": "m24t4",
+          "label": "Risk acceptance"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m24d1",
+          "text": "Tracks identified risks, owners, treatments, and status",
+          "expect": "m24t1"
+        },
+        {
+          "id": "m24d2",
+          "text": "Estimated yearly loss calculated from single loss expectancy and annual rate of occurrence",
+          "expect": "m24t2"
+        },
+        {
+          "id": "m24d3",
+          "text": "Shifts part of financial impact to another party, such as through insurance",
+          "expect": "m24t3"
+        },
+        {
+          "id": "m24d4",
+          "text": "Formally acknowledges residual risk without additional treatment",
+          "expect": "m24t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M24-Q007",
+      "module": "24",
+      "domain": "5.0",
+      "objective": "5.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.2",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 24 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m24s1",
+          "label": "Identify assets, threats, and vulnerabilities"
+        },
+        {
+          "key": "m24s2",
+          "label": "Analyze likelihood and impact"
+        },
+        {
+          "key": "m24s3",
+          "label": "Select and approve risk treatment"
+        },
+        {
+          "key": "m24s4",
+          "label": "Monitor residual risk and changes"
+        }
+      ],
+      "answer": [
+        "m24s1",
+        "m24s2",
+        "m24s3",
+        "m24s4"
+      ],
+      "rationale": "The process begins with \"Identify assets, threats, and vulnerabilities\" and ends with \"Monitor residual risk and changes.\""
+    },
+    {
+      "id": "SEC-M24-Q008",
+      "module": "24",
+      "domain": "5.0",
+      "objective": "5.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.2",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Risk acceptance is best described as: Formally acknowledges residual risk without additional treatment.",
+      "answer": true,
+      "rationale": "True. Risk acceptance formally acknowledges residual risk without additional treatment."
+    },
+    {
+      "id": "SEC-M25-Q001",
+      "module": "25",
+      "domain": "5.0",
+      "objective": "5.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.3",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Evaluates a supplier before entering or expanding a relationship?",
+      "options": [
+        "Due diligence",
+        "Right-to-audit clause",
+        "Service-level agreement",
+        "Supply chain risk"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Due diligence evaluates a supplier before entering or expanding a relationship."
+    },
+    {
+      "id": "SEC-M25-Q002",
+      "module": "25",
+      "domain": "5.0",
+      "objective": "5.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.3",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "A company needs contractual authority to verify a cloud vendor's security controls. Which provision is MOST relevant?",
+      "options": [
+        "Right-to-audit clause",
+        "Acceptable use policy",
+        "Password history setting",
+        "Recovery point objective"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "A right-to-audit clause provides a contractual mechanism for control verification."
+    },
+    {
+      "id": "SEC-M25-Q003",
+      "module": "25",
+      "domain": "5.0",
+      "objective": "5.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.3",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Contract term allowing verification of a supplier's control environment?",
+      "options": [
+        "Service-level agreement",
+        "Due diligence",
+        "Supply chain risk",
+        "Right-to-audit clause"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Right-to-audit clause contract term allowing verification of a supplier's control environment."
+    },
+    {
+      "id": "SEC-M25-Q004",
+      "module": "25",
+      "domain": "5.0",
+      "objective": "5.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.3",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 25. Select ALL actions that support the security goal.",
+      "options": [
+        "Assess vendors before sharing sensitive data",
+        "Assume a certification eliminates all vendor risk",
+        "Define breach notification requirements",
+        "Onboard critical suppliers before security review",
+        "Plan data return or destruction at contract end"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Assess vendors before sharing sensitive data; Define breach notification requirements; Plan data return or destruction at contract end. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M25-Q005",
+      "module": "25",
+      "domain": "5.0",
+      "objective": "5.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.3",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 25 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Assume a certification eliminates all vendor risk",
+        "Assess vendors before sharing sensitive data",
+        "Define breach notification requirements",
+        "Onboard critical suppliers before security review",
+        "Plan data return or destruction at contract end"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Assume a certification eliminates all vendor risk; Onboard critical suppliers before security review. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M25-Q006",
+      "module": "25",
+      "domain": "5.0",
+      "objective": "5.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.3",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 25 term to its description.",
+      "terms": [
+        {
+          "key": "m25t1",
+          "label": "Due diligence"
+        },
+        {
+          "key": "m25t2",
+          "label": "Right-to-audit clause"
+        },
+        {
+          "key": "m25t3",
+          "label": "Service-level agreement"
+        },
+        {
+          "key": "m25t4",
+          "label": "Supply chain risk"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m25d1",
+          "text": "Evaluates a supplier before entering or expanding a relationship",
+          "expect": "m25t1"
+        },
+        {
+          "id": "m25d2",
+          "text": "Contract term allowing verification of a supplier's control environment",
+          "expect": "m25t2"
+        },
+        {
+          "id": "m25d3",
+          "text": "Defines measurable service expectations and remedies",
+          "expect": "m25t3"
+        },
+        {
+          "id": "m25d4",
+          "text": "Exposure introduced through vendors, components, services, or dependencies",
+          "expect": "m25t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M25-Q007",
+      "module": "25",
+      "domain": "5.0",
+      "objective": "5.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.3",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 25 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m25s1",
+          "label": "Classify the service and perform due diligence"
+        },
+        {
+          "key": "m25s2",
+          "label": "Negotiate security and service requirements"
+        },
+        {
+          "key": "m25s3",
+          "label": "Monitor controls and performance"
+        },
+        {
+          "key": "m25s4",
+          "label": "Offboard access and verify data disposition"
+        }
+      ],
+      "answer": [
+        "m25s1",
+        "m25s2",
+        "m25s3",
+        "m25s4"
+      ],
+      "rationale": "The process begins with \"Classify the service and perform due diligence\" and ends with \"Offboard access and verify data disposition.\""
+    },
+    {
+      "id": "SEC-M25-Q008",
+      "module": "25",
+      "domain": "5.0",
+      "objective": "5.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.3",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Supply chain risk is best described as: Exposure introduced through vendors, components, services, or dependencies.",
+      "answer": true,
+      "rationale": "True. Supply chain risk exposure introduced through vendors, components, services, or dependencies."
+    },
+    {
+      "id": "SEC-M26-Q001",
+      "module": "26",
+      "domain": "5.0",
+      "objective": "5.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.4",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Mandatory rule issued under governmental authority?",
+      "options": [
+        "Regulation",
+        "Contractual requirement",
+        "Data controller",
+        "Data processor"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Regulation mandatory rule issued under governmental authority."
+    },
+    {
+      "id": "SEC-M26-Q002",
+      "module": "26",
+      "domain": "5.0",
+      "objective": "5.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.4",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "A retailer must protect cardholder data because its agreement requires adherence to PCI DSS. What type of obligation is this primarily?",
+      "options": [
+        "Contractual and industry requirement",
+        "Optional guideline",
+        "Internal procedure only",
+        "Recovery objective"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Payment card compliance is driven through industry rules and contractual relationships."
+    },
+    {
+      "id": "SEC-M26-Q003",
+      "module": "26",
+      "domain": "5.0",
+      "objective": "5.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.4",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Security obligation agreed between parties?",
+      "options": [
+        "Data controller",
+        "Regulation",
+        "Data processor",
+        "Contractual requirement"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Contractual requirement security obligation agreed between parties."
+    },
+    {
+      "id": "SEC-M26-Q004",
+      "module": "26",
+      "domain": "5.0",
+      "objective": "5.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.4",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 26. Select ALL actions that support the security goal.",
+      "options": [
+        "Map obligations to specific controls",
+        "Assume compliance automatically eliminates security risk",
+        "Retain evidence for required periods",
+        "Collect personal data without a defined purpose",
+        "Escalate and remediate compliance gaps"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Map obligations to specific controls; Retain evidence for required periods; Escalate and remediate compliance gaps. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M26-Q005",
+      "module": "26",
+      "domain": "5.0",
+      "objective": "5.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.4",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 26 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Assume compliance automatically eliminates security risk",
+        "Map obligations to specific controls",
+        "Retain evidence for required periods",
+        "Collect personal data without a defined purpose",
+        "Escalate and remediate compliance gaps"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Assume compliance automatically eliminates security risk; Collect personal data without a defined purpose. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M26-Q006",
+      "module": "26",
+      "domain": "5.0",
+      "objective": "5.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.4",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 26 term to its description.",
+      "terms": [
+        {
+          "key": "m26t1",
+          "label": "Regulation"
+        },
+        {
+          "key": "m26t2",
+          "label": "Contractual requirement"
+        },
+        {
+          "key": "m26t3",
+          "label": "Data controller"
+        },
+        {
+          "key": "m26t4",
+          "label": "Data processor"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m26d1",
+          "text": "Mandatory rule issued under governmental authority",
+          "expect": "m26t1"
+        },
+        {
+          "id": "m26d2",
+          "text": "Security obligation agreed between parties",
+          "expect": "m26t2"
+        },
+        {
+          "id": "m26d3",
+          "text": "Determines the purposes and means of processing personal data",
+          "expect": "m26t3"
+        },
+        {
+          "id": "m26d4",
+          "text": "Processes personal data on behalf of a controller",
+          "expect": "m26t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M26-Q007",
+      "module": "26",
+      "domain": "5.0",
+      "objective": "5.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.4",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 26 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m26s1",
+          "label": "Identify applicable obligations"
+        },
+        {
+          "key": "m26s2",
+          "label": "Map requirements to controls and owners"
+        },
+        {
+          "key": "m26s3",
+          "label": "Collect evidence and assess compliance"
+        },
+        {
+          "key": "m26s4",
+          "label": "Remediate gaps and report status"
+        }
+      ],
+      "answer": [
+        "m26s1",
+        "m26s2",
+        "m26s3",
+        "m26s4"
+      ],
+      "rationale": "The process begins with \"Identify applicable obligations\" and ends with \"Remediate gaps and report status.\""
+    },
+    {
+      "id": "SEC-M26-Q008",
+      "module": "26",
+      "domain": "5.0",
+      "objective": "5.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.4",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Data processor is best described as: Processes personal data on behalf of a controller.",
+      "answer": true,
+      "rationale": "True. Data processor processes personal data on behalf of a controller."
+    },
+    {
+      "id": "SEC-M27-Q001",
+      "module": "27",
+      "domain": "5.0",
+      "objective": "5.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.5",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Independent review performed within the organization?",
+      "options": [
+        "Internal audit",
+        "External audit",
+        "Vulnerability assessment",
+        "Penetration test"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Internal audit independent review performed within the organization."
+    },
+    {
+      "id": "SEC-M27-Q002",
+      "module": "27",
+      "domain": "5.0",
+      "objective": "5.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.5",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "Leadership wants an authorized team to exploit weaknesses and demonstrate whether sensitive records can be reached. Which assessment is MOST appropriate?",
+      "options": [
+        "Penetration test",
+        "Asset inventory",
+        "Tabletop exercise",
+        "Policy acknowledgment"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "A penetration test uses controlled exploitation to validate attack paths and impact."
+    },
+    {
+      "id": "SEC-M27-Q003",
+      "module": "27",
+      "domain": "5.0",
+      "objective": "5.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.5",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Assessment performed by an independent outside party?",
+      "options": [
+        "Vulnerability assessment",
+        "Internal audit",
+        "Penetration test",
+        "External audit"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "External audit assessment performed by an independent outside party."
+    },
+    {
+      "id": "SEC-M27-Q004",
+      "module": "27",
+      "domain": "5.0",
+      "objective": "5.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.5",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 27. Select ALL actions that support the security goal.",
+      "options": [
+        "Define scope and rules of engagement",
+        "Begin exploitation without written authorization",
+        "Preserve assessor independence",
+        "Let system owners close audit findings without evidence",
+        "Track findings through remediation"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Define scope and rules of engagement; Preserve assessor independence; Track findings through remediation. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M27-Q005",
+      "module": "27",
+      "domain": "5.0",
+      "objective": "5.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.5",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 27 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Begin exploitation without written authorization",
+        "Define scope and rules of engagement",
+        "Preserve assessor independence",
+        "Let system owners close audit findings without evidence",
+        "Track findings through remediation"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Begin exploitation without written authorization; Let system owners close audit findings without evidence. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M27-Q006",
+      "module": "27",
+      "domain": "5.0",
+      "objective": "5.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.5",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 27 term to its description.",
+      "terms": [
+        {
+          "key": "m27t1",
+          "label": "Internal audit"
+        },
+        {
+          "key": "m27t2",
+          "label": "External audit"
+        },
+        {
+          "key": "m27t3",
+          "label": "Vulnerability assessment"
+        },
+        {
+          "key": "m27t4",
+          "label": "Penetration test"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m27d1",
+          "text": "Independent review performed within the organization",
+          "expect": "m27t1"
+        },
+        {
+          "id": "m27d2",
+          "text": "Assessment performed by an independent outside party",
+          "expect": "m27t2"
+        },
+        {
+          "id": "m27d3",
+          "text": "Identifies and prioritizes weaknesses, generally without exploiting them",
+          "expect": "m27t3"
+        },
+        {
+          "id": "m27d4",
+          "text": "Attempts authorized exploitation to demonstrate attack paths and impact",
+          "expect": "m27t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M27-Q007",
+      "module": "27",
+      "domain": "5.0",
+      "objective": "5.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.5",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 27 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m27s1",
+          "label": "Define objectives, scope, and authority"
+        },
+        {
+          "key": "m27s2",
+          "label": "Collect evidence and perform testing"
+        },
+        {
+          "key": "m27s3",
+          "label": "Report findings and risk"
+        },
+        {
+          "key": "m27s4",
+          "label": "Remediate and verify closure"
+        }
+      ],
+      "answer": [
+        "m27s1",
+        "m27s2",
+        "m27s3",
+        "m27s4"
+      ],
+      "rationale": "The process begins with \"Define objectives, scope, and authority\" and ends with \"Remediate and verify closure.\""
+    },
+    {
+      "id": "SEC-M27-Q008",
+      "module": "27",
+      "domain": "5.0",
+      "objective": "5.5",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.5",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Penetration test is best described as: Attempts authorized exploitation to demonstrate attack paths and impact.",
+      "answer": true,
+      "rationale": "True. Penetration test attempts authorized exploitation to demonstrate attack paths and impact."
+    },
+    {
+      "id": "SEC-M28-Q001",
+      "module": "28",
+      "domain": "5.0",
+      "objective": "5.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.6",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Controlled exercise that measures and reinforces resistance to social engineering?",
+      "options": [
+        "Phishing simulation",
+        "Role-based training",
+        "Insider threat awareness",
+        "Reporting culture"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Phishing simulation controlled exercise that measures and reinforces resistance to social engineering."
+    },
+    {
+      "id": "SEC-M28-Q002",
+      "module": "28",
+      "domain": "5.0",
+      "objective": "5.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.6",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "Developers handle secrets and production deployments. Which training approach BEST addresses their unique risk?",
+      "options": [
+        "Role-based secure development training",
+        "A generic poster once per year",
+        "Physical evacuation training only",
+        "No training because tools enforce security"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Role-based training targets the decisions and risks associated with a person's responsibilities."
+    },
+    {
+      "id": "SEC-M28-Q003",
+      "module": "28",
+      "domain": "5.0",
+      "objective": "5.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.6",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Instruction tailored to the risks and responsibilities of a job?",
+      "options": [
+        "Insider threat awareness",
+        "Phishing simulation",
+        "Reporting culture",
+        "Role-based training"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Role-based training instruction tailored to the risks and responsibilities of a job."
+    },
+    {
+      "id": "SEC-M28-Q004",
+      "module": "28",
+      "domain": "5.0",
+      "objective": "5.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.6",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 28. Select ALL actions that support the security goal.",
+      "options": [
+        "Provide an easy method to report phishing",
+        "Punish every user who reports clicking a simulation",
+        "Use metrics to target follow-up training",
+        "Measure program success only by attendance",
+        "Reinforce learning throughout the year"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Provide an easy method to report phishing; Use metrics to target follow-up training; Reinforce learning throughout the year. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M28-Q005",
+      "module": "28",
+      "domain": "5.0",
+      "objective": "5.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.6",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 28 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Punish every user who reports clicking a simulation",
+        "Provide an easy method to report phishing",
+        "Use metrics to target follow-up training",
+        "Measure program success only by attendance",
+        "Reinforce learning throughout the year"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Punish every user who reports clicking a simulation; Measure program success only by attendance. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M28-Q006",
+      "module": "28",
+      "domain": "5.0",
+      "objective": "5.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.6",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 28 term to its description.",
+      "terms": [
+        {
+          "key": "m28t1",
+          "label": "Phishing simulation"
+        },
+        {
+          "key": "m28t2",
+          "label": "Role-based training"
+        },
+        {
+          "key": "m28t3",
+          "label": "Insider threat awareness"
+        },
+        {
+          "key": "m28t4",
+          "label": "Reporting culture"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m28d1",
+          "text": "Controlled exercise that measures and reinforces resistance to social engineering",
+          "expect": "m28t1"
+        },
+        {
+          "id": "m28d2",
+          "text": "Instruction tailored to the risks and responsibilities of a job",
+          "expect": "m28t2"
+        },
+        {
+          "id": "m28d3",
+          "text": "Training to recognize and report concerning internal behavior",
+          "expect": "m28t3"
+        },
+        {
+          "id": "m28d4",
+          "text": "Environment where users can promptly report mistakes or suspicious activity without undue fear",
+          "expect": "m28t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M28-Q007",
+      "module": "28",
+      "domain": "5.0",
+      "objective": "5.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.6",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 28 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m28s1",
+          "label": "Identify audience risks and learning goals"
+        },
+        {
+          "key": "m28s2",
+          "label": "Deliver role-appropriate training"
+        },
+        {
+          "key": "m28s3",
+          "label": "Exercise and measure behavior"
+        },
+        {
+          "key": "m28s4",
+          "label": "Reinforce lessons and improve the program"
+        }
+      ],
+      "answer": [
+        "m28s1",
+        "m28s2",
+        "m28s3",
+        "m28s4"
+      ],
+      "rationale": "The process begins with \"Identify audience risks and learning goals\" and ends with \"Reinforce lessons and improve the program.\""
+    },
+    {
+      "id": "SEC-M28-Q008",
+      "module": "28",
+      "domain": "5.0",
+      "objective": "5.6",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 5.6",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Reporting culture is best described as: Environment where users can promptly report mistakes or suspicious activity without undue fear.",
+      "answer": true,
+      "rationale": "True. Reporting culture environment where users can promptly report mistakes or suspicious activity without undue fear."
+    },
+    {
+      "id": "SEC-M29-Q001",
+      "module": "29",
+      "domain": "5.0",
+      "objective": "Final Review",
+      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Authoritative outline of the knowledge and skills tested?",
+      "options": [
+        "Exam objectives",
+        "Performance-based question",
+        "Error log",
+        "Timed practice"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Exam objectives authoritative outline of the knowledge and skills tested."
+    },
+    {
+      "id": "SEC-M29-Q002",
+      "module": "29",
+      "domain": "5.0",
+      "objective": "Final Review",
+      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "type": "single",
+      "prompt": "A learner repeatedly misses questions about identity federation but keeps retaking full exams. What is the BEST next step?",
+      "options": [
+        "Use the error log to review the mapped objective, then retest that topic",
+        "Memorize answer positions",
+        "Skip all identity questions",
+        "Take only untimed final exams"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Targeted remediation tied to the objective corrects the underlying gap before another broad assessment."
+    },
+    {
+      "id": "SEC-M29-Q003",
+      "module": "29",
+      "domain": "5.0",
+      "objective": "Final Review",
+      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": false,
+      "type": "single",
+      "prompt": "Which term BEST matches this description: Interactive item that requires applying knowledge to a scenario or task?",
+      "options": [
+        "Error log",
+        "Exam objectives",
+        "Timed practice",
+        "Performance-based question"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Performance-based question interactive item that requires applying knowledge to a scenario or task."
+    },
+    {
+      "id": "SEC-M29-Q004",
+      "module": "29",
+      "domain": "5.0",
+      "objective": "Final Review",
+      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi",
+      "prompt": "A team is applying the practices from Chapter 29. Select ALL actions that support the security goal.",
+      "options": [
+        "Review every missed answer and its rationale",
+        "Memorize question wording instead of concepts",
+        "Practice PBQs before test day",
+        "Change answers repeatedly without evidence",
+        "Use timed mixed-domain exams after targeted study"
+      ],
+      "answer": [
+        0,
+        2,
+        4
+      ],
+      "rationale": "Review every missed answer and its rationale; Practice PBQs before test day; Use timed mixed-domain exams after targeted study. The other choices introduce avoidable risk."
+    },
+    {
+      "id": "SEC-M29-Q005",
+      "module": "29",
+      "domain": "5.0",
+      "objective": "Final Review",
+      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "multi_not",
+      "prompt": "A reviewer is checking the Chapter 29 plan. Select ALL actions that do NOT follow good security practice.",
+      "options": [
+        "Memorize question wording instead of concepts",
+        "Review every missed answer and its rationale",
+        "Practice PBQs before test day",
+        "Change answers repeatedly without evidence",
+        "Use timed mixed-domain exams after targeted study"
+      ],
+      "answer": [
+        0,
+        3
+      ],
+      "rationale": "Memorize question wording instead of concepts; Change answers repeatedly without evidence. Those choices do not follow the chapter's recommended security approach."
+    },
+    {
+      "id": "SEC-M29-Q006",
+      "module": "29",
+      "domain": "5.0",
+      "objective": "Final Review",
+      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each Chapter 29 term to its description.",
+      "terms": [
+        {
+          "key": "m29t1",
+          "label": "Exam objectives"
+        },
+        {
+          "key": "m29t2",
+          "label": "Performance-based question"
+        },
+        {
+          "key": "m29t3",
+          "label": "Error log"
+        },
+        {
+          "key": "m29t4",
+          "label": "Timed practice"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m29d1",
+          "text": "Authoritative outline of the knowledge and skills tested",
+          "expect": "m29t1"
+        },
+        {
+          "id": "m29d2",
+          "text": "Interactive item that requires applying knowledge to a scenario or task",
+          "expect": "m29t2"
+        },
+        {
+          "id": "m29d3",
+          "text": "Record of missed concepts, reasoning errors, and corrective review",
+          "expect": "m29t3"
+        },
+        {
+          "id": "m29d4",
+          "text": "Rehearsal that builds pacing and decision-making under an exam limit",
+          "expect": "m29t4"
+        }
+      ],
+      "rationale": "Each item matches the Security+ concept to its operational meaning."
+    },
+    {
+      "id": "SEC-M29-Q007",
+      "module": "29",
+      "domain": "5.0",
+      "objective": "Final Review",
+      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the Chapter 29 activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m29s1",
+          "label": "Take a diagnostic assessment"
+        },
+        {
+          "key": "m29s2",
+          "label": "Map misses to chapters and objectives"
+        },
+        {
+          "key": "m29s3",
+          "label": "Review and practice weak areas"
+        },
+        {
+          "key": "m29s4",
+          "label": "Complete a timed mixed-domain readiness exam"
+        }
+      ],
+      "answer": [
+        "m29s1",
+        "m29s2",
+        "m29s3",
+        "m29s4"
+      ],
+      "rationale": "The process begins with \"Take a diagnostic assessment\" and ends with \"Complete a timed mixed-domain readiness exam.\""
+    },
+    {
+      "id": "SEC-M29-Q008",
+      "module": "29",
+      "domain": "5.0",
+      "objective": "Final Review",
+      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "type": "true_false",
+      "prompt": "Timed practice is best described as: Rehearsal that builds pacing and decision-making under an exam limit.",
+      "answer": true,
+      "rationale": "True. Timed practice rehearsal that builds pacing and decision-making under an exam limit."
+    }
+  ],
+  "domains": [
+    {
+      "id": "01",
+      "title": "Domain 1: General Security Concepts",
+      "chapterIds": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "quiz": {
+        "totalQuestions": 25,
+        "timeLimitSeconds": 1800,
+        "pbqFirst": 3
+      }
+    },
+    {
+      "id": "02",
+      "title": "Domain 2: Threats, Vulnerabilities, and Mitigations",
+      "chapterIds": [
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+      ],
+      "quiz": {
+        "totalQuestions": 30,
+        "timeLimitSeconds": 2100,
+        "pbqFirst": 3
+      }
+    },
+    {
+      "id": "03",
+      "title": "Domain 3: Security Architecture",
+      "chapterIds": [
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "quiz": {
+        "totalQuestions": 20,
+        "timeLimitSeconds": 1500,
+        "pbqFirst": 3
+      }
+    },
+    {
+      "id": "04",
+      "title": "Domain 4: Security Operations",
+      "chapterIds": [
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22"
+      ],
+      "quiz": {
+        "totalQuestions": 35,
+        "timeLimitSeconds": 2700,
+        "pbqFirst": 4
+      }
+    },
+    {
+      "id": "05",
+      "title": "Domain 5: Security Program Management and Oversight",
+      "chapterIds": [
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29"
+      ],
+      "quiz": {
+        "totalQuestions": 30,
+        "timeLimitSeconds": 2100,
+        "pbqFirst": 3
+      }
     }
   ]
 }

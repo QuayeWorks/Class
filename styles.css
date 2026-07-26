@@ -484,6 +484,18 @@
       transition:transform .06s ease, border-color .2s ease, background .2s ease;
     }
     .courseTile:hover{border-color:rgba(212,175,55,.35); background:rgba(255,255,255,.05)}
+    .domainTile{
+      border-color:rgba(212,175,55,.22);
+      min-height:155px;
+    }
+    .domainTile .courseTitle{
+      color:#fff3c4;
+      line-height:1.35;
+    }
+    .domainQuizTile{
+      background:linear-gradient(135deg, rgba(212,175,55,.14), rgba(255,255,255,.035));
+      border-color:rgba(212,175,55,.42);
+    }
     .courseTile.locked{
       opacity:.5;
       cursor:not-allowed;

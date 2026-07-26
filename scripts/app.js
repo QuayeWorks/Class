@@ -16,6 +16,7 @@ const AUTH_PASS = "GoArmy";
 
 const VIEW_COURSES = "courses";
 const VIEW_MODULES = "clsModules";
+const VIEW_DOMAIN = "domain";
 const VIEW_REVIEW = "review";
 const VIEW_EXAM = "exam";
 
@@ -37,11 +38,13 @@ let CURRENT_COURSE = null;
 let EXAM = null;
 let RAW_DATA = null;
 let MODULES = [];
+let DOMAINS = [];
 let FINAL_PROFILE = null;
 let storageKey = null;
 let currentCourseId = null;
 let currentProfile = null;
 let currentModuleId = null;
+let currentDomainId = null;
 let reviewModuleId = null;
 
 const CURRENT_COURSE_KEY = "qw_current_course_v1";
@@ -71,12 +74,18 @@ function renderView(){
   el("loginView").classList.toggle("hidden", currentView !== "login");
   el("coursesView").classList.toggle("hidden", currentView !== VIEW_COURSES);
   el("clsModulesView").classList.toggle("hidden", currentView !== VIEW_MODULES);
+  el("domainView").classList.toggle("hidden", currentView !== VIEW_DOMAIN);
   el("reviewView").classList.toggle("hidden", currentView !== VIEW_REVIEW);
   el("examView").classList.toggle("hidden", currentView !== VIEW_EXAM);
 
   el("courseControls").classList.toggle(
     "hidden",
-    !(currentView === VIEW_COURSES || currentView === VIEW_MODULES || currentView === VIEW_REVIEW)
+    !(
+      currentView === VIEW_COURSES
+      || currentView === VIEW_MODULES
+      || currentView === VIEW_DOMAIN
+      || currentView === VIEW_REVIEW
+    )
   );
   el("examControls").classList.toggle("hidden", currentView !== VIEW_EXAM);
 
@@ -137,6 +146,10 @@ function getLastExamKey(courseId){
 
 function getReviewModuleKey(courseId){
   return `qw:${String(courseId).toLowerCase()}:review-module:${STORAGE_VERSION}`;
+}
+
+function getCurrentDomainKey(courseId){
+  return `qw:${String(courseId).toLowerCase()}:current-domain:${STORAGE_VERSION}`;
 }
 
 const defaultState = {
@@ -219,7 +232,7 @@ function normalizeModuleId(moduleId){
 function buildStorageKey({ courseId, profile, moduleId, version = STORAGE_VERSION }){
   if(!courseId || !profile) return null;
   const parts = ["qw", String(courseId).toLowerCase(), profile];
-  if(profile === "module" && moduleId){
+  if((profile === "module" || profile === "domain") && moduleId){
     parts.push(normalizeModuleId(moduleId));
   }
   parts.push(version);
@@ -361,6 +374,23 @@ function buildModules(raw){
   });
 }
 
+function buildDomains(raw, modules){
+  if(!Array.isArray(raw.domains)) return [];
+  return raw.domains.map((domain)=>{
+    const chapterIds = (domain.chapterIds || [])
+      .map(id => normalizeModuleId(id))
+      .filter(id => modules.some(module => module.id === id));
+    const questionCount = raw.questions.filter(q => chapterIds.includes(q.module)).length;
+    return {
+      ...domain,
+      id: normalizeModuleId(domain.id),
+      chapterIds,
+      questionCount,
+      locked: !chapterIds.length || questionCount === 0
+    };
+  });
+}
+
 function buildFinalProfile(raw, modules){
   const unlockedModules = modules.filter(m => !m.locked).map(m => m.id);
   const eligibleModules = unlockedModules;
@@ -405,10 +435,13 @@ function buildExamForModule(moduleId){
   const normalizedId = normalizeModuleId(moduleId);
   const moduleInfo = MODULES.find(m => m.id === normalizedId);
   const questions = RAW_DATA.questions.filter(q => q.module === normalizedId);
+  const title = moduleInfo
+    ? `${CURRENT_COURSE?.domainMode ? `Chapter ${Number(normalizedId)}: ` : ""}${moduleInfo.title}`
+    : `Module ${normalizedId}`;
   return {
     id: `MODULE_${normalizedId}`,
-    title: moduleInfo ? moduleInfo.title : `Module ${normalizedId}`,
-    mode: moduleInfo ? moduleInfo.title : `Module ${normalizedId}`,
+    title,
+    mode: title,
     timeLimitSeconds: RAW_DATA.practiceTimeLimitSeconds ?? 25 * 60,
     questions
   };
@@ -425,6 +458,107 @@ function buildFinalExam(){
     mode: profile.title,
     timeLimitSeconds: profile.timeLimitSeconds,
     questions,
+    order: bundle.order
+  };
+}
+
+function selectDomainQuizQuestions(domain, rng){
+  const target = Math.min(
+    domain.quiz?.totalQuestions || 20,
+    RAW_DATA.questions.filter(q => domain.chapterIds.includes(q.module)).length
+  );
+  const pools = {};
+  domain.chapterIds.forEach((chapterId)=>{
+    pools[chapterId] = seededShuffle(
+      RAW_DATA.questions.filter(q => q.module === chapterId && !q.excludeFromDomainQuiz),
+      rng
+    );
+  });
+
+  const selected = [];
+  const used = new Set();
+  let round = 0;
+  while(selected.length < target){
+    let addedThisRound = false;
+    for(const chapterId of domain.chapterIds){
+      const candidate = pools[chapterId][round];
+      if(candidate && !used.has(candidate.id)){
+        selected.push(candidate);
+        used.add(candidate.id);
+        addedThisRound = true;
+        if(selected.length >= target) break;
+      }
+    }
+    if(!addedThisRound) break;
+    round += 1;
+  }
+
+  if(selected.length < target){
+    const remaining = seededShuffle(
+      RAW_DATA.questions.filter(q =>
+        domain.chapterIds.includes(q.module)
+        && !q.excludeFromDomainQuiz
+        && !used.has(q.id)
+      ),
+      rng
+    );
+    selected.push(...remaining.slice(0, target - selected.length));
+  }
+  return selected;
+}
+
+function getOrCreateDomainExamBundle(domain){
+  const pool = RAW_DATA.questions.filter(q => domain.chapterIds.includes(q.module));
+  const poolMap = new Map(pool.map(q => [q.id, q]));
+  const stored = readStoredState(storageKey);
+  if(stored?.finalExam?.questionIds?.length){
+    const valid = stored.finalExam.questionIds.every(id => poolMap.has(id));
+    if(valid){
+      const storedOrder = Array.isArray(stored.questionOrder)
+        && stored.questionOrder.length === stored.finalExam.questionIds.length
+        ? stored.questionOrder
+        : stored.finalExam.questionIds;
+      return { ...stored.finalExam, order: storedOrder };
+    }
+  }
+
+  const seed = Math.floor(Math.random() * 2**31);
+  const rng = seededRng(seed);
+  const selected = selectDomainQuizQuestions(domain, rng);
+  const shuffled = seededShuffle(selected, rng);
+  const pbqTypes = new Set(["match", "order", "multi", "multi_not"]);
+  const pbqFirst = domain.quiz?.pbqFirst || 3;
+  const featured = shuffled.filter(q => pbqTypes.has(q.type)).slice(0, pbqFirst);
+  const featuredIds = new Set(featured.map(q => q.id));
+  const order = [
+    ...featured,
+    ...shuffled.filter(q => !featuredIds.has(q.id))
+  ].map(q => q.id);
+  const bundle = {
+    seed: String(seed),
+    questionIds: selected.map(q => q.id),
+    totalQuestions: selected.length,
+    createdAt: new Date().toISOString()
+  };
+  writeStoredState(storageKey, {
+    ...deepCopy(defaultState),
+    finalExam: bundle,
+    questionOrder: order
+  });
+  return { ...bundle, order };
+}
+
+function buildDomainExam(domainId){
+  const domain = DOMAINS.find(item => item.id === normalizeModuleId(domainId));
+  if(!domain) return null;
+  const bundle = getOrCreateDomainExamBundle(domain);
+  const questionMap = new Map(RAW_DATA.questions.map(q => [q.id, q]));
+  return {
+    id: `DOMAIN_${domain.id}`,
+    title: `${domain.title} Test`,
+    mode: `${domain.title} Test`,
+    timeLimitSeconds: domain.quiz?.timeLimitSeconds || bundle.totalQuestions * 60,
+    questions: bundle.questionIds.map(id => questionMap.get(id)).filter(Boolean),
     order: bundle.order
   };
 }
@@ -809,14 +943,14 @@ function getCorrectAnswerText(q){
   if(q.type === "match"){
     return q.definitions.map((d)=>{
       const term = q.terms.find(t => t.key === d.expect);
-      return `${d.text} â†’ ${term ? term.label : d.expect}`;
-    }).join(" â€¢ ");
+      return `${d.text} -> ${term ? term.label : d.expect}`;
+    }).join(" | ");
   }
   if(q.type === "order"){
     return q.answer.map((key)=>{
       const step = q.steps.find(s => s.key === key);
       return step ? step.label : key;
-    }).join(" â†’ ");
+    }).join(" -> ");
   }
   return "";
 }
@@ -832,7 +966,7 @@ function getCorrectAnswerLines(q){
   if(q.type === "match"){
     return q.definitions.map((d)=>{
       const term = q.terms.find(t => t.key === d.expect);
-      return `${d.text} â†’ ${term ? term.label : d.expect}`;
+      return `${d.text} -> ${term ? term.label : d.expect}`;
     });
   }
   if(q.type === "order"){
@@ -957,15 +1091,25 @@ function renderQuestion(){
 
   setText("qTitle", `Question ${state.currentIndex+1}`);
   const metaParts = [];
-  if(EXAM && FINAL_PROFILE && EXAM.id === FINAL_PROFILE.id){
+  if(
+    EXAM
+    && (
+      (FINAL_PROFILE && EXAM.id === FINAL_PROFILE.id)
+      || currentProfile === "domain"
+    )
+  ){
     const moduleInfo = MODULES.find(m => m.id === q.module);
     if(moduleInfo){
-      metaParts.push(moduleInfo.title);
+      metaParts.push(
+        CURRENT_COURSE?.domainMode
+          ? `Chapter ${Number(moduleInfo.id)}: ${moduleInfo.title}`
+          : moduleInfo.title
+      );
     }
   }
   metaParts.push(questionTypeLabel(q));
   metaParts.push(`${q.points} pt${q.points===1?"":"s"}`);
-  setText("qMeta", metaParts.join(" â€¢ "));
+  setText("qMeta", metaParts.join(" | "));
   setText("qText", q.prompt);
   setText("qHint", q.hint || "");
 
@@ -1081,7 +1225,7 @@ function renderQuestion(){
     const correct = isCorrectAnswer(q);
     const status = document.createElement("div");
     status.className = `resultStatus ${correct ? "correct" : "incorrect"}`;
-    status.textContent = `${correct ? "âœ… Correct" : "âŒ Incorrect"}`;
+    status.textContent = correct ? "Correct" : "Incorrect";
     review.appendChild(status);
     area.appendChild(review);
   }
@@ -1418,11 +1562,11 @@ function renderCourseCatalog(){
 
     const meta = document.createElement("div");
     meta.className = "courseMeta";
-    meta.textContent = `${course.meta || ""}${course.meta ? " â€¢ " : ""}${isOpen ? "Ready" : "Coming soon"}`;
+    meta.textContent = `${course.meta || ""}${course.meta ? " | " : ""}${isOpen ? "Ready" : "Coming soon"}`;
 
     const status = document.createElement("div");
     status.className = isOpen ? "tag" : "lockBadge";
-    status.innerHTML = isOpen ? "<strong>Open</strong>" : "ðŸ”’ Locked";
+    status.innerHTML = isOpen ? "<strong>Open</strong>" : "Locked";
 
     tile.appendChild(title);
     tile.appendChild(meta);
@@ -1465,6 +1609,7 @@ async function activateCourse(courseId){
   RAW_DATA = deepCopy(raw);
   RAW_DATA.questions = normalizeQuestions(RAW_DATA);
   MODULES = buildModules(RAW_DATA);
+  DOMAINS = buildDomains(RAW_DATA, MODULES);
   FINAL_PROFILE = buildFinalProfile(RAW_DATA, MODULES);
 
   setText("moduleViewTitle", course.moduleHeading || `${course.title} Module Select`);
@@ -1493,7 +1638,12 @@ function renderModuleReview(moduleId){
   reviewModuleId = normalizedId;
   localStorage.setItem(getReviewModuleKey(currentCourseId), normalizedId);
   setText("reviewObjective", mod.objective ? `Objective ${mod.objective}` : `Module ${mod.id}`);
-  setText("reviewTitle", mod.title || `Module ${mod.id}`);
+  setText(
+    "reviewTitle",
+    CURRENT_COURSE.domainMode
+      ? `Chapter ${Number(mod.id)}: ${mod.title}`
+      : (mod.title || `Module ${mod.id}`)
+  );
   setText("reviewDomain", mod.domain || CURRENT_COURSE.meta || CURRENT_COURSE.title);
   setText("reviewSummary", mod.summary || "Review the key concepts, then launch practice.");
 
@@ -1533,62 +1683,17 @@ function renderModuleReview(moduleId){
 
 function openModule(moduleId){
   if(CURRENT_COURSE && CURRENT_COURSE.reviewMode){
+    const module = MODULES.find(item => item.id === normalizeModuleId(moduleId));
+    if(module?.domainId){
+      currentDomainId = normalizeModuleId(module.domainId);
+    }
     renderModuleReview(moduleId);
   }else{
     startModuleExam(moduleId);
   }
 }
 
-function renderModuleSelect(){
-  const grid = el("moduleGrid");
-  if(!grid || !CURRENT_COURSE || !FINAL_PROFILE) return;
-  grid.innerHTML = "";
-
-  MODULES.forEach((mod)=>{
-    const tile = document.createElement("div");
-    tile.className = `courseTile${mod.locked ? " locked" : ""}`;
-
-    const title = document.createElement("div");
-    title.className = "courseTitle";
-    title.textContent = mod.title || `Module ${mod.id}`;
-
-    const meta = document.createElement("div");
-    meta.className = "courseMeta";
-    const count = mod.questionCount || 0;
-    if(count > 0){
-      meta.textContent = `Ready â€¢ ${count} question${count === 1 ? "" : "s"}`;
-    }else{
-      meta.textContent = "Locked / Coming soon";
-    }
-
-    tile.appendChild(title);
-    tile.appendChild(meta);
-
-    if(mod.locked){
-      const lock = document.createElement("div");
-      lock.className = "lockBadge";
-      lock.textContent = "ðŸ”’ Coming soon";
-      tile.appendChild(lock);
-    }else{
-      const tag = document.createElement("div");
-      tag.className = "tag";
-      tag.innerHTML = CURRENT_COURSE.reviewMode
-        ? "<strong>Review &amp; Practice</strong>"
-        : "<strong>Start</strong>";
-      tile.appendChild(tag);
-    }
-
-    tile.addEventListener("click", ()=>{
-      if(mod.locked){
-        showToast("Module content coming soon.");
-        return;
-      }
-      openModule(mod.id);
-    });
-
-  grid.appendChild(tile);
-});
-
+function appendFinalExamTile(grid){
   const finalTile = document.createElement("div");
   const unlockedCount = FINAL_PROFILE.includeModules.length;
   const minModulesReady = FINAL_PROFILE.minModulesReady ?? FINAL_EXAM_MIN_MODULES_READY;
@@ -1607,9 +1712,9 @@ function renderModuleSelect(){
   finalMeta.className = "courseMeta";
   const questionLabel = FINAL_PROFILE.minQuestions === FINAL_PROFILE.maxQuestions
     ? `${FINAL_PROFILE.totalQuestions} Questions`
-    : `${FINAL_PROFILE.minQuestions}â€“${FINAL_PROFILE.maxQuestions} Questions`;
+    : `${FINAL_PROFILE.minQuestions}-${FINAL_PROFILE.maxQuestions} Questions`;
   const timeLabel = `${Math.round(FINAL_PROFILE.timeLimitSeconds / 60)} Minutes`;
-  finalMeta.textContent = `${questionLabel} â€¢ ${timeLabel} â€¢ ${
+  finalMeta.textContent = `${questionLabel} | ${timeLabel} | ${
     finalReady ? "Ready" : `Requires ${minModulesReady}+ ready modules`
   }`;
 
@@ -1637,7 +1742,7 @@ function renderModuleSelect(){
   }else{
     const lock = document.createElement("div");
     lock.className = "lockBadge";
-    lock.textContent = "ðŸ”’ Locked";
+    lock.textContent = "Locked";
     finalTile.appendChild(lock);
   }
 
@@ -1650,6 +1755,173 @@ function renderModuleSelect(){
   });
 
   grid.appendChild(finalTile);
+}
+
+function renderClsModuleTiles(grid){
+  MODULES.forEach((mod)=>{
+    const tile = document.createElement("div");
+    tile.className = `courseTile${mod.locked ? " locked" : ""}`;
+
+    const title = document.createElement("div");
+    title.className = "courseTitle";
+    title.textContent = mod.title || `Module ${mod.id}`;
+
+    const meta = document.createElement("div");
+    meta.className = "courseMeta";
+    const count = mod.questionCount || 0;
+    meta.textContent = count > 0
+      ? `Ready | ${count} question${count === 1 ? "" : "s"}`
+      : "Locked / Coming soon";
+
+    const tag = document.createElement("div");
+    tag.className = mod.locked ? "lockBadge" : "tag";
+    tag.innerHTML = mod.locked ? "Locked" : "<strong>Start</strong>";
+
+    tile.appendChild(title);
+    tile.appendChild(meta);
+    tile.appendChild(tag);
+    tile.addEventListener("click", ()=>{
+      if(mod.locked){
+        showToast("Module content coming soon.");
+        return;
+      }
+      startModuleExam(mod.id);
+    });
+    grid.appendChild(tile);
+  });
+}
+
+function renderSecurityDomainTiles(grid){
+  DOMAINS.forEach((domain)=>{
+    const tile = document.createElement("div");
+    tile.className = `courseTile domainTile${domain.locked ? " locked" : ""}`;
+
+    const title = document.createElement("div");
+    title.className = "courseTitle";
+    title.textContent = domain.title;
+
+    const firstChapter = Number(domain.chapterIds[0]);
+    const lastChapter = Number(domain.chapterIds[domain.chapterIds.length - 1]);
+    const meta = document.createElement("div");
+    meta.className = "courseMeta";
+    meta.textContent = `Chapters ${firstChapter}-${lastChapter} | ${domain.questionCount} questions`;
+
+    const tag = document.createElement("div");
+    tag.className = domain.locked ? "lockBadge" : "tag";
+    tag.innerHTML = domain.locked ? "Locked" : "<strong>Open Domain</strong>";
+
+    tile.appendChild(title);
+    tile.appendChild(meta);
+    tile.appendChild(tag);
+    tile.addEventListener("click", ()=>{
+      if(domain.locked){
+        showToast("Domain content is not ready.");
+        return;
+      }
+      renderDomainSelect(domain.id);
+    });
+    grid.appendChild(tile);
+  });
+}
+
+function renderModuleSelect(){
+  const grid = el("moduleGrid");
+  if(!grid || !CURRENT_COURSE || !FINAL_PROFILE) return;
+  grid.innerHTML = "";
+  currentDomainId = null;
+
+  if(CURRENT_COURSE.domainMode){
+    renderSecurityDomainTiles(grid);
+  }else{
+    renderClsModuleTiles(grid);
+  }
+  appendFinalExamTile(grid);
+}
+
+function renderDomainSelect(domainId){
+  const normalizedId = normalizeModuleId(domainId);
+  const domain = DOMAINS.find(item => item.id === normalizedId);
+  if(!domain) return;
+
+  currentDomainId = normalizedId;
+  localStorage.setItem(getCurrentDomainKey(currentCourseId), normalizedId);
+  setText("domainObjective", `Domain ${Number(domain.id)}`);
+  setText("domainViewTitle", domain.title);
+  setText(
+    "domainViewMeta",
+    `Chapters ${Number(domain.chapterIds[0])}-${Number(domain.chapterIds[domain.chapterIds.length - 1])} | Choose a chapter quiz or launch the randomized domain test.`
+  );
+
+  const grid = el("chapterGrid");
+  grid.innerHTML = "";
+  domain.chapterIds.forEach((chapterId)=>{
+    const chapter = MODULES.find(module => module.id === chapterId);
+    if(!chapter) return;
+
+    const tile = document.createElement("div");
+    tile.className = `courseTile${chapter.locked ? " locked" : ""}`;
+
+    const title = document.createElement("div");
+    title.className = "courseTitle";
+    title.textContent = `Chapter ${Number(chapter.id)}: ${chapter.title}`;
+
+    const meta = document.createElement("div");
+    meta.className = "courseMeta";
+    meta.textContent = `${chapter.questionCount} questions${
+      chapter.objective ? ` | Objective ${chapter.objective}` : ""
+    }`;
+
+    const tag = document.createElement("div");
+    tag.className = chapter.locked ? "lockBadge" : "tag";
+    tag.innerHTML = chapter.locked ? "Locked" : "<strong>Review &amp; Practice</strong>";
+
+    tile.appendChild(title);
+    tile.appendChild(meta);
+    tile.appendChild(tag);
+    tile.addEventListener("click", ()=>{
+      if(chapter.locked){
+        showToast("Chapter content is not ready.");
+        return;
+      }
+      openModule(chapter.id);
+    });
+    grid.appendChild(tile);
+  });
+
+  const quizTile = document.createElement("div");
+  quizTile.className = "courseTile domainQuizTile";
+  const quizTitle = document.createElement("div");
+  quizTitle.className = "courseTitle";
+  quizTitle.textContent = `${domain.title} Test`;
+  const quizMeta = document.createElement("div");
+  quizMeta.className = "courseMeta";
+  quizMeta.textContent = `${domain.quiz.totalQuestions} random questions | ${
+    Math.round(domain.quiz.timeLimitSeconds / 60)
+  } minutes | All domain chapters`;
+  const quizTag = document.createElement("div");
+  quizTag.className = "tag";
+  quizTag.innerHTML = "<strong>Launch Domain Test</strong>";
+  const regenTag = document.createElement("button");
+  regenTag.type = "button";
+  regenTag.className = "tag";
+  regenTag.innerHTML = "<strong>Regenerate</strong>";
+  regenTag.addEventListener("click", (event)=>{
+    event.stopPropagation();
+    localStorage.removeItem(buildStorageKey({
+      courseId: currentCourseId,
+      profile: "domain",
+      moduleId: domain.id
+    }));
+    startDomainExam(domain.id);
+  });
+  quizTile.appendChild(quizTitle);
+  quizTile.appendChild(quizMeta);
+  quizTile.appendChild(quizTag);
+  quizTile.appendChild(regenTag);
+  quizTile.addEventListener("click", ()=> startDomainExam(domain.id));
+  grid.appendChild(quizTile);
+
+  setView(VIEW_DOMAIN);
 }
 
 function teardownExam(){
@@ -1698,6 +1970,10 @@ function setExamSession(exam, key, orderOverride){
 
 function startModuleExam(moduleId){
   const normalizedId = normalizeModuleId(moduleId);
+  if(CURRENT_COURSE?.domainMode){
+    const module = MODULES.find(item => item.id === normalizedId);
+    currentDomainId = module?.domainId ? normalizeModuleId(module.domainId) : currentDomainId;
+  }
   const exam = buildExamForModule(normalizedId);
   setExamContext({ courseId: currentCourseId, profile: "module", moduleId: normalizedId });
   const key = storageKey;
@@ -1706,6 +1982,22 @@ function startModuleExam(moduleId){
     JSON.stringify({ type: "module", id: normalizedId })
   );
   setExamSession(exam, key);
+}
+
+function startDomainExam(domainId){
+  const normalizedId = normalizeModuleId(domainId);
+  currentDomainId = normalizedId;
+  setExamContext({ courseId: currentCourseId, profile: "domain", moduleId: normalizedId });
+  const exam = buildDomainExam(normalizedId);
+  if(!exam || !exam.questions.length){
+    showToast("No domain questions are available.");
+    return;
+  }
+  localStorage.setItem(
+    getLastExamKey(currentCourseId),
+    JSON.stringify({ type: "domain", id: normalizedId })
+  );
+  setExamSession(exam, storageKey, exam.order);
 }
 
 function startFinalExam(){
@@ -1822,10 +2114,24 @@ function bindUI(){
   });
 
   el("btnBackToModules").addEventListener("click", ()=>{
-    setView(VIEW_MODULES);
+    if(CURRENT_COURSE?.domainMode && currentProfile !== "final" && currentDomainId){
+      renderDomainSelect(currentDomainId);
+    }else{
+      renderModuleSelect();
+      setView(VIEW_MODULES);
+    }
   });
 
   el("btnBackToModuleSelect").addEventListener("click", ()=>{
+    if(CURRENT_COURSE?.domainMode && currentDomainId){
+      renderDomainSelect(currentDomainId);
+    }else{
+      setView(VIEW_MODULES);
+    }
+  });
+
+  el("btnBackToDomains").addEventListener("click", ()=>{
+    renderModuleSelect();
     setView(VIEW_MODULES);
   });
 
@@ -1905,9 +2211,20 @@ async function init(){
       const savedCourseId = localStorage.getItem(CURRENT_COURSE_KEY) || "cls";
       await activateCourse(savedCourseId);
 
+      if(currentView === VIEW_DOMAIN && CURRENT_COURSE.domainMode){
+        const savedDomainId = localStorage.getItem(getCurrentDomainKey(savedCourseId));
+        if(savedDomainId && DOMAINS.some(domain => domain.id === normalizeModuleId(savedDomainId))){
+          renderDomainSelect(savedDomainId);
+          return;
+        }
+        currentView = VIEW_MODULES;
+      }
+
       if(currentView === VIEW_REVIEW && CURRENT_COURSE.reviewMode){
         const savedModuleId = localStorage.getItem(getReviewModuleKey(savedCourseId));
         if(savedModuleId && MODULES.some(mod => mod.id === normalizeModuleId(savedModuleId))){
+          const module = MODULES.find(mod => mod.id === normalizeModuleId(savedModuleId));
+          currentDomainId = module?.domainId ? normalizeModuleId(module.domainId) : null;
           renderModuleReview(savedModuleId);
           return;
         }
@@ -1920,6 +2237,10 @@ async function init(){
         );
         if(lastExam.type === "module" && lastExam.id){
           startModuleExam(lastExam.id);
+          return;
+        }
+        if(lastExam.type === "domain" && lastExam.id){
+          startDomainExam(lastExam.id);
           return;
         }
         if(lastExam.type === "final"){

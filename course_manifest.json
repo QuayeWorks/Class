@@ -13,13 +13,14 @@
     },
     {
       "id": "secplus",
-      "title": "Security+ Review",
-      "meta": "Cisco / CompTIA SY0-701 review and exam",
+      "title": "CompTIA Security+ SY0-701",
+      "meta": "Certification guide review, chapter quizzes, and domain tests",
       "sourceUrl": "secplus_question_bank_v1.json",
       "status": "open",
-      "moduleHeading": "Security+ Module Select",
-      "moduleMeta": "Review each objective, then launch module practice or the 90-question final exam.",
-      "reviewMode": true
+      "moduleHeading": "CompTIA Security+ SY0-701",
+      "moduleMeta": "Choose a domain, then review chapters or launch a randomized domain test.",
+      "reviewMode": true,
+      "domainMode": true
     }
   ]
 }
