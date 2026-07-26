@@ -2,7 +2,6 @@
  * Classes
  * - Login gate + course catalog
  * - Separate CLS and Security+ courses
- * - Security+ domains plus unscored supplemental study sections
  * - Shared exam runner with course-isolated local autosave
  */
 
@@ -40,7 +39,6 @@ let EXAM = null;
 let RAW_DATA = null;
 let MODULES = [];
 let DOMAINS = [];
-let SUPPLEMENTAL_SECTIONS = [];
 let FINAL_PROFILE = null;
 let storageKey = null;
 let currentCourseId = null;
@@ -393,24 +391,11 @@ function buildDomains(raw, modules){
   });
 }
 
-function buildSupplementalSections(raw, modules){
-  if(!Array.isArray(raw.supplementalSections)) return [];
-  return raw.supplementalSections
-    .map((section)=>{
-      const chapterIds = (section.chapterIds || [])
-        .map(id => normalizeModuleId(id))
-        .filter(id => modules.some(module => module.id === id));
-      const questionCount = raw.questions.filter(
-        q => chapterIds.includes(q.module)
-      ).length;
-      return {
-        ...section,
-        chapterIds,
-        questionCount,
-        locked: !chapterIds.length || questionCount === 0
-      };
-    })
-    .filter(section => section.chapterIds.length);
+function isVisibleCourseModule(module){
+  if(!module) return false;
+  return module.supplemental !== true
+    && module.scored !== false
+    && normalizeModuleId(module.domainId) !== "SUPPLEMENTAL";
 }
 
 function getCourseDomainIdForModule(module){
@@ -1703,9 +1688,11 @@ async function activateCourse(courseId){
   localStorage.setItem(CURRENT_COURSE_KEY, courseId);
   RAW_DATA = deepCopy(raw);
   RAW_DATA.questions = normalizeQuestions(RAW_DATA);
-  MODULES = buildModules(RAW_DATA);
+  const builtModules = buildModules(RAW_DATA);
+  MODULES = course.domainMode
+    ? builtModules.filter(isVisibleCourseModule)
+    : builtModules;
   DOMAINS = buildDomains(RAW_DATA, MODULES);
-  SUPPLEMENTAL_SECTIONS = buildSupplementalSections(RAW_DATA, MODULES);
   FINAL_PROFILE = buildFinalProfile(RAW_DATA, MODULES);
 
   setText("moduleViewTitle", course.moduleHeading || `${course.title} Module Select`);
@@ -1734,15 +1721,7 @@ function renderModuleReview(moduleId){
   reviewModuleId = normalizedId;
   currentDomainId = getCourseDomainIdForModule(mod);
   localStorage.setItem(getReviewModuleKey(currentCourseId), normalizedId);
-  const isSupplemental = mod.supplemental === true
-    || mod.scored === false
-    || SUPPLEMENTAL_SECTIONS.some(section => section.chapterIds.includes(normalizedId));
-  setText(
-    "reviewObjective",
-    isSupplemental
-      ? "Supplemental | Unscored"
-      : (mod.objective ? `Objective ${mod.objective}` : `Module ${mod.id}`)
-  );
+  setText("reviewObjective", mod.objective ? `Objective ${mod.objective}` : `Module ${mod.id}`);
   setText(
     "reviewTitle",
     CURRENT_COURSE.domainMode
@@ -1757,9 +1736,7 @@ function renderModuleReview(moduleId){
   );
   setText(
     "btnStartModulePractice",
-    isSupplemental
-      ? `Start ${quizCount}-Question Practice`
-      : CURRENT_COURSE.domainMode
+    CURRENT_COURSE.domainMode
       ? `Start ${quizCount}-Question Quiz`
       : "Start Practice"
   );
@@ -1937,48 +1914,6 @@ function renderSecurityDomainTiles(grid){
   });
 }
 
-function renderSupplementalTiles(grid){
-  SUPPLEMENTAL_SECTIONS.forEach((section)=>{
-    section.chapterIds.forEach((chapterId)=>{
-      const chapter = MODULES.find(module => module.id === chapterId);
-      if(!chapter) return;
-
-      const locked = section.locked || chapter.locked;
-      const tile = document.createElement("div");
-      tile.className = `courseTile supplementalTile${locked ? " locked" : ""}`;
-      tile.title = section.description || "Supplemental study material";
-
-      const title = document.createElement("div");
-      title.className = "courseTitle";
-      title.textContent = `Supplemental: ${section.title || chapter.title}`;
-
-      const meta = document.createElement("div");
-      meta.className = "courseMeta";
-      meta.textContent = `Chapter ${Number(chapter.id)} | ${
-        chapter.questionCount
-      }-question pool | Unscored`;
-
-      const tag = document.createElement("div");
-      tag.className = locked ? "lockBadge" : "tag";
-      tag.innerHTML = locked
-        ? "Locked"
-        : "<strong>Review &amp; Practice</strong>";
-
-      tile.appendChild(title);
-      tile.appendChild(meta);
-      tile.appendChild(tag);
-      tile.addEventListener("click", ()=>{
-        if(locked){
-          showToast("Supplemental content is not ready.");
-          return;
-        }
-        openModule(chapter.id);
-      });
-      grid.appendChild(tile);
-    });
-  });
-}
-
 function renderModuleSelect(){
   const grid = el("moduleGrid");
   if(!grid || !CURRENT_COURSE || !FINAL_PROFILE) return;
@@ -1987,7 +1922,6 @@ function renderModuleSelect(){
 
   if(CURRENT_COURSE.domainMode){
     renderSecurityDomainTiles(grid);
-    renderSupplementalTiles(grid);
   }else{
     renderClsModuleTiles(grid);
   }
@@ -2146,8 +2080,15 @@ function setExamSession(exam, key, orderOverride){
 
 function startModuleExam(moduleId){
   const normalizedId = normalizeModuleId(moduleId);
+  const module = MODULES.find(item => item.id === normalizedId);
+  if(!module){
+    localStorage.removeItem(getLastExamKey(currentCourseId));
+    showToast("This chapter is not available.");
+    renderModuleSelect();
+    setView(VIEW_MODULES);
+    return;
+  }
   if(CURRENT_COURSE?.domainMode){
-    const module = MODULES.find(item => item.id === normalizedId);
     currentDomainId = getCourseDomainIdForModule(module);
   }
   setExamContext({ courseId: currentCourseId, profile: "module", moduleId: normalizedId });
