@@ -490,7 +490,7 @@
       background:rgba(255,255,255,.02);
     }
     .courseTitle{font-weight:800; font-size:16px;}
-    .courseMeta{color:var(--muted); font-size:12px;}
+    .courseMeta{color:var(--muted); font-size:12px; line-height:1.45;}
     .lockBadge{
       display:inline-flex;
       align-items:center;
@@ -518,3 +518,107 @@
       z-index:100;
     }
     .toast.show{opacity:1; transform:translateY(0);}
+
+    /* Security+ review */
+    .eyebrow{
+      color:var(--accent);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.09em;
+      margin-bottom:5px;
+      text-transform:uppercase;
+    }
+    .reviewBody{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+    .reviewHero{
+      align-items:center;
+      background:
+        linear-gradient(135deg, rgba(212,175,55,.13), rgba(255,255,255,.025));
+      border:1px solid rgba(212,175,55,.28);
+      border-radius:16px;
+      display:flex;
+      gap:18px;
+      justify-content:space-between;
+      padding:18px;
+    }
+    .reviewHero p{
+      color:var(--muted);
+      line-height:1.65;
+      margin:8px 0 0;
+      max-width:780px;
+    }
+    .reviewLaunch{
+      flex:0 0 auto;
+      min-width:140px;
+    }
+    .reviewGrid{
+      display:grid;
+      gap:14px;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+    .reviewPanel{
+      background:rgba(0,0,0,.12);
+      border:1px solid var(--line);
+      border-radius:16px;
+      min-height:150px;
+      padding:16px;
+    }
+    .reviewLabel{
+      color:var(--text);
+      font-size:12px;
+      font-weight:850;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+    .termCloud{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:12px;
+    }
+    .termChip{
+      background:rgba(212,175,55,.09);
+      border:1px solid rgba(212,175,55,.28);
+      border-radius:999px;
+      color:#fff7dd;
+      font-size:12px;
+      padding:7px 10px;
+    }
+    .reviewList{
+      color:var(--muted);
+      display:flex;
+      flex-direction:column;
+      gap:9px;
+      line-height:1.5;
+      margin:12px 0 0;
+      padding-left:20px;
+    }
+    .trapList li::marker{color:var(--danger);}
+    .scenarioList{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
+    }
+    .scenarioCard{
+      background:rgba(255,255,255,.025);
+      border-left:3px solid rgba(212,175,55,.55);
+      border-radius:0 10px 10px 0;
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.5;
+      padding:10px 12px;
+    }
+    .scenarioCard strong{
+      color:var(--text);
+      display:block;
+      margin-bottom:3px;
+    }
+    @media (max-width: 760px){
+      .reviewGrid{grid-template-columns:1fr;}
+      .reviewHero{align-items:stretch; flex-direction:column;}
+      .reviewLaunch{width:100%;}
+    }
