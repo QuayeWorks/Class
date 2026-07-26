@@ -75,7 +75,7 @@
           <div class="cardHeader">
             <div>
               <div class="cardTitle">Classes</div>
-              <div class="cardMeta">A lightweight, offline-ready test runner for CLS training.</div>
+              <div class="cardMeta">A lightweight, offline-ready training portal for CLS and IT security.</div>
             </div>
           </div>
           <div class="cardBody">
@@ -98,22 +98,11 @@
         <div class="cardHeader">
           <div>
             <div class="cardTitle">Course Catalog</div>
-            <div class="cardMeta">Select a course to begin. Locked courses will appear as “Coming soon.”</div>
+            <div class="cardMeta">Select a course to begin. Each course keeps its own modules, questions, exams, and progress.</div>
           </div>
         </div>
         <div class="cardBody">
-          <div class="courseGrid">
-            <div class="courseTile" id="courseCls">
-              <div class="courseTitle">CLS</div>
-              <div class="courseMeta">Combat Lifesaver practice exam • Ready</div>
-              <div class="tag"><strong>Open</strong></div>
-            </div>
-            <div class="courseTile locked" id="courseCisco" title="Coming soon">
-              <div class="courseTitle">Cisco IT</div>
-              <div class="courseMeta">Enterprise fundamentals • Coming soon</div>
-              <div class="lockBadge">🔒 Locked</div>
-            </div>
-          </div>
+          <div class="courseGrid" id="courseGrid"></div>
         </div>
       </div>
     </div>
@@ -122,13 +111,54 @@
       <div class="card">
         <div class="cardHeader">
           <div>
-            <div class="cardTitle">CLS Module Select</div>
-            <div class="cardMeta">Choose a module or launch the Final Exam. Modules without questions are locked.</div>
+            <div class="cardTitle" id="moduleViewTitle">Module Select</div>
+            <div class="cardMeta" id="moduleViewMeta">Choose a module or launch the Final Exam.</div>
           </div>
           <button class="btn" id="btnBackToCourses">← Catalog</button>
         </div>
         <div class="cardBody">
           <div class="courseGrid" id="moduleGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="view hidden" id="reviewView">
+      <div class="card">
+        <div class="cardHeader">
+          <div>
+            <div class="eyebrow" id="reviewObjective">Objective</div>
+            <div class="cardTitle" id="reviewTitle">Module Review</div>
+            <div class="cardMeta" id="reviewDomain">Security+ Review</div>
+          </div>
+          <button class="btn" id="btnBackToModuleSelect">← Modules</button>
+        </div>
+        <div class="cardBody reviewBody">
+          <section class="reviewHero">
+            <div>
+              <div class="reviewLabel">Module summary</div>
+              <p id="reviewSummary"></p>
+            </div>
+            <button class="btn primary reviewLaunch" id="btnStartModulePractice">Start Practice</button>
+          </section>
+
+          <div class="reviewGrid">
+            <section class="reviewPanel">
+              <div class="reviewLabel">Key terms</div>
+              <div class="termCloud" id="reviewKeyTerms"></div>
+            </section>
+            <section class="reviewPanel">
+              <div class="reviewLabel">Must-know facts</div>
+              <ul class="reviewList" id="reviewFacts"></ul>
+            </section>
+            <section class="reviewPanel">
+              <div class="reviewLabel">Common traps</div>
+              <ul class="reviewList trapList" id="reviewTraps"></ul>
+            </section>
+            <section class="reviewPanel">
+              <div class="reviewLabel">Mini scenarios</div>
+              <div class="scenarioList" id="reviewScenarios"></div>
+            </section>
+          </div>
         </div>
       </div>
     </div>
@@ -206,7 +236,7 @@
 
   <div class="toast" id="toast">Coming soon.</div>
 
-<script src="scripts/exam-data.js"></script>
+  <script src="scripts/exam-data.js"></script>
   <script src="scripts/app.js"></script>
 </body>
 </html>
