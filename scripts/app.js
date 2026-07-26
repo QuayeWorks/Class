@@ -431,10 +431,76 @@ function buildFinalProfile(raw, modules){
   };
 }
 
+function getOrCreateChapterExamBundle(moduleId, pool, targetCount){
+  const poolMap = new Map(pool.map(q => [q.id, q]));
+  const stored = readStoredState(storageKey);
+  if(stored?.finalExam?.questionIds?.length === targetCount){
+    const valid = stored.finalExam.questionIds.every(id => poolMap.has(id));
+    if(valid){
+      const storedOrder = Array.isArray(stored.questionOrder)
+        && stored.questionOrder.length === targetCount
+        ? stored.questionOrder
+        : stored.finalExam.questionIds;
+      return { ...stored.finalExam, order: storedOrder };
+    }
+  }
+
+  const seed = Math.floor(Math.random() * 2**31);
+  const rng = seededRng(seed);
+  const pbqTypes = new Set(["match", "order", "multi", "multi_not"]);
+  const shuffledPbqs = seededShuffle(pool.filter(q => pbqTypes.has(q.type)), rng);
+  const requiredPbqs = shuffledPbqs.slice(0, Math.min(3, targetCount));
+  const requiredIds = new Set(requiredPbqs.map(q => q.id));
+  const remaining = seededShuffle(
+    pool.filter(q => !requiredIds.has(q.id)),
+    rng
+  );
+  const selected = [
+    ...requiredPbqs,
+    ...remaining.slice(0, Math.max(0, targetCount - requiredPbqs.length))
+  ];
+  const shuffled = seededShuffle(selected, rng);
+  const featured = shuffled.filter(q => pbqTypes.has(q.type)).slice(0, 3);
+  const featuredIds = new Set(featured.map(q => q.id));
+  const order = [
+    ...featured,
+    ...shuffled.filter(q => !featuredIds.has(q.id))
+  ].map(q => q.id);
+  const bundle = {
+    seed: String(seed),
+    moduleId,
+    questionIds: selected.map(q => q.id),
+    totalQuestions: selected.length,
+    createdAt: new Date().toISOString()
+  };
+  writeStoredState(storageKey, {
+    ...deepCopy(defaultState),
+    finalExam: bundle,
+    questionOrder: order
+  });
+  return { ...bundle, order };
+}
+
 function buildExamForModule(moduleId){
   const normalizedId = normalizeModuleId(moduleId);
   const moduleInfo = MODULES.find(m => m.id === normalizedId);
-  const questions = RAW_DATA.questions.filter(q => q.module === normalizedId);
+  const pool = RAW_DATA.questions.filter(q => q.module === normalizedId);
+  let questions = pool;
+  let order = null;
+  if(CURRENT_COURSE?.domainMode && pool.length){
+    const targetCount = Math.min(
+      RAW_DATA.practiceQuestionCount || pool.length,
+      pool.length
+    );
+    const bundle = getOrCreateChapterExamBundle(
+      normalizedId,
+      pool,
+      targetCount
+    );
+    const questionMap = new Map(pool.map(q => [q.id, q]));
+    questions = bundle.questionIds.map(id => questionMap.get(id)).filter(Boolean);
+    order = bundle.order;
+  }
   const title = moduleInfo
     ? `${CURRENT_COURSE?.domainMode ? `Chapter ${Number(normalizedId)}: ` : ""}${moduleInfo.title}`
     : `Module ${normalizedId}`;
@@ -443,7 +509,8 @@ function buildExamForModule(moduleId){
     title,
     mode: title,
     timeLimitSeconds: RAW_DATA.practiceTimeLimitSeconds ?? 25 * 60,
-    questions
+    questions,
+    order
   };
 }
 
@@ -1646,6 +1713,16 @@ function renderModuleReview(moduleId){
   );
   setText("reviewDomain", mod.domain || CURRENT_COURSE.meta || CURRENT_COURSE.title);
   setText("reviewSummary", mod.summary || "Review the key concepts, then launch practice.");
+  const quizCount = Math.min(
+    RAW_DATA.practiceQuestionCount || mod.questionCount,
+    mod.questionCount
+  );
+  setText(
+    "btnStartModulePractice",
+    CURRENT_COURSE.domainMode
+      ? `Start ${quizCount}-Question Quiz`
+      : "Start Practice"
+  );
 
   const terms = el("reviewKeyTerms");
   terms.innerHTML = "";
@@ -1867,7 +1944,11 @@ function renderDomainSelect(domainId){
 
     const meta = document.createElement("div");
     meta.className = "courseMeta";
-    meta.textContent = `${chapter.questionCount} questions${
+    const quizCount = Math.min(
+      RAW_DATA.practiceQuestionCount || chapter.questionCount,
+      chapter.questionCount
+    );
+    meta.textContent = `${quizCount}-question randomized quiz | ${chapter.questionCount}-question pool${
       chapter.objective ? ` | Objective ${chapter.objective}` : ""
     }`;
 
@@ -1878,6 +1959,22 @@ function renderDomainSelect(domainId){
     tile.appendChild(title);
     tile.appendChild(meta);
     tile.appendChild(tag);
+    if(!chapter.locked){
+      const newQuizTag = document.createElement("button");
+      newQuizTag.type = "button";
+      newQuizTag.className = "tag";
+      newQuizTag.innerHTML = "<strong>New Quiz</strong>";
+      newQuizTag.addEventListener("click", (event)=>{
+        event.stopPropagation();
+        localStorage.removeItem(buildStorageKey({
+          courseId: currentCourseId,
+          profile: "module",
+          moduleId: chapter.id
+        }));
+        startModuleExam(chapter.id);
+      });
+      tile.appendChild(newQuizTag);
+    }
     tile.addEventListener("click", ()=>{
       if(chapter.locked){
         showToast("Chapter content is not ready.");
@@ -1974,14 +2071,14 @@ function startModuleExam(moduleId){
     const module = MODULES.find(item => item.id === normalizedId);
     currentDomainId = module?.domainId ? normalizeModuleId(module.domainId) : currentDomainId;
   }
-  const exam = buildExamForModule(normalizedId);
   setExamContext({ courseId: currentCourseId, profile: "module", moduleId: normalizedId });
+  const exam = buildExamForModule(normalizedId);
   const key = storageKey;
   localStorage.setItem(
     getLastExamKey(currentCourseId),
     JSON.stringify({ type: "module", id: normalizedId })
   );
-  setExamSession(exam, key);
+  setExamSession(exam, key, exam.order);
 }
 
 function startDomainExam(domainId){

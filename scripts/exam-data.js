@@ -1,5 +1,5 @@
 const COURSE_MANIFEST_URL = "course_manifest.json";
-const APP_VERSION = "2.1.0";
+const APP_VERSION = "3.0.0";
 
 let manifestPromise = null;
 
