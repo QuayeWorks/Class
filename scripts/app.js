@@ -2,6 +2,7 @@
  * Classes
  * - Login gate + course catalog
  * - Separate CLS and Security+ courses
+ * - Security+ domains plus unscored supplemental study sections
  * - Shared exam runner with course-isolated local autosave
  */
 
@@ -39,6 +40,7 @@ let EXAM = null;
 let RAW_DATA = null;
 let MODULES = [];
 let DOMAINS = [];
+let SUPPLEMENTAL_SECTIONS = [];
 let FINAL_PROFILE = null;
 let storageKey = null;
 let currentCourseId = null;
@@ -389,6 +391,32 @@ function buildDomains(raw, modules){
       locked: !chapterIds.length || questionCount === 0
     };
   });
+}
+
+function buildSupplementalSections(raw, modules){
+  if(!Array.isArray(raw.supplementalSections)) return [];
+  return raw.supplementalSections
+    .map((section)=>{
+      const chapterIds = (section.chapterIds || [])
+        .map(id => normalizeModuleId(id))
+        .filter(id => modules.some(module => module.id === id));
+      const questionCount = raw.questions.filter(
+        q => chapterIds.includes(q.module)
+      ).length;
+      return {
+        ...section,
+        chapterIds,
+        questionCount,
+        locked: !chapterIds.length || questionCount === 0
+      };
+    })
+    .filter(section => section.chapterIds.length);
+}
+
+function getCourseDomainIdForModule(module){
+  if(!module?.domainId) return null;
+  const domainId = normalizeModuleId(module.domainId);
+  return DOMAINS.some(domain => domain.id === domainId) ? domainId : null;
 }
 
 function buildFinalProfile(raw, modules){
@@ -1677,6 +1705,7 @@ async function activateCourse(courseId){
   RAW_DATA.questions = normalizeQuestions(RAW_DATA);
   MODULES = buildModules(RAW_DATA);
   DOMAINS = buildDomains(RAW_DATA, MODULES);
+  SUPPLEMENTAL_SECTIONS = buildSupplementalSections(RAW_DATA, MODULES);
   FINAL_PROFILE = buildFinalProfile(RAW_DATA, MODULES);
 
   setText("moduleViewTitle", course.moduleHeading || `${course.title} Module Select`);
@@ -1703,8 +1732,17 @@ function renderModuleReview(moduleId){
   if(!mod) return;
 
   reviewModuleId = normalizedId;
+  currentDomainId = getCourseDomainIdForModule(mod);
   localStorage.setItem(getReviewModuleKey(currentCourseId), normalizedId);
-  setText("reviewObjective", mod.objective ? `Objective ${mod.objective}` : `Module ${mod.id}`);
+  const isSupplemental = mod.supplemental === true
+    || mod.scored === false
+    || SUPPLEMENTAL_SECTIONS.some(section => section.chapterIds.includes(normalizedId));
+  setText(
+    "reviewObjective",
+    isSupplemental
+      ? "Supplemental | Unscored"
+      : (mod.objective ? `Objective ${mod.objective}` : `Module ${mod.id}`)
+  );
   setText(
     "reviewTitle",
     CURRENT_COURSE.domainMode
@@ -1719,7 +1757,9 @@ function renderModuleReview(moduleId){
   );
   setText(
     "btnStartModulePractice",
-    CURRENT_COURSE.domainMode
+    isSupplemental
+      ? `Start ${quizCount}-Question Practice`
+      : CURRENT_COURSE.domainMode
       ? `Start ${quizCount}-Question Quiz`
       : "Start Practice"
   );
@@ -1760,10 +1800,6 @@ function renderModuleReview(moduleId){
 
 function openModule(moduleId){
   if(CURRENT_COURSE && CURRENT_COURSE.reviewMode){
-    const module = MODULES.find(item => item.id === normalizeModuleId(moduleId));
-    if(module?.domainId){
-      currentDomainId = normalizeModuleId(module.domainId);
-    }
     renderModuleReview(moduleId);
   }else{
     startModuleExam(moduleId);
@@ -1901,6 +1937,48 @@ function renderSecurityDomainTiles(grid){
   });
 }
 
+function renderSupplementalTiles(grid){
+  SUPPLEMENTAL_SECTIONS.forEach((section)=>{
+    section.chapterIds.forEach((chapterId)=>{
+      const chapter = MODULES.find(module => module.id === chapterId);
+      if(!chapter) return;
+
+      const locked = section.locked || chapter.locked;
+      const tile = document.createElement("div");
+      tile.className = `courseTile supplementalTile${locked ? " locked" : ""}`;
+      tile.title = section.description || "Supplemental study material";
+
+      const title = document.createElement("div");
+      title.className = "courseTitle";
+      title.textContent = `Supplemental: ${section.title || chapter.title}`;
+
+      const meta = document.createElement("div");
+      meta.className = "courseMeta";
+      meta.textContent = `Chapter ${Number(chapter.id)} | ${
+        chapter.questionCount
+      }-question pool | Unscored`;
+
+      const tag = document.createElement("div");
+      tag.className = locked ? "lockBadge" : "tag";
+      tag.innerHTML = locked
+        ? "Locked"
+        : "<strong>Review &amp; Practice</strong>";
+
+      tile.appendChild(title);
+      tile.appendChild(meta);
+      tile.appendChild(tag);
+      tile.addEventListener("click", ()=>{
+        if(locked){
+          showToast("Supplemental content is not ready.");
+          return;
+        }
+        openModule(chapter.id);
+      });
+      grid.appendChild(tile);
+    });
+  });
+}
+
 function renderModuleSelect(){
   const grid = el("moduleGrid");
   if(!grid || !CURRENT_COURSE || !FINAL_PROFILE) return;
@@ -1909,6 +1987,7 @@ function renderModuleSelect(){
 
   if(CURRENT_COURSE.domainMode){
     renderSecurityDomainTiles(grid);
+    renderSupplementalTiles(grid);
   }else{
     renderClsModuleTiles(grid);
   }
@@ -2069,7 +2148,7 @@ function startModuleExam(moduleId){
   const normalizedId = normalizeModuleId(moduleId);
   if(CURRENT_COURSE?.domainMode){
     const module = MODULES.find(item => item.id === normalizedId);
-    currentDomainId = module?.domainId ? normalizeModuleId(module.domainId) : currentDomainId;
+    currentDomainId = getCourseDomainIdForModule(module);
   }
   setExamContext({ courseId: currentCourseId, profile: "module", moduleId: normalizedId });
   const exam = buildExamForModule(normalizedId);
@@ -2321,7 +2400,7 @@ async function init(){
         const savedModuleId = localStorage.getItem(getReviewModuleKey(savedCourseId));
         if(savedModuleId && MODULES.some(mod => mod.id === normalizeModuleId(savedModuleId))){
           const module = MODULES.find(mod => mod.id === normalizeModuleId(savedModuleId));
-          currentDomainId = module?.domainId ? normalizeModuleId(module.domainId) : null;
+          currentDomainId = getCourseDomainIdForModule(module);
           renderModuleReview(savedModuleId);
           return;
         }
