@@ -1,8 +1,8 @@
 /**
  * Classes
  * - Login gate + course catalog
- * - CLS exam runner
- * - Local autosave via localStorage
+ * - Separate CLS and Security+ courses
+ * - Shared exam runner with course-isolated local autosave
  */
 
 /* -------------------------
@@ -16,6 +16,7 @@ const AUTH_PASS = "GoArmy";
 
 const VIEW_COURSES = "courses";
 const VIEW_MODULES = "clsModules";
+const VIEW_REVIEW = "review";
 const VIEW_EXAM = "exam";
 
 const FINAL_EXAM_MIN = 50;
@@ -31,6 +32,8 @@ const PARTIAL_CREDIT_MULTI_MIN_CORRECT = 3;
 const PARTIAL_CREDIT_MIN_POINTS = 3;
 
 let currentView = "login";
+let COURSE_MANIFEST = { courses: [] };
+let CURRENT_COURSE = null;
 let EXAM = null;
 let RAW_DATA = null;
 let MODULES = [];
@@ -39,6 +42,10 @@ let storageKey = null;
 let currentCourseId = null;
 let currentProfile = null;
 let currentModuleId = null;
+let reviewModuleId = null;
+
+const CURRENT_COURSE_KEY = "qw_current_course_v1";
+const courseDataCache = new Map();
 
 function isAuthed(){
   return localStorage.getItem(AUTH_KEY) === "true";
@@ -64,9 +71,13 @@ function renderView(){
   el("loginView").classList.toggle("hidden", currentView !== "login");
   el("coursesView").classList.toggle("hidden", currentView !== VIEW_COURSES);
   el("clsModulesView").classList.toggle("hidden", currentView !== VIEW_MODULES);
+  el("reviewView").classList.toggle("hidden", currentView !== VIEW_REVIEW);
   el("examView").classList.toggle("hidden", currentView !== VIEW_EXAM);
 
-  el("courseControls").classList.toggle("hidden", !(currentView === VIEW_COURSES || currentView === VIEW_MODULES));
+  el("courseControls").classList.toggle(
+    "hidden",
+    !(currentView === VIEW_COURSES || currentView === VIEW_MODULES || currentView === VIEW_REVIEW)
+  );
   el("examControls").classList.toggle("hidden", currentView !== VIEW_EXAM);
 
   if(currentView === VIEW_EXAM){
@@ -116,10 +127,17 @@ function showToast(msg){
    State + Persistence
 ------------------------- */
 
-const COURSE_ID = "cls";
 const STORAGE_VERSION = "v1";
-const LAST_EXAM_KEY = "qw_cls_last_exam_v1";
-const FINAL_EXAM_STORAGE_KEY = "qw:cls:final:v1";
+
+function getLastExamKey(courseId){
+  return courseId === "cls"
+    ? "qw_cls_last_exam_v1"
+    : `qw_${String(courseId).toLowerCase()}_last_exam_v1`;
+}
+
+function getReviewModuleKey(courseId){
+  return `qw:${String(courseId).toLowerCase()}:review-module:${STORAGE_VERSION}`;
+}
 
 const defaultState = {
   startedAt: null,
@@ -170,9 +188,6 @@ function resetStateForCurrentExam(){
   if(storageKey){
     localStorage.removeItem(storageKey);
   }
-  if(currentProfile === "final"){
-    localStorage.removeItem(FINAL_EXAM_STORAGE_KEY);
-  }
   stopTimer();
   resetStateObject();
   ensureQuestionOrder(true);
@@ -220,9 +235,6 @@ function setExamContext({ courseId, profile, moduleId }){
     profile: currentProfile,
     moduleId: currentModuleId
   });
-  if(currentProfile === "final"){
-    storageKey = FINAL_EXAM_STORAGE_KEY;
-  }
 }
 
 function normalizeMultiPrompt(prompt, instruction, instructionRegex){
@@ -327,8 +339,11 @@ function buildDefaultModules(){
 }
 
 function buildModules(raw){
-  const base = Array.isArray(raw.modules) && raw.modules.length
-    ? deepCopy(raw.modules)
+  const sourceModules = Array.isArray(raw.modules) && raw.modules.length
+    ? raw.modules
+    : raw.sourceModules;
+  const base = Array.isArray(sourceModules) && sourceModules.length
+    ? deepCopy(sourceModules)
     : buildDefaultModules();
 
   const counts = getQuestionCountsByModule(raw.questions);
@@ -337,6 +352,7 @@ function buildModules(raw){
     const normalizedId = normalizeModuleId(mod.id);
     const count = counts[normalizedId] || 0;
     return {
+      ...mod,
       id: normalizedId,
       title: mod.title || `Module ${normalizedId}`,
       locked: count === 0,
@@ -355,18 +371,28 @@ function buildFinalProfile(raw, modules){
     timeLimitSeconds: FINAL_EXAM_DEFAULT * 60,
     difficultyMix: { min: 2, max: 5 },
     includeModules: eligibleModules,
-    preferScenarioPct: FINAL_EXAM_SCENARIO_PCT
+    preferScenarioPct: FINAL_EXAM_SCENARIO_PCT,
+    minQuestions: FINAL_EXAM_MIN,
+    maxQuestions: FINAL_EXAM_MAX,
+    minModulesReady: FINAL_EXAM_MIN_MODULES_READY,
+    minPerModule: FINAL_EXAM_MIN_PER_MODULE,
+    maxModuleShare: FINAL_EXAM_MAX_SHARE,
+    moduleWeights: FINAL_EXAM_WEIGHTS
   };
   const profile = raw.profiles && raw.profiles.finalExam ? raw.profiles.finalExam : fallback;
   const unlocked = new Set(modules.filter(m => !m.locked).map(m => normalizeModuleId(m.id)));
+  const minQuestions = profile.minQuestions ?? fallback.minQuestions;
+  const maxQuestions = profile.maxQuestions ?? fallback.maxQuestions;
   const resolvedTotal = clamp(
     profile.totalQuestions ?? fallback.totalQuestions,
-    FINAL_EXAM_MIN,
-    FINAL_EXAM_MAX
+    minQuestions,
+    maxQuestions
   );
   return {
     ...fallback,
     ...profile,
+    minQuestions,
+    maxQuestions,
     totalQuestions: resolvedTotal,
     timeLimitSeconds: profile.timeLimitSeconds ?? resolvedTotal * 60,
     includeModules: (profile.includeModules || fallback.includeModules)
@@ -383,7 +409,7 @@ function buildExamForModule(moduleId){
     id: `MODULE_${normalizedId}`,
     title: moduleInfo ? moduleInfo.title : `Module ${normalizedId}`,
     mode: moduleInfo ? moduleInfo.title : `Module ${normalizedId}`,
-    timeLimitSeconds: 25 * 60,
+    timeLimitSeconds: RAW_DATA.practiceTimeLimitSeconds ?? 25 * 60,
     questions
   };
 }
@@ -478,7 +504,19 @@ function getOrCreateFinalExamBundle(profile){
   const seed = Math.floor(Math.random() * 2**31);
   const rng = seededRng(seed);
   const questions = selectFinalExamQuestions(profile, rng);
-  const order = seededShuffle(questions.map(q => q.id), rng);
+  const shuffledQuestions = seededShuffle(questions, rng);
+  let orderedQuestions = shuffledQuestions;
+  if(profile.pbqFirst){
+    const pbqTypes = new Set(["match", "order", "multi", "multi_not"]);
+    const pbqs = shuffledQuestions.filter(q => pbqTypes.has(q.type));
+    const featured = pbqs.slice(0, profile.pbqFirst);
+    const featuredIds = new Set(featured.map(q => q.id));
+    orderedQuestions = [
+      ...featured,
+      ...shuffledQuestions.filter(q => !featuredIds.has(q.id))
+    ];
+  }
+  const order = orderedQuestions.map(q => q.id);
   const bundle = {
     seed: String(seed),
     questionIds: questions.map(q => q.id),
@@ -502,7 +540,13 @@ function selectFinalExamQuestions(profile, rng){
     return inModule && !q.excludeFromFinalExam;
   });
 
-  const desiredCount = clamp(profile.totalQuestions || FINAL_EXAM_DEFAULT, FINAL_EXAM_MIN, FINAL_EXAM_MAX);
+  const minQuestions = profile.minQuestions ?? FINAL_EXAM_MIN;
+  const maxQuestions = profile.maxQuestions ?? FINAL_EXAM_MAX;
+  const desiredCount = clamp(
+    profile.totalQuestions || FINAL_EXAM_DEFAULT,
+    minQuestions,
+    maxQuestions
+  );
   const eligiblePool = eligible.map((q)=>({
     ...q,
     difficulty: q.difficulty ?? 3,
@@ -517,7 +561,7 @@ function selectFinalExamQuestions(profile, rng){
     return m;
   }, {}));
 
-  if(eligiblePool.length < FINAL_EXAM_MIN){
+  if(eligiblePool.length < minQuestions){
     console.warn("Final Exam pool too small:", eligiblePool.length);
     showToast(`Final Exam pool too small (${eligiblePool.length}).`);
   }
@@ -530,7 +574,8 @@ function selectFinalExamQuestions(profile, rng){
     desiredCount,
     eligiblePool.length
   );
-  const scenarioTarget = Math.round(totalQuestions * ((profile.preferScenarioPct || FINAL_EXAM_SCENARIO_PCT) / 100));
+  const scenarioPct = profile.preferScenarioPct ?? FINAL_EXAM_SCENARIO_PCT;
+  const scenarioTarget = Math.round(totalQuestions * (scenarioPct / 100));
 
   const modulePools = {};
   eligiblePool.forEach((q)=>{
@@ -539,15 +584,18 @@ function selectFinalExamQuestions(profile, rng){
   });
 
   const moduleIds = Object.keys(modulePools);
-  const minEligibleModules = moduleIds.filter(id => modulePools[id].length >= FINAL_EXAM_MIN_PER_MODULE);
-  const minApplies = totalQuestions >= minEligibleModules.length * FINAL_EXAM_MIN_PER_MODULE;
-  const maxPerModule = Math.ceil(totalQuestions * FINAL_EXAM_MAX_SHARE);
+  const minPerModule = profile.minPerModule ?? FINAL_EXAM_MIN_PER_MODULE;
+  const maxModuleShare = profile.maxModuleShare ?? FINAL_EXAM_MAX_SHARE;
+  const minEligibleModules = moduleIds.filter(id => modulePools[id].length >= minPerModule);
+  const minApplies = totalQuestions >= minEligibleModules.length * minPerModule;
+  const maxPerModule = Math.ceil(totalQuestions * maxModuleShare);
 
-  let useManualWeights = FINAL_EXAM_WEIGHTS && Object.keys(FINAL_EXAM_WEIGHTS).length;
+  const configuredWeights = profile.moduleWeights ?? FINAL_EXAM_WEIGHTS;
+  let useManualWeights = configuredWeights && Object.keys(configuredWeights).length;
   let weights = {};
   moduleIds.forEach((id)=>{
     const weight = useManualWeights
-      ? (FINAL_EXAM_WEIGHTS[id] ?? 0)
+      ? (configuredWeights[id] ?? 0)
       : modulePools[id].length;
     weights[id] = weight;
   });
@@ -567,9 +615,9 @@ function selectFinalExamQuestions(profile, rng){
   moduleIds.forEach((id)=>{
     const poolSize = modulePools[id].length;
     const weight = Math.max(0, weights[id]);
-    const minForModule = (minApplies && poolSize >= FINAL_EXAM_MIN_PER_MODULE)
+    const minForModule = (minApplies && poolSize >= minPerModule)
       && (!useManualWeights || weight > 0)
-      ? Math.min(FINAL_EXAM_MIN_PER_MODULE, poolSize, maxPerModule)
+      ? Math.min(minPerModule, poolSize, maxPerModule)
       : 0;
     allocations[id] = minForModule;
     minTotal += minForModule;
@@ -761,14 +809,14 @@ function getCorrectAnswerText(q){
   if(q.type === "match"){
     return q.definitions.map((d)=>{
       const term = q.terms.find(t => t.key === d.expect);
-      return `${d.text} → ${term ? term.label : d.expect}`;
-    }).join(" • ");
+      return `${d.text} â†’ ${term ? term.label : d.expect}`;
+    }).join(" â€¢ ");
   }
   if(q.type === "order"){
     return q.answer.map((key)=>{
       const step = q.steps.find(s => s.key === key);
       return step ? step.label : key;
-    }).join(" → ");
+    }).join(" â†’ ");
   }
   return "";
 }
@@ -784,7 +832,7 @@ function getCorrectAnswerLines(q){
   if(q.type === "match"){
     return q.definitions.map((d)=>{
       const term = q.terms.find(t => t.key === d.expect);
-      return `${d.text} → ${term ? term.label : d.expect}`;
+      return `${d.text} â†’ ${term ? term.label : d.expect}`;
     });
   }
   if(q.type === "order"){
@@ -917,7 +965,7 @@ function renderQuestion(){
   }
   metaParts.push(questionTypeLabel(q));
   metaParts.push(`${q.points} pt${q.points===1?"":"s"}`);
-  setText("qMeta", metaParts.join(" • "));
+  setText("qMeta", metaParts.join(" â€¢ "));
   setText("qText", q.prompt);
   setText("qHint", q.hint || "");
 
@@ -1033,7 +1081,7 @@ function renderQuestion(){
     const correct = isCorrectAnswer(q);
     const status = document.createElement("div");
     status.className = `resultStatus ${correct ? "correct" : "incorrect"}`;
-    status.textContent = `${correct ? "✅ Correct" : "❌ Incorrect"}`;
+    status.textContent = `${correct ? "âœ… Correct" : "âŒ Incorrect"}`;
     review.appendChild(status);
     area.appendChild(review);
   }
@@ -1353,9 +1401,147 @@ function showReview(){
    Module Select + Exam Setup
 ------------------------- */
 
+function renderCourseCatalog(){
+  const grid = el("courseGrid");
+  if(!grid) return;
+  grid.innerHTML = "";
+
+  (COURSE_MANIFEST.courses || []).forEach((course)=>{
+    const isOpen = course.status === "open";
+    const tile = document.createElement("div");
+    tile.className = `courseTile${isOpen ? "" : " locked"}`;
+    tile.title = isOpen ? `Open ${course.title}` : "Coming soon";
+
+    const title = document.createElement("div");
+    title.className = "courseTitle";
+    title.textContent = course.title;
+
+    const meta = document.createElement("div");
+    meta.className = "courseMeta";
+    meta.textContent = `${course.meta || ""}${course.meta ? " â€¢ " : ""}${isOpen ? "Ready" : "Coming soon"}`;
+
+    const status = document.createElement("div");
+    status.className = isOpen ? "tag" : "lockBadge";
+    status.innerHTML = isOpen ? "<strong>Open</strong>" : "ðŸ”’ Locked";
+
+    tile.appendChild(title);
+    tile.appendChild(meta);
+    tile.appendChild(status);
+    tile.addEventListener("click", async ()=>{
+      if(!isAuthed()) return;
+      if(!isOpen){
+        showToast(`${course.title} is coming soon.`);
+        return;
+      }
+      try{
+        showToast(`Loading ${course.title}...`);
+        await activateCourse(course.id);
+        setView(VIEW_MODULES);
+      }catch(e){
+        console.error(`Failed to open ${course.title}`, e);
+        showToast(`Failed to load ${course.title}.`);
+      }
+    });
+
+    grid.appendChild(tile);
+  });
+}
+
+async function activateCourse(courseId){
+  const course = (COURSE_MANIFEST.courses || []).find(item => item.id === courseId);
+  if(!course || course.status !== "open"){
+    throw new Error(`Course is unavailable: ${courseId}`);
+  }
+
+  let raw = courseDataCache.get(courseId);
+  if(!raw){
+    raw = await window.loadExamData(courseId);
+    courseDataCache.set(courseId, raw);
+  }
+
+  CURRENT_COURSE = course;
+  currentCourseId = courseId;
+  localStorage.setItem(CURRENT_COURSE_KEY, courseId);
+  RAW_DATA = deepCopy(raw);
+  RAW_DATA.questions = normalizeQuestions(RAW_DATA);
+  MODULES = buildModules(RAW_DATA);
+  FINAL_PROFILE = buildFinalProfile(RAW_DATA, MODULES);
+
+  setText("moduleViewTitle", course.moduleHeading || `${course.title} Module Select`);
+  setText(
+    "moduleViewMeta",
+    course.moduleMeta || "Choose a module or launch the Final Exam. Modules without questions are locked."
+  );
+  renderModuleSelect();
+}
+
+function appendTextItems(containerId, items){
+  const container = el(containerId);
+  container.innerHTML = "";
+  (items || []).forEach((item)=>{
+    const node = document.createElement("li");
+    node.textContent = item;
+    container.appendChild(node);
+  });
+}
+
+function renderModuleReview(moduleId){
+  const normalizedId = normalizeModuleId(moduleId);
+  const mod = MODULES.find(item => item.id === normalizedId);
+  if(!mod) return;
+
+  reviewModuleId = normalizedId;
+  localStorage.setItem(getReviewModuleKey(currentCourseId), normalizedId);
+  setText("reviewObjective", mod.objective ? `Objective ${mod.objective}` : `Module ${mod.id}`);
+  setText("reviewTitle", mod.title || `Module ${mod.id}`);
+  setText("reviewDomain", mod.domain || CURRENT_COURSE.meta || CURRENT_COURSE.title);
+  setText("reviewSummary", mod.summary || "Review the key concepts, then launch practice.");
+
+  const terms = el("reviewKeyTerms");
+  terms.innerHTML = "";
+  (mod.keyTerms || []).forEach((term)=>{
+    const chip = document.createElement("span");
+    chip.className = "termChip";
+    chip.textContent = term;
+    terms.appendChild(chip);
+  });
+
+  appendTextItems("reviewFacts", mod.mustKnowFacts);
+  appendTextItems("reviewTraps", mod.commonTraps);
+
+  const scenarios = el("reviewScenarios");
+  scenarios.innerHTML = "";
+  (mod.miniScenarios || []).forEach((scenario, index)=>{
+    const card = document.createElement("div");
+    card.className = "scenarioCard";
+    const title = document.createElement("strong");
+    const body = document.createElement("span");
+    if(typeof scenario === "string"){
+      title.textContent = `Scenario ${index + 1}`;
+      body.textContent = scenario;
+    }else{
+      title.textContent = scenario.title || `Scenario ${index + 1}`;
+      body.textContent = scenario.text || "";
+    }
+    card.appendChild(title);
+    card.appendChild(body);
+    scenarios.appendChild(card);
+  });
+
+  setView(VIEW_REVIEW);
+}
+
+function openModule(moduleId){
+  if(CURRENT_COURSE && CURRENT_COURSE.reviewMode){
+    renderModuleReview(moduleId);
+  }else{
+    startModuleExam(moduleId);
+  }
+}
+
 function renderModuleSelect(){
   const grid = el("moduleGrid");
-  if(!grid) return;
+  if(!grid || !CURRENT_COURSE || !FINAL_PROFILE) return;
   grid.innerHTML = "";
 
   MODULES.forEach((mod)=>{
@@ -1370,7 +1556,7 @@ function renderModuleSelect(){
     meta.className = "courseMeta";
     const count = mod.questionCount || 0;
     if(count > 0){
-      meta.textContent = `Ready • ${count} question${count === 1 ? "" : "s"}`;
+      meta.textContent = `Ready â€¢ ${count} question${count === 1 ? "" : "s"}`;
     }else{
       meta.textContent = "Locked / Coming soon";
     }
@@ -1381,12 +1567,14 @@ function renderModuleSelect(){
     if(mod.locked){
       const lock = document.createElement("div");
       lock.className = "lockBadge";
-      lock.textContent = "🔒 Coming soon";
+      lock.textContent = "ðŸ”’ Coming soon";
       tile.appendChild(lock);
     }else{
       const tag = document.createElement("div");
       tag.className = "tag";
-      tag.innerHTML = "<strong>Start</strong>";
+      tag.innerHTML = CURRENT_COURSE.reviewMode
+        ? "<strong>Review &amp; Practice</strong>"
+        : "<strong>Start</strong>";
       tile.appendChild(tag);
     }
 
@@ -1395,7 +1583,7 @@ function renderModuleSelect(){
         showToast("Module content coming soon.");
         return;
       }
-      startModuleExam(mod.id);
+      openModule(mod.id);
     });
 
   grid.appendChild(tile);
@@ -1403,7 +1591,12 @@ function renderModuleSelect(){
 
   const finalTile = document.createElement("div");
   const unlockedCount = FINAL_PROFILE.includeModules.length;
-  const finalReady = unlockedCount >= FINAL_EXAM_MIN_MODULES_READY;
+  const minModulesReady = FINAL_PROFILE.minModulesReady ?? FINAL_EXAM_MIN_MODULES_READY;
+  const eligibleCount = RAW_DATA.questions.filter(q =>
+    FINAL_PROFILE.includeModules.includes(q.module) && !q.excludeFromFinalExam
+  ).length;
+  const finalReady = unlockedCount >= minModulesReady
+    && eligibleCount >= Math.min(FINAL_PROFILE.totalQuestions, FINAL_PROFILE.minQuestions);
   finalTile.className = `courseTile${finalReady ? "" : " locked"}`;
 
   const finalTitle = document.createElement("div");
@@ -1412,7 +1605,13 @@ function renderModuleSelect(){
 
   const finalMeta = document.createElement("div");
   finalMeta.className = "courseMeta";
-  finalMeta.textContent = `50–75 Questions • ${finalReady ? "Ready" : `Unlock ${FINAL_EXAM_MIN_MODULES_READY}+ modules`}`;
+  const questionLabel = FINAL_PROFILE.minQuestions === FINAL_PROFILE.maxQuestions
+    ? `${FINAL_PROFILE.totalQuestions} Questions`
+    : `${FINAL_PROFILE.minQuestions}â€“${FINAL_PROFILE.maxQuestions} Questions`;
+  const timeLabel = `${Math.round(FINAL_PROFILE.timeLimitSeconds / 60)} Minutes`;
+  finalMeta.textContent = `${questionLabel} â€¢ ${timeLabel} â€¢ ${
+    finalReady ? "Ready" : `Requires ${minModulesReady}+ ready modules`
+  }`;
 
   finalTile.appendChild(finalTitle);
   finalTile.appendChild(finalMeta);
@@ -1428,20 +1627,23 @@ function renderModuleSelect(){
     regenTag.innerHTML = "<strong>Regenerate</strong>";
     regenTag.addEventListener("click", (event)=>{
       event.stopPropagation();
-      localStorage.removeItem(FINAL_EXAM_STORAGE_KEY);
+      localStorage.removeItem(buildStorageKey({
+        courseId: currentCourseId,
+        profile: "final"
+      }));
       startFinalExam();
     });
     finalTile.appendChild(regenTag);
   }else{
     const lock = document.createElement("div");
     lock.className = "lockBadge";
-    lock.textContent = "🔒 Locked";
+    lock.textContent = "ðŸ”’ Locked";
     finalTile.appendChild(lock);
   }
 
   finalTile.addEventListener("click", ()=>{
     if(!finalReady){
-      showToast("Final exam requires more unlocked modules.");
+      showToast("Final exam requires more ready modules or questions.");
       return;
     }
     startFinalExam();
@@ -1497,16 +1699,22 @@ function setExamSession(exam, key, orderOverride){
 function startModuleExam(moduleId){
   const normalizedId = normalizeModuleId(moduleId);
   const exam = buildExamForModule(normalizedId);
-  setExamContext({ courseId: COURSE_ID, profile: "module", moduleId: normalizedId });
+  setExamContext({ courseId: currentCourseId, profile: "module", moduleId: normalizedId });
   const key = storageKey;
-  localStorage.setItem(LAST_EXAM_KEY, JSON.stringify({ type: "module", id: normalizedId }));
+  localStorage.setItem(
+    getLastExamKey(currentCourseId),
+    JSON.stringify({ type: "module", id: normalizedId })
+  );
   setExamSession(exam, key);
 }
 
 function startFinalExam(){
-  setExamContext({ courseId: COURSE_ID, profile: "final", moduleId: null });
+  setExamContext({ courseId: currentCourseId, profile: "final", moduleId: null });
   const exam = buildFinalExam();
-  localStorage.setItem(LAST_EXAM_KEY, JSON.stringify({ type: "final" }));
+  localStorage.setItem(
+    getLastExamKey(currentCourseId),
+    JSON.stringify({ type: "final" })
+  );
   const key = storageKey;
   setExamSession(exam, key, exam.order);
 }
@@ -1617,6 +1825,16 @@ function bindUI(){
     setView(VIEW_MODULES);
   });
 
+  el("btnBackToModuleSelect").addEventListener("click", ()=>{
+    setView(VIEW_MODULES);
+  });
+
+  el("btnStartModulePractice").addEventListener("click", ()=>{
+    if(reviewModuleId){
+      startModuleExam(reviewModuleId);
+    }
+  });
+
   el("btnLogin").addEventListener("click", handleLogin);
   el("loginPass").addEventListener("keydown", (e)=>{
     if(e.key === "Enter") handleLogin();
@@ -1624,17 +1842,6 @@ function bindUI(){
 
   document.querySelectorAll(".logoutBtn").forEach(btn => {
     btn.addEventListener("click", handleLogout);
-  });
-
-  el("courseCls").addEventListener("click", ()=>{
-    if(!isAuthed()) return;
-    renderModuleSelect();
-    setView(VIEW_MODULES);
-  });
-
-  el("courseCisco").addEventListener("click", (e)=>{
-    e.preventDefault();
-    showToast("Cisco IT is coming soon.");
   });
 
   el("btnBackToCourses").addEventListener("click", ()=>{
@@ -1679,47 +1886,52 @@ function renderAll(){
 
 async function init(){
   try{
-    const raw = await window.loadExamData();
-    RAW_DATA = raw;
-    RAW_DATA.questions = normalizeQuestions(raw);
-    MODULES = buildModules(RAW_DATA);
-    FINAL_PROFILE = buildFinalProfile(RAW_DATA, MODULES);
-    const moduleSet = [...new Set(RAW_DATA.questions.map(q => q.module))];
-    console.log("CLS question modules loaded:", moduleSet);
-    const countsByModule = getQuestionCountsByModule(RAW_DATA.questions);
-    const moduleLockReport = buildDefaultModules().map((mod)=> {
-      const count = countsByModule[mod.id] || 0;
-      return { module: mod.id, count, locked: count === 0 };
-    });
-    console.log("CLS module counts/locks:", moduleLockReport);
+    COURSE_MANIFEST = await window.loadCourseManifest();
   }catch(e){
-    console.error("Failed to load exam data", e);
-    showToast("Failed to load exam data.");
+    console.error("Failed to load course catalog", e);
+    showToast("Failed to load course catalog.");
     return;
   }
 
   bindUI();
-  renderModuleSelect();
+  renderCourseCatalog();
 
   if(isAuthed()){
     currentView = localStorage.getItem(VIEW_KEY) || VIEW_COURSES;
   }
 
-  if(isAuthed() && currentView === VIEW_EXAM){
+  if(isAuthed() && currentView !== VIEW_COURSES){
     try{
-      const lastExam = JSON.parse(localStorage.getItem(LAST_EXAM_KEY) || "{}");
-      if(lastExam.type === "module" && lastExam.id){
-        startModuleExam(lastExam.id);
-        return;
+      const savedCourseId = localStorage.getItem(CURRENT_COURSE_KEY) || "cls";
+      await activateCourse(savedCourseId);
+
+      if(currentView === VIEW_REVIEW && CURRENT_COURSE.reviewMode){
+        const savedModuleId = localStorage.getItem(getReviewModuleKey(savedCourseId));
+        if(savedModuleId && MODULES.some(mod => mod.id === normalizeModuleId(savedModuleId))){
+          renderModuleReview(savedModuleId);
+          return;
+        }
+        currentView = VIEW_MODULES;
       }
-      if(lastExam.type === "final"){
-        startFinalExam();
-        return;
+
+      if(currentView === VIEW_EXAM){
+        const lastExam = JSON.parse(
+          localStorage.getItem(getLastExamKey(savedCourseId)) || "{}"
+        );
+        if(lastExam.type === "module" && lastExam.id){
+          startModuleExam(lastExam.id);
+          return;
+        }
+        if(lastExam.type === "final"){
+          startFinalExam();
+          return;
+        }
+        currentView = VIEW_MODULES;
       }
     }catch(e){
-      console.warn("Failed to restore last exam", e);
+      console.warn("Failed to restore course state", e);
+      currentView = VIEW_COURSES;
     }
-    currentView = VIEW_COURSES;
   }
   renderView();
 }
