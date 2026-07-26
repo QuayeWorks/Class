@@ -1,5 +1,5 @@
 {
-  "version": "3.0",
+  "version": "3.1",
   "courseId": "secplus",
   "courseTitle": "CompTIA Security+ SY0-701",
   "practiceTimeLimitSeconds": 2700,
@@ -431,23 +431,25 @@
       "title": "Comparing and Contrasting Concepts and Strategies to Protect Data",
       "domain": "Domain 3: Security Architecture",
       "objective": "3.3",
-      "summary": "Data protection follows classification and ownership through its full lifecycle and uses controls such as encryption, masking, tokenization, and DLP.",
+      "summary": "Data protection follows classification and ownership through the data lifecycle and uses controls such as encryption, masking, tokenization, data geolocation, segmentation, and permission restrictions.",
       "keyTerms": [
         "Data at rest",
         "Tokenization",
         "Data masking",
-        "Data loss prevention"
+        "Data geolocation",
+        "Permission restrictions"
       ],
       "mustKnowFacts": [
-        "Data at rest: Stored data that is not actively moving across a network.",
-        "Tokenization: Replaces sensitive values with non-sensitive tokens mapped in a protected system.",
-        "Data masking: Obscures sensitive fields while preserving a usable format.",
-        "Data loss prevention: Detects or blocks unauthorized transfer of sensitive information."
+        "Data at rest is stored data that is not actively moving across a network.",
+        "Tokenization replaces sensitive values with non-sensitive tokens mapped in a protected system.",
+        "Data masking obscures sensitive fields while preserving a usable format.",
+        "Data geolocation identifies the physical or jurisdictional location where data is stored or processed.",
+        "Permission restrictions limit data access to authorized identities, roles, or processes."
       ],
       "commonTraps": [
-        "Do not select a data at rest control when the scenario is asking for a different outcome.",
-        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
-        "Separate a governance or process requirement from the technical control that implements it."
+        "Distinguish data at rest, in transit, and in use before selecting a protection method.",
+        "Data sovereignty concerns the laws that govern data; data geolocation identifies where the data is physically stored or processed.",
+        "Permission restrictions control access, while masking and tokenization change how sensitive values are exposed."
       ],
       "miniScenarios": [
         {
@@ -462,28 +464,31 @@
       "title": "Understanding the Importance of Resilience and Recovery in Security Architecture",
       "domain": "Domain 3: Security Architecture",
       "objective": "3.4",
-      "summary": "Resilient architecture combines redundancy, geographic diversity, tested backups, capacity planning, and recovery objectives to sustain or restore operations.",
+      "summary": "Resilient architecture combines high availability, load balancing or clustering, geographic and platform diversity, multi-cloud design, capacity planning, tested failover, and continuity of operations.",
       "keyTerms": [
-        "Recovery time objective",
-        "Recovery point objective",
         "High availability",
-        "Geographic dispersion"
+        "Load balancing",
+        "Geographic dispersion",
+        "Platform diversity",
+        "Multi-cloud systems",
+        "Continuity of operations"
       ],
       "mustKnowFacts": [
-        "Recovery time objective: Maximum acceptable time to restore a service after disruption.",
-        "Recovery point objective: Maximum acceptable amount of data loss measured in time.",
-        "High availability: Design that minimizes service interruption through redundancy.",
-        "Geographic dispersion: Places resources in separate locations to reduce shared-failure risk."
+        "High availability minimizes service interruption by using redundant components and automated failover.",
+        "Load balancing distributes work across healthy systems; clustering coordinates systems to provide a service.",
+        "Geographic dispersion and platform diversity reduce shared-failure and common-vulnerability risk.",
+        "Multi-cloud designs can reduce dependence on one provider, but they add integration and operational complexity.",
+        "Tabletop exercises, failover tests, simulations, and parallel processing validate resilience before a real disruption."
       ],
       "commonTraps": [
-        "Do not select a recovery time objective control when the scenario is asking for a different outcome.",
-        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
-        "Separate a governance or process requirement from the technical control that implements it."
+        "High availability reduces downtime but does not replace recoverable, tested backups.",
+        "Resources in separate zones can still share a regional or provider-level failure domain.",
+        "Failover that has never been exercised is an assumption, not validated resilience."
       ],
       "miniScenarios": [
         {
-          "title": "Chapter 13 application",
-          "text": "A business can tolerate losing no more than 15 minutes of transaction data after an outage. Which value is being defined? Correct focus: Recovery point objective."
+          "title": "Provider outage",
+          "text": "A critical application must continue if one cloud provider has a regional outage. A tested multi-cloud design with independent failure domains most directly addresses the requirement."
         }
       ]
     },
@@ -538,7 +543,7 @@
         "End of life: Point when a product no longer receives normal vendor support."
       ],
       "commonTraps": [
-        "Do not select a asset inventory control when the scenario is asking for a different outcome.",
+        "Do not select an asset inventory control when the scenario is asking for a different outcome.",
         "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
         "Separate a governance or process requirement from the technical control that implements it."
       ],
@@ -586,23 +591,23 @@
       "title": "Understanding Security Alerting and Monitoring Concepts and Tools",
       "domain": "Domain 4: Security Operations",
       "objective": "4.4",
-      "summary": "Effective monitoring centralizes useful telemetry, establishes baselines, correlates events, tunes alerts, and routes actionable findings for response.",
+      "summary": "Effective monitoring centralizes useful telemetry, establishes baselines, correlates events, tunes alerts, and uses tools such as SIEM, NetFlow, vulnerability scanners, and SNMP.",
       "keyTerms": [
         "SIEM",
         "NetFlow",
-        "Packet capture",
+        "Vulnerability scanner",
         "Alert tuning"
       ],
       "mustKnowFacts": [
-        "SIEM: Centralizes and correlates logs to support detection and investigation.",
-        "NetFlow: Summarizes network conversations without recording full packet payloads.",
-        "Packet capture: Records packet headers and payloads for detailed network analysis.",
-        "Alert tuning: Adjusts detection logic to reduce noise while preserving useful coverage."
+        "SIEM centralizes and correlates logs to support detection and investigation.",
+        "NetFlow summarizes network conversations without normally recording full packet payloads.",
+        "A vulnerability scanner identifies known weaknesses and misconfigurations for prioritization.",
+        "Alert tuning adjusts detection logic to reduce noise while preserving useful coverage."
       ],
       "commonTraps": [
-        "Do not select a siem control when the scenario is asking for a different outcome.",
-        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
-        "Separate a governance or process requirement from the technical control that implements it."
+        "NetFlow summarizes conversations; it does not normally contain full packet payloads.",
+        "A vulnerability scanner identifies potential weaknesses but does not prove exploitability the way a penetration test can.",
+        "Tune noisy alerts using evidence instead of disabling meaningful detection coverage."
       ],
       "miniScenarios": [
         {
@@ -631,7 +636,7 @@
         "Web application firewall: Filters HTTP traffic to protect web applications."
       ],
       "commonTraps": [
-        "Do not select a intrusion prevention system control when the scenario is asking for a different outcome.",
+        "Do not select an intrusion prevention system control when the scenario is asking for a different outcome.",
         "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
         "Separate a governance or process requirement from the technical control that implements it."
       ],
@@ -693,7 +698,7 @@
         "Runbook: Documents repeatable steps for an operational or response process."
       ],
       "commonTraps": [
-        "Do not select a automation control when the scenario is asking for a different outcome.",
+        "Do not select an automation control when the scenario is asking for a different outcome.",
         "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
         "Separate a governance or process requirement from the technical control that implements it."
       ],
@@ -755,7 +760,7 @@
         "Metadata: Describes attributes such as timestamps, ownership, or message headers."
       ],
       "commonTraps": [
-        "Do not select a authentication log control when the scenario is asking for a different outcome.",
+        "Do not select an authentication log control when the scenario is asking for a different outcome.",
         "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
         "Separate a governance or process requirement from the technical control that implements it."
       ],
@@ -803,23 +808,27 @@
       "title": "Understanding Elements of the Risk Management Process",
       "domain": "Domain 5: Security Program Management and Oversight",
       "objective": "5.2",
-      "summary": "Risk management identifies assets and threats, analyzes likelihood and impact, selects treatments, records ownership, and monitors residual risk.",
+      "summary": "Risk management identifies and analyzes risk, selects treatments, records ownership, monitors residual risk, and uses business impact analysis to establish recovery requirements.",
       "keyTerms": [
         "Risk register",
         "Annual loss expectancy",
-        "Risk transfer",
-        "Risk acceptance"
+        "Recovery time objective",
+        "Recovery point objective",
+        "Risk tolerance",
+        "Risk transfer"
       ],
       "mustKnowFacts": [
-        "Risk register: Tracks identified risks, owners, treatments, and status.",
-        "Annual loss expectancy: Estimated yearly loss calculated from single loss expectancy and annual rate of occurrence.",
-        "Risk transfer: Shifts part of financial impact to another party, such as through insurance.",
-        "Risk acceptance: Formally acknowledges residual risk without additional treatment."
+        "A risk register tracks identified risks, owners, treatments, and status.",
+        "Annual loss expectancy equals single loss expectancy multiplied by annualized rate of occurrence.",
+        "Recovery time objective is the maximum acceptable time to restore a service after disruption.",
+        "Recovery point objective is the maximum acceptable data-loss window measured in time.",
+        "Risk appetite is broad organizational willingness to take risk; risk tolerance is the acceptable variation for a specific objective.",
+        "Risk transfer shifts some financial impact to another party, but accountability for managing the risk remains with the organization."
       ],
       "commonTraps": [
-        "Do not select a risk register control when the scenario is asking for a different outcome.",
-        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
-        "Separate a governance or process requirement from the technical control that implements it."
+        "RTO measures acceptable downtime; RPO measures the acceptable data-loss window.",
+        "ALE equals SLE multiplied by ARO, where ARO is the annualized frequency.",
+        "Risk appetite is broad; risk tolerance is specific to an objective or context."
       ],
       "miniScenarios": [
         {
@@ -896,23 +905,27 @@
       "title": "Understanding Types and Purposes of Audits and Assessments",
       "domain": "Domain 5: Security Program Management and Oversight",
       "objective": "5.5",
-      "summary": "Audits and assessments provide different levels of independence and assurance through control reviews, attestations, vulnerability assessments, and penetration testing.",
+      "summary": "Audits and assessments provide different levels of independence and assurance through control reviews, attestations, vulnerability assessments, penetration testing, and known, partially known, or unknown test environments.",
       "keyTerms": [
         "Internal audit",
         "External audit",
         "Vulnerability assessment",
-        "Penetration test"
+        "Penetration test",
+        "Known environment",
+        "Partially known environment",
+        "Unknown environment"
       ],
       "mustKnowFacts": [
-        "Internal audit: Independent review performed within the organization.",
-        "External audit: Assessment performed by an independent outside party.",
-        "Vulnerability assessment: Identifies and prioritizes weaknesses, generally without exploiting them.",
-        "Penetration test: Attempts authorized exploitation to demonstrate attack paths and impact."
+        "An internal audit is an independent assurance activity performed within the organization.",
+        "An external audit is performed by an independent outside party.",
+        "A vulnerability assessment identifies and prioritizes weaknesses, generally without exploiting them.",
+        "A penetration test uses authorized exploitation to demonstrate attack paths and impact.",
+        "Known, partially known, and unknown environments describe how much internal information and access testers receive."
       ],
       "commonTraps": [
-        "Do not select a internal audit control when the scenario is asking for a different outcome.",
-        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
-        "Separate a governance or process requirement from the technical control that implements it."
+        "Testing-environment knowledge does not change the requirement for written authorization and rules of engagement.",
+        "A vulnerability assessment identifies potential weaknesses; a penetration test attempts authorized exploitation.",
+        "A remediation claim should be validated with evidence before a finding is closed."
       ],
       "miniScenarios": [
         {
@@ -954,11 +967,11 @@
     },
     {
       "id": "29",
-      "domainId": "05",
+      "domainId": "SUPPLEMENTAL",
       "title": "Final Preparation",
-      "domain": "Domain 5: Security Program Management and Oversight",
-      "objective": "Final Review",
-      "summary": "Final preparation maps weak areas to exam objectives, mixes recall with scenario practice, rehearses performance-based items, and uses a deliberate test-day strategy.",
+      "domain": "Supplemental: Final Preparation",
+      "objective": "Unscored Study Preparation",
+      "summary": "This supplemental section covers study planning, performance-based-question practice, error-log review, pacing, and test-day preparation. It is not a scored SY0-701 objective.",
       "keyTerms": [
         "Exam objectives",
         "Performance-based question",
@@ -972,16 +985,18 @@
         "Timed practice: Rehearsal that builds pacing and decision-making under an exam limit."
       ],
       "commonTraps": [
-        "Do not select a exam objectives control when the scenario is asking for a different outcome.",
-        "Choose the answer that addresses the stated requirement with the least unsupported assumption.",
-        "Separate a governance or process requirement from the technical control that implements it."
+        "Do not treat study strategy as an exam objective; these items are unscored preparation guidance.",
+        "Use an error log to target weak objectives instead of repeatedly taking full exams without focused review.",
+        "Choose answers from the stated evidence and requirement rather than unsupported assumptions."
       ],
       "miniScenarios": [
         {
           "title": "Chapter 29 application",
           "text": "A learner repeatedly misses questions about identity federation but keeps retaking full exams. What is the BEST next step? Correct focus: Use the error log to review the mapped objective, then retest that topic."
         }
-      ]
+      ],
+      "supplemental": true,
+      "scored": false
     }
   ],
   "profiles": {
@@ -992,7 +1007,7 @@
       "timeLimitSeconds": 5400,
       "minQuestions": 90,
       "maxQuestions": 90,
-      "minModulesReady": 29,
+      "minModulesReady": 28,
       "minPerModule": 2,
       "maxModuleShare": 0.2,
       "difficultyMix": {
@@ -1027,8 +1042,7 @@
         "25",
         "26",
         "27",
-        "28",
-        "29"
+        "28"
       ],
       "preferScenarioPct": 60,
       "pbqFirst": 5,
@@ -1046,13 +1060,12 @@
         "20": 3.111111111111111,
         "21": 3.111111111111111,
         "22": 3.111111111111111,
-        "23": 2.857142857142857,
-        "24": 2.857142857142857,
-        "25": 2.857142857142857,
-        "26": 2.857142857142857,
-        "27": 2.857142857142857,
-        "28": 2.857142857142857,
-        "29": 2.857142857142857,
+        "23": 3.3333333333333335,
+        "24": 3.3333333333333335,
+        "25": 3.3333333333333335,
+        "26": 3.3333333333333335,
+        "27": 3.3333333333333335,
+        "28": 3.3333333333333335,
         "01": 3,
         "02": 3,
         "03": 3,
@@ -1607,7 +1620,7 @@
       "type": "single",
       "prompt": "A security gateway intentionally slows repeated login attempts after failures. Which security technique is this?",
       "options": [
-        "Disruption",
+        "Rate limiting (throttling)",
         "Tokenization",
         "Obfuscation",
         "Federation"
@@ -1615,7 +1628,7 @@
       "answer": [
         0
       ],
-      "rationale": "Rate limiting disrupts automated attacks by increasing their cost and reducing their speed."
+      "rationale": "Rate limiting, also called throttling, slows repeated attempts and reduces the speed and practicality of automated login attacks."
     },
     {
       "id": "SEC-M02-Q009",
@@ -2543,23 +2556,23 @@
       "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
       "type": "order",
       "hint": "Drag the steps from first to last.",
-      "prompt": "A sender must confidentially deliver and sign a large document for one recipient. Place the simplified hybrid-cryptography steps in order.",
+      "prompt": "A sender will use a sign-then-encrypt workflow to confidentially deliver a large document to one recipient. Place the simplified hybrid-cryptography steps in order.",
       "steps": [
         {
           "key": "m04s1",
-          "label": "Generate a random symmetric session key"
+          "label": "Create a digital signature over the document with the sender's private key"
         },
         {
           "key": "m04s2",
-          "label": "Encrypt the document with the session key"
+          "label": "Generate a random symmetric session key"
         },
         {
           "key": "m04s3",
-          "label": "Protect the session key with the recipient's public key"
+          "label": "Encrypt the document and signature with the session key"
         },
         {
           "key": "m04s4",
-          "label": "Sign the package with the sender's private key"
+          "label": "Encrypt or wrap the session key with the recipient's public key"
         }
       ],
       "answer": [
@@ -2568,7 +2581,7 @@
         "m04s3",
         "m04s4"
       ],
-      "rationale": "Hybrid encryption uses an efficient session key for data, protects that key for the recipient, and adds a sender signature."
+      "rationale": "In this explicitly stated sign-then-encrypt workflow, the sender signs first, encrypts the signed content with an efficient symmetric key, and protects that session key with the recipient's public key."
     },
     {
       "id": "SEC-M05-Q001",
@@ -2715,14 +2728,14 @@
       "prompt": "A contractor's credentials are stolen and used to access a client environment. How should the contractor account initially be classified in the investigation?",
       "options": [
         "Proof that the contractor acted maliciously",
-        "A nation-state identity",
-        "A physical-only threat",
-        "A compromised insider identity"
+        "A compromised account being used by an external actor",
+        "Confirmed nation-state activity",
+        "A physical-only threat"
       ],
       "answer": [
-        3
+        1
       ],
-      "rationale": "The account has legitimate access but may be controlled by an external attacker; evidence does not yet prove malicious contractor intent."
+      "rationale": "Stolen credentials indicate account compromise, not malicious intent by the contractor. The initial classification should reflect an external actor using a compromised legitimate account while the investigation continues."
     },
     {
       "id": "SEC-M05-Q008",
@@ -4879,7 +4892,7 @@
         },
         {
           "key": "m12t4",
-          "label": "Data loss prevention"
+          "label": "Permission restriction"
         }
       ],
       "definitions": [
@@ -4900,7 +4913,7 @@
         },
         {
           "id": "m12d4",
-          "text": "Detects or blocks unauthorized transfer of sensitive information",
+          "text": "Limits data access to authorized identities, roles, or processes",
           "expect": "m12t4"
         }
       ],
@@ -4954,9 +4967,9 @@
       "difficulty": 2,
       "scenario": false,
       "type": "true_false",
-      "prompt": "Data loss prevention is best described as: Detects or blocks unauthorized transfer of sensitive information.",
+      "prompt": "A permission restriction is best described as limiting data access to authorized identities, roles, or processes.",
       "answer": true,
-      "rationale": "True. Data loss prevention detects or blocks unauthorized transfer of sensitive information."
+      "rationale": "True. Permission restrictions constrain which identities, roles, or processes may access data."
     },
     {
       "id": "SEC-M13-Q001",
@@ -4968,17 +4981,17 @@
       "difficulty": 2,
       "scenario": false,
       "type": "single",
-      "prompt": "Which term BEST matches this description: Maximum acceptable time to restore a service after disruption?",
+      "prompt": "Which architecture approach keeps a service available by distributing requests across healthy systems and removing failed systems from rotation?",
       "options": [
-        "Recovery time objective",
-        "Recovery point objective",
-        "High availability",
-        "Geographic dispersion"
+        "Load balancing with health checks",
+        "Data masking",
+        "A single cold site",
+        "Tokenization"
       ],
       "answer": [
         0
       ],
-      "rationale": "Recovery time objective maximum acceptable time to restore a service after disruption."
+      "rationale": "A load balancer can use health checks to route requests only to healthy systems, supporting availability and failover."
     },
     {
       "id": "SEC-M13-Q002",
@@ -4990,17 +5003,17 @@
       "difficulty": 3,
       "scenario": true,
       "type": "single",
-      "prompt": "A business can tolerate losing no more than 15 minutes of transaction data after an outage. Which value is being defined?",
+      "prompt": "A critical application must continue if one cloud provider has a regional outage. Which design MOST directly reduces provider-specific failure risk?",
       "options": [
-        "Recovery point objective",
-        "Recovery time objective",
-        "Mean time to repair",
-        "Service-level agreement"
+        "A tested multi-cloud deployment across independent providers",
+        "One larger instance in the same provider and region",
+        "Longer log retention in the affected region",
+        "A second virtual machine on the same physical host"
       ],
       "answer": [
         0
       ],
-      "rationale": "RPO defines the maximum acceptable data loss measured backward from the disruption."
+      "rationale": "A tested multi-cloud design can place service capacity in independent provider failure domains, reducing dependence on one provider or region."
     },
     {
       "id": "SEC-M13-Q003",
@@ -5012,17 +5025,17 @@
       "difficulty": 3,
       "scenario": false,
       "type": "single",
-      "prompt": "Which term BEST matches this description: Maximum acceptable amount of data loss measured in time?",
+      "prompt": "Which term BEST describes placing redundant resources in separate regions to reduce shared-failure risk?",
       "options": [
-        "High availability",
-        "Recovery time objective",
         "Geographic dispersion",
-        "Recovery point objective"
+        "Data sovereignty",
+        "Risk transfer",
+        "Tokenization"
       ],
       "answer": [
-        3
+        0
       ],
-      "rationale": "Recovery point objective maximum acceptable amount of data loss measured in time."
+      "rationale": "Geographic dispersion places resources in separate locations so a single local or regional event is less likely to affect every copy."
     },
     {
       "id": "SEC-M13-Q004",
@@ -5088,40 +5101,40 @@
       "terms": [
         {
           "key": "m13t1",
-          "label": "Recovery time objective"
-        },
-        {
-          "key": "m13t2",
-          "label": "Recovery point objective"
-        },
-        {
-          "key": "m13t3",
           "label": "High availability"
         },
         {
-          "key": "m13t4",
+          "key": "m13t2",
           "label": "Geographic dispersion"
+        },
+        {
+          "key": "m13t3",
+          "label": "Platform diversity"
+        },
+        {
+          "key": "m13t4",
+          "label": "Capacity planning"
         }
       ],
       "definitions": [
         {
           "id": "m13d1",
-          "text": "Maximum acceptable time to restore a service after disruption",
+          "text": "Uses redundancy and failover to minimize service interruption",
           "expect": "m13t1"
         },
         {
           "id": "m13d2",
-          "text": "Maximum acceptable amount of data loss measured in time",
+          "text": "Places resources in separate locations to reduce shared-failure risk",
           "expect": "m13t2"
         },
         {
           "id": "m13d3",
-          "text": "Design that minimizes service interruption through redundancy",
+          "text": "Uses different technologies to reduce common-platform failure risk",
           "expect": "m13t3"
         },
         {
           "id": "m13d4",
-          "text": "Places resources in separate locations to reduce shared-failure risk",
+          "text": "Ensures sufficient people, technology, and infrastructure for expected demand",
           "expect": "m13t4"
         }
       ],
@@ -5138,23 +5151,23 @@
       "scenario": true,
       "type": "order",
       "hint": "Drag the steps from first to last.",
-      "prompt": "Place the Chapter 13 activities in the most appropriate order.",
+      "prompt": "Place the resilience-engineering activities in the most appropriate order.",
       "steps": [
         {
           "key": "m13s1",
-          "label": "Complete a business impact analysis"
+          "label": "Identify critical service dependencies and credible failure modes"
         },
         {
           "key": "m13s2",
-          "label": "Set recovery objectives"
+          "label": "Select redundancy, alternate-site, and backup controls"
         },
         {
           "key": "m13s3",
-          "label": "Design and implement resilient controls"
+          "label": "Implement distribution, replication, and failover mechanisms"
         },
         {
           "key": "m13s4",
-          "label": "Exercise recovery and improve the plan"
+          "label": "Exercise failure scenarios and improve the design"
         }
       ],
       "answer": [
@@ -5163,7 +5176,7 @@
         "m13s3",
         "m13s4"
       ],
-      "rationale": "The process begins with \"Complete a business impact analysis\" and ends with \"Exercise recovery and improve the plan.\""
+      "rationale": "Resilience work begins by understanding dependencies and failure modes, then selects and implements controls, and finally validates and improves them through testing."
     },
     {
       "id": "SEC-M13-Q008",
@@ -5980,7 +5993,7 @@
         },
         {
           "key": "m17t3",
-          "label": "Packet capture"
+          "label": "Vulnerability scanner"
         },
         {
           "key": "m17t4",
@@ -6000,7 +6013,7 @@
         },
         {
           "id": "m17d3",
-          "text": "Records packet headers and payloads for detailed network analysis",
+          "text": "Identifies known weaknesses and misconfigurations for prioritization",
           "expect": "m17t3"
         },
         {
@@ -7399,17 +7412,17 @@
       "difficulty": 2,
       "scenario": false,
       "type": "single",
-      "prompt": "Which term BEST matches this description: Tracks identified risks, owners, treatments, and status?",
+      "prompt": "Which term defines the maximum acceptable time to restore a service after a disruption?",
       "options": [
-        "Risk register",
-        "Annual loss expectancy",
-        "Risk transfer",
-        "Risk acceptance"
+        "Recovery time objective",
+        "Recovery point objective",
+        "Mean time between failures",
+        "Annual loss expectancy"
       ],
       "answer": [
         0
       ],
-      "rationale": "Risk register tracks identified risks, owners, treatments, and status."
+      "rationale": "The recovery time objective (RTO) states the maximum acceptable time allowed to restore a service after disruption."
     },
     {
       "id": "SEC-M24-Q002",
@@ -7443,17 +7456,17 @@
       "difficulty": 3,
       "scenario": false,
       "type": "single",
-      "prompt": "Which term BEST matches this description: Estimated yearly loss calculated from single loss expectancy and annual rate of occurrence?",
+      "prompt": "Which term defines the maximum acceptable amount of data loss, measured backward in time from a disruption?",
       "options": [
-        "Risk transfer",
-        "Risk register",
         "Risk acceptance",
-        "Annual loss expectancy"
+        "Recovery time objective",
+        "Recovery point objective",
+        "Risk register"
       ],
       "answer": [
-        3
+        2
       ],
-      "rationale": "Annual loss expectancy estimated yearly loss calculated from single loss expectancy and annual rate of occurrence."
+      "rationale": "The recovery point objective (RPO) states the maximum acceptable data-loss window, measured in time."
     },
     {
       "id": "SEC-M24-Q004",
@@ -7523,11 +7536,11 @@
         },
         {
           "key": "m24t2",
-          "label": "Annual loss expectancy"
+          "label": "Recovery time objective"
         },
         {
           "key": "m24t3",
-          "label": "Risk transfer"
+          "label": "Recovery point objective"
         },
         {
           "key": "m24t4",
@@ -7542,12 +7555,12 @@
         },
         {
           "id": "m24d2",
-          "text": "Estimated yearly loss calculated from single loss expectancy and annual rate of occurrence",
+          "text": "Maximum acceptable time to restore a service after disruption",
           "expect": "m24t2"
         },
         {
           "id": "m24d3",
-          "text": "Shifts part of financial impact to another party, such as through insurance",
+          "text": "Maximum acceptable data-loss window measured in time",
           "expect": "m24t3"
         },
         {
@@ -8497,9 +8510,9 @@
     {
       "id": "SEC-M29-Q001",
       "module": "29",
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "points": 2,
       "difficulty": 2,
       "scenario": false,
@@ -8514,14 +8527,18 @@
       "answer": [
         0
       ],
-      "rationale": "Exam objectives authoritative outline of the knowledge and skills tested."
+      "rationale": "Exam objectives authoritative outline of the knowledge and skills tested.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-Q002",
       "module": "29",
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "points": 2,
       "difficulty": 3,
       "scenario": true,
@@ -8536,14 +8553,18 @@
       "answer": [
         0
       ],
-      "rationale": "Targeted remediation tied to the objective corrects the underlying gap before another broad assessment."
+      "rationale": "Targeted remediation tied to the objective corrects the underlying gap before another broad assessment.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-Q003",
       "module": "29",
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "points": 2,
       "difficulty": 3,
       "scenario": false,
@@ -8558,14 +8579,18 @@
       "answer": [
         3
       ],
-      "rationale": "Performance-based question interactive item that requires applying knowledge to a scenario or task."
+      "rationale": "Performance-based question interactive item that requires applying knowledge to a scenario or task.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-Q004",
       "module": "29",
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "points": 4,
       "difficulty": 4,
       "scenario": true,
@@ -8583,14 +8608,18 @@
         2,
         4
       ],
-      "rationale": "Review every missed answer and its rationale; Practice PBQs before test day; Use timed mixed-domain exams after targeted study. The other choices introduce avoidable risk."
+      "rationale": "Review every missed answer and its rationale; Practice PBQs before test day; Use timed mixed-domain exams after targeted study. The other choices introduce avoidable risk.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-Q005",
       "module": "29",
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "points": 4,
       "difficulty": 4,
       "scenario": true,
@@ -8607,14 +8636,18 @@
         0,
         3
       ],
-      "rationale": "Memorize question wording instead of concepts; Change answers repeatedly without evidence. Those choices do not follow the chapter's recommended security approach."
+      "rationale": "Memorize question wording instead of concepts; Change answers repeatedly without evidence. Those choices do not follow the chapter's recommended security approach.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-Q006",
       "module": "29",
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "points": 4,
       "difficulty": 4,
       "scenario": true,
@@ -8661,14 +8694,18 @@
           "expect": "m29t4"
         }
       ],
-      "rationale": "Each item matches the Security+ concept to its operational meaning."
+      "rationale": "Each item matches the Security+ concept to its operational meaning.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-Q007",
       "module": "29",
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "points": 4,
       "difficulty": 4,
       "scenario": true,
@@ -8699,21 +8736,29 @@
         "m29s3",
         "m29s4"
       ],
-      "rationale": "The process begins with \"Take a diagnostic assessment\" and ends with \"Complete a timed mixed-domain readiness exam.\""
+      "rationale": "The process begins with \"Take a diagnostic assessment\" and ends with \"Complete a timed mixed-domain readiness exam.\"",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-Q008",
       "module": "29",
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "points": 1,
       "difficulty": 2,
       "scenario": false,
       "type": "true_false",
       "prompt": "Timed practice is best described as: Rehearsal that builds pacing and decision-making under an exam limit.",
       "answer": true,
-      "rationale": "True. Timed practice rehearsal that builds pacing and decision-making under an exam limit."
+      "rationale": "True. Timed practice rehearsal that builds pacing and decision-making under an exam limit.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M01-X001",
@@ -13021,7 +13066,7 @@
       "objective": "2.3",
       "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3; original practice item",
       "type": "single",
-      "prompt": "In Chapter 7, which term BEST describes previously unknown or unpatched flaw available to attackers?",
+      "prompt": "In Chapter 7, which term BEST describes a previously unknown vulnerability that attackers exploit before a vendor fix is available?",
       "options": [
         "Zero-day vulnerability",
         "Supply-chain vulnerability",
@@ -13031,7 +13076,7 @@
       "answer": [
         0
       ],
-      "rationale": "Zero-day vulnerability is the best answer because it is previously unknown or unpatched flaw available to attackers."
+      "rationale": "A zero-day vulnerability is unknown to the vendor or defenders when exploitation begins, so a vendor fix is not yet available."
     },
     {
       "id": "SEC-M07-X014",
@@ -13219,7 +13264,7 @@
       "objective": "2.3",
       "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3; original practice item",
       "type": "single",
-      "prompt": "A security team needs to persist malicious code below the operating system. Which concept BEST fits this scenario?",
+      "prompt": "A device accepts an unsigned malicious update because of a flaw in its low-level software. Which concept BEST fits this scenario?",
       "options": [
         "End-of-life vulnerability",
         "Jailbreaking",
@@ -13229,7 +13274,7 @@
       "answer": [
         3
       ],
-      "rationale": "Firmware vulnerability is the best answer because it is weakness in low-level device software."
+      "rationale": "A firmware vulnerability is a weakness in low-level device software or its update process that can permit unauthorized modification."
     },
     {
       "id": "SEC-M07-X023",
@@ -13329,7 +13374,7 @@
       "objective": "2.3",
       "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3; original practice item",
       "type": "single",
-      "prompt": "A security team needs to exploit a defect before a vendor fix exists. Which concept BEST fits this scenario?",
+      "prompt": "An attacker exploits a vulnerability that is unknown to the vendor before a fix is available. Which concept BEST fits this scenario?",
       "options": [
         "Race condition",
         "Resource reuse",
@@ -13339,7 +13384,7 @@
       "answer": [
         2
       ],
-      "rationale": "Zero-day vulnerability is the best answer because it is previously unknown or unpatched flaw available to attackers."
+      "rationale": "A zero-day vulnerability is unknown to the vendor or defenders when exploitation begins, so a vendor fix is not yet available."
     },
     {
       "id": "SEC-M07-X028",
@@ -16985,9 +17030,9 @@
       "objective": "3.3",
       "sourceRef": "CompTIA Security+ SY0-701 Objective 3.3; original practice item",
       "type": "single",
-      "prompt": "In Chapter 12, which term BEST describes technology that detects or blocks unauthorized sensitive-data movement?",
+      "prompt": "In Chapter 12, which term BEST describes the physical or jurisdictional location where data is stored or processed?",
       "options": [
-        "Data loss prevention",
+        "Data geolocation",
         "Segmentation",
         "Data in use",
         "Hashing"
@@ -16995,7 +17040,7 @@
       "answer": [
         0
       ],
-      "rationale": "Data loss prevention is the best answer because it is technology that detects or blocks unauthorized sensitive-data movement."
+      "rationale": "Data geolocation identifies where data is physically stored or processed, which can affect legal, contractual, and security requirements."
     },
     {
       "id": "SEC-M12-X014",
@@ -17293,17 +17338,17 @@
       "objective": "3.3",
       "sourceRef": "CompTIA Security+ SY0-701 Objective 3.3; original practice item",
       "type": "single",
-      "prompt": "A security team needs to stop a user from emailing classified data externally. Which concept BEST fits this scenario?",
+      "prompt": "A security team must determine the countries in which a cloud provider stores and processes customer records. Which concept BEST fits this scenario?",
       "options": [
         "Data in use",
         "Hashing",
-        "Data loss prevention",
+        "Data geolocation",
         "Segmentation"
       ],
       "answer": [
         2
       ],
-      "rationale": "Data loss prevention is the best answer because it is technology that detects or blocks unauthorized sensitive-data movement."
+      "rationale": "Data geolocation identifies the physical or jurisdictional locations where cloud data is stored or processed."
     },
     {
       "id": "SEC-M12-X028",
@@ -17562,7 +17607,7 @@
         },
         {
           "key": "x12m2t4",
-          "label": "Data loss prevention"
+          "label": "Data geolocation"
         }
       ],
       "definitions": [
@@ -17573,7 +17618,7 @@
         },
         {
           "id": "x12m2d4",
-          "text": "Technology that detects or blocks unauthorized sensitive-data movement",
+          "text": "Physical or jurisdictional location where data is stored or processed",
           "expect": "x12m2t4"
         },
         {
@@ -18545,7 +18590,7 @@
       "type": "single",
       "prompt": "In Chapter 14, which term BEST describes visual representation of wireless signal coverage?",
       "options": [
-        "Secure cookie",
+        "Cookie security attributes",
         "Heat map",
         "Mobile device management",
         "CYOD"
@@ -18636,7 +18681,7 @@
         "Configuration drift",
         "CYOD",
         "WPA3",
-        "Secure cookie"
+        "Cookie security attributes"
       ],
       "answer": [
         1
@@ -18702,7 +18747,7 @@
         "Secure baseline",
         "Mobile device management",
         "Input validation",
-        "Secure cookie"
+        "Cookie security attributes"
       ],
       "answer": [
         2
@@ -18719,17 +18764,17 @@
       "objective": "4.1",
       "sourceRef": "CompTIA Security+ SY0-701 Objective 4.1; original practice item",
       "type": "single",
-      "prompt": "In Chapter 14, which term BEST describes cookie configured to reduce exposure such as through secure httponly and samesite attributes?",
+      "prompt": "In Chapter 14, which term BEST describes using Secure, HttpOnly, and SameSite attributes to reduce session-cookie exposure?",
       "options": [
         "BYOD",
-        "Secure cookie",
+        "Cookie security attributes",
         "Static code analysis",
         "Configuration drift"
       ],
       "answer": [
         1
       ],
-      "rationale": "Secure cookie is the best answer because it is cookie configured to reduce exposure such as through secure httponly and samesite attributes."
+      "rationale": "Cookie security attributes are the best answer: Secure restricts transmission to HTTPS, HttpOnly blocks script access, and SameSite limits cross-site sending."
     },
     {
       "id": "SEC-M14-X013",
@@ -18855,7 +18900,7 @@
       "options": [
         "Mobile device management",
         "CYOD",
-        "Secure cookie",
+        "Cookie security attributes",
         "Heat map"
       ],
       "answer": [
@@ -18942,7 +18987,7 @@
       "prompt": "A security team needs to limit device variety while giving employees a choice. Which concept BEST fits this scenario?",
       "options": [
         "WPA3",
-        "Secure cookie",
+        "Cookie security attributes",
         "Configuration drift",
         "CYOD"
       ],
@@ -19008,7 +19053,7 @@
       "prompt": "A security team needs to reject unexpected characters and lengths in user input. Which concept BEST fits this scenario?",
       "options": [
         "Input validation",
-        "Secure cookie",
+        "Cookie security attributes",
         "Secure baseline",
         "Mobile device management"
       ],
@@ -19032,12 +19077,12 @@
         "Static code analysis",
         "Configuration drift",
         "BYOD",
-        "Secure cookie"
+        "Cookie security attributes"
       ],
       "answer": [
         3
       ],
-      "rationale": "Secure cookie is the best answer because it is cookie configured to reduce exposure such as through secure httponly and samesite attributes."
+      "rationale": "Cookie security attributes help protect a browser session token: Secure restricts transmission to HTTPS, HttpOnly blocks script access, and SameSite limits cross-site sending."
     },
     {
       "id": "SEC-M14-X027",
@@ -19264,7 +19309,7 @@
         },
         {
           "key": "x14m1t4",
-          "label": "Secure cookie"
+          "label": "Cookie security attributes"
         }
       ],
       "definitions": [
@@ -19280,7 +19325,7 @@
         },
         {
           "id": "x14m1d4",
-          "text": "Cookie configured to reduce exposure such as through Secure HttpOnly and SameSite attributes",
+          "text": "Use of Secure, HttpOnly, and SameSite attributes to reduce session-cookie exposure",
           "expect": "x14m1t4"
         },
         {
@@ -19685,7 +19730,7 @@
       "objective": "4.2",
       "sourceRef": "CompTIA Security+ SY0-701 Objective 4.2; original practice item",
       "type": "single",
-      "prompt": "A security team needs to approve classification and access requirements for a data set. Which concept BEST fits this scenario?",
+      "prompt": "A business manager must approve risk treatment and lifecycle decisions for a server. Which asset-management role BEST fits this scenario?",
       "options": [
         "Physical destruction",
         "Asset owner",
@@ -19695,7 +19740,7 @@
       "answer": [
         1
       ],
-      "rationale": "Asset owner is the best answer because it is person accountable for an asset and related risk decisions."
+      "rationale": "The asset owner is accountable for business and risk decisions about the asset, while a custodian performs delegated operational handling."
     },
     {
       "id": "SEC-M15-X017",
@@ -21331,17 +21376,17 @@
       "objective": "4.4",
       "sourceRef": "CompTIA Security+ SY0-701 Objective 4.4; original practice item",
       "type": "single",
-      "prompt": "In Chapter 17, which term BEST describes recording of packet headers and possibly payloads?",
+      "prompt": "In Chapter 17, which term BEST describes a tool that identifies known weaknesses and misconfigurations?",
       "options": [
         "Log aggregation",
         "SCAP",
-        "Packet capture",
+        "Vulnerability scanner",
         "Data loss prevention"
       ],
       "answer": [
         2
       ],
-      "rationale": "Packet capture is the best answer because it is recording of packet headers and possibly payloads."
+      "rationale": "A vulnerability scanner compares systems and configurations with known checks to identify weaknesses for review and prioritization."
     },
     {
       "id": "SEC-M17-X012",
@@ -21639,9 +21684,9 @@
       "objective": "4.4",
       "sourceRef": "CompTIA Security+ SY0-701 Objective 4.4; original practice item",
       "type": "single",
-      "prompt": "A security team needs to inspect the exact contents of a suspicious network exchange. Which concept BEST fits this scenario?",
+      "prompt": "A security team needs to scan systems for known weaknesses and misconfigurations. Which concept BEST fits this scenario?",
       "options": [
-        "Packet capture",
+        "Vulnerability scanner",
         "Data loss prevention",
         "Log aggregation",
         "SCAP"
@@ -21649,7 +21694,7 @@
       "answer": [
         0
       ],
-      "rationale": "Packet capture is the best answer because it is recording of packet headers and possibly payloads."
+      "rationale": "A vulnerability scanner identifies known weaknesses and misconfigurations so the organization can validate and prioritize remediation."
     },
     {
       "id": "SEC-M17-X026",
@@ -27261,7 +27306,7 @@
       "options": [
         "Risk register",
         "Likelihood",
-        "Annual rate of occurrence",
+        "Annualized rate of occurrence",
         "Risk mitigation"
       ],
       "answer": [
@@ -27327,7 +27372,7 @@
       "options": [
         "Risk acceptance",
         "Single loss expectancy",
-        "Annual rate of occurrence",
+        "Annualized rate of occurrence",
         "Quantitative analysis"
       ],
       "answer": [
@@ -27347,7 +27392,7 @@
       "type": "single",
       "prompt": "In Chapter 24, which term BEST describes estimated frequency of an event within one year?",
       "options": [
-        "Annual rate of occurrence",
+        "Annualized rate of occurrence",
         "Annual loss expectancy",
         "Risk mitigation",
         "Risk appetite"
@@ -27355,7 +27400,7 @@
       "answer": [
         0
       ],
-      "rationale": "Annual rate of occurrence is the best answer because it is estimated frequency of an event within one year."
+      "rationale": "Annualized rate of occurrence is the best answer because it is estimated frequency of an event within one year."
     },
     {
       "id": "SEC-M24-X006",
@@ -27480,7 +27525,7 @@
       "prompt": "In Chapter 24, which term BEST describes elimination of the activity creating the risk?",
       "options": [
         "Risk register",
-        "Annual rate of occurrence",
+        "Annualized rate of occurrence",
         "Risk avoidance",
         "Risk acceptance"
       ],
@@ -27567,7 +27612,7 @@
       "type": "single",
       "prompt": "A security team needs to track material risks and their response plans. Which concept BEST fits this scenario?",
       "options": [
-        "Annual rate of occurrence",
+        "Annualized rate of occurrence",
         "Risk mitigation",
         "Risk register",
         "Likelihood"
@@ -27633,7 +27678,7 @@
       "type": "single",
       "prompt": "A security team needs to calculate asset value multiplied by exposure factor. Which concept BEST fits this scenario?",
       "options": [
-        "Annual rate of occurrence",
+        "Annualized rate of occurrence",
         "Quantitative analysis",
         "Risk acceptance",
         "Single loss expectancy"
@@ -27657,13 +27702,13 @@
       "options": [
         "Risk mitigation",
         "Risk appetite",
-        "Annual rate of occurrence",
+        "Annualized rate of occurrence",
         "Annual loss expectancy"
       ],
       "answer": [
         2
       ],
-      "rationale": "Annual rate of occurrence is the best answer because it is estimated frequency of an event within one year."
+      "rationale": "Annualized rate of occurrence is the best answer because it is estimated frequency of an event within one year."
     },
     {
       "id": "SEC-M24-X020",
@@ -27675,7 +27720,7 @@
       "objective": "5.2",
       "sourceRef": "CompTIA Security+ SY0-701 Objective 5.2; original practice item",
       "type": "single",
-      "prompt": "A security team needs to multiply single loss expectancy by annual rate of occurrence. Which concept BEST fits this scenario?",
+      "prompt": "A security team needs to multiply single loss expectancy by annualized rate of occurrence. Which concept BEST fits this scenario?",
       "options": [
         "Risk tolerance",
         "Annual loss expectancy",
@@ -27790,7 +27835,7 @@
         "Risk avoidance",
         "Risk acceptance",
         "Risk register",
-        "Annual rate of occurrence"
+        "Annualized rate of occurrence"
       ],
       "answer": [
         0
@@ -27851,7 +27896,7 @@
       "objective": "5.2",
       "sourceRef": "CompTIA Security+ SY0-701 Objective 5.2; original practice item",
       "type": "single",
-      "prompt": "A security team needs to define the maximum outage permitted for one service. Which concept BEST fits this scenario?",
+      "prompt": "Leadership defines the specific acceptable level of risk for a particular business objective. Which concept BEST fits this scenario?",
       "options": [
         "Quantitative analysis",
         "Risk tolerance",
@@ -27861,7 +27906,7 @@
       "answer": [
         1
       ],
-      "rationale": "Risk tolerance is the best answer because it is specific acceptable variation around objectives or appetite."
+      "rationale": "Risk tolerance is the specific acceptable variation around a business objective, whereas risk appetite is the organization's broader willingness to take risk."
     },
     {
       "id": "SEC-M24-X029",
@@ -27934,7 +27979,7 @@
         "Single loss expectancy: Shift of some financial consequence to another party",
         "Risk register: Record of identified risks owners treatments and status",
         "Likelihood: Risk analysis using descriptive or ordinal ratings",
-        "Annual rate of occurrence: Estimated frequency of an event within one year",
+        "Annualized rate of occurrence: Estimated frequency of an event within one year",
         "Impact: Estimate of harm if a risk event occurs"
       ],
       "answer": [
@@ -27958,7 +28003,7 @@
       "options": [
         "Risk mitigation: Reduction of likelihood or impact through controls",
         "Annual loss expectancy: Elimination of the activity creating the risk",
-        "Annual rate of occurrence: Estimated frequency of an event within one year",
+        "Annualized rate of occurrence: Estimated frequency of an event within one year",
         "Quantitative analysis: Specific acceptable variation around objectives or appetite",
         "Qualitative analysis: Risk analysis using descriptive or ordinal ratings"
       ],
@@ -27981,7 +28026,7 @@
       "type": "multi_not",
       "prompt": "For Chapter 24 set 1, select ALL term-and-description pairs that do NOT match.",
       "options": [
-        "Annual rate of occurrence: Estimated frequency of an event within one year",
+        "Annualized rate of occurrence: Estimated frequency of an event within one year",
         "Single loss expectancy: Shift of some financial consequence to another party",
         "Likelihood: Risk analysis using descriptive or ordinal ratings",
         "Risk register: Record of identified risks owners treatments and status",
@@ -28005,7 +28050,7 @@
       "type": "multi_not",
       "prompt": "For Chapter 24 set 2, select ALL term-and-description pairs that do NOT match.",
       "options": [
-        "Annual rate of occurrence: Estimated frequency of an event within one year",
+        "Annualized rate of occurrence: Estimated frequency of an event within one year",
         "Quantitative analysis: Specific acceptable variation around objectives or appetite",
         "Risk mitigation: Reduction of likelihood or impact through controls",
         "Annual loss expectancy: Elimination of the activity creating the risk",
@@ -28090,7 +28135,7 @@
         },
         {
           "key": "x24m2t2",
-          "label": "Annual rate of occurrence"
+          "label": "Annualized rate of occurrence"
         },
         {
           "key": "x24m2t3",
@@ -29896,7 +29941,7 @@
         "Internal audit",
         "External audit",
         "Vulnerability assessment",
-        "White-box test"
+        "Known environment"
       ],
       "answer": [
         0
@@ -29917,7 +29962,7 @@
       "options": [
         "Assessment",
         "Penetration test",
-        "Black-box test",
+        "Unknown environment",
         "External audit"
       ],
       "answer": [
@@ -29935,17 +29980,17 @@
       "objective": "5.5",
       "sourceRef": "CompTIA Security+ SY0-701 Objective 5.5; original practice item",
       "type": "single",
-      "prompt": "In Chapter 27, which term BEST describes evaluation of security posture controls or risk?",
+      "prompt": "In Chapter 27, which term BEST describes testing performed with limited internal knowledge or selected credentials?",
       "options": [
-        "Passive reconnaissance",
-        "Rules of engagement",
-        "Assessment",
-        "Attestation"
+        "Partially known environment",
+        "Known environment",
+        "Unknown environment",
+        "Rules of engagement"
       ],
       "answer": [
-        2
+        0
       ],
-      "rationale": "Assessment is the best answer because it is evaluation of security posture controls or risk."
+      "rationale": "A partially known environment gives testers some internal information or access, but not the extensive knowledge of a known environment."
     },
     {
       "id": "SEC-M27-X004",
@@ -29983,7 +30028,7 @@
       "options": [
         "Vulnerability assessment",
         "Penetration test",
-        "White-box test",
+        "Known environment",
         "Remediation plan"
       ],
       "answer": [
@@ -30004,7 +30049,7 @@
       "prompt": "In Chapter 27, which term BEST describes authorized attempt to exploit weaknesses and demonstrate impact?",
       "options": [
         "Passive reconnaissance",
-        "Black-box test",
+        "Unknown environment",
         "Validation",
         "Penetration test"
       ],
@@ -30049,7 +30094,7 @@
       "options": [
         "External audit",
         "Active reconnaissance",
-        "White-box test",
+        "Known environment",
         "Audit finding"
       ],
       "answer": [
@@ -30069,15 +30114,15 @@
       "type": "single",
       "prompt": "In Chapter 27, which term BEST describes assessment performed with extensive internal knowledge and access?",
       "options": [
-        "White-box test",
-        "Black-box test",
+        "Known environment",
+        "Unknown environment",
         "Remediation plan",
         "Assessment"
       ],
       "answer": [
         0
       ],
-      "rationale": "White-box test is the best answer because it is assessment performed with extensive internal knowledge and access."
+      "rationale": "Known environment is the best answer because it is assessment performed with extensive internal knowledge and access."
     },
     {
       "id": "SEC-M27-X010",
@@ -30094,12 +30139,12 @@
         "Rules of engagement",
         "Validation",
         "Attestation",
-        "Black-box test"
+        "Unknown environment"
       ],
       "answer": [
         3
       ],
-      "rationale": "Black-box test is the best answer because it is assessment performed with little or no internal knowledge."
+      "rationale": "Unknown environment is the best answer because it is assessment performed with little or no internal knowledge."
     },
     {
       "id": "SEC-M27-X011",
@@ -30202,7 +30247,7 @@
       "prompt": "A security team needs to have an internal team evaluate control design and operation. Which concept BEST fits this scenario?",
       "options": [
         "Vulnerability assessment",
-        "White-box test",
+        "Known environment",
         "Internal audit",
         "External audit"
       ],
@@ -30223,7 +30268,7 @@
       "type": "single",
       "prompt": "A security team needs to obtain third-party assurance for customers or regulators. Which concept BEST fits this scenario?",
       "options": [
-        "Black-box test",
+        "Unknown environment",
         "External audit",
         "Assessment",
         "Penetration test"
@@ -30243,17 +30288,17 @@
       "objective": "5.5",
       "sourceRef": "CompTIA Security+ SY0-701 Objective 5.5; original practice item",
       "type": "single",
-      "prompt": "A security team needs to measure current capabilities against a framework. Which concept BEST fits this scenario?",
+      "prompt": "Testers receive selected architecture details and one standard-user account, but not full internal access. Which testing environment BEST fits this scenario?",
       "options": [
-        "Assessment",
-        "Attestation",
-        "Passive reconnaissance",
-        "Rules of engagement"
+        "Unknown environment",
+        "Partially known environment",
+        "Known environment",
+        "External audit"
       ],
       "answer": [
-        0
+        1
       ],
-      "rationale": "Assessment is the best answer because it is evaluation of security posture controls or risk."
+      "rationale": "A partially known environment provides limited internal knowledge or selected access rather than complete knowledge or no knowledge."
     },
     {
       "id": "SEC-M27-X018",
@@ -30289,7 +30334,7 @@
       "type": "single",
       "prompt": "A security team needs to scan systems and rank remediation needs. Which concept BEST fits this scenario?",
       "options": [
-        "White-box test",
+        "Known environment",
         "Remediation plan",
         "Vulnerability assessment",
         "Penetration test"
@@ -30314,7 +30359,7 @@
         "Validation",
         "Penetration test",
         "Passive reconnaissance",
-        "Black-box test"
+        "Unknown environment"
       ],
       "answer": [
         1
@@ -30355,7 +30400,7 @@
       "type": "single",
       "prompt": "A security team needs to probe hosts and services within authorized scope. Which concept BEST fits this scenario?",
       "options": [
-        "White-box test",
+        "Known environment",
         "Audit finding",
         "External audit",
         "Active reconnaissance"
@@ -30379,13 +30424,13 @@
       "options": [
         "Remediation plan",
         "Assessment",
-        "White-box test",
-        "Black-box test"
+        "Known environment",
+        "Unknown environment"
       ],
       "answer": [
         2
       ],
-      "rationale": "White-box test is the best answer because it is assessment performed with extensive internal knowledge and access."
+      "rationale": "Known environment is the best answer because it is assessment performed with extensive internal knowledge and access."
     },
     {
       "id": "SEC-M27-X024",
@@ -30400,14 +30445,14 @@
       "prompt": "A security team needs to simulate an external attacker starting with public information. Which concept BEST fits this scenario?",
       "options": [
         "Attestation",
-        "Black-box test",
+        "Unknown environment",
         "Rules of engagement",
         "Validation"
       ],
       "answer": [
         1
       ],
-      "rationale": "Black-box test is the best answer because it is assessment performed with little or no internal knowledge."
+      "rationale": "Unknown environment is the best answer because it is assessment performed with little or no internal knowledge."
     },
     {
       "id": "SEC-M27-X025",
@@ -30551,7 +30596,7 @@
       "type": "true_false",
       "prompt": "Attestation is best described as assessment performed with extensive internal knowledge and access.",
       "answer": false,
-      "rationale": "False. That description matches White-box test; Attestation is formal assertion or report about subject matter and controls."
+      "rationale": "False. That description matches Known environment; Attestation is formal assertion or report about subject matter and controls."
     },
     {
       "id": "SEC-M27-X033",
@@ -30591,7 +30636,7 @@
       "prompt": "For Chapter 27 set 2, select ALL term-and-description pairs that are accurate.",
       "options": [
         "Vulnerability assessment: Identification and prioritization of weaknesses without necessarily exploiting them",
-        "White-box test: Assessment performed with extensive internal knowledge and access",
+        "Known environment: Assessment performed with extensive internal knowledge and access",
         "Penetration test: Document defining authorized scope timing methods and contacts",
         "Active reconnaissance: Evidence-based confirmation that remediation is effective",
         "Passive reconnaissance: Collection of target information without direct interaction"
@@ -30640,7 +30685,7 @@
       "prompt": "For Chapter 27 set 2, select ALL term-and-description pairs that do NOT match.",
       "options": [
         "Vulnerability assessment: Identification and prioritization of weaknesses without necessarily exploiting them",
-        "White-box test: Assessment performed with extensive internal knowledge and access",
+        "Known environment: Assessment performed with extensive internal knowledge and access",
         "Active reconnaissance: Evidence-based confirmation that remediation is effective",
         "Penetration test: Document defining authorized scope timing methods and contacts",
         "Passive reconnaissance: Collection of target information without direct interaction"
@@ -30728,7 +30773,7 @@
         },
         {
           "key": "x27m2t3",
-          "label": "White-box test"
+          "label": "Known environment"
         },
         {
           "key": "x27m2t4",
@@ -31643,9 +31688,9 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "In Chapter 29, which term BEST describes authoritative outline of knowledge and skills measured by the certification?",
       "options": [
@@ -31657,7 +31702,11 @@
       "answer": [
         0
       ],
-      "rationale": "Exam objectives is the best answer because it is authoritative outline of knowledge and skills measured by the certification."
+      "rationale": "Exam objectives is the best answer because it is authoritative outline of knowledge and skills measured by the certification.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X002",
@@ -31665,9 +31714,9 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "In Chapter 29, which term BEST describes initial test used to identify strengths and weaknesses?",
       "options": [
@@ -31679,7 +31728,11 @@
       "answer": [
         3
       ],
-      "rationale": "Diagnostic assessment is the best answer because it is initial test used to identify strengths and weaknesses."
+      "rationale": "Diagnostic assessment is the best answer because it is initial test used to identify strengths and weaknesses.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X003",
@@ -31687,9 +31740,9 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "In Chapter 29, which term BEST describes record of missed concepts reasoning errors and corrective actions?",
       "options": [
@@ -31701,7 +31754,11 @@
       "answer": [
         2
       ],
-      "rationale": "Error log is the best answer because it is record of missed concepts reasoning errors and corrective actions."
+      "rationale": "Error log is the best answer because it is record of missed concepts reasoning errors and corrective actions.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X004",
@@ -31709,9 +31766,9 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "In Chapter 29, which term BEST describes practice retrieving information without looking at notes?",
       "options": [
@@ -31723,7 +31780,11 @@
       "answer": [
         1
       ],
-      "rationale": "Active recall is the best answer because it is practice retrieving information without looking at notes."
+      "rationale": "Active recall is the best answer because it is practice retrieving information without looking at notes.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X005",
@@ -31731,9 +31792,9 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "In Chapter 29, which term BEST describes review scheduled at increasing intervals?",
       "options": [
@@ -31745,7 +31806,11 @@
       "answer": [
         0
       ],
-      "rationale": "Spaced repetition is the best answer because it is review scheduled at increasing intervals."
+      "rationale": "Spaced repetition is the best answer because it is review scheduled at increasing intervals.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X006",
@@ -31753,9 +31818,9 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "In Chapter 29, which term BEST describes application of concepts to realistic situations?",
       "options": [
@@ -31767,7 +31832,11 @@
       "answer": [
         3
       ],
-      "rationale": "Scenario practice is the best answer because it is application of concepts to realistic situations."
+      "rationale": "Scenario practice is the best answer because it is application of concepts to realistic situations.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X007",
@@ -31775,9 +31844,9 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "In Chapter 29, which term BEST describes interactive task requiring applied configuration analysis or matching?",
       "options": [
@@ -31789,7 +31858,11 @@
       "answer": [
         2
       ],
-      "rationale": "Performance-based question is the best answer because it is interactive task requiring applied configuration analysis or matching."
+      "rationale": "Performance-based question is the best answer because it is interactive task requiring applied configuration analysis or matching.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X008",
@@ -31797,9 +31870,9 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "In Chapter 29, which term BEST describes rehearsal under an exam-like time limit?",
       "options": [
@@ -31811,7 +31884,11 @@
       "answer": [
         1
       ],
-      "rationale": "Timed practice is the best answer because it is rehearsal under an exam-like time limit."
+      "rationale": "Timed practice is the best answer because it is rehearsal under an exam-like time limit.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X009",
@@ -31819,9 +31896,9 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "In Chapter 29, which term BEST describes marking uncertain items for later review?",
       "options": [
@@ -31833,7 +31910,11 @@
       "answer": [
         0
       ],
-      "rationale": "Question flagging is the best answer because it is marking uncertain items for later review."
+      "rationale": "Question flagging is the best answer because it is marking uncertain items for later review.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X010",
@@ -31841,9 +31922,9 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "In Chapter 29, which term BEST describes removal of choices that conflict with requirements or facts?",
       "options": [
@@ -31855,7 +31936,11 @@
       "answer": [
         3
       ],
-      "rationale": "Answer elimination is the best answer because it is removal of choices that conflict with requirements or facts."
+      "rationale": "Answer elimination is the best answer because it is removal of choices that conflict with requirements or facts.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X011",
@@ -31863,9 +31948,9 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "In Chapter 29, which term BEST describes planned time comparison during an exam?",
       "options": [
@@ -31877,7 +31962,11 @@
       "answer": [
         2
       ],
-      "rationale": "Pacing checkpoint is the best answer because it is planned time comparison during an exam."
+      "rationale": "Pacing checkpoint is the best answer because it is planned time comparison during an exam.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X012",
@@ -31885,9 +31974,9 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "In Chapter 29, which term BEST describes predefined performance level across repeated mixed assessments?",
       "options": [
@@ -31899,7 +31988,11 @@
       "answer": [
         1
       ],
-      "rationale": "Readiness threshold is the best answer because it is predefined performance level across repeated mixed assessments."
+      "rationale": "Readiness threshold is the best answer because it is predefined performance level across repeated mixed assessments.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X013",
@@ -31907,9 +32000,9 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "In Chapter 29, which term BEST describes preparation of sleep identification route and test requirements?",
       "options": [
@@ -31921,7 +32014,11 @@
       "answer": [
         0
       ],
-      "rationale": "Rest and logistics is the best answer because it is preparation of sleep identification route and test requirements."
+      "rationale": "Rest and logistics is the best answer because it is preparation of sleep identification route and test requirements.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X014",
@@ -31929,9 +32026,9 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "In Chapter 29, which term BEST describes study of why each option is correct or incorrect?",
       "options": [
@@ -31943,7 +32040,11 @@
       "answer": [
         3
       ],
-      "rationale": "Rationale review is the best answer because it is study of why each option is correct or incorrect."
+      "rationale": "Rationale review is the best answer because it is study of why each option is correct or incorrect.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X015",
@@ -31951,9 +32052,9 @@
       "points": 2,
       "difficulty": 3,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "A security team needs to map every study topic to the published SY0-701 domains. Which concept BEST fits this scenario?",
       "options": [
@@ -31965,7 +32066,11 @@
       "answer": [
         2
       ],
-      "rationale": "Exam objectives is the best answer because it is authoritative outline of knowledge and skills measured by the certification."
+      "rationale": "Exam objectives is the best answer because it is authoritative outline of knowledge and skills measured by the certification.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X016",
@@ -31973,9 +32078,9 @@
       "points": 2,
       "difficulty": 3,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "A security team needs to measure weak objectives before choosing a study plan. Which concept BEST fits this scenario?",
       "options": [
@@ -31987,7 +32092,11 @@
       "answer": [
         1
       ],
-      "rationale": "Diagnostic assessment is the best answer because it is initial test used to identify strengths and weaknesses."
+      "rationale": "Diagnostic assessment is the best answer because it is initial test used to identify strengths and weaknesses.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X017",
@@ -31995,9 +32104,9 @@
       "points": 2,
       "difficulty": 3,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "A security team needs to review why an answer was missed before retesting. Which concept BEST fits this scenario?",
       "options": [
@@ -32009,7 +32118,11 @@
       "answer": [
         0
       ],
-      "rationale": "Error log is the best answer because it is record of missed concepts reasoning errors and corrective actions."
+      "rationale": "Error log is the best answer because it is record of missed concepts reasoning errors and corrective actions.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X018",
@@ -32017,9 +32130,9 @@
       "points": 2,
       "difficulty": 3,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "A security team needs to answer concept questions from memory. Which concept BEST fits this scenario?",
       "options": [
@@ -32031,7 +32144,11 @@
       "answer": [
         3
       ],
-      "rationale": "Active recall is the best answer because it is practice retrieving information without looking at notes."
+      "rationale": "Active recall is the best answer because it is practice retrieving information without looking at notes.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X019",
@@ -32039,9 +32156,9 @@
       "points": 2,
       "difficulty": 3,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "A security team needs to revisit weak facts over several days instead of one cram session. Which concept BEST fits this scenario?",
       "options": [
@@ -32053,7 +32170,11 @@
       "answer": [
         2
       ],
-      "rationale": "Spaced repetition is the best answer because it is review scheduled at increasing intervals."
+      "rationale": "Spaced repetition is the best answer because it is review scheduled at increasing intervals.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X020",
@@ -32061,9 +32182,9 @@
       "points": 2,
       "difficulty": 3,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "A security team needs to choose the best control from business and technical clues. Which concept BEST fits this scenario?",
       "options": [
@@ -32075,7 +32196,11 @@
       "answer": [
         1
       ],
-      "rationale": "Scenario practice is the best answer because it is application of concepts to realistic situations."
+      "rationale": "Scenario practice is the best answer because it is application of concepts to realistic situations.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X021",
@@ -32083,9 +32208,9 @@
       "points": 2,
       "difficulty": 3,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "A security team needs to practice ordering response steps and matching controls. Which concept BEST fits this scenario?",
       "options": [
@@ -32097,7 +32222,11 @@
       "answer": [
         0
       ],
-      "rationale": "Performance-based question is the best answer because it is interactive task requiring applied configuration analysis or matching."
+      "rationale": "Performance-based question is the best answer because it is interactive task requiring applied configuration analysis or matching.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X022",
@@ -32105,9 +32234,9 @@
       "points": 2,
       "difficulty": 3,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "A security team needs to measure pacing across a 90-question session. Which concept BEST fits this scenario?",
       "options": [
@@ -32119,7 +32248,11 @@
       "answer": [
         3
       ],
-      "rationale": "Timed practice is the best answer because it is rehearsal under an exam-like time limit."
+      "rationale": "Timed practice is the best answer because it is rehearsal under an exam-like time limit.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X023",
@@ -32127,9 +32260,9 @@
       "points": 2,
       "difficulty": 3,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "A security team needs to move past a difficult question and return if time remains. Which concept BEST fits this scenario?",
       "options": [
@@ -32141,7 +32274,11 @@
       "answer": [
         2
       ],
-      "rationale": "Question flagging is the best answer because it is marking uncertain items for later review."
+      "rationale": "Question flagging is the best answer because it is marking uncertain items for later review.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X024",
@@ -32149,9 +32286,9 @@
       "points": 2,
       "difficulty": 3,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "A security team needs to narrow a scenario question by rejecting clearly wrong controls. Which concept BEST fits this scenario?",
       "options": [
@@ -32163,7 +32300,11 @@
       "answer": [
         1
       ],
-      "rationale": "Answer elimination is the best answer because it is removal of choices that conflict with requirements or facts."
+      "rationale": "Answer elimination is the best answer because it is removal of choices that conflict with requirements or facts.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X025",
@@ -32171,9 +32312,9 @@
       "points": 2,
       "difficulty": 3,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "A security team needs to verify progress after each block of questions. Which concept BEST fits this scenario?",
       "options": [
@@ -32185,7 +32326,11 @@
       "answer": [
         0
       ],
-      "rationale": "Pacing checkpoint is the best answer because it is planned time comparison during an exam."
+      "rationale": "Pacing checkpoint is the best answer because it is planned time comparison during an exam.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X026",
@@ -32193,9 +32338,9 @@
       "points": 2,
       "difficulty": 3,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "A security team needs to schedule the exam after stable passing results in every domain. Which concept BEST fits this scenario?",
       "options": [
@@ -32207,7 +32352,11 @@
       "answer": [
         3
       ],
-      "rationale": "Readiness threshold is the best answer because it is predefined performance level across repeated mixed assessments."
+      "rationale": "Readiness threshold is the best answer because it is predefined performance level across repeated mixed assessments.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X027",
@@ -32215,9 +32364,9 @@
       "points": 2,
       "difficulty": 3,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "A security team needs to reduce avoidable test-day problems. Which concept BEST fits this scenario?",
       "options": [
@@ -32229,7 +32378,11 @@
       "answer": [
         2
       ],
-      "rationale": "Rest and logistics is the best answer because it is preparation of sleep identification route and test requirements."
+      "rationale": "Rest and logistics is the best answer because it is preparation of sleep identification route and test requirements.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X028",
@@ -32237,9 +32390,9 @@
       "points": 2,
       "difficulty": 3,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "single",
       "prompt": "A security team needs to improve reasoning instead of memorizing answer positions. Which concept BEST fits this scenario?",
       "options": [
@@ -32251,7 +32404,11 @@
       "answer": [
         1
       ],
-      "rationale": "Rationale review is the best answer because it is study of why each option is correct or incorrect."
+      "rationale": "Rationale review is the best answer because it is study of why each option is correct or incorrect.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X029",
@@ -32259,13 +32416,17 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "true_false",
       "prompt": "Exam objectives is best described as authoritative outline of knowledge and skills measured by the certification.",
       "answer": true,
-      "rationale": "True. Exam objectives is authoritative outline of knowledge and skills measured by the certification."
+      "rationale": "True. Exam objectives is authoritative outline of knowledge and skills measured by the certification.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X030",
@@ -32273,13 +32434,17 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "true_false",
       "prompt": "Diagnostic assessment is best described as interactive task requiring applied configuration analysis or matching.",
       "answer": false,
-      "rationale": "False. That description matches Performance-based question; Diagnostic assessment is initial test used to identify strengths and weaknesses."
+      "rationale": "False. That description matches Performance-based question; Diagnostic assessment is initial test used to identify strengths and weaknesses.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X031",
@@ -32287,13 +32452,17 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "true_false",
       "prompt": "Error log is best described as record of missed concepts reasoning errors and corrective actions.",
       "answer": true,
-      "rationale": "True. Error log is record of missed concepts reasoning errors and corrective actions."
+      "rationale": "True. Error log is record of missed concepts reasoning errors and corrective actions.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X032",
@@ -32301,13 +32470,17 @@
       "points": 1,
       "difficulty": 2,
       "scenario": false,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "true_false",
       "prompt": "Active recall is best described as marking uncertain items for later review.",
       "answer": false,
-      "rationale": "False. That description matches Question flagging; Active recall is practice retrieving information without looking at notes."
+      "rationale": "False. That description matches Question flagging; Active recall is practice retrieving information without looking at notes.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X033",
@@ -32315,9 +32488,9 @@
       "points": 4,
       "difficulty": 4,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "multi",
       "prompt": "For Chapter 29 set 1, select ALL term-and-description pairs that are accurate.",
       "options": [
@@ -32332,7 +32505,11 @@
         3,
         4
       ],
-      "rationale": "The selected pairs use the correct Security+ definition for each term."
+      "rationale": "The selected pairs use the correct Security+ definition for each term.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X034",
@@ -32340,9 +32517,9 @@
       "points": 4,
       "difficulty": 4,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "multi",
       "prompt": "For Chapter 29 set 2, select ALL term-and-description pairs that are accurate.",
       "options": [
@@ -32357,7 +32534,11 @@
         2,
         4
       ],
-      "rationale": "The selected pairs use the correct Security+ definition for each term."
+      "rationale": "The selected pairs use the correct Security+ definition for each term.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X035",
@@ -32365,9 +32546,9 @@
       "points": 4,
       "difficulty": 4,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "multi_not",
       "prompt": "For Chapter 29 set 1, select ALL term-and-description pairs that do NOT match.",
       "options": [
@@ -32381,7 +32562,11 @@
         0,
         1
       ],
-      "rationale": "The selected pairs combine a term with another concept's description."
+      "rationale": "The selected pairs combine a term with another concept's description.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X036",
@@ -32389,9 +32574,9 @@
       "points": 4,
       "difficulty": 4,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "multi_not",
       "prompt": "For Chapter 29 set 2, select ALL term-and-description pairs that do NOT match.",
       "options": [
@@ -32405,7 +32590,11 @@
         1,
         3
       ],
-      "rationale": "The selected pairs combine a term with another concept's description."
+      "rationale": "The selected pairs combine a term with another concept's description.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X037",
@@ -32413,9 +32602,9 @@
       "points": 4,
       "difficulty": 4,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "match",
       "hint": "Drag each term to the matching description.",
       "prompt": "Match each Chapter 29 concept in set 1 to its correct description.",
@@ -32459,7 +32648,11 @@
           "expect": "x29m1t1"
         }
       ],
-      "rationale": "Each term is paired with its objective-aligned operational meaning."
+      "rationale": "Each term is paired with its objective-aligned operational meaning.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     },
     {
       "id": "SEC-M29-X038",
@@ -32467,9 +32660,9 @@
       "points": 4,
       "difficulty": 4,
       "scenario": true,
-      "domain": "5.0",
-      "objective": "Final Review",
-      "sourceRef": "CompTIA Security+ SY0-701 Final Review; original practice item",
+      "domain": "SUPPLEMENTAL",
+      "objective": "Unscored Study Preparation",
+      "sourceRef": "CompTIA Security+ SY0-701 Cert Guide, Chapter 29: Final Preparation; original study-preparation item",
       "type": "match",
       "hint": "Drag each term to the matching description.",
       "prompt": "Match each Chapter 29 concept in set 2 to its correct description.",
@@ -32513,7 +32706,11 @@
           "expect": "x29m2t2"
         }
       ],
-      "rationale": "Each term is paired with its objective-aligned operational meaning."
+      "rationale": "Each term is paired with its objective-aligned operational meaning.",
+      "excludeFromDomainQuiz": true,
+      "excludeFromFinalExam": true,
+      "supplemental": true,
+      "scored": false
     }
   ],
   "domains": [
@@ -32592,8 +32789,7 @@
         "25",
         "26",
         "27",
-        "28",
-        "29"
+        "28"
       ],
       "quiz": {
         "totalQuestions": 30,
@@ -32612,6 +32808,28 @@
       "name": "ExamCompass Security+ SY0-701 practice catalog",
       "url": "https://www.examcompass.com/comptia-security-plus-practice-test-24-exam-sy0-701",
       "usage": "Topic coverage and practice-style calibration only; all question wording and scenarios in this bank are original"
+    }
+  ],
+  "reviewStatus": {
+    "reviewDate": "2026-07-26",
+    "reviewedAgainst": [
+      "CompTIA Security+ SY0-701 Exam Objectives",
+      "NIST cybersecurity terminology",
+      "CISA insider-threat guidance",
+      "OWASP web-security guidance"
+    ],
+    "validationScope": "Schema integrity, answer-key consistency, objective mapping, exam-pool scope, terminology, and identified ambiguity corrections",
+    "limitation": "Original practice material, not official CompTIA exam content. Independent subject-matter-expert review is recommended before high-stakes publication."
+  },
+  "supplementalSections": [
+    {
+      "id": "final-preparation",
+      "title": "Final Preparation",
+      "chapterIds": [
+        "29"
+      ],
+      "scored": false,
+      "description": "Chapter 29 study-preparation material, excluded from domain quizzes and the scored final-exam pool."
     }
   ]
 }
