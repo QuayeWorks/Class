@@ -1,0 +1,3377 @@
+{
+  "version": "1.0",
+  "courseId": "secplus",
+  "courseTitle": "Security+ SY0-701 Review",
+  "practiceTimeLimitSeconds": 2700,
+  "modules": [
+    {
+      "id": "01",
+      "title": "Compare and contrast various types of security controls",
+      "domain": "1.0 General Security Concepts",
+      "objective": "1.1",
+      "summary": "Security controls are classified by what they do—prevent, deter, detect, correct, compensate, or direct—and by how they are implemented through technical, managerial, operational, or physical means.",
+      "keyTerms": [
+        "preventive control",
+        "deterrent control",
+        "detective control",
+        "corrective control",
+        "compensating control",
+        "directive control",
+        "technical control",
+        "managerial control",
+        "operational control",
+        "physical control"
+      ],
+      "mustKnowFacts": [
+        "A control can have both a functional type and an implementation category; for example, a firewall is usually a preventive technical control.",
+        "Compensating controls provide alternate protection when the preferred control is not feasible.",
+        "Managerial controls govern risk and policy, operational controls are performed by people or processes, and technical controls are enforced by systems.",
+        "Detective controls identify activity; corrective controls restore or limit damage after detection."
+      ],
+      "commonTraps": [
+        "Do not confuse a control's purpose with its implementation category.",
+        "A warning banner is usually deterrent or directive, while the authentication mechanism behind it is preventive.",
+        "A compensating control is an approved alternative—not simply a weaker or missing control."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Legacy application",
+          "text": "A system cannot support MFA, so access is limited to a hardened jump host and every privileged session is recorded. Those safeguards are compensating technical controls."
+        },
+        {
+          "title": "Layered facility security",
+          "text": "Lighting and signs deter, a badge reader prevents unauthorized entry, cameras detect activity, and an incident procedure directs staff."
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "title": "Summarize fundamental security concepts",
+      "domain": "1.0 General Security Concepts",
+      "objective": "1.2",
+      "summary": "Core security concepts include the CIA triad, authentication and authorization, non-repudiation, zero trust, physical safeguards, and deception or disruption techniques.",
+      "keyTerms": [
+        "confidentiality",
+        "integrity",
+        "availability",
+        "authentication",
+        "authorization",
+        "accounting",
+        "non-repudiation",
+        "least privilege",
+        "zero trust",
+        "honeypot"
+      ],
+      "mustKnowFacts": [
+        "Confidentiality limits disclosure, integrity protects accuracy, and availability keeps services usable.",
+        "Authentication proves identity; authorization determines allowed actions; accounting records activity.",
+        "Digital signatures can support integrity, authenticity, and non-repudiation when private keys are protected.",
+        "Zero trust continuously evaluates identity, device, context, and policy instead of trusting a network location."
+      ],
+      "commonTraps": [
+        "Encryption primarily protects confidentiality; hashing primarily helps verify integrity.",
+        "High availability does not automatically protect confidentiality or integrity.",
+        "Zero trust does not mean blocking everyone; it means no implicit trust and explicit, least-privilege decisions."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Payroll file",
+          "text": "Encrypting the file protects confidentiality, a signed hash exposes unauthorized changes, and redundant storage improves availability."
+        },
+        {
+          "title": "Remote administrator",
+          "text": "A valid password is not enough in zero trust; device posture, MFA, role, location, and requested resource can all affect access."
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "title": "Explain the importance of change management processes and the impact to security",
+      "domain": "1.0 General Security Concepts",
+      "objective": "1.3",
+      "summary": "Secure change management uses ownership, impact analysis, testing, approvals, maintenance windows, rollback plans, documentation, and version control to reduce unintended risk.",
+      "keyTerms": [
+        "change request",
+        "impact analysis",
+        "change advisory board",
+        "maintenance window",
+        "rollback plan",
+        "version control",
+        "emergency change",
+        "stakeholder approval",
+        "backout criteria",
+        "post-implementation review"
+      ],
+      "mustKnowFacts": [
+        "A change should have a defined owner, business reason, scope, risk assessment, test evidence, approval, and rollback plan.",
+        "Emergency changes may use an expedited path, but they still require authorization, documentation, validation, and later review.",
+        "Version control provides traceability and supports comparison or restoration of approved configurations.",
+        "Dependencies, downtime, security controls, and user impact belong in the impact analysis."
+      ],
+      "commonTraps": [
+        "An urgent change is not permission to bypass all records or testing.",
+        "A maintenance window limits operational disruption but does not replace approval or rollback planning.",
+        "Successful deployment is not the final step; validation and documentation must follow."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Emergency firewall rule",
+          "text": "Contain the threat through an approved emergency path, record who authorized the rule, validate the effect, and perform retrospective review."
+        },
+        {
+          "title": "Database upgrade",
+          "text": "Identify application dependencies, test against representative data, define backout triggers, notify stakeholders, and verify service after deployment."
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "title": "Explain the importance of using appropriate cryptographic solutions",
+      "domain": "1.0 General Security Concepts",
+      "objective": "1.4",
+      "summary": "Cryptographic solutions protect data through hashing, symmetric and asymmetric encryption, digital signatures, certificates, secure key exchange, and protected key storage such as HSMs and TPMs.",
+      "keyTerms": [
+        "hashing",
+        "symmetric encryption",
+        "asymmetric encryption",
+        "digital signature",
+        "PKI",
+        "certificate authority",
+        "key exchange",
+        "HSM",
+        "TPM",
+        "key escrow"
+      ],
+      "mustKnowFacts": [
+        "Symmetric encryption is efficient for bulk data; asymmetric cryptography helps with key exchange, identity, and signatures.",
+        "A digital signature is created with a private key and verified with the corresponding public key.",
+        "Certificates bind a public key to an identity through a trust chain.",
+        "HSMs protect enterprise cryptographic keys; TPMs provide device-bound hardware trust and key protection."
+      ],
+      "commonTraps": [
+        "Hashing is one-way and is not a method for recovering plaintext.",
+        "Signing with a private key does not provide confidentiality by itself.",
+        "A certificate's presence is not enough; name, validity, chain, and revocation status must also be checked."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Large encrypted transfer",
+          "text": "Generate a random symmetric key for the data, protect that key with the recipient's public key, and sign the package with the sender's private key."
+        },
+        {
+          "title": "Certificate warning",
+          "text": "A browser warning may result from an expired certificate, hostname mismatch, untrusted issuer, broken chain, or revoked certificate."
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "title": "Compare and contrast common threat actors and motivations",
+      "domain": "2.0 Threats, Vulnerabilities, and Mitigations",
+      "objective": "2.1",
+      "summary": "Threat actors differ in resources, access, sophistication, and motivation. Attribution relies on observed behavior and evidence rather than one isolated indicator.",
+      "keyTerms": [
+        "nation-state",
+        "organized crime",
+        "hacktivist",
+        "insider threat",
+        "script kiddie",
+        "shadow IT",
+        "espionage",
+        "financial gain",
+        "ideology",
+        "revenge"
+      ],
+      "mustKnowFacts": [
+        "Nation-state actors often pursue strategic intelligence, influence, or disruption and can sustain long campaigns.",
+        "Organized crime typically prioritizes scalable financial return through fraud, extortion, or theft.",
+        "Insiders may be malicious, negligent, or compromised and already possess some legitimate access.",
+        "Shadow IT creates unmanaged risk even when an employee's intent is productivity rather than harm."
+      ],
+      "commonTraps": [
+        "High sophistication suggests but does not prove nation-state involvement.",
+        "Do not assume every insider incident is malicious; negligence and compromised credentials also matter.",
+        "A tool or malware family can be reused by unrelated actors, so one artifact is weak attribution evidence."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Long-term research theft",
+          "text": "Custom tooling, patient access, geopolitical targeting, and no immediate monetization are more consistent with strategic espionage than ordinary cybercrime."
+        },
+        {
+          "title": "Unapproved cloud storage",
+          "text": "An employee uploads work files to a personal service to collaborate faster. This is shadow IT and creates data-governance risk."
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "title": "Explain common threat vectors and attack surfaces",
+      "domain": "2.0 Threats, Vulnerabilities, and Mitigations",
+      "objective": "2.2",
+      "summary": "Attackers gain initial access through social engineering, vulnerable services, suppliers, removable media, wireless networks, cloud misconfiguration, and other exposed attack surfaces.",
+      "keyTerms": [
+        "phishing",
+        "spear phishing",
+        "whaling",
+        "vishing",
+        "smishing",
+        "quishing",
+        "supply chain",
+        "removable media",
+        "attack surface",
+        "exposed service"
+      ],
+      "mustKnowFacts": [
+        "Spear phishing is targeted, whaling targets senior leaders, vishing uses voice, smishing uses SMS, and quishing uses QR codes.",
+        "A supply-chain compromise abuses trusted vendors, software, hardware, or update paths.",
+        "Attack-surface reduction removes unnecessary services, accounts, ports, integrations, and public exposure.",
+        "Cloud responsibility varies by service model, but customer identity, configuration, and data protections remain critical."
+      ],
+      "commonTraps": [
+        "The delivery channel identifies the vector; the victim's seniority alone does not turn every message into whaling.",
+        "A trusted digital signature does not guarantee that the vendor's build environment was uncompromised.",
+        "Closing a port is useful only after confirming the service is unnecessary or moving it behind an appropriate control."
+      ],
+      "miniScenarios": [
+        {
+          "title": "QR parking notice",
+          "text": "A QR code opens a counterfeit payment page that steals credentials. The QR-based social-engineering vector is quishing."
+        },
+        {
+          "title": "Vendor update",
+          "text": "A legitimate signed update contains malicious code inserted during the vendor's build process. This is a software supply-chain compromise."
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "title": "Explain various types of vulnerabilities",
+      "domain": "2.0 Threats, Vulnerabilities, and Mitigations",
+      "objective": "2.3",
+      "summary": "Vulnerabilities arise from insecure code, broken authorization, unsafe input handling, memory errors, weak configuration, default credentials, and unsupported systems.",
+      "keyTerms": [
+        "SQL injection",
+        "cross-site scripting",
+        "CSRF",
+        "SSRF",
+        "IDOR",
+        "buffer overflow",
+        "privilege escalation",
+        "default credentials",
+        "end-of-life",
+        "input validation"
+      ],
+      "mustKnowFacts": [
+        "Parameterized queries separate SQL code from untrusted data and are a primary SQL injection defense.",
+        "Output encoding and safe templating help prevent XSS; anti-CSRF tokens protect state-changing requests.",
+        "Authorization must be checked server-side for every requested object to prevent IDOR or broken access control.",
+        "Unsupported software accumulates unpatched risk and should be upgraded, replaced, isolated, or otherwise compensated."
+      ],
+      "commonTraps": [
+        "Client-side validation improves usability but cannot replace server-side validation.",
+        "Authentication proves who the user is; it does not prove that user may access every object identifier.",
+        "A web application firewall can reduce exposure but does not replace correcting vulnerable code."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Changed invoice ID",
+          "text": "A user changes /invoice/1042 to /invoice/1043 and sees another customer's invoice. The server failed object-level authorization: IDOR."
+        },
+        {
+          "title": "Cloud metadata request",
+          "text": "An image-import feature fetches an attacker-supplied URL that points to an internal metadata service. That behavior indicates SSRF."
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "title": "Given a scenario, analyze indicators of malicious activity",
+      "domain": "2.0 Threats, Vulnerabilities, and Mitigations",
+      "objective": "2.4",
+      "summary": "Security analysts correlate endpoint, identity, network, DNS, and command-line indicators to distinguish ransomware, credential attacks, persistence, tunneling, and other malicious activity.",
+      "keyTerms": [
+        "ransomware",
+        "beaconing",
+        "impossible travel",
+        "Kerberoasting",
+        "pass-the-hash",
+        "brute force",
+        "DNS tunneling",
+        "PowerShell",
+        "privilege escalation",
+        "SIEM correlation"
+      ],
+      "mustKnowFacts": [
+        "Regular outbound connections at consistent intervals can indicate command-and-control beaconing.",
+        "Kerberoasting requests service tickets for offline password cracking; pass-the-hash reuses an NTLM hash without knowing the plaintext password.",
+        "Long, high-entropy DNS subdomains and unusual query volume can indicate DNS tunneling.",
+        "One alert is rarely conclusive; correlate user, host, process, network, and time context."
+      ],
+      "commonTraps": [
+        "Impossible travel may be caused by VPNs or shared egress points, so validate context before declaring compromise.",
+        "PowerShell is a legitimate administration tool; encoded or hidden execution plus suspicious network activity raises confidence.",
+        "Many failed logins followed by one success can indicate password spraying, brute force, or a legitimate user—scope and pattern matter."
+      ],
+      "miniScenarios": [
+        {
+          "title": "Encoded command",
+          "text": "An Office child process launches hidden PowerShell with an encoded command and contacts a new domain. Correlated behavior is more suspicious than PowerShell alone."
+        },
+        {
+          "title": "Service-ticket spike",
+          "text": "A workstation requests many Kerberos service tickets for SPN accounts and then performs no normal service access. Investigate possible Kerberoasting."
+        }
+      ]
+    }
+  ],
+  "profiles": {
+    "finalExam": {
+      "id": "SECPLUS_FINAL",
+      "title": "Security+ Final Exam",
+      "totalQuestions": 90,
+      "timeLimitSeconds": 5400,
+      "minQuestions": 90,
+      "maxQuestions": 90,
+      "minModulesReady": 8,
+      "minPerModule": 5,
+      "maxModuleShare": 0.2,
+      "difficultyMix": {
+        "min": 2,
+        "max": 5
+      },
+      "includeModules": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "preferScenarioPct": 60,
+      "pbqFirst": 5,
+      "moduleWeights": {
+        "01": 12,
+        "02": 13,
+        "03": 10,
+        "04": 15,
+        "05": 12,
+        "06": 13,
+        "07": 13,
+        "08": 12
+      }
+    }
+  },
+  "questions": [
+    {
+      "id": "SEC-M01-Q001",
+      "module": "01",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "single",
+      "prompt": "A legacy payroll server cannot support MFA. Administrators must now connect through a hardened jump host, and privileged sessions are recorded. What BEST describes the added safeguards?",
+      "options": [
+        "Directive operational controls",
+        "Corrective managerial controls",
+        "Compensating technical controls",
+        "Deterrent physical controls"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "The jump host and session recording are technical safeguards that compensate for the server's missing native MFA capability."
+    },
+    {
+      "id": "SEC-M01-Q002",
+      "module": "01",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "single",
+      "prompt": "A data center installs badge readers that deny entry when a badge is not authorized. Which classification BEST fits the badge readers?",
+      "options": [
+        "Preventive physical control",
+        "Detective managerial control",
+        "Corrective operational control",
+        "Compensating technical control"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "The readers physically prevent unauthorized entry by enforcing an access decision at the door."
+    },
+    {
+      "id": "SEC-M01-Q003",
+      "module": "01",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "single",
+      "prompt": "A SIEM alerts analysts when an administrator creates a new privileged account. Which control function does the alert primarily provide?",
+      "options": [
+        "Detective",
+        "Corrective",
+        "Compensating",
+        "Deterrent"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "The SIEM alert discovers and reports an activity that has occurred; it does not itself prevent or reverse the account creation."
+    },
+    {
+      "id": "SEC-M01-Q004",
+      "module": "01",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "single",
+      "prompt": "After malware changes a workstation's security settings, endpoint management restores the approved configuration automatically. Which control function is PRIMARY?",
+      "options": [
+        "Deterrent",
+        "Managerial",
+        "Directive",
+        "Corrective"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Restoring the approved configuration corrects the unwanted change after it occurs."
+    },
+    {
+      "id": "SEC-M01-Q005",
+      "module": "01",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "single",
+      "prompt": "A facility places visible security guards and warning signs at every entrance mainly to discourage intrusion. Which control function is emphasized?",
+      "options": [
+        "Compensating",
+        "Corrective",
+        "Detective",
+        "Deterrent"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Visible guards and warnings discourage attempts, making deterrence their primary function."
+    },
+    {
+      "id": "SEC-M01-Q006",
+      "module": "01",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "single",
+      "prompt": "A policy requires managers to review user access every quarter. Which implementation category BEST describes the policy and review requirement?",
+      "options": [
+        "Technical",
+        "Managerial",
+        "Physical",
+        "Corrective"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Policies and governance-driven access reviews are managerial controls."
+    },
+    {
+      "id": "SEC-M01-Q007",
+      "module": "01",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "single",
+      "prompt": "A warehouse employee completes a documented end-of-shift checklist to verify that sensitive media is locked away. Which implementation category BEST applies?",
+      "options": [
+        "Technical",
+        "Managerial",
+        "Cryptographic",
+        "Operational"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "The repeatable procedure is carried out by personnel, making it an operational control."
+    },
+    {
+      "id": "SEC-M01-Q008",
+      "module": "01",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "single",
+      "prompt": "A company cannot install its preferred automated data-loss prevention agent on a specialized device, so two employees must approve every export. What is the approval process?",
+      "options": [
+        "A corrective managerial control",
+        "A preventive technical control",
+        "A compensating operational control",
+        "A detective physical control"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "Dual approval is a people-driven alternative that compensates for the unavailable technical safeguard."
+    },
+    {
+      "id": "SEC-M01-Q009",
+      "module": "01",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "single",
+      "prompt": "Which control type communicates required behavior rather than directly blocking an action?",
+      "options": [
+        "Compensating",
+        "Directive",
+        "Corrective",
+        "Detective"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Directive controls, such as policies and procedures, tell people what behavior is required."
+    },
+    {
+      "id": "SEC-M01-Q010",
+      "module": "01",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "single",
+      "prompt": "Which implementation category includes firewalls, endpoint protection, and access-control lists?",
+      "options": [
+        "Managerial",
+        "Physical",
+        "Technical",
+        "Operational"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "These safeguards are implemented and enforced through technology."
+    },
+    {
+      "id": "SEC-M01-Q011",
+      "module": "01",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "true_false",
+      "prompt": "A detective control is designed to discover events that are occurring or have already occurred.",
+      "answer": true,
+      "rationale": "Detective controls identify and report activity so that people or systems can respond."
+    },
+    {
+      "id": "SEC-M01-Q012",
+      "module": "01",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "multi",
+      "prompt": "A company wants controls that primarily detect suspicious activity. Select ALL that apply.",
+      "options": [
+        "SIEM correlation alert",
+        "Motion-triggered camera recording",
+        "Firewall rule that blocks inbound Telnet",
+        "Daily file-integrity report",
+        "Security awareness policy"
+      ],
+      "answer": [
+        0,
+        1,
+        3
+      ],
+      "rationale": "SIEM alerts, camera recordings, and integrity reports identify activity; the firewall is preventive and the policy is directive."
+    },
+    {
+      "id": "SEC-M01-Q013",
+      "module": "01",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "multi_not",
+      "prompt": "A team is selecting preventive controls for a server room. Select ALL choices that do NOT primarily prevent entry.",
+      "options": [
+        "Locked door",
+        "Badge-controlled turnstile",
+        "Camera that records the hallway",
+        "Incident response procedure",
+        "Biometric door reader"
+      ],
+      "answer": [
+        2,
+        3
+      ],
+      "rationale": "The camera is primarily detective, and the response procedure is directive/operational; the other controls block entry."
+    },
+    {
+      "id": "SEC-M01-Q014",
+      "module": "01",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each security control to its PRIMARY function.",
+      "terms": [
+        {
+          "key": "preventive",
+          "label": "Preventive"
+        },
+        {
+          "key": "detective",
+          "label": "Detective"
+        },
+        {
+          "key": "corrective",
+          "label": "Corrective"
+        },
+        {
+          "key": "compensating",
+          "label": "Compensating"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m01d1",
+          "text": "Firewall blocks an unauthorized connection",
+          "expect": "preventive"
+        },
+        {
+          "id": "m01d2",
+          "text": "Audit alert reports an unexpected privilege change",
+          "expect": "detective"
+        },
+        {
+          "id": "m01d3",
+          "text": "Automation restores a known-good configuration",
+          "expect": "corrective"
+        },
+        {
+          "id": "m01d4",
+          "text": "Jump host protects a legacy system that lacks MFA",
+          "expect": "compensating"
+        }
+      ],
+      "rationale": "The scenarios illustrate blocking, discovery, restoration, and an approved alternate safeguard."
+    },
+    {
+      "id": "SEC-M01-Q015",
+      "module": "01",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.1",
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "A team is introducing a new security control. Place the activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m01s1",
+          "label": "Identify the requirement and risk"
+        },
+        {
+          "key": "m01s2",
+          "label": "Select an appropriate control"
+        },
+        {
+          "key": "m01s3",
+          "label": "Implement and test the control"
+        },
+        {
+          "key": "m01s4",
+          "label": "Monitor effectiveness and adjust"
+        }
+      ],
+      "answer": [
+        "m01s1",
+        "m01s2",
+        "m01s3",
+        "m01s4"
+      ],
+      "rationale": "Control selection follows the risk and requirement, then implementation, validation, and ongoing monitoring."
+    },
+    {
+      "id": "SEC-M02-Q001",
+      "module": "02",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "single",
+      "prompt": "A payroll database is encrypted so unauthorized users cannot read employee salaries. Which security objective is MOST directly protected?",
+      "options": [
+        "Integrity",
+        "Confidentiality",
+        "Non-repudiation",
+        "Availability"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Encryption prevents unauthorized disclosure and therefore primarily protects confidentiality."
+    },
+    {
+      "id": "SEC-M02-Q002",
+      "module": "02",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "single",
+      "prompt": "A software repository verifies a downloaded package against a trusted hash. Which objective is the team checking?",
+      "options": [
+        "Authorization",
+        "Accounting",
+        "Integrity",
+        "Availability"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "A matching trusted hash provides evidence that the package contents were not altered."
+    },
+    {
+      "id": "SEC-M02-Q003",
+      "module": "02",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "single",
+      "prompt": "A web service uses clustering and automatic failover so it remains accessible after a server failure. Which part of the CIA triad is emphasized?",
+      "options": [
+        "Authenticity",
+        "Confidentiality",
+        "Integrity",
+        "Availability"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Redundancy and failover keep the service usable, supporting availability."
+    },
+    {
+      "id": "SEC-M02-Q004",
+      "module": "02",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "single",
+      "prompt": "A user successfully signs in, but the application checks the user's role before displaying payroll records. What does the role check provide?",
+      "options": [
+        "Authentication",
+        "Authorization",
+        "Identification",
+        "Non-repudiation"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Authorization determines which authenticated identities may access a resource or perform an action."
+    },
+    {
+      "id": "SEC-M02-Q005",
+      "module": "02",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "single",
+      "prompt": "An administrator denies sending a configuration approval. Which control provides the STRONGEST evidence that the administrator approved it?",
+      "options": [
+        "A checksum stored beside the file",
+        "Symmetric encryption with a shared key",
+        "A successful ping from the administrator's workstation",
+        "A digital signature created with the administrator's protected private key"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "A protected private-key signature supports authenticity, integrity, and non-repudiation."
+    },
+    {
+      "id": "SEC-M02-Q006",
+      "module": "02",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "single",
+      "prompt": "A remote employee has valid credentials, but access is denied because the laptop is unmanaged and missing required patches. Which principle is being applied?",
+      "options": [
+        "Open authorization",
+        "Non-repudiation",
+        "Implicit trust",
+        "Zero trust"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Zero trust evaluates identity and device/context signals rather than trusting credentials or network location alone."
+    },
+    {
+      "id": "SEC-M02-Q007",
+      "module": "02",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "single",
+      "prompt": "A decoy server is deployed to attract attackers and record their techniques without holding production data. What is the server?",
+      "options": [
+        "Certificate authority",
+        "Jump server",
+        "Honeypot",
+        "Load balancer"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "A honeypot is a deception control designed to attract and observe malicious activity."
+    },
+    {
+      "id": "SEC-M02-Q008",
+      "module": "02",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "single",
+      "prompt": "A security gateway intentionally slows repeated login attempts after failures. Which security technique is this?",
+      "options": [
+        "Disruption",
+        "Tokenization",
+        "Obfuscation",
+        "Federation"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Rate limiting disrupts automated attacks by increasing their cost and reducing their speed."
+    },
+    {
+      "id": "SEC-M02-Q009",
+      "module": "02",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "single",
+      "prompt": "Which AAA function records who accessed a resource, when, and what actions were taken?",
+      "options": [
+        "Authorization",
+        "Accounting",
+        "Availability",
+        "Authentication"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Accounting logs and tracks activity for auditing and accountability."
+    },
+    {
+      "id": "SEC-M02-Q010",
+      "module": "02",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "single",
+      "prompt": "Which principle grants a user only the permissions required for assigned duties?",
+      "options": [
+        "High availability",
+        "Implicit deny logging",
+        "Least privilege",
+        "Non-repudiation"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "Least privilege limits rights to the minimum necessary for the task."
+    },
+    {
+      "id": "SEC-M02-Q011",
+      "module": "02",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "true_false",
+      "prompt": "Zero trust permits access based on an explicit policy decision and continuous context rather than assuming that an internal network location is trustworthy.",
+      "answer": true,
+      "rationale": "Zero trust removes implicit network trust and makes resource access an explicit, context-aware decision."
+    },
+    {
+      "id": "SEC-M02-Q012",
+      "module": "02",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "multi",
+      "prompt": "A hospital wants to improve the availability of a patient-record system. Select ALL actions that primarily support availability.",
+      "options": [
+        "Deploy redundant application servers",
+        "Configure tested backups and restoration",
+        "Encrypt database columns",
+        "Use dual network providers",
+        "Digitally sign audit records"
+      ],
+      "answer": [
+        0,
+        1,
+        3
+      ],
+      "rationale": "Redundancy, recoverable backups, and diverse connectivity keep the service usable; encryption and signatures address other objectives."
+    },
+    {
+      "id": "SEC-M02-Q013",
+      "module": "02",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "multi_not",
+      "prompt": "An analyst is documenting zero-trust access decisions. Select ALL factors that do NOT, by themselves, justify implicit trust.",
+      "options": [
+        "The request originates on the corporate LAN",
+        "The user entered a valid password",
+        "The device passed current posture checks",
+        "The request matches a least-privilege policy",
+        "The source IP belongs to headquarters"
+      ],
+      "answer": [
+        0,
+        1,
+        4
+      ],
+      "rationale": "Network location and one credential are not sufficient for implicit trust; posture and policy are evaluated as explicit signals."
+    },
+    {
+      "id": "SEC-M02-Q014",
+      "module": "02",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each event to the fundamental security concept it MOST directly demonstrates.",
+      "terms": [
+        {
+          "key": "confidentiality",
+          "label": "Confidentiality"
+        },
+        {
+          "key": "integrity",
+          "label": "Integrity"
+        },
+        {
+          "key": "availability",
+          "label": "Availability"
+        },
+        {
+          "key": "nonrepudiation",
+          "label": "Non-repudiation"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m02d1",
+          "text": "Unauthorized readers cannot understand an encrypted file",
+          "expect": "confidentiality"
+        },
+        {
+          "id": "m02d2",
+          "text": "A signed hash reveals that a message changed",
+          "expect": "integrity"
+        },
+        {
+          "id": "m02d3",
+          "text": "Failover keeps an application online",
+          "expect": "availability"
+        },
+        {
+          "id": "m02d4",
+          "text": "A protected private-key signature links approval to its signer",
+          "expect": "nonrepudiation"
+        }
+      ],
+      "rationale": "The four scenarios map to disclosure prevention, change detection, service continuity, and evidence of origin."
+    },
+    {
+      "id": "SEC-M02-Q015",
+      "module": "02",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.2",
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the identity and access activities in their logical order.",
+      "steps": [
+        {
+          "key": "m02s1",
+          "label": "Identification: claim an identity"
+        },
+        {
+          "key": "m02s2",
+          "label": "Authentication: prove the identity"
+        },
+        {
+          "key": "m02s3",
+          "label": "Authorization: determine permitted actions"
+        },
+        {
+          "key": "m02s4",
+          "label": "Accounting: record the activity"
+        }
+      ],
+      "answer": [
+        "m02s1",
+        "m02s2",
+        "m02s3",
+        "m02s4"
+      ],
+      "rationale": "A subject claims an identity, proves it, receives policy-based permissions, and has activity recorded."
+    },
+    {
+      "id": "SEC-M03-Q001",
+      "module": "03",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "single",
+      "prompt": "A network engineer proposes changing a core switch configuration. Which item is MOST important for restoring service if the change fails?",
+      "options": [
+        "A list of all help-desk employees",
+        "A rollback plan with clear backout criteria",
+        "A longer maintenance window",
+        "A second change ticket number"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "A tested rollback plan and defined trigger allow the team to return to the known-good configuration."
+    },
+    {
+      "id": "SEC-M03-Q002",
+      "module": "03",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "single",
+      "prompt": "A critical zero-day is being actively exploited. The normal review meeting is three days away. What is the BEST approach?",
+      "options": [
+        "Make the change secretly and delete the logs",
+        "Wait for the normal meeting regardless of impact",
+        "Use the approved emergency-change process and document the decision",
+        "Disable change management permanently"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "Emergency procedures expedite authorization and action while retaining documentation, validation, and later review."
+    },
+    {
+      "id": "SEC-M03-Q003",
+      "module": "03",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "single",
+      "prompt": "A database patch may affect an inventory application maintained by another team. Which activity should identify this dependency before deployment?",
+      "options": [
+        "Password rotation",
+        "Data classification",
+        "Threat attribution",
+        "Impact analysis"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Impact analysis identifies dependencies, affected services, security implications, and business disruption."
+    },
+    {
+      "id": "SEC-M03-Q004",
+      "module": "03",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "single",
+      "prompt": "A developer needs to prove exactly which firewall configuration was approved and deployed last Tuesday. Which capability BEST provides this traceability?",
+      "options": [
+        "Tokenization",
+        "Data masking",
+        "Version control",
+        "Load balancing"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "Version control records configuration history, authorship, timestamps, and differences."
+    },
+    {
+      "id": "SEC-M03-Q005",
+      "module": "03",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "single",
+      "prompt": "A planned authentication upgrade will interrupt logins for ten minutes. What should the change owner do BEFORE the maintenance window?",
+      "options": [
+        "Wait for users to report the outage",
+        "Notify affected stakeholders and the service desk",
+        "Erase the prior configuration",
+        "Disable monitoring"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Advance stakeholder communication sets expectations and prepares support teams for the planned impact."
+    },
+    {
+      "id": "SEC-M03-Q006",
+      "module": "03",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "single",
+      "prompt": "A change passed laboratory testing but failed immediately in production because the test environment did not include a legacy integration. What was MOST likely incomplete?",
+      "options": [
+        "Dependency and impact analysis",
+        "Media sanitization",
+        "User authentication",
+        "Certificate pinning"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Representative dependency analysis should have identified and tested the legacy integration."
+    },
+    {
+      "id": "SEC-M03-Q007",
+      "module": "03",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "single",
+      "prompt": "An administrator deploys a security agent successfully. What should occur NEXT before the change is closed?",
+      "options": [
+        "Delete all implementation evidence",
+        "Immediately reuse the ticket for another change",
+        "Remove the rollback package",
+        "Validate expected operation and monitor for unintended effects"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Post-change validation confirms the desired outcome and checks for unexpected impact before closure."
+    },
+    {
+      "id": "SEC-M03-Q008",
+      "module": "03",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "single",
+      "prompt": "Two teams each assume the other will perform a rollback if a release fails. Which missing change element created this risk?",
+      "options": [
+        "Physical access log",
+        "Threat intelligence feed",
+        "Assigned ownership and responsibility",
+        "Cryptographic key length"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "The plan must name responsible owners for implementation, validation, and rollback."
+    },
+    {
+      "id": "SEC-M03-Q009",
+      "module": "03",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "single",
+      "prompt": "What is the PRIMARY purpose of a maintenance window?",
+      "options": [
+        "To guarantee that a change cannot fail",
+        "To schedule work during an approved period with controlled business impact",
+        "To eliminate the need for testing",
+        "To bypass stakeholder notification"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Maintenance windows coordinate potentially disruptive work; they do not replace other change controls."
+    },
+    {
+      "id": "SEC-M03-Q010",
+      "module": "03",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "single",
+      "prompt": "Who typically evaluates significant proposed changes for risk, conflicts, scheduling, and approval?",
+      "options": [
+        "Change advisory board",
+        "Certificate authority",
+        "Red team",
+        "Data custodian only"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "A change advisory board or equivalent authority reviews proposed changes and their organizational impact."
+    },
+    {
+      "id": "SEC-M03-Q011",
+      "module": "03",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "true_false",
+      "prompt": "An emergency change should still be documented, validated, and reviewed even when the approval path is expedited.",
+      "answer": true,
+      "rationale": "Urgency changes the timing and path, not the need for accountability and post-change assurance."
+    },
+    {
+      "id": "SEC-M03-Q012",
+      "module": "03",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "multi",
+      "prompt": "A team is preparing a production database upgrade. Select ALL items that belong in a strong change plan.",
+      "options": [
+        "Business justification and scope",
+        "Impact and dependency analysis",
+        "Test evidence and rollback steps",
+        "Approval and maintenance window",
+        "A promise that no failure is possible"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "rationale": "A complete plan documents why, what, impact, tests, backout, approval, and timing; it cannot guarantee zero failure."
+    },
+    {
+      "id": "SEC-M03-Q013",
+      "module": "03",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "multi_not",
+      "prompt": "A firewall rule was added through the emergency process. Select ALL actions that do NOT align with secure change management.",
+      "options": [
+        "Record the authorizer and reason",
+        "Skip all documentation because the event was urgent",
+        "Validate that the rule contains the threat",
+        "Leave the temporary rule indefinitely without review",
+        "Conduct a post-implementation review"
+      ],
+      "answer": [
+        1,
+        3
+      ],
+      "rationale": "Emergency work still needs documentation, and temporary containment should be reviewed, limited, or replaced."
+    },
+    {
+      "id": "SEC-M03-Q014",
+      "module": "03",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each change-management artifact to its PRIMARY purpose.",
+      "terms": [
+        {
+          "key": "impact",
+          "label": "Impact analysis"
+        },
+        {
+          "key": "rollback",
+          "label": "Rollback plan"
+        },
+        {
+          "key": "version",
+          "label": "Version control"
+        },
+        {
+          "key": "window",
+          "label": "Maintenance window"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m03d1",
+          "text": "Identifies dependencies and likely business effects",
+          "expect": "impact"
+        },
+        {
+          "id": "m03d2",
+          "text": "Defines restoration steps and backout triggers",
+          "expect": "rollback"
+        },
+        {
+          "id": "m03d3",
+          "text": "Preserves configuration history and differences",
+          "expect": "version"
+        },
+        {
+          "id": "m03d4",
+          "text": "Sets the approved period for potentially disruptive work",
+          "expect": "window"
+        }
+      ],
+      "rationale": "Each artifact manages a distinct part of change risk: impact, recovery, traceability, or timing."
+    },
+    {
+      "id": "SEC-M03-Q015",
+      "module": "03",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.3",
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place the planned-change activities in the most appropriate order.",
+      "steps": [
+        {
+          "key": "m03s1",
+          "label": "Document scope, justification, owner, and impact"
+        },
+        {
+          "key": "m03s2",
+          "label": "Test the change and rollback procedure"
+        },
+        {
+          "key": "m03s3",
+          "label": "Obtain approval and schedule the window"
+        },
+        {
+          "key": "m03s4",
+          "label": "Implement, validate, document, and close"
+        }
+      ],
+      "answer": [
+        "m03s1",
+        "m03s2",
+        "m03s3",
+        "m03s4"
+      ],
+      "rationale": "The team defines and assesses the change, tests it, obtains authorization, then deploys and verifies it."
+    },
+    {
+      "id": "SEC-M04-Q001",
+      "module": "04",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "single",
+      "prompt": "A backup system must encrypt several terabytes of data quickly. Which approach is MOST appropriate for the bulk data?",
+      "options": [
+        "Asymmetric encryption only",
+        "Hashing only",
+        "Digital signatures only",
+        "Symmetric encryption"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Symmetric algorithms are efficient for large-volume encryption."
+    },
+    {
+      "id": "SEC-M04-Q002",
+      "module": "04",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "single",
+      "prompt": "A recipient needs to verify who sent a document and whether it changed. What should the sender use?",
+      "options": [
+        "A random checksum sent anonymously",
+        "Key escrow without a signature",
+        "A digital signature created with the sender's private key",
+        "Encryption with the sender's public key"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "The sender's protected private-key signature supports origin authentication and integrity."
+    },
+    {
+      "id": "SEC-M04-Q003",
+      "module": "04",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "single",
+      "prompt": "A web server presents a certificate whose hostname does not match the requested site. What should the client conclude?",
+      "options": [
+        "The mismatch affects only availability",
+        "The identity binding cannot be trusted for that hostname",
+        "The connection is automatically non-repudiable",
+        "The certificate proves the site owns every domain"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Hostname validation is required to bind the certificate to the requested service identity."
+    },
+    {
+      "id": "SEC-M04-Q004",
+      "module": "04",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "single",
+      "prompt": "A company wants signing keys to remain inside tamper-resistant hardware while serving multiple applications. Which solution BEST fits?",
+      "options": [
+        "HSM",
+        "TPM in each user's laptop",
+        "Plaintext key file",
+        "Public certificate repository"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "An HSM centrally generates, stores, and uses high-value keys within protected hardware."
+    },
+    {
+      "id": "SEC-M04-Q005",
+      "module": "04",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "single",
+      "prompt": "A laptop uses a hardware-bound key to verify boot integrity and release a disk-encryption secret. Which component is MOST likely used?",
+      "options": [
+        "Load balancer",
+        "Honeypot",
+        "Proxy server",
+        "TPM"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "A TPM provides device-bound key protection and measured-boot capabilities."
+    },
+    {
+      "id": "SEC-M04-Q006",
+      "module": "04",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "single",
+      "prompt": "Two parties need to establish a shared secret across an untrusted network without previously sharing that secret. Which capability is required?",
+      "options": [
+        "File compression",
+        "Salting only",
+        "Secure key exchange",
+        "Data masking"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "A key-exchange mechanism allows parties to derive or protect shared key material over an untrusted channel."
+    },
+    {
+      "id": "SEC-M04-Q007",
+      "module": "04",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "single",
+      "prompt": "An organization must be able to recover an employee's encrypted business files after the employee leaves. Which capability addresses this requirement?",
+      "options": [
+        "Certificate pinning",
+        "Key escrow",
+        "Perfect forward secrecy only",
+        "Password spraying"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Key escrow securely retains recovery key material under controlled policy."
+    },
+    {
+      "id": "SEC-M04-Q008",
+      "module": "04",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "single",
+      "prompt": "A password database stores a unique random value with each password before hashing. What does the random value primarily resist?",
+      "options": [
+        "Precomputed hash attacks",
+        "Network denial of service",
+        "Certificate expiration",
+        "Physical tailgating"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "A unique salt makes identical passwords hash differently and defeats reusable precomputed tables."
+    },
+    {
+      "id": "SEC-M04-Q009",
+      "module": "04",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "single",
+      "prompt": "Which operation is designed to be one-way and is commonly used to verify integrity?",
+      "options": [
+        "Symmetric decryption",
+        "Asymmetric decryption",
+        "Key escrow",
+        "Hashing"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Cryptographic hashes produce fixed-size digests and are not intended to be reversed."
+    },
+    {
+      "id": "SEC-M04-Q010",
+      "module": "04",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "single",
+      "prompt": "In PKI, what does a certificate authority primarily do?",
+      "options": [
+        "Encrypts all application data directly",
+        "Guarantees that certified software has no defects",
+        "Binds identities to public keys by issuing signed certificates",
+        "Stores every user's plaintext password"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "A CA validates according to policy and signs certificates that bind an identity to public key material."
+    },
+    {
+      "id": "SEC-M04-Q011",
+      "module": "04",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "true_false",
+      "prompt": "A digital signature can verify integrity and origin, but it does not provide confidentiality unless encryption is also used.",
+      "answer": true,
+      "rationale": "Signing and encryption solve different problems; a signed message may still be readable by anyone."
+    },
+    {
+      "id": "SEC-M04-Q012",
+      "module": "04",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "multi",
+      "prompt": "A team validates a TLS certificate presented by a public website. Select ALL checks that matter.",
+      "options": [
+        "Hostname matches the requested service",
+        "Certificate is within its validity period",
+        "Trust chain reaches an accepted root",
+        "Revocation status is acceptable",
+        "The certificate's public key is kept secret"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "rationale": "Name, time, chain, and revocation validation are relevant; public keys are intended to be public."
+    },
+    {
+      "id": "SEC-M04-Q013",
+      "module": "04",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "multi_not",
+      "prompt": "A developer proposes password-storage designs. Select ALL choices that do NOT provide appropriate password storage.",
+      "options": [
+        "Slow salted password hashing",
+        "Plain SHA-256 with no salt",
+        "Reversible encryption with the key stored beside the database",
+        "A memory-hard password hashing function with unique salts",
+        "Plaintext passwords"
+      ],
+      "answer": [
+        1,
+        2,
+        4
+      ],
+      "rationale": "Fast unsalted hashes, poorly protected reversible encryption, and plaintext are inappropriate for password storage."
+    },
+    {
+      "id": "SEC-M04-Q014",
+      "module": "04",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each cryptographic tool to its BEST use case.",
+      "terms": [
+        {
+          "key": "hash",
+          "label": "Cryptographic hash"
+        },
+        {
+          "key": "symmetric",
+          "label": "Symmetric encryption"
+        },
+        {
+          "key": "signature",
+          "label": "Digital signature"
+        },
+        {
+          "key": "hsm",
+          "label": "Hardware security module"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m04d1",
+          "text": "Detect a change to a downloaded file",
+          "expect": "hash"
+        },
+        {
+          "id": "m04d2",
+          "text": "Efficiently encrypt a large backup",
+          "expect": "symmetric"
+        },
+        {
+          "id": "m04d3",
+          "text": "Prove document origin and integrity",
+          "expect": "signature"
+        },
+        {
+          "id": "m04d4",
+          "text": "Protect enterprise signing keys in tamper-resistant hardware",
+          "expect": "hsm"
+        }
+      ],
+      "rationale": "Hashes verify content, symmetric algorithms protect bulk data, signatures bind origin, and HSMs protect key operations."
+    },
+    {
+      "id": "SEC-M04-Q015",
+      "module": "04",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "1.0",
+      "objective": "1.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 1.4",
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "A sender must confidentially deliver and sign a large document for one recipient. Place the simplified hybrid-cryptography steps in order.",
+      "steps": [
+        {
+          "key": "m04s1",
+          "label": "Generate a random symmetric session key"
+        },
+        {
+          "key": "m04s2",
+          "label": "Encrypt the document with the session key"
+        },
+        {
+          "key": "m04s3",
+          "label": "Protect the session key with the recipient's public key"
+        },
+        {
+          "key": "m04s4",
+          "label": "Sign the package with the sender's private key"
+        }
+      ],
+      "answer": [
+        "m04s1",
+        "m04s2",
+        "m04s3",
+        "m04s4"
+      ],
+      "rationale": "Hybrid encryption uses an efficient session key for data, protects that key for the recipient, and adds a sender signature."
+    },
+    {
+      "id": "SEC-M05-Q001",
+      "module": "05",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "single",
+      "prompt": "An actor spends months stealing aerospace research with custom malware and shows no attempt to monetize access. Which actor and motivation are MOST consistent?",
+      "options": [
+        "Hacktivist pursuing public embarrassment",
+        "Nation-state conducting espionage",
+        "Script kiddie seeking entertainment",
+        "Organized crime seeking immediate payment"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Patient, well-resourced theft of strategic research without immediate monetization is consistent with nation-state espionage."
+    },
+    {
+      "id": "SEC-M05-Q002",
+      "module": "05",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "single",
+      "prompt": "A group encrypts hundreds of companies and negotiates payments through dedicated support portals. Which motivation is MOST likely?",
+      "options": [
+        "Financial gain",
+        "Scientific curiosity",
+        "Accidental disclosure",
+        "Physical safety"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Scaled ransomware operations and payment negotiation strongly indicate organized financial crime."
+    },
+    {
+      "id": "SEC-M05-Q003",
+      "module": "05",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "single",
+      "prompt": "Attackers deface a company's website and publish a manifesto opposing its environmental policy. Which actor is MOST likely?",
+      "options": [
+        "Insider acting accidentally",
+        "Competitor conducting ordinary marketing",
+        "Script kiddie with no stated cause",
+        "Hacktivist"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Ideology-driven public disruption and messaging are characteristic of hacktivism."
+    },
+    {
+      "id": "SEC-M05-Q004",
+      "module": "05",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "single",
+      "prompt": "A departing administrator copies customer data using valid access after being denied a promotion. Which actor and motivation BEST fit?",
+      "options": [
+        "Script kiddie motivated by learning",
+        "Shadow IT motivated by productivity",
+        "Malicious insider motivated by revenge",
+        "Nation-state motivated by war"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "The administrator has legitimate access and a personal grievance, indicating a revenge-motivated insider."
+    },
+    {
+      "id": "SEC-M05-Q005",
+      "module": "05",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "single",
+      "prompt": "A teenager downloads a public exploit kit and indiscriminately scans the internet without understanding the code. Which actor is MOST likely?",
+      "options": [
+        "Privileged insider",
+        "Script kiddie",
+        "Nation-state operator",
+        "Organized-crime broker"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Using ready-made tools with limited knowledge is characteristic of a script kiddie."
+    },
+    {
+      "id": "SEC-M05-Q006",
+      "module": "05",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "single",
+      "prompt": "An employee uploads company documents to an unapproved personal collaboration service to finish work faster. What does this MOST directly represent?",
+      "options": [
+        "Shadow IT",
+        "Nation-state espionage",
+        "Hacktivism",
+        "A sanctioned compensating control"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "The employee adopted an unmanaged technology service outside approved IT governance."
+    },
+    {
+      "id": "SEC-M05-Q007",
+      "module": "05",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "single",
+      "prompt": "A contractor's credentials are stolen and used to access a client environment. How should the contractor account initially be classified in the investigation?",
+      "options": [
+        "Proof that the contractor acted maliciously",
+        "A nation-state identity",
+        "A physical-only threat",
+        "A compromised insider identity"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "The account has legitimate access but may be controlled by an external attacker; evidence does not yet prove malicious contractor intent."
+    },
+    {
+      "id": "SEC-M05-Q008",
+      "module": "05",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "single",
+      "prompt": "A competitor secretly pays attackers to disrupt a product launch. Which motivation is MOST directly involved?",
+      "options": [
+        "Accidental error",
+        "Personal curiosity",
+        "Competitive advantage",
+        "Ideology"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "The disruption is intended to create business advantage for a competitor."
+    },
+    {
+      "id": "SEC-M05-Q009",
+      "module": "05",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "single",
+      "prompt": "Which threat actor usually has the greatest access to internal processes before an attack begins?",
+      "options": [
+        "External hacktivist",
+        "Insider",
+        "Script kiddie",
+        "Unknown internet scanner"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Insiders already possess organizational knowledge and some degree of legitimate access."
+    },
+    {
+      "id": "SEC-M05-Q010",
+      "module": "05",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "single",
+      "prompt": "Which motivation most commonly drives organized cybercrime?",
+      "options": [
+        "Financial gain",
+        "Routine system maintenance",
+        "Compliance",
+        "Availability testing"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Organized crime generally seeks scalable profit through fraud, extortion, theft, or resale."
+    },
+    {
+      "id": "SEC-M05-Q011",
+      "module": "05",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "true_false",
+      "prompt": "Sophisticated malware alone conclusively proves that a nation-state conducted an attack.",
+      "answer": false,
+      "rationale": "Tools can be stolen, shared, purchased, or imitated; attribution requires multiple corroborating indicators."
+    },
+    {
+      "id": "SEC-M05-Q012",
+      "module": "05",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "multi",
+      "prompt": "Analysts are evaluating whether a campaign is likely nation-state espionage. Select ALL observations that increase that assessment.",
+      "options": [
+        "Long-term access to strategic research",
+        "Custom tooling and strong operational security",
+        "Target selection aligned with geopolitical interests",
+        "Immediate low-value gift-card fraud",
+        "No effort to monetize the stolen data publicly"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "rationale": "Strategic targets, patience, resources, and lack of immediate monetization support an espionage assessment."
+    },
+    {
+      "id": "SEC-M05-Q013",
+      "module": "05",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "multi_not",
+      "prompt": "A user adopted an unapproved SaaS platform to collaborate. Select ALL conclusions that do NOT follow from this fact alone.",
+      "options": [
+        "The organization has shadow IT risk",
+        "The user is definitely a malicious insider",
+        "The data may fall outside approved governance",
+        "A nation-state directed the user",
+        "Security may lack visibility into the service"
+      ],
+      "answer": [
+        1,
+        3
+      ],
+      "rationale": "Unapproved technology creates risk, but it does not prove malicious intent or nation-state direction."
+    },
+    {
+      "id": "SEC-M05-Q014",
+      "module": "05",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each observed campaign to the MOST likely threat actor.",
+      "terms": [
+        {
+          "key": "nation",
+          "label": "Nation-state"
+        },
+        {
+          "key": "crime",
+          "label": "Organized crime"
+        },
+        {
+          "key": "hacktivist",
+          "label": "Hacktivist"
+        },
+        {
+          "key": "insider",
+          "label": "Malicious insider"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m05d1",
+          "text": "Patient theft of defense research for strategic intelligence",
+          "expect": "nation"
+        },
+        {
+          "id": "m05d2",
+          "text": "Scaled ransomware with payment negotiation",
+          "expect": "crime"
+        },
+        {
+          "id": "m05d3",
+          "text": "Ideology-driven defacement and public manifesto",
+          "expect": "hacktivist"
+        },
+        {
+          "id": "m05d4",
+          "text": "Employee abuses approved access after a grievance",
+          "expect": "insider"
+        }
+      ],
+      "rationale": "The strongest clues are strategic espionage, profit, ideology, and misuse of trusted internal access."
+    },
+    {
+      "id": "SEC-M05-Q015",
+      "module": "05",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.1",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.1",
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "Place these threat-attribution activities in a defensible order.",
+      "steps": [
+        {
+          "key": "m05s1",
+          "label": "Preserve and validate incident evidence"
+        },
+        {
+          "key": "m05s2",
+          "label": "Analyze behavior, access, resources, and target selection"
+        },
+        {
+          "key": "m05s3",
+          "label": "Compare multiple indicators with intelligence sources"
+        },
+        {
+          "key": "m05s4",
+          "label": "State an assessment with confidence and alternatives"
+        }
+      ],
+      "answer": [
+        "m05s1",
+        "m05s2",
+        "m05s3",
+        "m05s4"
+      ],
+      "rationale": "Attribution begins with sound evidence, adds contextual analysis and corroboration, then communicates a qualified judgment."
+    },
+    {
+      "id": "SEC-M06-Q001",
+      "module": "06",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "single",
+      "prompt": "A finance director receives a personalized email referencing a real acquisition and linking to a fake Microsoft 365 sign-in page. Which vector is MOST specific?",
+      "options": [
+        "Smishing",
+        "Vishing",
+        "Removable media",
+        "Spear phishing"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "The email is tailored to a particular recipient and business context, making it spear phishing."
+    },
+    {
+      "id": "SEC-M06-Q002",
+      "module": "06",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "single",
+      "prompt": "A CEO receives a forged legal notice designed to steal executive credentials. Which social-engineering form BEST describes the targeting?",
+      "options": [
+        "Shoulder surfing",
+        "Typosquatting only",
+        "Whaling",
+        "Quishing"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "Whaling is targeted phishing aimed at senior executives or other high-value leaders."
+    },
+    {
+      "id": "SEC-M06-Q003",
+      "module": "06",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "single",
+      "prompt": "An attacker calls the help desk, impersonates an employee, and requests an MFA reset. Which vector is being used?",
+      "options": [
+        "Watering-hole attack",
+        "Vishing",
+        "Smishing",
+        "Quishing"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Voice-based social engineering is vishing."
+    },
+    {
+      "id": "SEC-M06-Q004",
+      "module": "06",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "single",
+      "prompt": "Employees receive text messages claiming that payroll accounts must be revalidated. Which vector is this?",
+      "options": [
+        "Smishing",
+        "Spear phishing only",
+        "Vishing",
+        "Supply-chain attack"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "SMS-based phishing is smishing."
+    },
+    {
+      "id": "SEC-M06-Q005",
+      "module": "06",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "single",
+      "prompt": "A parking citation contains a QR code that opens a counterfeit payment portal. Which vector is MOST specific?",
+      "options": [
+        "Vishing",
+        "Removable media",
+        "On-path attack",
+        "Quishing"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "QR-code phishing is commonly called quishing."
+    },
+    {
+      "id": "SEC-M06-Q006",
+      "module": "06",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "single",
+      "prompt": "A signed software update contains malware inserted after attackers compromised the vendor's build server. What is the initial vector?",
+      "options": [
+        "Credential stuffing",
+        "Physical tailgating",
+        "Software supply chain",
+        "Shoulder surfing"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "The attacker abused a trusted vendor build and update path, which is a supply-chain compromise."
+    },
+    {
+      "id": "SEC-M06-Q007",
+      "module": "06",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "single",
+      "prompt": "An unknown USB drive labeled 'Bonuses' is left in an office lobby, and an employee connects it. Which vector is being exploited?",
+      "options": [
+        "Data tokenization",
+        "Removable media and social engineering",
+        "DNSSEC",
+        "Certificate pinning"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "The attacker relies on curiosity to introduce malicious removable media."
+    },
+    {
+      "id": "SEC-M06-Q008",
+      "module": "06",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "single",
+      "prompt": "A cloud storage bucket containing backups is reachable without authentication. What created the attack surface?",
+      "options": [
+        "Public cloud misconfiguration",
+        "Strong federation",
+        "Network segmentation",
+        "Key rotation"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Unintended public access is a cloud configuration exposure."
+    },
+    {
+      "id": "SEC-M06-Q009",
+      "module": "06",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "single",
+      "prompt": "Which action MOST directly reduces a server's attack surface?",
+      "options": [
+        "Add more user accounts",
+        "Retain default credentials",
+        "Expose management interfaces publicly",
+        "Disable unnecessary services and close unused ports"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Removing unneeded services and exposure reduces the number of paths an attacker can target."
+    },
+    {
+      "id": "SEC-M06-Q010",
+      "module": "06",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "single",
+      "prompt": "What distinguishes spear phishing from broad phishing?",
+      "options": [
+        "It requires removable media",
+        "It targets only public web servers",
+        "It is tailored to a specific person or group",
+        "It always uses SMS"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "Spear phishing uses information about selected targets to make the lure more convincing."
+    },
+    {
+      "id": "SEC-M06-Q011",
+      "module": "06",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "true_false",
+      "prompt": "A trusted vendor's digitally signed update can still be malicious if the vendor's build or signing process was compromised.",
+      "answer": true,
+      "rationale": "A valid signature proves which key signed the artifact, not that the upstream development environment remained secure."
+    },
+    {
+      "id": "SEC-M06-Q012",
+      "module": "06",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "multi",
+      "prompt": "A company wants to reduce internet-facing attack surface. Select ALL appropriate actions.",
+      "options": [
+        "Remove unused public services",
+        "Place administration behind controlled remote access",
+        "Continuously inventory exposed assets",
+        "Keep default credentials for recovery",
+        "Restrict cloud security groups to required sources"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "rationale": "Service removal, controlled administration, inventory, and narrow rules reduce exposure; default credentials create risk."
+    },
+    {
+      "id": "SEC-M06-Q013",
+      "module": "06",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "multi_not",
+      "prompt": "An employee receives a suspicious QR code by text message. Select ALL actions that do NOT reduce the risk.",
+      "options": [
+        "Open the QR destination on a production administrator workstation",
+        "Report the message through the approved channel",
+        "Enter credentials to see whether the page is real",
+        "Verify the request through a known contact method",
+        "Delete it only after preserving required evidence"
+      ],
+      "answer": [
+        0,
+        2
+      ],
+      "rationale": "Opening the link on a privileged system or entering credentials increases exposure; reporting and independent verification reduce it."
+    },
+    {
+      "id": "SEC-M06-Q014",
+      "module": "06",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each lure to the MOST specific social-engineering vector.",
+      "terms": [
+        {
+          "key": "spear",
+          "label": "Spear phishing"
+        },
+        {
+          "key": "vishing",
+          "label": "Vishing"
+        },
+        {
+          "key": "smishing",
+          "label": "Smishing"
+        },
+        {
+          "key": "quishing",
+          "label": "Quishing"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m06d1",
+          "text": "Personalized acquisition email to one finance manager",
+          "expect": "spear"
+        },
+        {
+          "id": "m06d2",
+          "text": "Impersonation call requesting an MFA reset",
+          "expect": "vishing"
+        },
+        {
+          "id": "m06d3",
+          "text": "Fraudulent payroll link delivered by SMS",
+          "expect": "smishing"
+        },
+        {
+          "id": "m06d4",
+          "text": "QR code leading to a counterfeit payment site",
+          "expect": "quishing"
+        }
+      ],
+      "rationale": "The target specificity or delivery channel determines the most specific label."
+    },
+    {
+      "id": "SEC-M06-Q015",
+      "module": "06",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.2",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.2",
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "A scanner finds an unexpected internet-facing administration service. Place the response steps in a sensible order.",
+      "steps": [
+        {
+          "key": "m06s1",
+          "label": "Confirm the asset, owner, exposure, and business need"
+        },
+        {
+          "key": "m06s2",
+          "label": "Restrict or remove unnecessary public access"
+        },
+        {
+          "key": "m06s3",
+          "label": "Check logs and the host for signs of exploitation"
+        },
+        {
+          "key": "m06s4",
+          "label": "Document the fix and continue exposure monitoring"
+        }
+      ],
+      "answer": [
+        "m06s1",
+        "m06s2",
+        "m06s3",
+        "m06s4"
+      ],
+      "rationale": "Validate the finding, contain the exposure, investigate possible use, and preserve the improvement through documentation and monitoring."
+    },
+    {
+      "id": "SEC-M07-Q001",
+      "module": "07",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "single",
+      "prompt": "A login form builds a database query by concatenating the username directly into SQL. What vulnerability is MOST likely?",
+      "options": [
+        "Race condition",
+        "SQL injection",
+        "CSRF",
+        "Buffer overflow"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Untrusted input is being interpreted as part of a SQL command."
+    },
+    {
+      "id": "SEC-M07-Q002",
+      "module": "07",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "single",
+      "prompt": "A comment field stores attacker-supplied JavaScript that runs in every visitor's browser. Which vulnerability is present?",
+      "options": [
+        "Stored cross-site scripting",
+        "SSRF",
+        "SQL injection",
+        "Pass-the-hash"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "The application stores untrusted script content and later serves it to other users' browsers."
+    },
+    {
+      "id": "SEC-M07-Q003",
+      "module": "07",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "single",
+      "prompt": "A logged-in user visits a malicious page that silently submits a funds-transfer request to a banking site. Which vulnerability enabled the action?",
+      "options": [
+        "IDOR",
+        "SSRF",
+        "Buffer overflow",
+        "CSRF"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "CSRF abuses the victim browser's authenticated session to submit an unwanted state-changing request."
+    },
+    {
+      "id": "SEC-M07-Q004",
+      "module": "07",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "single",
+      "prompt": "An image-import feature fetches any URL supplied by a user. An attacker makes it request a cloud metadata endpoint. Which vulnerability is this?",
+      "options": [
+        "CSRF",
+        "Integer overflow",
+        "SSRF",
+        "XSS"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "Server-side request forgery makes the server issue attacker-directed requests to internal or protected resources."
+    },
+    {
+      "id": "SEC-M07-Q005",
+      "module": "07",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "single",
+      "prompt": "A user changes /invoice/1042 to /invoice/1043 and receives another customer's invoice. What is the root problem?",
+      "options": [
+        "Certificate expiration",
+        "IDOR or broken object-level authorization",
+        "Weak hashing",
+        "DNS tunneling"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "The server uses an object identifier without verifying that the current user may access that object."
+    },
+    {
+      "id": "SEC-M07-Q006",
+      "module": "07",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "single",
+      "prompt": "A program copies unbounded input into a fixed-size memory area, overwriting adjacent memory. Which vulnerability is present?",
+      "options": [
+        "Buffer overflow",
+        "CSRF",
+        "Weak certificate chain",
+        "Password spraying"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Writing beyond a fixed buffer can corrupt control data and potentially enable code execution."
+    },
+    {
+      "id": "SEC-M07-Q007",
+      "module": "07",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "single",
+      "prompt": "A standard user exploits a local service flaw and gains SYSTEM privileges. What occurred?",
+      "options": [
+        "Data masking",
+        "Non-repudiation",
+        "Availability failover",
+        "Privilege escalation"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "The attacker moved from lower permissions to a more privileged security context."
+    },
+    {
+      "id": "SEC-M07-Q008",
+      "module": "07",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "single",
+      "prompt": "An internet-connected appliance still accepts the manufacturer's published administrator password. Which weakness is MOST direct?",
+      "options": [
+        "Certificate pinning",
+        "Input encoding",
+        "Default credentials",
+        "Strong authentication"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "Unchanged manufacturer credentials are predictable and commonly abused."
+    },
+    {
+      "id": "SEC-M07-Q009",
+      "module": "07",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "single",
+      "prompt": "Which development technique MOST directly prevents SQL injection?",
+      "options": [
+        "More verbose errors",
+        "Parameterized queries",
+        "Client-side validation only",
+        "Longer session cookies"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Parameterized queries keep user data separate from SQL command structure."
+    },
+    {
+      "id": "SEC-M07-Q010",
+      "module": "07",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "single",
+      "prompt": "Why is end-of-life software a security concern?",
+      "options": [
+        "The vendor may no longer provide security fixes",
+        "It always uses perfect encryption",
+        "It cannot contain configuration errors",
+        "It automatically blocks all attacks"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Unsupported products can retain known vulnerabilities without vendor patches."
+    },
+    {
+      "id": "SEC-M07-Q011",
+      "module": "07",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "true_false",
+      "prompt": "Client-side input validation alone is sufficient to protect a server from malicious requests.",
+      "answer": false,
+      "rationale": "Attackers can bypass the client and send requests directly; the server must validate and authorize input."
+    },
+    {
+      "id": "SEC-M07-Q012",
+      "module": "07",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "multi",
+      "prompt": "A development team is fixing an IDOR vulnerability. Select ALL appropriate actions.",
+      "options": [
+        "Check authorization server-side for every object request",
+        "Use indirect or unpredictable identifiers as defense in depth",
+        "Assume authentication grants access to every record",
+        "Add tests for cross-user object access",
+        "Log denied object-access attempts"
+      ],
+      "answer": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "rationale": "Server authorization is essential; safer identifiers, testing, and monitoring add defense in depth."
+    },
+    {
+      "id": "SEC-M07-Q013",
+      "module": "07",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "multi_not",
+      "prompt": "A team is mitigating stored XSS. Select ALL actions that do NOT adequately address the root vulnerability.",
+      "options": [
+        "Context-aware output encoding",
+        "Safe templating that escapes untrusted content",
+        "Rely only on a web application firewall",
+        "Trust input because it came from an authenticated user",
+        "Apply an appropriate Content Security Policy as defense in depth"
+      ],
+      "answer": [
+        2,
+        3
+      ],
+      "rationale": "A WAF alone and trust based on authentication do not correct unsafe handling of untrusted output."
+    },
+    {
+      "id": "SEC-M07-Q014",
+      "module": "07",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each symptom to the MOST likely vulnerability.",
+      "terms": [
+        {
+          "key": "sqli",
+          "label": "SQL injection"
+        },
+        {
+          "key": "xss",
+          "label": "Stored XSS"
+        },
+        {
+          "key": "ssrf",
+          "label": "SSRF"
+        },
+        {
+          "key": "idor",
+          "label": "IDOR"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m07d1",
+          "text": "A quote changes a database query's meaning",
+          "expect": "sqli"
+        },
+        {
+          "id": "m07d2",
+          "text": "Saved comment executes script in other users' browsers",
+          "expect": "xss"
+        },
+        {
+          "id": "m07d3",
+          "text": "Import service requests an internal metadata URL",
+          "expect": "ssrf"
+        },
+        {
+          "id": "m07d4",
+          "text": "Changing a numeric record ID exposes another user's data",
+          "expect": "idor"
+        }
+      ],
+      "rationale": "Each symptom reflects unsafe query construction, output handling, server-side fetching, or object authorization."
+    },
+    {
+      "id": "SEC-M07-Q015",
+      "module": "07",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.3",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.3",
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "A critical vulnerable internet-facing service is discovered. Place the defensive actions in a sensible order.",
+      "steps": [
+        {
+          "key": "m07s1",
+          "label": "Validate the finding and identify affected assets"
+        },
+        {
+          "key": "m07s2",
+          "label": "Reduce exposure with approved containment"
+        },
+        {
+          "key": "m07s3",
+          "label": "Patch or remediate and test the fix"
+        },
+        {
+          "key": "m07s4",
+          "label": "Restore service, monitor, and document closure"
+        }
+      ],
+      "answer": [
+        "m07s1",
+        "m07s2",
+        "m07s3",
+        "m07s4"
+      ],
+      "rationale": "Confirm scope, contain risk, remediate safely, then return to service with monitoring and records."
+    },
+    {
+      "id": "SEC-M08-Q001",
+      "module": "08",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "single",
+      "prompt": "A workstation rapidly renames many documents, file entropy rises, and a ransom note appears. Which activity is MOST likely?",
+      "options": [
+        "Normal backup rotation",
+        "Certificate enrollment",
+        "Routine indexing",
+        "Ransomware encryption"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Mass file modification, higher entropy, and a ransom note strongly indicate ransomware."
+    },
+    {
+      "id": "SEC-M08-Q002",
+      "module": "08",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "single",
+      "prompt": "A host contacts the same rare domain every 60 seconds with nearly identical small requests. What does this pattern MOST likely indicate?",
+      "options": [
+        "Disk defragmentation",
+        "Local privilege review",
+        "Command-and-control beaconing",
+        "Normal software installation"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "Regular low-volume outbound communication is a common C2 heartbeat pattern."
+    },
+    {
+      "id": "SEC-M08-Q003",
+      "module": "08",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "single",
+      "prompt": "One account authenticates from Phoenix and eastern Europe within five minutes. Which alert is MOST appropriate?",
+      "options": [
+        "Certificate pinning",
+        "Impossible travel",
+        "Buffer overflow",
+        "SQL injection"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "The geographic distance cannot normally be traveled between the authentication times."
+    },
+    {
+      "id": "SEC-M08-Q004",
+      "module": "08",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "single",
+      "prompt": "A workstation requests service tickets for many accounts with SPNs, then performs no normal access to those services. Which attack should be investigated?",
+      "options": [
+        "Kerberoasting",
+        "Pass-the-hash",
+        "DNS cache poisoning",
+        "Smishing"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "Kerberoasting requests service tickets that can be taken offline to crack service-account secrets."
+    },
+    {
+      "id": "SEC-M08-Q005",
+      "module": "08",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "single",
+      "prompt": "An attacker authenticates to multiple Windows systems using a captured NTLM hash without recovering the plaintext password. Which technique is this?",
+      "options": [
+        "Password spraying",
+        "Kerberoasting",
+        "Credential stuffing",
+        "Pass-the-hash"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "Pass-the-hash reuses an NTLM credential hash directly for authentication."
+    },
+    {
+      "id": "SEC-M08-Q006",
+      "module": "08",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "single",
+      "prompt": "A single account receives thousands of password attempts from one address in a short period. Which activity is MOST likely?",
+      "options": [
+        "Key escrow",
+        "Data masking",
+        "Online brute-force attack",
+        "Digital signing"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "Many guesses against one account at high speed are consistent with brute force."
+    },
+    {
+      "id": "SEC-M08-Q007",
+      "module": "08",
+      "points": 2,
+      "difficulty": 3,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "single",
+      "prompt": "A host generates thousands of DNS queries containing long, high-entropy subdomains and receives small responses. What should analysts suspect?",
+      "options": [
+        "Local file hashing",
+        "DNS tunneling",
+        "Routine DHCP renewal",
+        "Certificate stapling"
+      ],
+      "answer": [
+        1
+      ],
+      "rationale": "Encoded data in numerous unusual subdomains is a common DNS tunneling indicator."
+    },
+    {
+      "id": "SEC-M08-Q008",
+      "module": "08",
+      "points": 2,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "single",
+      "prompt": "A Word process launches hidden PowerShell with an encoded command, which then contacts a newly registered domain. Which conclusion is BEST?",
+      "options": [
+        "The correlated process chain is strongly suspicious",
+        "PowerShell is always malicious",
+        "The activity is definitely normal administration",
+        "The event affects only physical security"
+      ],
+      "answer": [
+        0
+      ],
+      "rationale": "The Office child process, hidden encoded execution, and external connection together create strong malicious context."
+    },
+    {
+      "id": "SEC-M08-Q009",
+      "module": "08",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "single",
+      "prompt": "Which sign MOST directly indicates successful privilege escalation on a Linux host?",
+      "options": [
+        "A user changes a desktop background",
+        "A DNS cache entry expires",
+        "A backup completes normally",
+        "A previously unprivileged process begins executing as root"
+      ],
+      "answer": [
+        3
+      ],
+      "rationale": "A low-privilege process gaining root execution is direct evidence of privilege escalation."
+    },
+    {
+      "id": "SEC-M08-Q010",
+      "module": "08",
+      "points": 2,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "single",
+      "prompt": "Why should an analyst correlate multiple data sources before declaring an incident?",
+      "options": [
+        "Correlation replaces evidence preservation",
+        "More logs guarantee attribution",
+        "Context reduces false positives and strengthens conclusions",
+        "One alert can never contain any useful information"
+      ],
+      "answer": [
+        2
+      ],
+      "rationale": "Endpoint, identity, network, and timing context can validate or disprove an isolated indicator."
+    },
+    {
+      "id": "SEC-M08-Q011",
+      "module": "08",
+      "points": 1,
+      "difficulty": 2,
+      "scenario": false,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "true_false",
+      "prompt": "An impossible-travel alert should be validated against VPN, proxy, and shared-egress context before it is treated as conclusive proof of account compromise.",
+      "answer": true,
+      "rationale": "Network architecture can create misleading geolocation; context is necessary to assess the alert."
+    },
+    {
+      "id": "SEC-M08-Q012",
+      "module": "08",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "multi",
+      "prompt": "A SOC is investigating possible ransomware. Select ALL indicators that strengthen the hypothesis.",
+      "options": [
+        "Rapid modification of many user files",
+        "Shadow-copy deletion attempts",
+        "Security tools being disabled",
+        "A ransom note on affected hosts",
+        "A scheduled approved backup completing normally"
+      ],
+      "answer": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "rationale": "Mass encryption behavior, recovery inhibition, defense evasion, and extortion messaging are common ransomware indicators."
+    },
+    {
+      "id": "SEC-M08-Q013",
+      "module": "08",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "multi_not",
+      "prompt": "An encoded PowerShell alert fires on an administrator workstation. Select ALL conclusions that do NOT follow from the alert alone.",
+      "options": [
+        "The administrator is definitely malicious",
+        "Additional process, user, and network context is needed",
+        "The host is conclusively compromised",
+        "Encoded commands can have legitimate and malicious uses",
+        "The event should be triaged"
+      ],
+      "answer": [
+        0,
+        2
+      ],
+      "rationale": "The alert deserves investigation, but it does not by itself prove malicious intent or compromise."
+    },
+    {
+      "id": "SEC-M08-Q014",
+      "module": "08",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "match",
+      "hint": "Drag each term to the matching description.",
+      "prompt": "Match each indicator to the MOST likely malicious activity.",
+      "terms": [
+        {
+          "key": "beacon",
+          "label": "C2 beaconing"
+        },
+        {
+          "key": "kerb",
+          "label": "Kerberoasting"
+        },
+        {
+          "key": "pth",
+          "label": "Pass-the-hash"
+        },
+        {
+          "key": "dns",
+          "label": "DNS tunneling"
+        }
+      ],
+      "definitions": [
+        {
+          "id": "m08d1",
+          "text": "Small connections to the same rare domain at fixed intervals",
+          "expect": "beacon"
+        },
+        {
+          "id": "m08d2",
+          "text": "Unusual bulk requests for Kerberos service tickets",
+          "expect": "kerb"
+        },
+        {
+          "id": "m08d3",
+          "text": "NTLM hash is reused without knowing the password",
+          "expect": "pth"
+        },
+        {
+          "id": "m08d4",
+          "text": "Long high-entropy subdomains carry encoded data",
+          "expect": "dns"
+        }
+      ],
+      "rationale": "Timing, ticket behavior, hash reuse, and DNS encoding point to four distinct attack techniques."
+    },
+    {
+      "id": "SEC-M08-Q015",
+      "module": "08",
+      "points": 4,
+      "difficulty": 4,
+      "scenario": true,
+      "domain": "2.0",
+      "objective": "2.4",
+      "sourceRef": "CompTIA Security+ SY0-701 Objective 2.4",
+      "type": "order",
+      "hint": "Drag the steps from first to last.",
+      "prompt": "A high-confidence malicious PowerShell alert is received. Place the initial analysis and response steps in a sensible order.",
+      "steps": [
+        {
+          "key": "m08s1",
+          "label": "Validate the alert and preserve volatile context"
+        },
+        {
+          "key": "m08s2",
+          "label": "Scope related users, hosts, processes, and connections"
+        },
+        {
+          "key": "m08s3",
+          "label": "Contain confirmed affected systems using the response plan"
+        },
+        {
+          "key": "m08s4",
+          "label": "Eradicate, recover, monitor, and document lessons"
+        }
+      ],
+      "answer": [
+        "m08s1",
+        "m08s2",
+        "m08s3",
+        "m08s4"
+      ],
+      "rationale": "Validate and preserve evidence, determine scope, contain, then eradicate and recover with follow-up monitoring."
+    }
+  ]
+}

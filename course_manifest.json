@@ -1,0 +1,25 @@
+{
+  "version": "1.0",
+  "courses": [
+    {
+      "id": "cls",
+      "title": "CLS",
+      "meta": "Combat Lifesaver practice exam",
+      "sourceUrl": "cls_question_bank_v1.json",
+      "status": "open",
+      "moduleHeading": "CLS Module Select",
+      "moduleMeta": "Choose a module or launch the Final Exam. Modules without questions are locked.",
+      "reviewMode": false
+    },
+    {
+      "id": "secplus",
+      "title": "Security+ Review",
+      "meta": "Cisco / CompTIA SY0-701 review and exam",
+      "sourceUrl": "secplus_question_bank_v1.json",
+      "status": "open",
+      "moduleHeading": "Security+ Module Select",
+      "moduleMeta": "Review each objective, then launch module practice or the 90-question final exam.",
+      "reviewMode": true
+    }
+  ]
+}
