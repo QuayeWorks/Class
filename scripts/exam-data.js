@@ -1,12 +1,32 @@
-const EXAM_SOURCE_URL = "cls_question_bank_v1.json";
-const APP_VERSION = "1.0.3";
+const COURSE_MANIFEST_URL = "course_manifest.json";
+const APP_VERSION = "2.0.0";
 
-async function loadExamData(){
-  const res = await fetch(`${EXAM_SOURCE_URL}?v=${APP_VERSION}`, { cache: "no-store" });
+let manifestPromise = null;
+
+async function fetchJson(url, label){
+  const separator = url.includes("?") ? "&" : "?";
+  const res = await fetch(`${url}${separator}v=${APP_VERSION}`, { cache: "no-store" });
   if(!res.ok){
-    throw new Error(`Failed to load exam data: ${res.status}`);
+    throw new Error(`Failed to load ${label}: ${res.status}`);
   }
   return res.json();
 }
 
+async function loadCourseManifest(){
+  if(!manifestPromise){
+    manifestPromise = fetchJson(COURSE_MANIFEST_URL, "course manifest");
+  }
+  return manifestPromise;
+}
+
+async function loadExamData(courseId){
+  const manifest = await loadCourseManifest();
+  const course = (manifest.courses || []).find((item)=> item.id === courseId);
+  if(!course || !course.sourceUrl){
+    throw new Error(`Unknown course: ${courseId}`);
+  }
+  return fetchJson(course.sourceUrl, `${course.title || courseId} exam data`);
+}
+
+window.loadCourseManifest = loadCourseManifest;
 window.loadExamData = loadExamData;
