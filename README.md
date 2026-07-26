@@ -1,4 +1,4 @@
-# QuayeWorks Classes
+# QuayeWorks Class
 
 A simple site for Army Soldiers to sign in, test their knowlede in military courses and civilian certifications.
 ## Courses
