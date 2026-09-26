@@ -19,6 +19,7 @@ const VIEW_MODULES = "clsModules";
 const VIEW_DOMAIN = "domain";
 const VIEW_REVIEW = "review";
 const VIEW_EXAM = "exam";
+const VIEW_IRON_LINK = "ironLink";
 
 const FINAL_EXAM_MIN = 50;
 const FINAL_EXAM_MAX = 75;
@@ -77,6 +78,7 @@ function renderView(){
   el("domainView").classList.toggle("hidden", currentView !== VIEW_DOMAIN);
   el("reviewView").classList.toggle("hidden", currentView !== VIEW_REVIEW);
   el("examView").classList.toggle("hidden", currentView !== VIEW_EXAM);
+  el("ironLinkView").classList.toggle("hidden", currentView !== VIEW_IRON_LINK);
 
   el("courseControls").classList.toggle(
     "hidden",
@@ -85,6 +87,7 @@ function renderView(){
       || currentView === VIEW_MODULES
       || currentView === VIEW_DOMAIN
       || currentView === VIEW_REVIEW
+      || currentView === VIEW_IRON_LINK
     )
   );
   el("examControls").classList.toggle("hidden", currentView !== VIEW_EXAM);
@@ -1658,6 +1661,11 @@ function renderCourseCatalog(){
         return;
       }
       try{
+        if(course.type === "lab"){
+          setView(VIEW_IRON_LINK);
+          window.ironLink.render();
+          return;
+        }
         showToast(`Loading ${course.title}...`);
         await activateCourse(course.id);
         setView(VIEW_MODULES);
@@ -2270,6 +2278,7 @@ function bindUI(){
   el("btnBackToCourses").addEventListener("click", ()=>{
     setView(VIEW_COURSES);
   });
+  el("btnIronLinkCatalog").addEventListener("click", ()=>setView(VIEW_COURSES));
 }
 
 /* -------------------------
@@ -2321,6 +2330,12 @@ async function init(){
 
   if(isAuthed()){
     currentView = localStorage.getItem(VIEW_KEY) || VIEW_COURSES;
+  }
+
+  if(isAuthed() && currentView === VIEW_IRON_LINK){
+    window.ironLink.render();
+    renderView();
+    return;
   }
 
   if(isAuthed() && currentView !== VIEW_COURSES){
