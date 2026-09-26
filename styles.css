@@ -634,3 +634,30 @@
       .reviewHero{align-items:stretch; flex-direction:column;}
       .reviewLaunch{width:100%;}
     }
+
+    /* Packet Tracer field exercise */
+    .labSummary{border:1px solid var(--line);border-radius:14px;padding:14px;background:rgba(0,0,0,.12)}
+    .labSummary p{margin:4px 0 10px;line-height:1.5}
+    .labSummary p:last-child{margin:10px 0 0}
+    .labProgress{width:100%;margin:0}
+    .labTabs,.labActions{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+    .labContent{line-height:1.55}
+    .labContent h2{font-size:20px;margin:20px 0 10px}
+    .labContent h3{font-size:16px;margin:20px 0 8px}
+    .labContent p{max-width:90ch}
+    .labTable{width:100%;border-collapse:collapse;margin:10px 0 18px;font-size:13px}
+    .labTable th,.labTable td{padding:9px;border:1px solid var(--line);text-align:left;vertical-align:top}
+    .labTable th{background:rgba(212,175,55,.12)}
+    .labStep{min-width:0;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.12);padding:16px;margin:14px 0}
+    .labStep h3{margin:0 0 12px}
+    .labStep legend{font-weight:750;padding:0 6px;max-width:100%}
+    .labCheck{display:flex;align-items:flex-start;gap:10px;padding:8px 0;cursor:pointer;line-height:1.45}
+    .labCheck input{margin-top:4px;flex:0 0 auto;accent-color:var(--accent)}
+    .labEvidence{width:100%;display:block;resize:vertical;margin:12px 0}
+    .labFeedback{border-left:3px solid var(--accent);padding:8px 12px;background:rgba(212,175,55,.09)}
+    .labScore{font-size:18px;font-weight:750}
+    .labImport{position:relative;overflow:hidden;display:inline-flex;align-items:center;cursor:pointer}
+    .labImport input{position:absolute;opacity:0;width:1px;height:1px}
+    .labImport:focus-within{outline:2px solid var(--accent)}
+    .btn:disabled{opacity:.5;cursor:not-allowed}
+    @media(max-width:700px){.labTable{display:block;overflow-x:auto}.labTabs .btn{flex:1 1 145px}}

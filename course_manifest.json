@@ -12,6 +12,13 @@
       "reviewMode": false
     },
     {
+      "id": "iron-link-01",
+      "title": "IRON LINK 01",
+      "meta": "Packet Tracer network build · evidence tracker · fault drills",
+      "type": "lab",
+      "status": "open"
+    },
+    {
       "id": "secplus",
       "title": "CompTIA Security+ SY0-701",
       "meta": "Certification Guide review and exam",
